@@ -1,0 +1,9 @@
+Custom User License v1.0
+
+1. Permission is hereby granted to individual users to download, run, and modify the Software for personal use only.
+2. The source code can be accessed, viewed, and modified solely for personal, non-commercial purposes.
+3. The rights to distribute, sublicense, or use the code to develop similar or competing applications are explicitly withheld.
+4. All modified versions or works derived from this software must retain this custom license and cannot be used for commercial purposes or distributed publicly.
+5. No warranties of any kind are provided and the Licensor shall not be liable for any damages or issues arising from the use of the software.
+
+By using this software, you agree to be bound by the terms of this Custom User License.
