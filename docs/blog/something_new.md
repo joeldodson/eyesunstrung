@@ -40,18 +40,15 @@ Or, maybe at least cranking out Margaritaville.
 
 As I was writing this post, I kept saying, "the application."
 I realized it needs a name if for no other reason than something to search from the start menu.
-And now, the reveal; `eyesUn`.
+And now, the reveal; `eyesun`.
 
 The name itself is probably obvious, shortened version of the project name.
-Why the capital 'U' though (hint, it's not a typo)?
-
-I often name projects based on how the string of characters is pronounced by default by the voice synthesizer I use.
-I prefer the pronounciation with the capital 'U'. 
-And on Windows at least, case does not matter (I'm imagining all my Linux friends cringing as I embrace case insensitivity).
+But is it pronounced "eyes un", or "eye sun"?
+Say each several times quickly and you'll find it doesn't matter.
 
 ## Initial Ideas 
 
-Assuming this app, at least initially, will be used by only me,
+Assuming `eyesun`, at least initially, will be used by only me,
 I'll be starting with functionality I want.
 This means there will be an assumption of some existing understanding of the guitar and how to play it.
 If there's interest, I might address those assumptions and make it easier for people to get started. 
