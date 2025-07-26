@@ -8,6 +8,7 @@ site_author: Joel Dodson
 nav:
   - Home: index.md
   - About: about.md
+  - LICENSE: ../LICENSE.TXT
   - Blog: 
     - List of Articles: blog/index.md 
     - Something New: blog/something_new.md
