@@ -1,4 +1,4 @@
-# About Eyes Unstrung
+# About 
 
 I started Eyes Unstrung in July, 2024.
 It was motivated by some articles and podcasts from
@@ -8,7 +8,7 @@ Specifically, I initially started thinking bout it after skimming the article,
 Then I heard the [Creating a Guitar Synthesizer & Generating Wave Files podcast](https://realpython.com/podcasts/rpp/210/),
 and started getting excited about a possible project.
 
-The immediatly preceeding podcast,
+The immediately preceding podcast,
 [Python's Command-Line Utilities & Music Information Retrieval Tools](https://realpython.com/podcasts/rpp/209/)
 was full of very cool information regarding processing sound in Python.
 

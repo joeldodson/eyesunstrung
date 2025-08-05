@@ -1,5 +1,10 @@
 # Something New
 
+[Editor's Note: It's been over 13 months and I'm back to this project.
+I've realized what a dumb name "eyesun" is and am changing that.
+Also, the initial scope is too optimistic.
+See the [take two](take_two.md) article for an update.]
+
 Today, July 3rd, 2024, I'm starting a project I hope, at the very least, I will find useful.
 
 Like maybe most people who want to play guitar, I've picked it up many times,
@@ -16,10 +21,10 @@ Okay, now, for real.
 
 I have found some decently accessible sources online.
 I've even purchased a few courses and contacted the instructor about accessibility.
-I belive he does try hard to make his courses accessible, at least the newer ones.
+I believe he does try hard to make his courses accessible, at least the newer ones.
 It's probably unreasonable to expect the existing ones to be re-recorded.
 
-The platform I use to access those courses is tecnically accessible.
+The platform I use to access those courses is technically accessible.
 It's painful though to use with a screen reader.
 
 Maybe this goes back to my lack of discipline. 
@@ -55,7 +60,7 @@ If there's interest, I might address those assumptions and make it easier for pe
 
 ### Supported Platforms
 
-It's highly unlikley this will ever be a mobile app.
+It's highly unlikely this will ever be a mobile app.
 I use Windows 11 with the
 [NVDA screen reader](https://nvaccess.org) on a laptop.
 Ease of use will be targeting that environment.
@@ -70,7 +75,7 @@ So many thoughts bouncing around of what I'd like this to become,
 it's hard to nail down where to start
 (if only there were a "hello World" song).
 And I really don't know what's actually possible/easy to implement.
-As I get deeper into this, and get punched in the face, or pleasently surprised,
+As I get deeper into this, and get punched in the face, or pleasantly surprised,
 my initial goals will almost certainly change.
 
 My current plan is to focus on a practice buddy:
