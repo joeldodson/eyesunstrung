@@ -11,7 +11,9 @@ That's a lyric from my favorite
 [Grateful Dead](https://www.dead.net/)
 song, [Ripple](https://www.dead.net/song/ripple).
 
-## Why EyesUnstrung?
+## What is EyesUnstrung?
+
+TLDR; it's a website dedicated to accessible material to learn about music and playing guitar. 
 
 Like many people, I've been trying to learn to play the guitar for many years.
 Lots of starts and, well, not so much stops, fading aways.
@@ -39,7 +41,7 @@ As I was thinking of names for this project, I wanted a subtle reference to musi
 The idea came to me of the optic nerve being the string from the eye to the brain.
 And now my eyes are unstrung.
 
-## What's Inside the Box
+## What's in the Box
 
 As noted above, I'm blind, learning to play guitar, and interested in music theory.
 As I progress along this learning path, I intend to have notes, and tools I've written to enforce those ideas.
