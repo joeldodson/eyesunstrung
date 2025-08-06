@@ -29,4 +29,5 @@ jobs:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: _build/
+          cname: eyesunstrung.vip
           force_orphan: true
