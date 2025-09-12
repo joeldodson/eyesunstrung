@@ -1,10 +1,5 @@
 # Something New
 
-[Editor's Note: It's been over 13 months and I'm back to this project.
-I've realized what a dumb name "eyesun" is and am changing that.
-Also, the initial scope is too optimistic.
-See the [take two](take_two.md) article for an update.]
-
 Today, July 3rd, 2024, I'm starting a project I hope, at the very least, I will find useful.
 
 Like maybe most people who want to play guitar, I've picked it up many times,
@@ -41,26 +36,17 @@ with functionality for both learning and practicing,
 surely I'd be Jimmy Page in a matter of months.
 Or, maybe at least cranking out Margaritaville.
 
-## The Name
-
-As I was writing this post, I kept saying, "the application."
-I realized it needs a name if for no other reason than something to search from the start menu.
-And now, the reveal; `eyesun`.
-
-The name itself is probably obvious, shortened version of the project name.
-But is it pronounced "eyes un", or "eye sun"?
-Say each several times quickly and you'll find it doesn't matter.
-
 ## Initial Ideas 
 
-Assuming `eyesun`, at least initially, will be used by only me,
+Assuming whatever I build, at least initially, will be used by only me,
 I'll be starting with functionality I want.
 This means there will be an assumption of some existing understanding of the guitar and how to play it.
 If there's interest, I might address those assumptions and make it easier for people to get started. 
 
 ### Supported Platforms
 
-It's highly unlikely this will ever be a mobile app.
+It's highly unlikely I'll create a mobile app.
+Any web content I create should be accessible from a mobile browser though.
 I use Windows 11 with the
 [NVDA screen reader](https://nvaccess.org) on a laptop.
 Ease of use will be targeting that environment.

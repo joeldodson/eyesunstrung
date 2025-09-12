@@ -13,7 +13,7 @@ song, [Ripple](https://www.dead.net/song/ripple).
 
 ## What is EyesUnstrung?
 
-TLDR; it's a website dedicated to accessible material to learn about music and playing guitar. 
+**TLDR; it's a website dedicated to accessible material to learn about music and playing guitar.**
 
 Like many people, I've been trying to learn to play the guitar for many years.
 Lots of starts and, well, not so much stops, fading aways.
@@ -31,9 +31,9 @@ Probably both.
 
 So, after hearing some podcasts on
 [RealPython](https://realpython.com)
-I decided I'd write an app for blind and low vision people wanting to learn to play guitar.
+I decided I'd develop some content for blind and low vision people wanting to learn to play guitar.
 
-**Okay, nice, but what about unstrung?**
+### Okay, nice, but what about unstrung?
 
 In Spring, 2017, I lost my sight.
 My optic nerves stroked out from blood loss due to injuries from a car accident.
@@ -41,7 +41,7 @@ As I was thinking of names for this project, I wanted a subtle reference to musi
 The idea came to me of the optic nerve being the string from the eye to the brain.
 And now my eyes are unstrung.
 
-## What's in the Box
+## What's in the Box?
 
 As noted above, I'm blind, learning to play guitar, and interested in music theory.
 As I progress along this learning path, I intend to have notes, and tools I've written to enforce those ideas.
