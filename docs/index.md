@@ -1,12 +1,13 @@
 # Eyes Unstrung
 
+```{raw} html
 <p>
 <blockquote>
 And my tunes were played on a harp unstrung
 </blockquote>
 <cite> &mdash; Robert Hunter,  Grateful Dead </cite> 
 </p>
-
+```
 That's a lyric from my favorite
 [Grateful Dead](https://www.dead.net/)
 song, [Ripple](https://www.dead.net/song/ripple).
@@ -67,5 +68,6 @@ Feel free to open an issue in the
 :caption: Table of Contents
 
 blog/index
+Theory<theory/index.md>
 about
 ```

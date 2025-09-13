@@ -40,25 +40,16 @@ html_show_copyright = False
 html_show_sphinx = True
 html_show_sourcelink = False 
 
-# include the in page TOC in the left (main) sidebar
-html_sidebars = {
-    "**": [
-        ## "sidebar-collapse",
-        ## "sidebar-nav-bs" ,
-        "page-toc",
-    ]
-}
-
-# remove all side bars, only have horizontal nav in header
-## html_sidebars = {"**": []}
-
 html_theme = "pydata_sphinx_theme"
 html_theme_options = {
     "navbar_align": "left",
-    "show_toc_level": 2,  # This helps show nested items
-    "navigation_depth": 3,  # Allow deeper navigation
     "article_header_start": [],  ## gets rid of breadcrumbs links
     "github_url": "https://github.com/joeldodson/eyesunstrung",
+    "primary_sidebar_end": ["page-toc"],
+    "show_nav_level": 2,
+    "navigation_depth": 2,
+    "show_toc_level": 2,
+    "collapse_navigation": False,
     "content_footer_items": [],
     "footer_start": [],
     "footer_end": [],
@@ -68,13 +59,4 @@ html_theme_options = {
     "secondary_sidebar_items": {"**": []},
     # trying to get rid of inaccessible color mode switcher
     "navbar_end": ["navbar-icon-links"],
-    ###
-    # folowing are options (I think) only used by sphinx-book-theme
-    # leaving them here in case I try that theme again
-    ## "use_download_button": False,
-    ## "repository_branch": "main",
-    ## "use_issues_button": True,
-    ## "use_repository_button": True,
-    ## "home_page_in_toc": True,
-    ## "footer_content_items": [],
 }
