@@ -1,19 +1,9 @@
 # Physics, Math, and Music
 
-Below is a question and answer thread with Claude, an LLM from Anthropic.
-I thought of writing an article with information from the thread, then realized how much work that would be.
-And it wouldn't be any better than the thread.
-So I decided to simply post the thread.
-
+Below is a question and answer thread with {ref}`Claude <what_is_claude>`.
 As you'll see, it's very much about the fundamentals and history of western music.
-The output is formatted by a python script I wrote to interface with Claude via the command line using Anthropic's Python SDK.
-I call it blaude.
-If you're curious, you can find
-[blaude.py in my clu github repo](https://github.com/joeldodson/clu/blob/main/blaude.py).
-The code is in a single file with a few third party package dependencies.
-run ``` blaude --help ``` for details.
-You will also need an API Key from Anthropic and add some money to your account.
-It's much, much cheaper though than a monthly subscription.
+It's not critical to know to play well.
+It might be useful though if you wonder why chords and scales are shaped the way they are.
 
 ```{raw} html
 <h1>
