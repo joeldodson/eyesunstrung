@@ -1,4 +1,7 @@
-# About 
+---
+title: About
+description: Why Eyes Unstrung exists, its license, and who is behind it.
+---
 
 I started Eyes Unstrung in July, 2024.
 It was motivated by some articles and podcasts from

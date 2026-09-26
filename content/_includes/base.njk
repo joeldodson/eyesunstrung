@@ -1,0 +1,41 @@
+{%- set navPages = [
+  { url: "/", label: "Home" },
+  { url: "/about/", label: "About" }
+] -%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% if page.url == "/" %}Eyes Unstrung{% else %}{{ title }} | Eyes Unstrung{% endif %}</title>
+    {%- if description %}
+    <meta name="description" content="{{ description }}">
+    {%- endif %}
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <p class="site-name"><a href="/">Eyes Unstrung</a></p>
+      <nav aria-label="Site">
+        <ul role="list">
+          {%- for item in navPages %}
+          <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+          {%- endfor %}
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <h1>{{ title }}</h1>
+      {{ content | safe }}
+    </main>
+
+    <footer class="site-footer">
+      <p><a href="https://github.com/joeldodson/eyesunstrung">Eyes Unstrung on GitHub</a></p>
+      <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
+    </footer>
+  </body>
+</html>

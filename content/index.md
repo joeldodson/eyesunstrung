@@ -1,13 +1,15 @@
-# Eyes Unstrung
+---
+title: Eyes Unstrung
+description: Accessible material for blind and low vision people learning music and guitar.
+---
 
-```{raw} html
-<p>
+<figure class="epigraph">
 <blockquote>
-And my tunes were played on a harp unstrung
+<p>And my tunes were played on a harp unstrung</p>
 </blockquote>
-<cite> &mdash; Robert Hunter,  Grateful Dead </cite> 
-</p>
-```
+<figcaption>&mdash; Robert Hunter, Grateful Dead</figcaption>
+</figure>
+
 That's a lyric from my favorite
 [Grateful Dead](https://www.dead.net/)
 song, [Ripple](https://www.dead.net/song/ripple).
@@ -53,21 +55,10 @@ and, eventually, some tools you can run on a laptop to assist with learning.
 ## Learn More
 
 I don't want to put too much on this main page.
-Check out the [about](about.md) page for a bit more background.
-And, of course, the [blog](blog/index.md) where you can read my ramblings and plans for the app.
+Check out the [about](/about/) page for a bit more background.
 
 ## Comments?
 
 Do you have any feedback?
 Feel free to open an issue in the 
 [eyesunstrung github repo](https://github.com/joeldodson/eyesunstrung/issues).
-
-``` {toctree}
-:maxdepth: 2
-:hidden: true
-:caption: Table of Contents
-
-blog/index
-Theory<theory/index.md>
-about
-```

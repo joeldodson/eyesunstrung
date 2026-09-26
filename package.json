@@ -1,0 +1,21 @@
+{
+  "name": "eyesunstrung",
+  "version": "1.0.0",
+  "description": "The Eyes Unstrung website, eyesunstrung.vip, built with Eleventy.",
+  "private": true,
+  "author": "Joel Dodson",
+  "license": "SEE LICENSE IN LICENSE.TXT",
+  "type": "module",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joeldodson/eyesunstrung.git"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.1.6",
+    "@fontsource-variable/atkinson-hyperlegible-next": "^5.3.0"
+  }
+}
