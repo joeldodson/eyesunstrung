@@ -4,7 +4,7 @@
   "description": "The Eyes Unstrung website, eyesunstrung.vip, built with Eleventy.",
   "private": true,
   "author": "Joel Dodson",
-  "license": "SEE LICENSE IN LICENSE.TXT",
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "start": "eleventy --serve",
