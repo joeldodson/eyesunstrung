@@ -177,6 +177,19 @@ h3 {
   margin-block: 2rem 0.5rem;
 }
 
+/* No bullets on bulleted lists, at Joel's request, carried over from the
+   original Physics, Math, and Music page. List semantics are kept by
+   role="list", added to
+   every <ul> in eleventy.config.js. Numbered lists keep their numbers. */
+main ul {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+main ul li {
+  margin-bottom: 0.5rem;
+}
+
 .epigraph {
   margin: 0 0 1.5rem;
   padding: 1rem 1.25rem;
