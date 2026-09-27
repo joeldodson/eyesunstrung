@@ -1,6 +1,6 @@
 ---
-title: Physics, Math, and Music
-description: Why a guitar string sounds the way it does, and where the twelve notes of Western music come from, starting from basic physics and algebra.
+title: "Physics, Math, and Music"
+description: "How sound waves, simple arithmetic and the harmonic series explain pitch, timbre, consonance, and the twelve-note scale."
 date: 2026-09-26
 ---
 
@@ -9,16 +9,6 @@ Why does a guitar string sound like a guitar string? Why do two notes played tog
 None of these are questions you have to answer in order to play the guitar. But they all have answers, and the answers are more interesting than most people expect. They start in physics, pass through arithmetic, and end up in a set of compromises that musicians have argued about for two and a half thousand years.
 
 This article assumes you know a little basic physics and a little algebra. It assumes no musical background at all. Every technical term is defined when it first appears, and defined again in the glossary at the end.
-
-## Contents
-
-- [Before you start: notes and their names](#before-you-start-notes-and-their-names)
-- [Part 1: Sound and waves](#part-1-sound-and-waves)
-- [Part 2: The mathematical toolkit](#part-2-the-mathematical-toolkit)
-- [Part 3: From physics to music](#part-3-from-physics-to-music)
-- [Part 4: All of this, on a guitar](#part-4-all-of-this-on-a-guitar)
-- [Part 5: Where to go deeper](#part-5-where-to-go-deeper)
-- [Glossary of terms](#glossary-of-terms)
 
 ## Before you start: notes and their names
 
@@ -532,7 +522,7 @@ Seven notes out of twelve is a convention, not a law. Some of the alternatives:
 - Melodic minor - raises both the sixth and seventh on the way up, smoothing the awkward gap. Classically it reverts to natural minor descending; jazz musicians generally use the ascending form throughout.
 - Whole tone scale - six notes, every step a whole step. Perfectly symmetrical, with no half steps and therefore no natural home note, which is why it sounds unmoored. Debussy used it heavily.
 - Octatonic or diminished scale - eight notes alternating whole and half steps. Also symmetrical, common in jazz and in twentieth-century composition.
-- Chord - three or more notes sounded together.
+- Chromatic scale - all twelve notes. Not really a scale so much as the complete supply.
 
 Beyond the twelve-note world:
 
@@ -655,8 +645,8 @@ Threads worth pulling, if any of the above caught your interest:
 
 ### Musical terms
 
+- Chord - three or more notes sounded together.
 - Chromatic scale - all twelve pitches within an octave.
-- Chromatic scale - all twelve notes. Not really a scale so much as the complete supply.
 - Consonance - the quality of notes sounding stable and agreeable together.
 - Dissonance - the quality of notes sounding tense, rough, or unresolved.
 - Equal temperament - a tuning system dividing the octave into equal steps, standardly twelve. Every semitone is the twelfth root of 2.
