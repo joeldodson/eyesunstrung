@@ -14,6 +14,13 @@ export default function (eleventyConfig) {
     [`${fontPackage}/LICENSE`]: "assets/fonts/OFL.txt",
   });
 
+  // Dates in front matter are read as midnight UTC, so format them in UTC too,
+  // or a date can show as the day before.
+  eleventyConfig.addFilter("isoDate", (date) => date.toISOString().slice(0, 10));
+  eleventyConfig.addFilter("readableDate", (date) =>
+    date.toLocaleDateString("en-US", { dateStyle: "long", timeZone: "UTC" }),
+  );
+
   eleventyConfig.addGlobalData("layout", "base.njk");
   eleventyConfig.addGlobalData("year", () => new Date().getFullYear());
 }
