@@ -34,11 +34,19 @@ Rules for the body:
 - Never use the character pairs {{ or {% or {# anywhere, including inside code. The site's template engine reads them as commands and the build fails.
 - Do not start a paragraph line with a number followed by a full stop unless it is a numbered list.
 - Write for someone using a screen reader. Headings are the main way to navigate, so give each section a heading that says what it covers. Link text should make sense on its own; never "click here" or "this link". Don't rely on visual layout, colour or position ("the table below", "on the right").
-- If the article is long, put a "## Contents" section after the opening paragraphs, listing the ## sections as links. Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Part 1: Sound and waves" is linked as [Part 1: Sound and waves](#part-1-sound-and-waves). Keep headings that appear in the contents free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
+- Do not write a contents section, however long the article is. The site will generate one from the headings.
+- Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Part 1: Sound and waves" can be linked as [Part 1: Sound and waves](#part-1-sound-and-waves). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
 - To link to another article on the site, use /articles/ followed by its file name without .md and a trailing slash, for example [Physics, Math, and Music](/articles/physics-math-and-music/). Add #heading-id to link to a section of it.
 - If there is a glossary, make it a ## heading at the end, with a bulleted list of "Term - definition" lines, one term per line, in alphabetical order.
-- End every article with a "## Prompter's Note" section containing only the placeholder text "To be written by Joel." I write that section myself.
 ```
+
+Joel's changes to the first draft of these instructions, 2026-09-26: no Prompter's Note
+placeholder (he adds that section himself when he wants one), and no contents section even for
+long articles, because a contents panel generated from the headings is planned for the article
+layout.
+
+Drafts are saved in `articlesWorkspace/` at the repository root, which is gitignored, and copied
+into `content/articles/` once they have been read.
 
 ### Why these rules
 
@@ -51,12 +59,15 @@ Rules for the body:
 - **Heading ids.** Made by Eleventy's `IdAttributePlugin` using its `slugify` filter. Tested
   2026-09-26: "Prompter's Note" becomes `prompters-note`, "Solfège: doh, ray, me" becomes
   `solfege-doh-ray-me`, "Part 1: Sound & waves" becomes `part-1-sound-and-waves`, and "C# and Db"
-  becomes `c-and-db`, because `#` is dropped. That last one is why contents headings should avoid
-  symbols.
+  becomes `c-and-db`, because `#` is dropped. That last one is why `##` headings, which the planned
+  contents panel will link to, should avoid symbols.
 - **Bullets.** The site hides list bullets and keeps list semantics with `role="list"`, so articles
   use ordinary `-` lists.
-- **Prompter's Note.** Joel writes this section himself. Claude adds the heading and a placeholder
-  so it is always in the same place, with the id `prompters-note`.
+- **Prompter's Note.** Joel adds this section himself when he wants one. Written as
+  `## Prompter's Note`, its id is `prompters-note`.
+- **Dates and order.** The articles list is sorted by `date`. Articles with the same date are
+  sorted by file name, which is why `introduction.md` comes before `physics-math-and-music.md`
+  when both are dated 2026-09-26.
 
 ## What the build checks
 
