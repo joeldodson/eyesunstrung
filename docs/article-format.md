@@ -4,7 +4,14 @@ How articles for eyesunstrung.vip are written, and what the build checks. Writte
 
 Articles are Markdown files in `content/articles/`. The file name becomes the address:
 `content/articles/physics-math-and-music.md` is published at `/articles/physics-math-and-music/`.
-Every file there is listed on `/articles/`, oldest first by `date`.
+Every file there is listed, oldest first by `date`, in the Articles panel beside each article and
+in the Articles dropdown of the Main navigation bar. The introduction is the exception to the
+address rule: its front matter sets `permalink: /articles/`, so it is what `/articles/` shows.
+
+Each article page also gets a contents panel: a navigation landmark named by the article's title,
+listing its `##` headings with their `###` headings nested inside. It is built from the headings
+when the site is built, so articles never contain one. An article with no `##` or `###` headings
+gets no contents panel.
 
 Articles are often drafted by Claude in a Claude chat project. The instructions below are what
 that project is given, so that every article arrives in a form that can be saved straight into
@@ -42,8 +49,7 @@ Rules for the body:
 
 Joel's changes to the first draft of these instructions, 2026-09-26: no Prompter's Note
 placeholder (he adds that section himself when he wants one), and no contents section even for
-long articles, because a contents panel generated from the headings is planned for the article
-layout.
+long articles, because the article layout generates a contents panel from the headings.
 
 Drafts are saved in `articlesWorkspace/` at the repository root, which is gitignored, and copied
 into `content/articles/` once they have been read.
@@ -56,11 +62,13 @@ into `content/articles/` once they have been read.
   navigation by heading level.
 - **No `{{`, `{%` or `{#`.** Markdown here is run through Nunjucks first
   (`markdownTemplateEngine: "njk"` in `eleventy.config.js`), so those pairs are template syntax.
-- **Heading ids.** Made by Eleventy's `IdAttributePlugin` using its `slugify` filter. Tested
+- **Heading ids.** Made by the `headings` transform in `eleventy.config.js`, using Eleventy's
+  `slugify` filter, the same one its `IdAttributePlugin` uses. A repeated heading gets `-2`,
+  `-3` and so on added. Tested
   2026-09-26: "Prompter's Note" becomes `prompters-note`, "Solfège: doh, ray, me" becomes
   `solfege-doh-ray-me`, "Part 1: Sound & waves" becomes `part-1-sound-and-waves`, and "C# and Db"
-  becomes `c-and-db`, because `#` is dropped. That last one is why `##` headings, which the planned
-  contents panel will link to, should avoid symbols.
+  becomes `c-and-db`, because `#` is dropped. That last one is why `##` headings, which the contents
+  panel links to, should avoid symbols.
 - **Bullets.** The site hides list bullets and keeps list semantics with `role="list"`, so articles
   use ordinary `-` lists.
 - **Prompter's Note.** Joel adds this section himself when he wants one. Written as

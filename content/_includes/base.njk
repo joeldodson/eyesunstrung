@@ -1,8 +1,11 @@
-{%- set navPages = [
-  { url: "/", label: "Home" },
-  { url: "/articles/", label: "Articles" },
-  { url: "/about/", label: "About" }
-] -%}
+{#- The one layout for every page.
+
+    Order on every page: skip link, banner, the Main navigation bar, then the
+    page. Article pages add two navigation landmarks before the article, in a
+    left column: the article's contents, named by its h1, and the list of
+    articles. The contents list is filled in by the "headings" transform in
+    eleventy.config.js, which replaces the article-contents comment below. -#}
+{%- set isArticle = tags and "articles" in tags -%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -14,28 +17,58 @@
     {%- endif %}
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
       <p class="site-name"><a href="/">Eyes Unstrung</a></p>
-      <nav aria-label="Site">
-        <ul role="list">
-          {%- for item in navPages %}
-          <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
-          {%- endfor %}
-        </ul>
-      </nav>
     </header>
 
-    <main id="main-content">
-      <h1>{{ title }}</h1>
-      {%- if tags and "articles" in tags %}
-      <p class="article-date">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
-      {%- endif %}
-      {{ content | safe }}
-    </main>
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              {%- for article in collections.articles %}
+              <li><a href="{{ article.url }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
+      </ul>
+    </nav>
+
+    {%- if isArticle %}
+    <div class="article-layout">
+      <div class="article-panels">
+        <!--article-contents-->
+        <nav class="panel" aria-label="Articles">
+          <p class="panel-title">Articles</p>
+          <ul role="list">
+            {%- for article in collections.articles %}
+            <li><a href="{{ article.url }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
+            {%- endfor %}
+          </ul>
+        </nav>
+      </div>
+    {%- endif %}
+
+      <main id="main-content">
+        <h1 id="page-title">{{ title }}</h1>
+        {%- if isArticle %}
+        <p class="article-date">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
+        {%- endif %}
+        {{ content | safe }}
+      </main>
+
+    {%- if isArticle %}
+    </div>
+    {%- endif %}
 
     <footer class="site-footer">
       <p><a href="https://github.com/joeldodson/eyesunstrung">Eyes Unstrung on GitHub</a></p>

@@ -102,22 +102,31 @@ a:visited {
   color: var(--link-visited);
 }
 
+/* Page widths. The banner, menu bar and footer span up to --page-width; a
+   page's text column is held to --measure for comfortable line length. */
+:root {
+  --page-width: 80rem;
+  --panel-width: 18rem;
+}
+
 .site-header,
-main,
-.site-footer {
-  max-width: var(--measure);
+.main-menu > ul,
+.site-footer,
+.article-layout {
+  max-width: var(--page-width);
   margin-inline: auto;
   padding-inline: 1rem;
 }
 
+main {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* The banner. To be designed; for now the site name. */
 .site-header {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.5rem 1.5rem;
   padding-block: 1rem;
-  border-bottom: 1px solid var(--border);
 }
 
 .site-name {
@@ -131,20 +140,59 @@ main,
   color: var(--text);
 }
 
-nav ul {
+/* The Main navigation: a full-width bar between the banner and the page. */
+.main-menu {
+  background-color: var(--surface);
+  border-block: 1px solid var(--border);
+}
+
+.main-menu > ul {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.25rem 1.25rem;
-  margin: 0;
-  padding: 0;
+  gap: 0 1.75rem;
+  margin-block: 0;
   list-style: none;
 }
 
-/* Standalone links get at least a 24px target (WCAG 2.5.8). */
-nav a {
+.main-menu li {
+  position: relative;
+}
+
+/* Links and dropdown buttons in the bar: at least a 24px target (WCAG 2.5.8). */
+.main-menu > ul > li > a,
+.main-menu summary {
   display: inline-block;
   min-height: 24px;
-  padding-block: 0.25rem;
+  padding-block: 0.6rem;
+}
+
+.main-menu summary {
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  cursor: pointer;
+}
+
+/* The dropdown list opens below its button, over the page. The script in
+   menu.js closes it when focus leaves, so it cannot hide a focused element. */
+.submenu > ul {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1;
+  width: max-content;
+  max-width: min(24rem, 90vw);
+  margin: 0;
+  padding: 0.5rem 1rem;
+  list-style: none;
+  background-color: var(--background);
+  border: 1px solid var(--border);
+}
+
+.submenu li a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 0.3rem;
 }
 
 nav a[aria-current="page"] {
@@ -152,8 +200,56 @@ nav a[aria-current="page"] {
   text-decoration-thickness: 3px;
 }
 
-main {
-  padding-block: 1.5rem 3rem;
+/* Article pages: the contents and article list in a left column, the article
+   beside it. On narrow screens the column stacks above the article, in the
+   same order a screen reader reads them. */
+.article-layout {
+  display: grid;
+  grid-template-columns: var(--panel-width) minmax(0, 1fr);
+  gap: 0 2.5rem;
+  align-items: start;
+}
+
+.article-layout main {
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+@media (max-width: 50rem) {
+  .article-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.article-panels {
+  padding-block: 1.5rem;
+}
+
+.panel {
+  margin-block-end: 1.5rem;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+}
+
+.panel-title {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel ul ul {
+  padding-left: 1rem;
+}
+
+.panel li a {
+  display: inline-block;
+  min-height: 24px;
+  padding-block: 0.2rem;
 }
 
 h1,
@@ -179,8 +275,8 @@ h3 {
 
 /* No bullets on bulleted lists, at Joel's request, carried over from the
    original Physics, Math, and Music page. List semantics are kept by
-   role="list", added to
-   every <ul> in eleventy.config.js. Numbered lists keep their numbers. */
+   role="list", added to every <ul> in eleventy.config.js. Numbered lists keep
+   their numbers. */
 main ul {
   list-style: none;
   padding-left: 1.25rem;
@@ -188,6 +284,11 @@ main ul {
 
 main ul li {
   margin-bottom: 0.5rem;
+}
+
+.article-date {
+  margin-block: -1rem 1.5rem;
+  color: var(--text-muted);
 }
 
 .epigraph {
@@ -220,32 +321,4 @@ main ul li {
 
 .site-footer p {
   margin-block: 0.25rem;
-}
-
-.article-list {
-  padding: 0;
-  list-style: none;
-}
-
-.article-list li {
-  margin-block: 0 1.5rem;
-}
-
-.article-list a {
-  font-size: 1.2rem;
-  font-weight: 700;
-}
-
-.article-list time,
-.article-date {
-  display: block;
-  color: var(--text-muted);
-}
-
-.article-list p {
-  margin-block: 0.25rem 0;
-}
-
-.article-date {
-  margin-block: -1rem 1.5rem;
 }
