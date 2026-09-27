@@ -7,6 +7,11 @@ as a blind person, and eventually the home of the web version of
 Built with [Eleventy](https://www.11ty.dev/). Pages are Markdown files in `content/`, rendered
 through the one layout in `content/_includes/base.njk`.
 
+## Articles
+
+Articles are Markdown files in `content/articles/`. `docs/article-format.md` describes the format,
+holds the instructions given to Claude for drafting them, and lists what the build checks.
+
 ## Running it locally
 
 ```
