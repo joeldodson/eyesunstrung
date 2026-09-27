@@ -5,7 +5,9 @@
     left column: the article's contents, named by its h1, and the list of
     articles. The contents list is filled in by the "headings" transform in
     eleventy.config.js, which replaces the article-contents comment below. -#}
-{%- set isArticle = tags and "articles" in tags -%}
+{#- content/articles/index.md, the /articles/ page, has the articles tag from
+    its folder but excludes itself from collections: it is not an article. -#}
+{%- set isArticle = tags and "articles" in tags and not eleventyExcludeFromCollections -%}
 <!doctype html>
 <html lang="en">
   <head>
@@ -33,6 +35,7 @@
           <details class="submenu">
             <summary>Articles</summary>
             <ul role="list">
+              <li><a href="/articles/"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
               {%- for article in collections.articles %}
               <li><a href="{{ article.url }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
               {%- endfor %}

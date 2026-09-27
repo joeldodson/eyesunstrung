@@ -5,8 +5,24 @@ How articles for eyesunstrung.vip are written, and what the build checks. Writte
 Articles are Markdown files in `content/articles/`. The file name becomes the address:
 `content/articles/physics-math-and-music.md` is published at `/articles/physics-math-and-music/`.
 Every file there is listed, oldest first by `date`, in the Articles panel beside each article and
-in the Articles dropdown of the Main navigation bar. The introduction is the exception to the
-address rule: its front matter sets `permalink: /articles/`, so it is what `/articles/` shows.
+in the Articles dropdown of the Main navigation bar.
+
+## The /articles/ page and Prompter's Notes
+
+`content/articles/index.md` is the `/articles/` page, written by Joel. It has an `h2` for each
+article, linking to it, followed by Joel's Prompter's Notes on that article. The dropdown's first
+item, "All articles", links to it.
+
+It lives in the articles folder but is not an article. Its front matter has
+`eleventyExcludeFromCollections: true`, which keeps it out of the article lists, gives it the plain
+page layout without panels or a date, and means only `title` is required. When a new article is
+added, its section here is added by hand:
+
+```
+## [Article title](/articles/file-name/)
+
+Prompter's Notes: ...
+```
 
 Each article page also gets a contents panel: a navigation landmark named by the article's title,
 listing its `##` headings with their `###` headings nested inside. It is built from the headings
