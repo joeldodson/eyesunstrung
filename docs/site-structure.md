@@ -5,7 +5,7 @@ The sections of eyesunstrung.vip, how each page is laid out, and what is planned
 
 ## Layout
 
-Every page has, in order: a skip link, the banner (the site name, still to be designed), the Main
+Every page has, in order: a skip link, the banner, the Main
 navigation bar, the page, and the footer. All of it comes from `content/_includes/base.njk`.
 
 The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown and About. The
@@ -20,6 +20,29 @@ Some pages have a left column of navigation landmarks beside the page:
 
 Articles get both. Any other page gets the contents panel alone by setting `contentsPanel: true`
 in its front matter. Pages without either are a single column.
+
+## Banner, favicon and footer
+
+The banner is one SVG image, `content/assets/images/banner.svg`, linking to the home page with the
+alt text "eyesunstrung". It shows an unstrung archtop guitar, modelled on a 17-inch single-cutaway
+archtop like Joel's Eastman AR905CE but with no maker's logo or inlay design, lying on its edge on a
+table, with a pair of generic thick-framed sunglasses on the table under the neck joint, and
+"eyesunstrung" in the upper right in Atkinson Hyperlegible Next, converted to outlines. It has its
+own dark background, the same in light and dark mode. The favicon,
+`content/assets/images/favicon.svg`, is the sunglasses on a square in the guitar's amber finish.
+
+Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
+so the site build does not need to run it. The script's comments describe the geometry. The unstrung
+app is to use the same banner and favicon; copying them into unstrungApp is still to do.
+
+Checked 2026-09-29 by measuring the drawing in a browser, not by looking at it: everything is in the
+frame; the pickguard, pickup, bridge, tailpiece, f-holes and the fretboard's end sit inside the body
+outline; the title is at least 38 px from any part of the guitar; the sunglasses rest on the table
+under the neck joint, slightly overlapping the body's edge; the title's contrast with the wall is
+12:1 or better. How it looks has not been judged by a sighted person yet.
+
+The footer, on every page, has "Comments? Email feedback at eyesunstrung.vip" (the last part is the
+mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub.
 
 ## Sections
 
@@ -47,7 +70,6 @@ in its front matter. Pages without either are a single column.
   confirmed: `https://www.youtube.com/@unstrungApp`.
 - **`/unstrung/app/`** is where the web build of unstrung goes. It has no `index.md` here; the site
   workflow will copy the app's own files in.
-- **The banner** is to be designed.
 
 ## Build checks
 

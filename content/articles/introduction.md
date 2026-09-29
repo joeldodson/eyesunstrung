@@ -12,7 +12,7 @@ Article generation is an iterative process of prompting and editing until I like
 ## What is eyesunstrung?
 
 Like many people, I've been trying to learn to play the guitar for many years.
-Lots of starts and, well, not so much stops as fade-outs.
+Lots of starts and, well, not so much stops as fade-aways.
 
 So much material for learning guitar, probably most musical instruments, is visual.
 I have posters, from when I could see, with images of fingering for dozens of chords.

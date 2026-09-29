@@ -20,6 +20,7 @@
     {%- if description %}
     <meta name="description" content="{{ description }}">
     {%- endif %}
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
     <script src="/assets/js/menu.js" defer></script>
@@ -28,7 +29,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
-      <p class="site-name"><a href="/">eyesunstrung</a></p>
+      <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="360"></a>
     </header>
 
     <nav class="main-menu" aria-label="Main">
@@ -93,7 +94,11 @@
     {%- endif %}
 
     <footer class="site-footer">
-      <p><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></p>
+      <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+      <ul role="list">
+        <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+        <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+      </ul>
       <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
     </footer>
   </body>

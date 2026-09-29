@@ -8,7 +8,7 @@ I'll add a brief note for the techies.
 
 eyesunstrung.vip is hosted on GitHub Pages using a custom URL.
 The URL is from Namecheap, a mostly accessible, if not very usable, registrar.
-I could link GitHub's and Namecheap's setup guides, but these days I'd just ask Claude how to set it up.
+I could link GitHub's and Namecheap's setup guides, but these days I'd ask Claude how to set it up.
 Claude will either give you step-by-step instructions, offer to do it for you, or point you to the latest guides.
 
 eyesunstrung.vip is developed using Eleventy, a static site generation tool.
