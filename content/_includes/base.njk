@@ -42,6 +42,20 @@
             </ul>
           </details>
         </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              {%- for item in [
+                { url: "/unstrung/", label: "Overview" },
+                { url: "/unstrung/docs/", label: "Documentation" },
+                { url: "/unstrung/videos/", label: "Videos" }
+              ] %}
+              <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+              {%- endfor %}
+            </ul>
+          </details>
+        </li>
         <li><a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
       </ul>
     </nav>

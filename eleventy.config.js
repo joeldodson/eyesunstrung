@@ -5,6 +5,7 @@
 // time, with its licence, so nothing third-party is committed here.
 
 import fs from "node:fs";
+import path from "node:path";
 
 const fontPackage = "node_modules/@fontsource-variable/atkinson-hyperlegible-next";
 
@@ -128,6 +129,32 @@ export default function (eleventyConfig) {
       .map(([inputPath, problems]) => `${inputPath}:\n- ${problems.join("\n- ")}`);
     if (reports.length) {
       throw new Error(`${reports.join("\n")}\nSee docs/article-format.md.`);
+    }
+  });
+
+  // Checks every link within the site, on every page: the page or file it
+  // points to must exist, and so must the heading id after a #. Stops the
+  // build on a broken link. Links to other sites are not checked.
+  eleventyConfig.on("eleventy.after", ({ dir, results }) => {
+    const pages = results.filter((r) => r.outputPath && r.outputPath.endsWith(".html"));
+    const html = new Map(pages.map((r) => [path.resolve(r.outputPath), fs.readFileSync(r.outputPath, "utf8")]));
+    const broken = [];
+
+    for (const page of pages) {
+      const source = html.get(path.resolve(page.outputPath));
+      for (const [, href] of source.matchAll(/href="(\/(?!\/)[^"]*)"/g)) {
+        const [target, hash] = href.split("#");
+        let file = path.resolve(dir.output, "." + decodeURI(target.split("?")[0]));
+        if (target.endsWith("/")) file = path.join(file, "index.html");
+        if (!fs.existsSync(file)) {
+          broken.push(`${page.inputPath}: ${href} does not exist`);
+        } else if (hash && !new RegExp(`\\sid="${hash}"`).test(html.get(file) ?? fs.readFileSync(file, "utf8"))) {
+          broken.push(`${page.inputPath}: ${href} has no heading with the id ${hash}`);
+        }
+      }
+    }
+    if (broken.length) {
+      throw new Error(`Broken links:\n- ${[...new Set(broken)].join("\n- ")}`);
     }
   });
 

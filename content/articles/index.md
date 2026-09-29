@@ -4,7 +4,7 @@ description: "The articles on Eyes Unstrung, each with a Prompter's Note from Jo
 eleventyExcludeFromCollections: true
 ---
 
-## [Introduction to eyesunstrung Articles](/articles/introduction/)
+## [Introduction to eyesunstrung](/articles/introduction/)
 
 Prompter's Notes: to be written.
 
