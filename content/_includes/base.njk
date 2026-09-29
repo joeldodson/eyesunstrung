@@ -3,17 +3,20 @@
     Order on every page: skip link, banner, the Main navigation bar, then the
     page. Article pages add two navigation landmarks before the article, in a
     left column: the article's contents, named by its h1, and the list of
-    articles. The contents list is filled in by the "headings" transform in
-    eleventy.config.js, which replaces the article-contents comment below. -#}
+    articles. A page with contentsPanel: true in its front matter gets the
+    left column with only the contents. The contents list is filled in by the
+    "headings" transform in eleventy.config.js, which replaces the
+    page-contents comment below. -#}
 {#- content/articles/index.md, the /articles/ page, has the articles tag from
     its folder but excludes itself from collections: it is not an article. -#}
 {%- set isArticle = tags and "articles" in tags and not eleventyExcludeFromCollections -%}
+{%- set hasPanels = isArticle or contentsPanel -%}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{% if page.url == "/" %}Eyes Unstrung{% else %}{{ title }} | Eyes Unstrung{% endif %}</title>
+    <title>{% if page.url == "/" %}eyesunstrung{% else %}{{ title }} | eyesunstrung{% endif %}</title>
     {%- if description %}
     <meta name="description" content="{{ description }}">
     {%- endif %}
@@ -25,7 +28,7 @@
     <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="site-header">
-      <p class="site-name"><a href="/">Eyes Unstrung</a></p>
+      <p class="site-name"><a href="/">eyesunstrung</a></p>
     </header>
 
     <nav class="main-menu" aria-label="Main">
@@ -60,10 +63,11 @@
       </ul>
     </nav>
 
-    {%- if isArticle %}
-    <div class="article-layout">
-      <div class="article-panels">
-        <!--article-contents-->
+    {%- if hasPanels %}
+    <div class="panel-layout">
+      <div class="side-panels">
+        <!--page-contents-->
+        {%- if isArticle %}
         <nav class="panel" aria-label="Articles">
           <p class="panel-title">Articles</p>
           <ul role="list">
@@ -72,6 +76,7 @@
             {%- endfor %}
           </ul>
         </nav>
+        {%- endif %}
       </div>
     {%- endif %}
 
@@ -83,12 +88,12 @@
         {{ content | safe }}
       </main>
 
-    {%- if isArticle %}
+    {%- if hasPanels %}
     </div>
     {%- endif %}
 
     <footer class="site-footer">
-      <p><a href="https://github.com/joeldodson/eyesunstrung">Eyes Unstrung on GitHub</a></p>
+      <p><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></p>
       <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
     </footer>
   </body>

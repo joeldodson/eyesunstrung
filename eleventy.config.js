@@ -16,9 +16,9 @@ function decodeEntities(text) {
   return text.replace(/&(amp|lt|gt|quot|#39);/g, (whole, name) => named[name]);
 }
 
-// The contents navigation for an article: its h2 headings as a list, with each
-// h2's h3 headings in a list inside it. Named by the article's h1, which the
-// layout gives the id page-title. Empty when the article has no h2 or h3.
+// The contents navigation for a page: its h2 headings as a list, with each
+// h2's h3 headings in a list inside it. Named by the page's h1, which the
+// layout gives the id page-title. Empty when the page has no h2 or h3.
 function contentsNav(headings) {
   const entries = headings.filter((h) => h.level === 2 || h.level === 3);
   if (!entries.length) return "";
@@ -81,8 +81,8 @@ export default function (eleventyConfig) {
   // Gives every heading without an id one made from its text, so a page can
   // link to its own sections and other pages can link to them: "## Part 1:
   // Sound and waves" becomes id="part-1-sound-and-waves". Uses Eleventy's
-  // slugify filter, the same one its IdAttributePlugin uses. Then, on article
-  // pages, replaces the article-contents comment in the layout with the
+  // slugify filter, the same one its IdAttributePlugin uses. Then, on pages with
+  // a side panel, replaces the page-contents comment in the layout with the
   // contents navigation, built from the same headings.
   eleventyConfig.addTransform("headings", function (content) {
     if (!(this.page.outputPath || "").endsWith(".html")) return content;
@@ -100,7 +100,7 @@ export default function (eleventyConfig) {
       return `<h${level} id="${id}">${inner}</h${level}>`;
     });
 
-    return withIds.replace("<!--article-contents-->", contentsNav(headings));
+    return withIds.replace("<!--page-contents-->", contentsNav(headings));
   });
 
   // Bulleted lists are shown without bullets (see style.css). Safari drops list

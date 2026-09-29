@@ -1,7 +1,7 @@
 {
   "name": "eyesunstrung",
   "version": "1.0.0",
-  "description": "The Eyes Unstrung website, eyesunstrung.vip, built with Eleventy.",
+  "description": "The eyesunstrung website, eyesunstrung.vip, built with Eleventy.",
   "private": true,
   "author": "Joel Dodson",
   "license": "MIT",

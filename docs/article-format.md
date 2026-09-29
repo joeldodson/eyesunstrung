@@ -38,7 +38,7 @@ that project is given, so that every article arrives in a form that can be saved
 Paste this into the Claude project's instructions.
 
 ```
-Write every article as a single Markdown file for the Eyes Unstrung website, which is built with Eleventy. Give me the complete file, ready to save, and suggest a file name: lowercase words joined by hyphens, ending in .md (for example physics-math-and-music.md). The file name becomes the address: /articles/physics-math-and-music/.
+Write every article as a single Markdown file for the eyesunstrung website, which is built with Eleventy. Give me the complete file, ready to save, and suggest a file name: lowercase words joined by hyphens, ending in .md (for example physics-math-and-music.md). The file name becomes the address: /articles/physics-math-and-music/.
 
 Start the file with a front matter block, exactly in this form, with nothing before it:
 

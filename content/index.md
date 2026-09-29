@@ -1,5 +1,5 @@
 ---
-title: Eyes Unstrung
+title: eyesunstrung
 description: Accessible material for blind and low vision people learning music and guitar.
 ---
 
@@ -14,51 +14,37 @@ That's a lyric from my favorite
 [Grateful Dead](https://www.dead.net/)
 song, [Ripple](https://www.dead.net/song/ripple).
 
-## What is EyesUnstrung?
+## Welcome to eyesunstrung
 
-**TLDR; it's a website dedicated to accessible material to learn about music and playing guitar.**
+**TL;DR: it's a website dedicated to screen-reader-accessible material to learn about music and playing guitar.**
 
-Like many people, I've been trying to learn to play the guitar for many years.
-Lots of starts and, well, not so much stops, fading aways.
+For details, read the [Introduction to eyesunstrung article](/articles/introduction/).
 
-So much material for learning guitar, probably most musical instruments, is visual.
-I have posters, from when I could see, with images of fingering for dozens of chords.
-Then there's sheet music, which is inherently visual.
-For guitar, there's tablature, also visual.
-Even on YouTube videos, I so often hear, "place your fingers like this..."
-Some YouTubers do try to explain the fingering, but inevitably, there's a visual assumption. 
+## Why the Name?
 
-I'm sure there's some accessible material out there considering how many blind musicians there are.
-It's either not easy to find, or I'm not very good at searching.
-Probably both.
+At a high level, think of guitar strings as transmitting a signal from your fingers (or pick) to the body of the guitar to generate sound.
+If there are no strings, there is no sound.
+Likewise, optic nerves transfer signals from your eyes to your brain, resulting in sight.
+Without optic nerves, nothing gets from your eyes to your brain, thus blindness.
+My optic nerves don't work; my eyes are unstrung.
 
-So, after hearing some podcasts on
-[RealPython](https://realpython.com)
-I decided I'd develop some content for blind and low vision people wanting to learn to play guitar.
+## The unstrung Application
 
-### Okay, nice, but what about unstrung?
+As the introduction explains, the main point of eyesunstrung.vip is to host the web-based version of the unstrung application.
+Hopefully all your questions will be answered in [the unstrung pages](/unstrung/).
+If not, see below.
 
-In Spring, 2017, I lost my sight.
-My optic nerves stroked out from blood loss due to injuries from a car accident.
-As I was thinking of names for this project, I wanted a subtle reference to music and blindness.
-The idea came to me of the optic nerve being the string from the eye to the brain.
-And now my eyes are unstrung.
+## Articles
 
-## What's in the Box?
+As the introduction mentions, there are also [articles](/articles/) about music and guitar.
+Hopefully you find something useful there as well.
+If not, see below.
 
-As noted above, I'm blind, learning to play guitar, and interested in music theory.
-As I progress along this learning path, I intend to have notes, and tools I've written to enforce those ideas.
-Keep in mind I'm both relatively new to blindness and definitely new to learning music.
-There will be blog posts at least tangentially related to those topics,
-and, eventually, some tools you can run on a laptop to assist with learning.
+## Requests, Comments, and Feedback
 
-## Learn More
+For general feedback on the eyesunstrung.vip site or the unstrung application, web or desktop,
+please [email feedback at eyesunstrung.vip](mailto:feedback@eyesunstrung.vip).
 
-I don't want to put too much on this main page.
-Check out the [about](/about/) page for a bit more background.
-
-## Comments?
-
-Do you have any feedback?
-Feel free to open an issue in the 
-[eyesunstrung github repo](https://github.com/joeldodson/eyesunstrung/issues).
+Anything specific to the site or the app can also go in the
+[eyesunstrung GitHub issues](https://github.com/joeldodson/eyesunstrung/issues/) or the
+[unstrungApp GitHub issues](https://github.com/joeldodson/unstrungApp/issues/).

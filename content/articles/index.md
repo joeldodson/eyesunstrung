@@ -1,6 +1,6 @@
 ---
 title: "Articles in eyesunstrung"
-description: "The articles on Eyes Unstrung, each with a Prompter's Note from Joel."
+description: "The articles on eyesunstrung, each with Prompter's Notes from Joel."
 eleventyExcludeFromCollections: true
 ---
 
