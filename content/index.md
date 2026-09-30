@@ -28,6 +28,13 @@ Likewise, optic nerves transfer signals from your eyes to your brain, resulting 
 Without optic nerves, nothing gets from your eyes to your brain, thus blindness.
 My optic nerves don't work; my eyes are unstrung.
 
+## Why the VIP Domain?
+
+Yes, we are all certainly very important people.
+This VIP is for the Visually Impaired People.
+There is some silly controversy around that term.
+So be it.
+
 ## The unstrung Application
 
 As the introduction explains, the main point of eyesunstrung.vip is to host the web-based version of the unstrung application.
