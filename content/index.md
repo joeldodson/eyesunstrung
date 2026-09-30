@@ -32,7 +32,7 @@ My optic nerves don't work; my eyes are unstrung.
 
 Yes, we are all certainly very important people.
 This VIP is for the Visually Impaired People.
-There is some silly controversy around that term.
+There is (hopefully, was, by now) some silly controversy around that term.
 So be it.
 
 ## The unstrung Application
