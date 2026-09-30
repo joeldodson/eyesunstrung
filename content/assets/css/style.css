@@ -6,7 +6,9 @@
  *   - Text meets 4.5:1 contrast in both light and dark schemes.
  *   - Layout reflows to 320px wide with no horizontal scrolling.
  *   - Links are underlined, so they are not told apart by colour alone.
- *   - Nothing is sticky or fixed, so nothing can cover the focused element.
+ *   - Nothing overlaps the page content, so nothing can cover the focused
+ *     element. The one sticky element, the side-panel column, has its own
+ *     grid column and never sits over the page.
  */
 
 /* Atkinson Hyperlegible Next, by the Braille Institute, designed for low vision
@@ -242,29 +244,59 @@ nav a[aria-current="page"] {
   text-decoration-thickness: 3px;
 }
 
-/* Pages with side panels (articles, and pages with contentsPanel: true): the
-   panels in a left column, the page beside it. On narrow screens the column
-   stacks above the article, in the same order a screen reader reads them. A
-   2px slate line, the menu bar's colour, separates the column from the page:
-   down its right edge for the whole height of the page, or under it when
-   stacked. */
+/* Pages with side panels: articles, and any page with contentsPanel: true.
+   The standard layout for pages that pair a page with navigation panels.
+
+   Wide screens: the panels in a left column, the page beside it. A 2px slate
+   line, the menu bar's colour, runs down the page's left edge for its whole
+   height. The column stays in view while the page scrolls: it is sticky, at
+   most the window's height, and scrolls inside itself when its panels do not
+   fit. It sits in its own grid column, so it never overlaps the page and
+   cannot hide a focused element there.
+
+   Within the column, the same slate line separates one panel from the next.
+   A later panel (the article list) shows in full up to 14rem, about eight
+   articles, and scrolls beyond that; the contents panel gets all the rest of
+   the height, so it shows every heading whenever the window is tall enough,
+   and scrolls inside itself when it is not.
+
+   Narrow screens: the column stacks above the page in the order a screen
+   reader reads them, scrolls with the page, and has the slate line under it. */
 .panel-layout {
   display: grid;
   grid-template-columns: var(--panel-width) minmax(0, 1fr);
-  gap: 0 2.5rem;
   align-items: start;
 }
 
 .panel-layout main {
+  align-self: stretch;
   margin-inline: 0;
-  padding-inline: 0;
+  padding-inline: 2.5rem 0;
+  border-inline-start: 2px solid var(--slate);
 }
 
 .side-panels {
-  align-self: stretch;
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
   padding-block: 1.5rem;
   padding-inline-end: 1.5rem;
-  border-inline-end: 2px solid var(--slate);
+}
+
+.panel {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 0 1 auto;
+}
+
+.panel + .panel {
+  flex: 0 0 auto;
+  max-height: 14rem;
+  margin-block-start: 1rem;
+  padding-block-start: 1rem;
+  border-block-start: 2px solid var(--slate);
 }
 
 @media (max-width: 50rem) {
@@ -272,17 +304,23 @@ nav a[aria-current="page"] {
     grid-template-columns: minmax(0, 1fr);
   }
 
+  .panel-layout main {
+    padding-inline: 0;
+    border-inline-start: none;
+  }
+
   .side-panels {
+    position: static;
+    max-height: none;
     padding-inline-end: 0;
-    border-inline-end: none;
     border-block-end: 2px solid var(--slate);
   }
-}
 
-.panel {
-  margin-block-end: 1.5rem;
-  padding: 0.75rem 1rem;
-  border: 1px solid var(--border);
+  .panel,
+  .panel + .panel {
+    overflow-y: visible;
+    max-height: none;
+  }
 }
 
 .panel-title {

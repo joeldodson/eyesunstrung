@@ -29,9 +29,22 @@ Some pages have a left column of navigation landmarks beside the page:
 Articles get both. Any other page gets the contents panel alone by setting `contentsPanel: true`
 in its front matter. Pages without either are a single column.
 
-A 2 px slate line, the menu bar's colour, separates the side column from the page: down the
-column's right edge for the full height of the page, or under the panels when they stack above the
-page on narrow screens. Each panel also keeps its own thin grey border.
+This is the standard layout for any page that pairs content with navigation panels, including
+`/unstrung/docs/` when it is built. All of it is in `base.njk` and `style.css`; a new section only
+needs its own list panel.
+
+- **Dividers:** a 2 px slate line, the menu bar's colour, runs down the page's left edge for its
+  whole height, and the same line separates one panel from the next. There are no boxes around the
+  panels. On narrow screens the panels stack above the page with the line under them.
+- **Scrolling:** on wide screens the side column is sticky: it stays in view while the page scrolls,
+  is at most the window's height, and scrolls inside itself if needed. It has its own grid column,
+  so it never covers the page or a focused element in it. On narrow screens it scrolls with the
+  page, since a fixed panel there would cover the article.
+- **Space:** the list panel shows in full up to 14rem (about eight entries) and scrolls beyond
+  that. The contents panel gets the rest, so it shows every heading when the window allows.
+  Measured 2026-09-30: an article with 12 contents entries shows them all in a 700 px window;
+  Physics, Math, and Music, with 42 entries needing 1880 px, scrolls within the panel even in a
+  1600 px window.
 
 ## Banner, favicon and footer
 
