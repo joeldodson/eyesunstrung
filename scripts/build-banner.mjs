@@ -43,7 +43,7 @@ const fontFile = path.join(
 const W = 1200;
 const H = 240;
 const scale = 11.5; // pixels per inch
-const margin = { left: 40, top: 12 }; // space left of and above the guitar
+const marginTop = 12; // space above the guitar; it is centred left to right between the left edge and the title
 
 const colors = {
   wallTop: "#15191d",
@@ -63,6 +63,24 @@ const colors = {
   frame: "#0e0e0e",
 };
 
+
+// ---------------------------------------------------------------- title
+
+const fontBytes = fs.readFileSync(fontFile);
+const font = opentype.parse(fontBytes.buffer.slice(fontBytes.byteOffset, fontBytes.byteOffset + fontBytes.byteLength));
+const titleSize = 68;
+const titleRight = W - 40;
+const probe = font.getPath("eyesunstrung", 0, 0, titleSize).getBoundingBox();
+const titlePath = font.getPath("eyesunstrung", titleRight - probe.x2, 84, titleSize);
+const titleLeft = titleRight - probe.x2 + probe.x1;
+// Path data written from opentype's commands rather than its toPathData(),
+// which in opentype.js 2.0.0 can write NaN for a coordinate (it did for one
+// "s" at 68px), and a browser stops drawing a path at the first bad number.
+const pathData = (commands) =>
+  commands
+    .map((c) => c.type + ["x1", "y1", "x2", "y2", "x", "y"].filter((k) => k in c).map((k) => c[k].toFixed(2)).join(" "))
+    .join("");
+const title = `<path id="title" d="${pathData(titlePath.commands)}" fill="${colors.title}"/>`;
 
 // ---------------------------------------------------------------- guitar
 
@@ -181,9 +199,11 @@ const extremities = [
 ];
 const rotate = ([x, y]) => [x * Math.cos(theta) - y * Math.sin(theta), x * Math.sin(theta) + y * Math.cos(theta)];
 const rotated = extremities.map(rotate);
+const guitarWidth = scale * (Math.max(...rotated.map(([x]) => x)) - Math.min(...rotated.map(([x]) => x)));
+const guitarLeft = (titleLeft - guitarWidth) / 2;
 const guitarOrigin = {
-  x: f(margin.left - scale * Math.min(...rotated.map(([x]) => x))),
-  y: f(margin.top - scale * Math.min(...rotated.map(([, y]) => y))),
+  x: f(guitarLeft - scale * Math.min(...rotated.map(([x]) => x))),
+  y: f(marginTop - scale * Math.min(...rotated.map(([, y]) => y))),
 };
 const toPicture = (point) => {
   const [x, y] = rotate(point);
@@ -259,23 +279,6 @@ const sunglasses = `
     <g transform="scale(-1 1)">${oneSide}</g>
     <path d="M -7 -50 Q 0 -57 7 -50 L 7 -41 Q 0 -47 -7 -41 Z" fill="${colors.frame}"/>
   </g>`;
-
-// ---------------------------------------------------------------- title
-
-const fontBytes = fs.readFileSync(fontFile);
-const font = opentype.parse(fontBytes.buffer.slice(fontBytes.byteOffset, fontBytes.byteOffset + fontBytes.byteLength));
-const titleSize = 68;
-const titleRight = W - 40;
-const probe = font.getPath("eyesunstrung", 0, 0, titleSize).getBoundingBox();
-const titlePath = font.getPath("eyesunstrung", titleRight - probe.x2, 84, titleSize);
-// Path data written from opentype's commands rather than its toPathData(),
-// which in opentype.js 2.0.0 can write NaN for a coordinate (it did for one
-// "s" at 68px), and a browser stops drawing a path at the first bad number.
-const pathData = (commands) =>
-  commands
-    .map((c) => c.type + ["x1", "y1", "x2", "y2", "x", "y"].filter((k) => k in c).map((k) => c[k].toFixed(2)).join(" "))
-    .join("");
-const title = `<path id="title" d="${pathData(titlePath.commands)}" fill="${colors.title}"/>`;
 
 // ---------------------------------------------------------------- write
 

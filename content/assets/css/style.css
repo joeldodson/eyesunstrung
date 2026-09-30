@@ -291,8 +291,12 @@ main ul li {
   color: var(--text-muted);
 }
 
+/* The quotation opening the home page: as wide as its text, centred, with the
+   attribution aligned to its right edge. */
 .epigraph {
-  margin: 0 0 1.5rem;
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 1.5rem;
   padding: 1rem 1.25rem;
   background-color: var(--surface);
   border-left: 4px solid var(--border);
@@ -310,6 +314,7 @@ main ul li {
 
 .epigraph figcaption {
   margin-top: 0.5rem;
+  text-align: end;
   color: var(--text-muted);
 }
 
