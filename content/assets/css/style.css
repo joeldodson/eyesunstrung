@@ -107,6 +107,8 @@ a:visited {
 :root {
   --page-width: 80rem;
   --panel-width: 18rem;
+  /* The menu bar's slate, also used for the line beside the side panels. */
+  --slate: #475569;
 }
 
 .main-menu > ul,
@@ -150,7 +152,7 @@ main {
    title's colour, separates it from the banner's brown bottom edge, which is
    close to the slate in lightness. */
 .main-menu {
-  --bar: #475569;
+  --bar: var(--slate);
   --bar-text: #f3e9d2;
   --bar-focus: #ffb27a;
   background-color: var(--bar);
@@ -241,8 +243,11 @@ nav a[aria-current="page"] {
 }
 
 /* Pages with side panels (articles, and pages with contentsPanel: true): the
-   panels in a left column, the page beside it. On narrow screens the column stacks above the article, in the
-   same order a screen reader reads them. */
+   panels in a left column, the page beside it. On narrow screens the column
+   stacks above the article, in the same order a screen reader reads them. A
+   2px slate line, the menu bar's colour, separates the column from the page:
+   down its right edge for the whole height of the page, or under it when
+   stacked. */
 .panel-layout {
   display: grid;
   grid-template-columns: var(--panel-width) minmax(0, 1fr);
@@ -255,14 +260,23 @@ nav a[aria-current="page"] {
   padding-inline: 0;
 }
 
+.side-panels {
+  align-self: stretch;
+  padding-block: 1.5rem;
+  padding-inline-end: 1.5rem;
+  border-inline-end: 2px solid var(--slate);
+}
+
 @media (max-width: 50rem) {
   .panel-layout {
     grid-template-columns: minmax(0, 1fr);
   }
-}
 
-.side-panels {
-  padding-block: 1.5rem;
+  .side-panels {
+    padding-inline-end: 0;
+    border-inline-end: none;
+    border-block-end: 2px solid var(--slate);
+  }
 }
 
 .panel {

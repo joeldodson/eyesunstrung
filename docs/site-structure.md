@@ -29,6 +29,10 @@ Some pages have a left column of navigation landmarks beside the page:
 Articles get both. Any other page gets the contents panel alone by setting `contentsPanel: true`
 in its front matter. Pages without either are a single column.
 
+A 2 px slate line, the menu bar's colour, separates the side column from the page: down the
+column's right edge for the full height of the page, or under the panels when they stack above the
+page on narrow screens. Each panel also keeps its own thin grey border.
+
 ## Banner, favicon and footer
 
 The banner is one SVG image, `content/assets/images/banner.svg`, linking to the home page with the
