@@ -61,8 +61,8 @@ Checked 2026-09-29 by measuring the drawing in a browser, not by looking at it: 
 frame; the pickguard, pickup, bridge, tailpiece, f-holes and the fretboard's end sit inside the body
 outline; the body and headstock touch the table within a pixel of each other; the title is more than
 200 px from any part of the guitar; the sunglasses rest on the table in front of the guitar, under
-the neck and clear of it; the title's contrast with the wall is 12:1 or better. How it looks has not
-been judged by a sighted person yet.
+the neck and clear of it; the title's contrast with the wall is 12:1 or better. Sighted friends of
+Joel's looked at it on the live site on 2026-09-30 and found it very nicely done.
 
 opentype.js 2.0.0's `toPathData()` wrote `NaN` for one coordinate of the title at 68 px, and a
 browser stops drawing a path at the first bad number, so half the word went missing. The script now
