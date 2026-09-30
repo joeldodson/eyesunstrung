@@ -102,14 +102,13 @@ a:visited {
   color: var(--link-visited);
 }
 
-/* Page widths. The banner, menu bar and footer span up to --page-width; a
+/* Page widths. The menu bar's items and the footer span up to --page-width; a
    page's text column is held to --measure for comfortable line length. */
 :root {
   --page-width: 80rem;
   --panel-width: 18rem;
 }
 
-.site-header,
 .main-menu > ul,
 .site-footer,
 .panel-layout {
@@ -125,9 +124,12 @@ main {
 }
 
 /* The banner: one image, drawn by scripts/build-banner.mjs, linking home. It
-   has its own dark background in both colour schemes. */
+   has its own dark background in both colour schemes. It spans the window and
+   is at most 240px tall, its drawn size. Narrower than 1200px it scales down
+   whole; wider, the browser keeps the drawing's proportions and centres it,
+   and the wall and table, drawn far past the drawing's edges, fill the sides. */
 .site-header {
-  padding-block: 0;
+  padding: 0;
 }
 
 .banner {
@@ -138,6 +140,7 @@ main {
   display: block;
   width: 100%;
   height: auto;
+  max-height: 240px;
 }
 
 /* The Main navigation: a full-width slate bar between the banner and the page,

@@ -243,18 +243,25 @@ const headContactX = toPicture(headstockRest[1])[0];
 const tableTop = Math.round(contactY - 20); // far edge of the table, behind the guitar
 const tableFront = H - 12; // near edge, where the front face starts
 
+// The wall and table run far past both edges of the drawing. When the banner
+// is shown wider than 1200 by 240 (the page caps its height), the browser keeps
+// the drawing's proportions and centres it, and this overflow fills the extra
+// width on each side, so the scene continues instead of stopping at a blank
+// strip. Enough for a window about 9000 px wide at full height.
+const bleed = 4000;
+
 const grain = [0.3, 0.55, 0.8]
   .map((t) => {
     const y = f(tableTop + t * (tableFront - tableTop));
-    return `<path d="M 0 ${y} C 300 ${f(y - 3)}, 700 ${f(y + 4)}, ${W} ${f(y - 1)}" fill="none" stroke="${colors.tableGrain}" stroke-width="1.2" opacity="0.6"/>`;
+    return `<path d="M ${-bleed} ${y} L 0 ${y} C 300 ${f(y - 3)}, 700 ${f(y + 4)}, ${W} ${f(y - 1)} L ${W + bleed} ${f(y - 1)}" fill="none" stroke="${colors.tableGrain}" stroke-width="1.2" opacity="0.6"/>`;
   })
   .join("");
 
 const table = `
   <g id="table">
-    <rect x="0" y="${tableTop}" width="${W}" height="${tableFront - tableTop}" fill="${colors.tableTop}"/>
+    <rect x="${-bleed}" y="${tableTop}" width="${W + 2 * bleed}" height="${tableFront - tableTop}" fill="${colors.tableTop}"/>
     ${grain}
-    <rect x="0" y="${tableFront}" width="${W}" height="${H - tableFront}" fill="${colors.tableFront}"/>
+    <rect x="${-bleed}" y="${tableFront}" width="${W + 2 * bleed}" height="${H - tableFront}" fill="${colors.tableFront}"/>
   </g>
   <ellipse cx="${f(contactX + 60)}" cy="${f(contactY + 1)}" rx="150" ry="6" fill="#000" opacity="0.35" filter="url(#soft)"/>
   <ellipse cx="${f(headContactX)}" cy="${f(contactY + 1)}" rx="45" ry="4" fill="#000" opacity="0.35" filter="url(#soft)"/>`;
@@ -310,7 +317,7 @@ const banner = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" 
       <feGaussianBlur stdDeviation="4"/>
     </filter>
   </defs>
-  <rect width="${W}" height="${H}" fill="url(#wall)"/>
+  <rect x="${-bleed}" width="${W + 2 * bleed}" height="${H}" fill="url(#wall)"/>
   ${table}
   ${guitar}
   ${sunglasses}

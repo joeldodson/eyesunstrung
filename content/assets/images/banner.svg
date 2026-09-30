@@ -21,12 +21,12 @@
       <feGaussianBlur stdDeviation="4"/>
     </filter>
   </defs>
-  <rect width="1200" height="240" fill="url(#wall)"/>
+  <rect x="-4000" width="9200" height="240" fill="url(#wall)"/>
   
   <g id="table">
-    <rect x="0" y="186" width="1200" height="42" fill="#7a5433"/>
-    <path d="M 0 198.6 C 300 195.6, 700 202.6, 1200 197.6" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/><path d="M 0 209.1 C 300 206.1, 700 213.1, 1200 208.1" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/><path d="M 0 219.6 C 300 216.6, 700 223.6, 1200 218.6" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/>
-    <rect x="0" y="228" width="1200" height="12" fill="#4f341d"/>
+    <rect x="-4000" y="186" width="9200" height="42" fill="#7a5433"/>
+    <path d="M -4000 198.6 L 0 198.6 C 300 195.6, 700 202.6, 1200 197.6 L 5200 197.6" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/><path d="M -4000 209.1 L 0 209.1 C 300 206.1, 700 213.1, 1200 208.1 L 5200 208.1" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/><path d="M -4000 219.6 L 0 219.6 C 300 216.6, 700 223.6, 1200 218.6 L 5200 218.6" fill="none" stroke="#5e3f24" stroke-width="1.2" opacity="0.6"/>
+    <rect x="-4000" y="228" width="9200" height="12" fill="#4f341d"/>
   </g>
   <ellipse cx="248.161" cy="207.402" rx="150" ry="6" fill="#000" opacity="0.35" filter="url(#soft)"/>
   <ellipse cx="561.215" cy="207.402" rx="45" ry="4" fill="#000" opacity="0.35" filter="url(#soft)"/>

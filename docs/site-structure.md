@@ -43,6 +43,16 @@ so the lower bout and the tuner buttons both touch the table. The guitar is cent
 between the banner's left edge and the start of the title. The favicon,
 `content/assets/images/favicon.svg`, is the sunglasses on a square in the guitar's amber finish.
 
+The banner spans the full window width and is at most 240 px tall, its drawn size. Narrower than
+1200 px it scales down whole. Wider, the browser keeps the drawing's proportions and centres it, and
+the wall, table and wood grain, which the SVG draws 4000 px past each edge of the 1200 by 240
+drawing, fill the sides, so a maximised window shows a continuous scene with the guitar, sunglasses
+and title centred. Checked 2026-09-30 at 375 to 3840 px wide by reading pixel colours from a capture:
+the far edges are the banner's wall and table colours in both colour schemes, and points on the
+guitar and title have identical colours at 1200, 1920 and 3840 px, so the drawing is neither
+stretched nor off centre. The unstrung app should show it the same way: `width: 100%`,
+`height: auto`, `max-height: 240px` on the `<img>`.
+
 Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
 so the site build does not need to run it. The script's comments describe the geometry. The unstrung
 app is to use the same banner and favicon; copying them into unstrungApp is still to do.
