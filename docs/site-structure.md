@@ -12,6 +12,14 @@ The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown a
 dropdowns are `<details>` elements; `content/assets/js/menu.js` only adds closing on Escape and when
 focus or a click moves away.
 
+The bar is slate (`#475569`) with cream text and a cream line along its top, the same in light and
+dark mode, so it stands apart from the page in both. Each dropdown button has a chevron drawn with
+CSS borders, with no text for a screen reader to read. On touchscreens (`pointer: coarse`), menu,
+panel and footer links are at least 44 px tall; with a mouse they keep the 24 px WCAG AA minimum.
+
+The site has no PNG icons, by Joel's choice (2026-09-30): the SVG favicon covers current browsers,
+and iOS falls back to a page screenshot for a home-screen icon.
+
 Some pages have a left column of navigation landmarks beside the page:
 
 - **Contents:** named by the page's `h1`, listing its `##` headings with their `###` headings
