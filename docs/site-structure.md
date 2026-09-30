@@ -42,9 +42,15 @@ needs its own list panel.
   page, since a fixed panel there would cover the article.
 - **Space:** the list panel shows in full up to 14rem (about eight entries) and scrolls beyond
   that. The contents panel gets the rest, so it shows every heading when the window allows.
-  Measured 2026-09-30: an article with 12 contents entries shows them all in a 700 px window;
-  Physics, Math, and Music, with 42 entries needing 1880 px, scrolls within the panel even in a
-  1600 px window.
+  Joel is fine with a long contents list scrolling; nothing more is done to avoid it.
+- **One line per entry:** panel links do not wrap. A long title or heading is cut off at the
+  panel's edge with an ellipsis. The link text is still the whole heading, so a screen reader reads
+  all of it, and a `title` attribute with the same text shows it on hover; Chrome adds no extra
+  description when the title matches the link text. Focus outlines on panel links are drawn just
+  inside the link so the scrolling panel does not clip them.
+  Measured 2026-09-30: an article with 12 contents entries shows them all in a 700 px window.
+  Physics, Math, and Music has 42 entries, 15 of them truncated on a wide screen, needing 1445 px,
+  so its contents panel scrolls in ordinary windows.
 
 ## Banner, favicon and footer
 

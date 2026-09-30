@@ -338,10 +338,22 @@ nav a[aria-current="page"] {
   padding-left: 1rem;
 }
 
+/* One line per entry: a long heading is cut off at the panel's edge with an
+   ellipsis. Only the display is shortened; the link's text, and so what a
+   screen reader reads, is the whole heading, and its title attribute shows the
+   whole heading on hover. The focus outline is drawn just inside the link,
+   because the scrolling panel clips anything outside its edges. */
 .panel li a {
-  display: inline-block;
+  display: block;
   min-height: 24px;
   padding-block: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel li a:focus-visible {
+  outline-offset: -3px;
 }
 
 h1,
@@ -441,10 +453,15 @@ main ul li {
   .main-menu > ul > li > a,
   .main-menu summary,
   .submenu li a,
-  .panel li a,
   .site-footer a {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
+  }
+
+  /* Panel links stay block, so the ellipsis still works; padding makes the height. */
+  .panel li a {
+    min-height: 44px;
+    padding-block: 0.6rem;
   }
 }

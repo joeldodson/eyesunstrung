@@ -27,7 +27,8 @@ function contentsNav(headings) {
   let openItem = false; // a top-level <li> is waiting for its </li>
   let openList = false; // a nested <ul> of h3 entries is waiting for its </ul>
   for (const h of entries) {
-    const link = `<a href="#${h.id}">${h.label}</a>`;
+    // title gives mouse users the full heading when the panel truncates it.
+    const link = `<a href="#${h.id}" title="${h.label}">${h.label}</a>`;
     if (h.level === 3 && openItem) {
       if (!openList) items += '<ul role="list">';
       openList = true;
