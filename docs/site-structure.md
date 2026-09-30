@@ -108,6 +108,20 @@ mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHu
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
 | `/unstrung/app/` | Built from unstrungApp | The web app. Not built yet |
 
+## YouTube channel picture
+
+The unstrungApp YouTube channel's profile picture is the banner's guitar, table and sunglasses
+without the title, framed square: `branding/unstrungApp-avatar.svg`, drawn by
+`scripts/build-banner.mjs` from the same geometry as the banner. `npm run build:avatar`
+(`scripts/render-avatar.mjs`) renders it to `branding/unstrungApp-avatar-150.png`, YouTube's
+recommended 150 by 150, and `-800.png` for sharper display. `branding/` is not published with the
+site; the files are for uploading to YouTube.
+
+YouTube crops the picture to a circle and often shows it under 100 px across, so everything sits
+inside the circle and the sunglasses are 1.7 times their banner size, further forward on the table.
+Measured 2026-09-30 at 150 px: the farthest point of the guitar is 69.7 px from the centre of the
+75 px circle; the guitar is 137 by 55 px and the sunglasses 44 by 16 px, clear of the neck.
+
 ## The videos page
 
 Built 2026-09-30 from the unstrungApp YouTube channel, https://www.youtube.com/@unstrungApp.
