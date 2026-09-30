@@ -1,4 +1,4 @@
-// Fetches the unstrungApp YouTube channel's description and videos and writes
+// Fetches the eyesunstrung YouTube channel's name, description and videos and writes
 // them to content/_data/videos.json, which the /unstrung/videos/ page is built
 // from.
 //
@@ -16,7 +16,9 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const handle = "@unstrungApp";
+// The channel was renamed from "Joel Dodson" to "eyesunstrung" on 2026-09-30;
+// @eyesunstrung is its main handle and @unstrungApp still reaches it.
+const handle = "@eyesunstrung";
 const channelUrl = `https://www.youtube.com/${handle}`;
 const outFile = path.join(import.meta.dirname, "..", "content", "_data", "videos.json");
 
@@ -29,10 +31,12 @@ async function get(url) {
 // The channel page embeds its metadata as JSON; the description is a JSON string.
 const page = await get(channelUrl);
 const channelId = /"externalId":"(UC[\w-]+)"/.exec(page)?.[1];
-const descriptionJson = /"channelMetadataRenderer":\{"title":"(?:[^"\\]|\\.)*","description":"((?:[^"\\]|\\.)*)"/.exec(page)?.[1];
-if (!channelId || descriptionJson === undefined) {
-  throw new Error("Could not find the channel id or description on the channel page; YouTube may have changed its layout.");
+const [, nameJson, descriptionJson] =
+  /"channelMetadataRenderer":\{"title":"((?:[^"\\]|\\.)*)","description":"((?:[^"\\]|\\.)*)"/.exec(page) ?? [];
+if (!channelId || nameJson === undefined || descriptionJson === undefined) {
+  throw new Error("Could not find the channel id, name or description on the channel page; YouTube may have changed its layout.");
 }
+const channelName = JSON.parse(`"${nameJson}"`);
 const channelDescription = JSON.parse(`"${descriptionJson}"`).trim();
 
 const feed = await get(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
@@ -55,7 +59,7 @@ for (const video of videos) {
 
 const data = {
   fetched: new Date().toISOString().slice(0, 10),
-  channel: { handle, url: channelUrl, id: channelId, description: channelDescription },
+  channel: { name: channelName, handle, url: channelUrl, id: channelId, description: channelDescription },
   videos,
 };
 fs.mkdirSync(path.dirname(outFile), { recursive: true });

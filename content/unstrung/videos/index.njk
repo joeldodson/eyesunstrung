@@ -1,17 +1,33 @@
 ---
 title: "unstrung Videos"
-description: "Videos showing the unstrung app in use, from the unstrungApp YouTube channel."
+description: "Videos showing the unstrung app in use, from the eyesunstrung YouTube channel."
 contentsPanel: true
 ---
 {#- Built from content/_data/videos.json, which scripts/fetch-videos.mjs fetches
-    from YouTube (npm run fetch:videos). Newest video first. -#}
+    from YouTube (npm run fetch:videos). Newest video first.
+    Players are embedded with enablejsapi=1, so assets/js/videos.js can pause a
+    video when its disclosure closes and set its speed, and rel=0, so suggested
+    videos at the end come only from this channel. The speed control is hidden
+    until videos.js shows it, since it does nothing without the script. -#}
 {{ videos.channel.description | paragraphs | safe }}
-<p>All of these are on the <a href="{{ videos.channel.url }}">unstrungApp YouTube channel</a>.</p>
+<p>All of these are on the <a href="{{ videos.channel.url }}">{{ videos.channel.name }} YouTube channel</a>.</p>
 {% for video in videos.videos %}
 <h2>{{ video.title }}</h2>
 {{ video.description | paragraphs | safe }}
 <details class="video">
   <summary>Watch {{ video.title }}</summary>
-  <iframe src="https://www.youtube-nocookie.com/embed/{{ video.id }}" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  <label class="video-speed" hidden>Playback speed
+    <select>
+      <option value="0.5">0.5 times</option>
+      <option value="0.75">0.75 times</option>
+      <option value="1">Normal</option>
+      <option value="1.25">1.25 times</option>
+      <option value="1.5">1.5 times</option>
+      <option value="1.75">1.75 times</option>
+      <option value="2">2 times</option>
+    </select>
+  </label>
+  <iframe id="player-{{ video.id }}" src="https://www.youtube-nocookie.com/embed/{{ video.id }}?enablejsapi=1&amp;rel=0" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 </details>
 {% endfor %}
+<script src="/assets/js/videos.js" defer></script>

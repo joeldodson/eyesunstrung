@@ -1,29 +1,30 @@
 {
   "fetched": "2026-09-30",
   "channel": {
-    "handle": "@unstrungApp",
-    "url": "https://www.youtube.com/@unstrungApp",
+    "name": "eyesunstrung",
+    "handle": "@eyesunstrung",
+    "url": "https://www.youtube.com/@eyesunstrung",
     "id": "UC6eJXOpeqnDkpgZrPQNjagg",
-    "description": "Unstrung is an electron based application designed for blind guitar players. It's focus is making inaccessible learning and practice materials accessible. It uses semantic HTML to generate accessible and usable HTML documents base, initially at least, on guitar pro and musicXML files.  \n\nThe unstrungApp channel is where I'll publish any videos I make regarding the unstrung application. \n\nUnstrung is open source and can be found at:\nhttps://github.com/joeldodson/unstrungApp"
+    "description": "Unstrung is an Electron-based application designed for blind guitar players. Its focus is making inaccessible learning and practice materials accessible. It uses semantic HTML to generate accessible and usable HTML documents based, initially at least, on guitar pro and musicXML files.  \n\nUnstrung also has many features to assist with practice including playing along with chord progressions. It is evolving rapidly (as of Fall, 2026).\n\nThe unstrungApp channel is where I'll publish any videos I make regarding the unstrung application. \n\nFind more details, including using unstrung as a web-based application at:\n\nhttps://eyesunstrung.vip\n\nUnstrung is open source and can be found at:\nhttps://github.com/joeldodson/unstrungApp"
   },
   "videos": [
     {
       "id": "LiG2sYoRYK4",
       "title": "unstrung App - chord practice (play along)",
       "published": "2026-09-04T06:58:45+00:00",
-      "description": "This third video shows the chord practice tool. You select a key, timing, tempo, and a few other properties. Unstrung generates a sequence of chords, in your selected key with possibly some near by chords. You can play the sequence in a loop for a chosen number of times, or until your fingers are raw. You can opt to have the chord for the next measure announced on the last beat of the current measure. It's designed to help nail down chord transitions and learn the different chords in a key."
+      "description": "Unstrung has a chord practice tool. You select a key, timing, tempo, and a few other properties. Unstrung generates a sequence of chords, in your selected key with possibly some nearby chords. You can play the sequence in a loop for a chosen number of times, or until your fingers are raw. You can opt to have the chord for the next measure announced on the last beat of the current measure. It's designed to help nail down chord transitions and learn the different chords in a key."
     },
     {
       "id": "6Yma_qkYmqk",
       "title": "unstrung App - Chords and Notes",
       "published": "2026-09-04T06:46:35+00:00",
-      "description": "In this second video, we start going through items in the Tools menu. We start with the chord library showing how to search for chords, learn about their notes and possible fingerings. We can select multiple chords and listen to them to compare the subtleties. \nNext we look at how to specify a set of strings and frets to find the chord the produce.\nFinally we listen to the guitar samples used to generate audio tracks and chords."
+      "description": "Let's go through the Tools menu. We start with the chord library showing how to search for chords, learn about their notes and possible fingerings. We can select multiple chords and listen to them to compare the subtleties. \nNext we look at how to specify a set of strings and frets to find the chord they produce.\nFinally we listen to the guitar samples used to generate audio tracks and chords."
     },
     {
       "id": "Kx5CoLyVwKI",
       "title": "introduction to the unstrung application",
       "published": "2026-08-31T06:50:01+00:00",
-      "description": "A high level introduction to the unstrung application. We go through opening a .gp file, reading the meta data, dig into a couple of the measures in the first track, then learn how to listen to the track. We can hear all measures in a track, or select a subset and play them on a loop to practice along."
+      "description": "A high-level introduction to the unstrung application. We go through opening a .gp file, reading the metadata, dig into a couple of the measures in the first track, then learn how to listen to the track. We can hear all measures in a track, or select a subset and play them on a loop to practice along."
     }
   ]
 }

@@ -132,13 +132,27 @@ sunglasses and title all fall inside the safe area, and every corner of the imag
 
 ## The videos page
 
-Built 2026-09-30 from the unstrungApp YouTube channel, https://www.youtube.com/@unstrungApp.
+Built 2026-09-30 from the eyesunstrung YouTube channel, https://www.youtube.com/@eyesunstrung. The
+channel was called "Joel Dodson" until Joel renamed it that day; `@unstrungApp` still reaches it.
 
 - Under the `h1`, the channel's own description from YouTube, then a link to the channel.
 - For each video, newest first: an `h2` with the video's title, the description Joel wrote on
   YouTube, and a `<details>` disclosure whose summary is "Watch" and the title. Inside it, the
   YouTube player, embedded from `youtube-nocookie.com` (YouTube's privacy-enhanced mode), with the
   video title as the frame's `title`. Nothing is loaded from YouTube until a disclosure is opened.
+- Players are embedded with `enablejsapi=1`, so `content/assets/js/videos.js` can send them
+  commands through YouTube's IFrame Player API (by `postMessage`, without YouTube's own script):
+  - closing a disclosure pauses its video, and reopening leaves it paused where it was;
+  - a "Playback speed" select above each player, 0.5 to 2 times, applies to every video on the
+    page and is remembered in the browser. YouTube's own speed setting is in its player's settings
+    menu and keyboard shortcuts, inside the frame, which Joel could not reach with NVDA; that part
+    is YouTube's code and cannot be changed from here. The select is hidden until the script runs.
+- `rel=0` limits the videos YouTube suggests at the end to this channel. YouTube stopped allowing
+  suggestions to be turned off entirely in 2018.
+
+Checked 2026-09-30 in Edge: the speed select shows and sets the player's rate; the rate is
+remembered across a reload and applied to another video when it opens; a playing video pauses when
+its disclosure closes and stays at the same time.
 - The contents panel lists the `h2`s; there is no second panel.
 
 The text comes from `content/_data/videos.json`, which `scripts/fetch-videos.mjs`
