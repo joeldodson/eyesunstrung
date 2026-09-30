@@ -105,8 +105,30 @@ mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHu
 | `/articles/<name>/` | `content/articles/<name>.md` | Contents and Articles panels |
 | `/unstrung/` | `content/unstrung/index.md` | Single column. Placeholder |
 | `/unstrung/docs/` | `content/unstrung/docs/index.md` | Single column. Placeholder |
-| `/unstrung/videos/` | `content/unstrung/videos/index.md` | Contents panel (`contentsPanel: true`). Placeholder |
+| `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
 | `/unstrung/app/` | Built from unstrungApp | The web app. Not built yet |
+
+## The videos page
+
+Built 2026-09-30 from the unstrungApp YouTube channel, https://www.youtube.com/@unstrungApp.
+
+- Under the `h1`, the channel's own description from YouTube, then a link to the channel.
+- For each video, newest first: an `h2` with the video's title, the description Joel wrote on
+  YouTube, and a `<details>` disclosure whose summary is "Watch" and the title. Inside it, the
+  YouTube player, embedded from `youtube-nocookie.com` (YouTube's privacy-enhanced mode), with the
+  video title as the frame's `title`. Nothing is loaded from YouTube until a disclosure is opened.
+- The contents panel lists the `h2`s; there is no second panel.
+
+The text comes from `content/_data/videos.json`, which `scripts/fetch-videos.mjs`
+(`npm run fetch:videos`) writes from the channel page and the channel's public RSS feed, with no
+API key. The site build never contacts YouTube, so it cannot fail because of YouTube. After
+publishing a video, or changing a title or description on YouTube, run the script, check the file,
+and commit it. The feed lists only the 15 most recent videos; past that, the script needs to keep
+older entries from the existing file.
+
+Descriptions are plain text on YouTube. The `paragraphs` filter in `eleventy.config.js` turns
+them into HTML: blank lines separate paragraphs, single line breaks are kept, and web addresses
+become links. Spelling and wording are fixed on YouTube, then fetched again.
 
 ## Planned
 
@@ -116,9 +138,6 @@ mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHu
   (`scripts/build-help.mjs`). How they get from that repository to this one is still to be
   decided; the app build described in unstrungApp's `docs/eyesunstrung-site-and-web-app.md` is the
   obvious place.
-- **`/unstrung/videos/`** will be one page of links to videos on the unstrungApp YouTube channel,
-  grouped under headings, so the Contents panel lists the groups. The channel address still to be
-  confirmed: `https://www.youtube.com/@unstrungApp`.
 - **`/unstrung/app/`** is where the web build of unstrung goes. It has no `index.md` here; the site
   workflow will copy the app's own files in.
 

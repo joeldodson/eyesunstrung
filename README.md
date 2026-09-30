@@ -23,6 +23,7 @@ npm start
 The site is then at http://localhost:8080/ and rebuilds when a file changes.
 `npm run build` writes the finished site to `_site/`.
 `npm run build:banner` redraws the banner and favicon; see `docs/site-structure.md`.
+`npm run fetch:videos` refreshes the videos page's data from YouTube; commit the result.
 
 ## Publishing
 

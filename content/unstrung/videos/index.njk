@@ -1,0 +1,17 @@
+---
+title: "unstrung Videos"
+description: "Videos showing the unstrung app in use, from the unstrungApp YouTube channel."
+contentsPanel: true
+---
+{#- Built from content/_data/videos.json, which scripts/fetch-videos.mjs fetches
+    from YouTube (npm run fetch:videos). Newest video first. -#}
+{{ videos.channel.description | paragraphs | safe }}
+<p>All of these are on the <a href="{{ videos.channel.url }}">unstrungApp YouTube channel</a>.</p>
+{% for video in videos.videos %}
+<h2>{{ video.title }}</h2>
+{{ video.description | paragraphs | safe }}
+<details class="video">
+  <summary>Watch {{ video.title }}</summary>
+  <iframe src="https://www.youtube-nocookie.com/embed/{{ video.id }}" title="{{ video.title }}" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+</details>
+{% endfor %}

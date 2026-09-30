@@ -9,7 +9,8 @@
   "scripts": {
     "start": "eleventy --serve",
     "build": "eleventy",
-    "build:banner": "node scripts/build-banner.mjs"
+    "build:banner": "node scripts/build-banner.mjs",
+    "fetch:videos": "node scripts/fetch-videos.mjs"
   },
   "repository": {
     "type": "git",
