@@ -11,7 +11,7 @@
     "build": "eleventy",
     "build:banner": "node scripts/build-banner.mjs",
     "fetch:videos": "node scripts/fetch-videos.mjs",
-    "build:avatar": "node scripts/render-avatar.mjs"
+    "build:branding": "node scripts/render-branding.mjs"
   },
   "repository": {
     "type": "git",

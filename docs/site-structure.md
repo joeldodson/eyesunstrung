@@ -108,12 +108,12 @@ mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHu
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
 | `/unstrung/app/` | Built from unstrungApp | The web app. Not built yet |
 
-## YouTube channel picture
+## YouTube channel picture and banner
 
 The unstrungApp YouTube channel's profile picture is the banner's guitar, table and sunglasses
 without the title, framed square: `branding/unstrungApp-avatar.svg`, drawn by
-`scripts/build-banner.mjs` from the same geometry as the banner. `npm run build:avatar`
-(`scripts/render-avatar.mjs`) renders it to `branding/unstrungApp-avatar-150.png`, YouTube's
+`scripts/build-banner.mjs` from the same geometry as the banner. `npm run build:branding`
+(`scripts/render-branding.mjs`) renders it to `branding/unstrungApp-avatar-150.png`, YouTube's
 recommended 150 by 150, and `-800.png` for sharper display. `branding/` is not published with the
 site; the files are for uploading to YouTube.
 
@@ -121,6 +121,14 @@ YouTube crops the picture to a circle and often shows it under 100 px across, so
 inside the circle and the sunglasses are 1.7 times their banner size, further forward on the table.
 Measured 2026-09-30 at 150 px: the farthest point of the guitar is 69.7 px from the centre of the
 75 px circle; the guitar is 137 by 55 px and the sunglasses 44 by 16 px, clear of the neck.
+
+The channel banner is `branding/unstrungApp-youtube-banner.svg`, rendered by the same command to
+`branding/unstrungApp-youtube-banner.png` at YouTube's recommended 2560 by 1440 (about 125 KB;
+the limit is 6 MB). YouTube crops the banner per device: TVs show all of it, desktops a wide strip
+across the middle, phones less. Only the central 1546 by 423 shows everywhere, so the whole site
+banner, title included, is scaled 1.288 times to fit that safe area, centred, and the wall extends
+up and the table's front edge down, darkening, to fill the rest. Measured 2026-09-30: the guitar,
+sunglasses and title all fall inside the safe area, and every corner of the image is wall or table.
 
 ## The videos page
 
