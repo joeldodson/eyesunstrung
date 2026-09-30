@@ -356,7 +356,7 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 // and the sunglasses are drawn 1.7 times their banner size and further
 // forward on the table so they still read at that size. The table surface
 // runs further toward the viewer to hold them. Rendered to PNG by
-// scripts/render-avatar.mjs; the files live in branding/, not on the site.
+// scripts/render-branding.mjs; the files live in branding/, not on the site.
 const avatarGlassesScale = f(glassesScale * 1.7);
 const avatarGlassesAt = { x: glassesAt.x, y: f(contactY + 38) };
 const glassesHalfWidth = 78 * avatarGlassesScale;
