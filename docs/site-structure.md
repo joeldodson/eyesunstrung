@@ -26,20 +26,28 @@ in its front matter. Pages without either are a single column.
 The banner is one SVG image, `content/assets/images/banner.svg`, linking to the home page with the
 alt text "eyesunstrung". It shows an unstrung archtop guitar, modelled on a 17-inch single-cutaway
 archtop like Joel's Eastman AR905CE but with no maker's logo or inlay design, lying on its edge on a
-table, with a pair of generic thick-framed sunglasses on the table under the neck joint, and
+table with the neck sloping down to the right so it rests on both the body and the headstock, a pair
+of generic thick-framed sunglasses on the table under the neck, and
 "eyesunstrung" in the upper right in Atkinson Hyperlegible Next, converted to outlines. It has its
-own dark background, the same in light and dark mode. The favicon,
+own dark background, the same in light and dark mode. It is 1200 by 240; an earlier version with the
+neck rising was 1200 by 360, which Joel found too tall. The tilt, about 9.6 degrees, is calculated
+so the lower bout and the tuner buttons both touch the table. The favicon,
 `content/assets/images/favicon.svg`, is the sunglasses on a square in the guitar's amber finish.
 
 Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
 so the site build does not need to run it. The script's comments describe the geometry. The unstrung
 app is to use the same banner and favicon; copying them into unstrungApp is still to do.
 
-Checked 2026-09-29 by measuring the drawing in a browser, not by looking at it: everything is in the
+Checked 2026-09-29 by measuring the drawing in a browser, not by looking at it: every part is in the
 frame; the pickguard, pickup, bridge, tailpiece, f-holes and the fretboard's end sit inside the body
-outline; the title is at least 38 px from any part of the guitar; the sunglasses rest on the table
-under the neck joint, slightly overlapping the body's edge; the title's contrast with the wall is
-12:1 or better. How it looks has not been judged by a sighted person yet.
+outline; the body and headstock touch the table within a pixel of each other; the title is more than
+200 px from any part of the guitar; the sunglasses rest on the table in front of the guitar, under
+the neck and clear of it; the title's contrast with the wall is 12:1 or better. How it looks has not
+been judged by a sighted person yet.
+
+opentype.js 2.0.0's `toPathData()` wrote `NaN` for one coordinate of the title at 68 px, and a
+browser stops drawing a path at the first bad number, so half the word went missing. The script now
+writes the path data itself and refuses to write an SVG containing `NaN`.
 
 The footer, on every page, has "Comments? Email feedback at eyesunstrung.vip" (the last part is the
 mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub.

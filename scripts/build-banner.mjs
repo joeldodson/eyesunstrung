@@ -6,8 +6,9 @@
 // Both are committed; rerun this after changing anything below.
 //
 // The banner: an unstrung archtop guitar lying on its edge on a table, body on
-// the left and neck rising slightly to the right, with a pair of sunglasses on
-// the table under the neck joint, and "eyesunstrung" in the upper right.
+// the left, neck sloping down to the right so that it rests on both its lower
+// bout and its headstock, with a pair of sunglasses on the table under the
+// neck, and "eyesunstrung" in the upper right.
 //
 // The guitar is modelled on a 17-inch single-cutaway archtop such as the
 // Eastman AR905CE, drawn to its proportions but with no maker's logo, inlay
@@ -19,7 +20,8 @@
 // The guitar is drawn in inches in its own coordinates: x runs along the
 // guitar from the endpin (0) to the headstock tip (42), y across it, negative
 // on the bass side (upward in the picture) and positive on the treble side,
-// where the cutaway is. One transform places, scales and tilts it.
+// where the cutaway is. One transform places, scales and tilts it; the tilt
+// and position are worked out below from the drawing itself.
 //
 // The title is converted to outlines with opentype.js, because an SVG shown
 // through <img> cannot load a web font. The typeface is Atkinson Hyperlegible
@@ -39,10 +41,9 @@ const fontFile = path.join(
 // ---------------------------------------------------------------- scene
 
 const W = 1200;
-const H = 360;
-const guitarOrigin = { x: 70, y: 188 }; // where the endpin sits
-const tiltDegrees = -4; // negative raises the neck end
-const scale = 15; // pixels per inch
+const H = 240;
+const scale = 11.5; // pixels per inch
+const margin = { left: 40, top: 12 }; // space left of and above the guitar
 
 const colors = {
   wallTop: "#15191d",
@@ -62,12 +63,6 @@ const colors = {
   frame: "#0e0e0e",
 };
 
-// Guitar-to-picture transform, used both in the SVG and to place the table.
-const theta = (tiltDegrees * Math.PI) / 180;
-const toPicture = ([x, y]) => [
-  guitarOrigin.x + scale * (x * Math.cos(theta) - y * Math.sin(theta)),
-  guitarOrigin.y + scale * (x * Math.sin(theta) + y * Math.cos(theta)),
-];
 
 // ---------------------------------------------------------------- guitar
 
@@ -159,6 +154,42 @@ function fHole(side) {
     `<line x1="10.55" y1="${y(3.55)}" x2="10.55" y2="${y(4.45)}" stroke="${colors.ebony}" stroke-width="0.09"/>`;
 }
 
+// ---------------------------------------------------------------- resting position
+
+// The guitar lies on its treble edge. Turn it, neck end down, until the lowest
+// point of the headstock end (the treble-side tuner buttons) is as low as the
+// lowest point of the body: then it rests on both, as a guitar laid on a
+// table does. Found by bisection on the angle.
+const bodyOutline = sampleBody();
+const headstockRest = tunerXs.map((x) => [x, 2.3 + 0.42]);
+const lowestAt = (points, t) => Math.max(...points.map(([x, y]) => x * Math.sin(t) + y * Math.cos(t)));
+let lo = 0;
+let hi = 0.6;
+for (let i = 0; i < 60; i++) {
+  const mid = (lo + hi) / 2;
+  if (lowestAt(bodyOutline, mid) > lowestAt(headstockRest, mid)) lo = mid;
+  else hi = mid;
+}
+const theta = lo;
+const tiltDegrees = f((theta * 180) / Math.PI);
+
+// Everything that sticks out furthest, for placing the guitar in the frame.
+const extremities = [
+  ...bodyOutline,
+  ...tunerXs.flatMap((x) => [[x, -2.72], [x, 2.72]]),
+  [41.2, -1.75], [42, 0], [41.2, 1.75],
+];
+const rotate = ([x, y]) => [x * Math.cos(theta) - y * Math.sin(theta), x * Math.sin(theta) + y * Math.cos(theta)];
+const rotated = extremities.map(rotate);
+const guitarOrigin = {
+  x: f(margin.left - scale * Math.min(...rotated.map(([x]) => x))),
+  y: f(margin.top - scale * Math.min(...rotated.map(([, y]) => y))),
+};
+const toPicture = (point) => {
+  const [x, y] = rotate(point);
+  return [guitarOrigin.x + scale * x, guitarOrigin.y + scale * y];
+};
+
 const pickguardPath = "M 18.1 1.5 C 17 1.6, 14.6 2.0, 13.4 3.0 C 12.8 3.6, 13.3 4.3, 14.3 4.2 C 15.7 4.0, 17.1 3.2, 18.1 2.2 Z";
 
 const guitar = `
@@ -185,11 +216,12 @@ const guitar = `
 
 // ---------------------------------------------------------------- table
 
-const bodyPoints = sampleBody().map(toPicture);
+const bodyPoints = bodyOutline.map(toPicture);
 const contactY = Math.max(...bodyPoints.map(([, y]) => y));
 const contactX = bodyPoints.find(([, y]) => y === contactY)[0];
-const tableTop = Math.round(contactY - 26); // far edge of the table, behind the guitar
-const tableFront = H - 18; // near edge, where the front face starts
+const headContactX = toPicture(headstockRest[1])[0];
+const tableTop = Math.round(contactY - 20); // far edge of the table, behind the guitar
+const tableFront = H - 12; // near edge, where the front face starts
 
 const grain = [0.3, 0.55, 0.8]
   .map((t) => {
@@ -204,21 +236,24 @@ const table = `
     ${grain}
     <rect x="0" y="${tableFront}" width="${W}" height="${H - tableFront}" fill="${colors.tableFront}"/>
   </g>
-  <ellipse cx="${f((contactX + toPicture([bodyEnd, 0])[0]) / 2 - 40)}" cy="${f(contactY + 2)}" rx="300" ry="9" fill="#000" opacity="0.35" filter="url(#soft)"/>`;
+  <ellipse cx="${f(contactX + 60)}" cy="${f(contactY + 1)}" rx="150" ry="6" fill="#000" opacity="0.35" filter="url(#soft)"/>
+  <ellipse cx="${f(headContactX)}" cy="${f(contactY + 1)}" rx="45" ry="4" fill="#000" opacity="0.35" filter="url(#soft)"/>`;
 
 // ---------------------------------------------------------------- sunglasses
 
-// Drawn around (0, 0) at the bottom centre of the frame, in pixels, then
-// placed on the table under the neck joint, slightly in front of the guitar.
+// Drawn around (0, 0) at the bottom centre of the frame, 152 by 58 units, then
+// scaled to about real size for the guitar (roughly 6 by 2 inches, a little
+// larger so they read) and placed on the table under the neck, just past where
+// it leaves the body, slightly in front of the guitar.
 const lensFrame = "M 6 -50 L 72 -58 Q 77 -58 76 -52 L 69 -15 Q 65 -2 50 -2 L 22 -2 Q 8 -2 6 -14 Z";
 const lensGlass = "M 12 -45 L 68 -52 L 63 -17 Q 60 -8 48 -8 L 24 -8 Q 14 -8 12 -18 Z";
-const glassesAt = { x: f(toPicture([bodyEnd, 0])[0] - 25), y: f(contactY + 20) };
-const glassesScale = 1.4;
+const glassesAt = { x: f(toPicture([bodyEnd + 1.5, 0])[0]), y: f(contactY + 7) };
+const glassesScale = 0.6;
 const oneSide = `<path d="${lensFrame}" fill="${colors.frame}"/><path d="${lensGlass}" fill="url(#lens)"/>` +
   `<path d="M 20 -40 L 34 -46 L 26 -20 Z" fill="#fff" opacity="0.12"/>` +
   `<circle cx="70" cy="-52" r="1.8" fill="#9aa3ab"/>`;
 const sunglasses = `
-  <ellipse cx="${glassesAt.x}" cy="${f(glassesAt.y + 2)}" rx="${f(80 * glassesScale)}" ry="6" fill="#000" opacity="0.4" filter="url(#soft)"/>
+  <ellipse cx="${glassesAt.x}" cy="${f(glassesAt.y + 2)}" rx="${f(80 * glassesScale)}" ry="3" fill="#000" opacity="0.4" filter="url(#soft)"/>
   <g id="sunglasses" transform="translate(${glassesAt.x} ${glassesAt.y}) scale(${glassesScale})">
     <g>${oneSide}</g>
     <g transform="scale(-1 1)">${oneSide}</g>
@@ -229,18 +264,25 @@ const sunglasses = `
 
 const fontBytes = fs.readFileSync(fontFile);
 const font = opentype.parse(fontBytes.buffer.slice(fontBytes.byteOffset, fontBytes.byteOffset + fontBytes.byteLength));
-const titleSize = 72;
+const titleSize = 68;
 const titleRight = W - 40;
 const probe = font.getPath("eyesunstrung", 0, 0, titleSize).getBoundingBox();
-const titlePath = font.getPath("eyesunstrung", titleRight - probe.x2, 80, titleSize);
-const title = `<path id="title" d="${titlePath.toPathData(2)}" fill="${colors.title}"/>`;
+const titlePath = font.getPath("eyesunstrung", titleRight - probe.x2, 84, titleSize);
+// Path data written from opentype's commands rather than its toPathData(),
+// which in opentype.js 2.0.0 can write NaN for a coordinate (it did for one
+// "s" at 68px), and a browser stops drawing a path at the first bad number.
+const pathData = (commands) =>
+  commands
+    .map((c) => c.type + ["x1", "y1", "x2", "y2", "x", "y"].filter((k) => k in c).map((k) => c[k].toFixed(2)).join(" "))
+    .join("");
+const title = `<path id="title" d="${pathData(titlePath.commands)}" fill="${colors.title}"/>`;
 
 // ---------------------------------------------------------------- write
 
 const description =
-  "An unstrung archtop guitar lying on its edge on a wooden table, body on the left and neck rising to " +
-  "the right, with a pair of dark sunglasses on the table below the neck. The word eyesunstrung is in " +
-  "the upper right.";
+  "An unstrung archtop guitar lying on its edge on a wooden table, body on the left, the neck sloping " +
+  "down to the right with the headstock resting on the table, and a pair of dark sunglasses on the " +
+  "table below the neck. The word eyesunstrung is in the upper right.";
 
 const banner = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${W} ${H}" role="img" aria-labelledby="banner-title banner-desc">
   <title id="banner-title">eyesunstrung</title>
@@ -296,7 +338,10 @@ const favicon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
 </svg>
 `;
 
+for (const [name, svg] of [["banner.svg", banner], ["favicon.svg", favicon]]) {
+  if (/NaN|undefined/.test(svg)) throw new Error(`${name} contains NaN or undefined; not written`);
+}
 fs.mkdirSync(outDir, { recursive: true });
 fs.writeFileSync(path.join(outDir, "banner.svg"), banner);
 fs.writeFileSync(path.join(outDir, "favicon.svg"), favicon);
-console.log(`banner.svg ${banner.length} bytes, favicon.svg ${favicon.length} bytes; table contact at y=${f(contactY)}`);
+console.log(`banner.svg ${banner.length} bytes, favicon.svg ${favicon.length} bytes; tilt ${tiltDegrees} degrees, guitar origin ${guitarOrigin.x},${guitarOrigin.y}, table contact at y=${f(contactY)}`);
