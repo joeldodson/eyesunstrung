@@ -31,7 +31,8 @@ of generic thick-framed sunglasses on the table under the neck, and
 "eyesunstrung" in the upper right in Atkinson Hyperlegible Next, converted to outlines. It has its
 own dark background, the same in light and dark mode. It is 1200 by 240; an earlier version with the
 neck rising was 1200 by 360, which Joel found too tall. The tilt, about 9.6 degrees, is calculated
-so the lower bout and the tuner buttons both touch the table. The favicon,
+so the lower bout and the tuner buttons both touch the table. The guitar is centred left to right
+between the banner's left edge and the start of the title. The favicon,
 `content/assets/images/favicon.svg`, is the sunglasses on a square in the guitar's amber finish.
 
 Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
