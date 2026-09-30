@@ -10,14 +10,14 @@ The Prompter's Note is analogous to an Editor's Note: I'm injecting some insight
 
 ## [Introduction to eyesunstrung](/articles/introduction/)
 
-Prompter's Notes: This article is not LLM-written.
+Prompter's Note: This article is not LLM-written.
 It is intended to explain a bit of the motivation behind eyesunstrung. 
 It also gets briefly into some techie details of the unstrung application and sets expectations for these articles.
 
 ## [Physics, Math, and Music](/articles/physics-math-and-music/)
 
-Prompter's Notes: This one is very much LLM (Claude) generated.
-I wanted to understand some fundamentals of music (sound) and how we got to where we are now regarding notes and scales and consonance and dissonance.
+Prompter's Note: This one is very much LLM (Claude) generated.
+I wanted to understand some fundamentals of music including how we got to where we are now regarding notes, scales, consonance, and dissonance.
 The article started with a basic prompt to explain the physics of sound and how we got to the 12 notes in Western music.
 It was not a fire and forget/publish experience.
 I did read it and iterate quite a bit for clarity and completeness.
