@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Introduction to eyesunstrung | eyesunstrung</title>
+    <meta name="description" content="Explains what eyesunstrung is.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/">All articles</a></li>
+              <li><a href="/articles/introduction/" aria-current="page">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/">Overview</a></li>
+              <li><a href="/unstrung/docs/">Documentation</a></li>
+              <li><a href="/unstrung/videos/">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel" aria-labelledby="page-title">
+          <p class="panel-title">Contents</p>
+          <ul role="list"><li><a href="#what-is-eyesunstrung" title="What is eyesunstrung?">What is eyesunstrung?</a></li><li><a href="#unstrung-comes-to-life" title="unstrung Comes to Life">unstrung Comes to Life</a></li><li><a href="#finally-realizing-the-goal-of-eyesunstrung-vip" title="Finally Realizing the Goal of eyesunstrung.vip">Finally Realizing the Goal of eyesunstrung.vip</a></li></ul>
+        </nav>
+        <nav class="panel" aria-label="Articles">
+          <p class="panel-title">Articles</p>
+          <ul role="list">
+            <li><a href="/articles/introduction/" title="Introduction to eyesunstrung" aria-current="page">Introduction to eyesunstrung</a></li>
+            <li><a href="/articles/physics-math-and-music/" title="Physics, Math, and Music">Physics, Math, and Music</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title">Introduction to eyesunstrung</h1>
+        <p class="article-date">Published <time datetime="2026-09-26">September 26, 2026</time></p>
+        <p>This might be the only article written by me, Joel, the prompter of this project.
+But I have not entirely given in to our LLM overlords.
+I do read and edit the output.
+Article generation is an iterative process of prompting and editing until I like it, or am tired of the process.</p>
+<h2 id="what-is-eyesunstrung">What is eyesunstrung?</h2>
+<p>Like many people, I've been trying to learn to play the guitar for many years.
+Lots of starts and, well, not so much stops as fade-aways.</p>
+<p>So much material for learning guitar, probably most musical instruments, is visual.
+I have posters, from when I could see, with images of fingering for dozens of chords.
+Then there's sheet music, which is inherently visual (there is braille sheet music, but I can't read braille).
+For guitar, there's tablature, also visual.
+Even on YouTube videos, I so often hear, &quot;place your fingers like this...&quot;
+Some YouTubers do try to explain the fingering, but inevitably, there's a visual assumption.</p>
+<p>I'm sure there's some accessible material out there considering how many blind musicians there are.
+It's either not easy to find, or I'm not very good at searching.
+Probably both.</p>
+<p>So, in 2024, I started eyesunstrung with the idea of building some type of application to help blind people with little to no musical background learn to play the guitar.
+I tried hacking around with Python, exploring sound libraries and accessible UI toolkits.
+I enjoyed digging into new areas of software development, but struggled with what to build.</p>
+<p>Fast forward a few years.
+After hearing from other blind people how efficiently they could iterate on an idea using LLM coding tools, I thought, let's give eyesunstrung another go.</p>
+<h2 id="unstrung-comes-to-life">unstrung Comes to Life</h2>
+<p>After consulting with Claude regarding what type of features I'd like to build, I settled on using the Electron platform and started creating the unstrung app.
+Initially I built it as an installable desktop app for Windows, with Mac to follow if/when I bought a Mac.
+A big reason for choosing Electron, though, is that it uses HTML, CSS, and JavaScript, the same as a web app.</p>
+<p>Along the way, I asked Claude how much of what we have built could run directly in a browser.
+The answer was, almost everything.
+The question then was where to host a web version of unstrung.</p>
+<h2 id="finally-realizing-the-goal-of-eyesunstrung-vip">Finally Realizing the Goal of eyesunstrung.vip</h2>
+<p>So here I am, rebuilding eyesunstrung with Claude and Eleventy.
+There will still be articles addressing questions I find interesting regarding music and playing guitar.
+Those can be found in the <a href="/articles/">articles section</a>.
+Hopefully people will find some value there.
+They will almost certainly though be the output of an iterative Claude (or some LLM) session; anyone can do that.</p>
+<p>The main purpose of eyesunstrung.vip is to host the web-based version of the unstrung app.
+Documentation for the unstrung application will be in <a href="/unstrung/docs/">the unstrung documentation</a>.
+Those docs will also be heavily written by Claude, though not something someone else could easily generate on their own.
+They are focused mainly on using unstrung but will occasionally detour into thoughts addressing ideas like accessibility purism versus practical tradeoffs.</p>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>

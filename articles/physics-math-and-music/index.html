@@ -1,0 +1,585 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Physics, Math, and Music | eyesunstrung</title>
+    <meta name="description" content="How sound waves, simple arithmetic and the harmonic series explain pitch, timbre, consonance, and the twelve-note scale.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/">All articles</a></li>
+              <li><a href="/articles/introduction/">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/" aria-current="page">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/">Overview</a></li>
+              <li><a href="/unstrung/docs/">Documentation</a></li>
+              <li><a href="/unstrung/videos/">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/">About</a></li>
+      </ul>
+    </nav>
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel" aria-labelledby="page-title">
+          <p class="panel-title">Contents</p>
+          <ul role="list"><li><a href="#before-you-start-notes-and-their-names" title="Before you start: notes and their names">Before you start: notes and their names</a><ul role="list"><li><a href="#singing-up-a-scale" title="Singing up a scale">Singing up a scale</a></li><li><a href="#naming-the-distance-between-two-notes" title="Naming the distance between two notes">Naming the distance between two notes</a></li><li><a href="#semitones-the-smallest-step" title="Semitones: the smallest step">Semitones: the smallest step</a></li><li><a href="#notes-that-agree-and-notes-that-clash" title="Notes that agree and notes that clash">Notes that agree and notes that clash</a></li></ul></li><li><a href="#part-1-sound-and-waves" title="Part 1: Sound and waves">Part 1: Sound and waves</a><ul role="list"><li><a href="#what-sound-actually-is" title="What sound actually is">What sound actually is</a></li><li><a href="#what-a-wave-is" title="What a wave is">What a wave is</a></li><li><a href="#the-properties-of-a-wave-and-which-ones-you-hear" title="The properties of a wave, and which ones you hear">The properties of a wave, and which ones you hear</a></li><li><a href="#what-happens-when-waves-meet" title="What happens when waves meet">What happens when waves meet</a></li><li><a href="#waveform-and-timbre" title="Waveform and timbre">Waveform and timbre</a></li><li><a href="#standing-waves-why-a-string-has-a-pitch-at-all" title="Standing waves: why a string has a pitch at all">Standing waves: why a string has a pitch at all</a></li></ul></li><li><a href="#part-2-the-mathematical-toolkit" title="Part 2: The mathematical toolkit">Part 2: The mathematical toolkit</a><ul role="list"><li><a href="#ratios" title="Ratios">Ratios</a></li><li><a href="#adding-versus-multiplying-why-pitch-is-different-from-temperature" title="Adding versus multiplying: why pitch is different from temperature">Adding versus multiplying: why pitch is different from temperature</a></li><li><a href="#exponents-and-roots" title="Exponents and roots">Exponents and roots</a></li><li><a href="#logarithms-and-cents" title="Logarithms and cents">Logarithms and cents</a></li><li><a href="#periodicity-and-common-multiples" title="Periodicity and common multiples">Periodicity and common multiples</a></li><li><a href="#irrational-numbers-and-the-impossibility-built-into-music" title="Irrational numbers, and the impossibility built into music">Irrational numbers, and the impossibility built into music</a></li><li><a href="#modular-arithmetic-the-clock-face-of-pitch" title="Modular arithmetic: the clock face of pitch">Modular arithmetic: the clock face of pitch</a></li></ul></li><li><a href="#part-3-from-physics-to-music" title="Part 3: From physics to music">Part 3: From physics to music</a><ul role="list"><li><a href="#major-and-minor-a-first-look" title="Major and minor: a first look">Major and minor: a first look</a></li><li><a href="#the-harmonic-series" title="The harmonic series">The harmonic series</a></li><li><a href="#why-harmonics-matter" title="Why harmonics matter">Why harmonics matter</a></li><li><a href="#consonance-and-dissonance" title="Consonance and dissonance">Consonance and dissonance</a></li><li><a href="#the-octave-and-why-it-comes-first" title="The octave, and why it comes first">The octave, and why it comes first</a></li><li><a href="#the-fifth-and-a-circle-that-refuses-to-close" title="The fifth, and a circle that refuses to close">The fifth, and a circle that refuses to close</a></li><li><a href="#four-ways-to-divide-an-octave" title="Four ways to divide an octave">Four ways to divide an octave</a></li><li><a href="#why-twelve-notes" title="Why twelve notes?">Why twelve notes?</a></li><li><a href="#why-major-and-minor-sound-the-way-they-do" title="Why major and minor sound the way they do">Why major and minor sound the way they do</a></li><li><a href="#other-scales" title="Other scales">Other scales</a></li></ul></li><li><a href="#part-4-all-of-this-on-a-guitar" title="Part 4: All of this, on a guitar">Part 4: All of this, on a guitar</a><ul role="list"><li><a href="#where-the-frets-are" title="Where the frets are">Where the frets are</a></li><li><a href="#touching-the-string-natural-harmonics" title="Touching the string: natural harmonics">Touching the string: natural harmonics</a></li><li><a href="#tuning-by-beats" title="Tuning by beats">Tuning by beats</a></li><li><a href="#intonation-and-why-real-strings-misbehave" title="Intonation, and why real strings misbehave">Intonation, and why real strings misbehave</a></li><li><a href="#why-standard-tuning-has-that-one-odd-gap" title="Why standard tuning has that one odd gap">Why standard tuning has that one odd gap</a></li></ul></li><li><a href="#part-5-where-to-go-deeper" title="Part 5: Where to go deeper">Part 5: Where to go deeper</a></li><li><a href="#glossary-of-terms" title="Glossary of terms">Glossary of terms</a><ul role="list"><li><a href="#physics-and-wave-terms" title="Physics and wave terms">Physics and wave terms</a></li><li><a href="#mathematical-terms" title="Mathematical terms">Mathematical terms</a></li><li><a href="#musical-terms" title="Musical terms">Musical terms</a></li></ul></li></ul>
+        </nav>
+        <nav class="panel" aria-label="Articles">
+          <p class="panel-title">Articles</p>
+          <ul role="list">
+            <li><a href="/articles/introduction/" title="Introduction to eyesunstrung">Introduction to eyesunstrung</a></li>
+            <li><a href="/articles/physics-math-and-music/" title="Physics, Math, and Music" aria-current="page">Physics, Math, and Music</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title">Physics, Math, and Music</h1>
+        <p class="article-date">Published <time datetime="2026-09-26">September 26, 2026</time></p>
+        <p>Why does a guitar string sound like a guitar string? Why do two notes played together sometimes sound sweet and sometimes sound like an argument? Why are there twelve notes in Western music, why do we call seven of them a scale, and why does one arrangement of those seven sound happy and another sound sad?</p>
+<p>None of these are questions you have to answer in order to play the guitar. But they all have answers, and the answers are more interesting than most people expect. They start in physics, pass through arithmetic, and end up in a set of compromises that musicians have argued about for two and a half thousand years.</p>
+<p>This article assumes you know a little basic physics and a little algebra. It assumes no musical background at all. Every technical term is defined when it first appears, and defined again in the glossary at the end.</p>
+<h2 id="before-you-start-notes-and-their-names">Before you start: notes and their names</h2>
+<p>The physics and mathematics in this article come first, but a handful of musical words appear along the way. This short section introduces them by sound, so none of them arrives unexplained. Part 3 returns to each one and explains why it works the way it does.</p>
+<h3 id="singing-up-a-scale">Singing up a scale</h3>
+<p>Most people have heard, or can sing, this rising sequence of syllables:</p>
+<ul role="list">
+<li>doh, ray, me, fa, soh, lah, tee, doh</li>
+</ul>
+<p>This way of naming notes by syllable is called <strong>solfège</strong>. The spellings vary in print; you will often see do, re, mi, fa, sol, la, ti. This article uses doh, ray, me, fa, soh, lah, tee because those spellings are pronounced correctly by screen readers.</p>
+<p>A few terms fall straight out of that one sung line:</p>
+<ul role="list">
+<li>Note - a single musical sound with a definite pitch. Each syllable is one note.</li>
+<li>Scale - an ordered set of notes used as the raw material for music. The doh-to-doh sequence is the most familiar one in Western music, the major scale.</li>
+<li>Octave - the distance from the first doh to the last. The top doh sounds like the bottom doh, only higher; it is recognisably &quot;the same note.&quot; The name comes from the Latin for eight, because the top doh is the eighth note sung. Part 1 shows that going up an octave exactly doubles a note's frequency.</li>
+<li>Key - doh does not have to be any particular pitch. You can start the song on a low note or a high one and it is still the same tune. Choosing which pitch serves as doh is choosing the key.</li>
+</ul>
+<h3 id="naming-the-distance-between-two-notes">Naming the distance between two notes</h3>
+<p>The distance between two notes is called an <strong>interval</strong>. Intervals are named by counting notes of the scale, and the count includes both the starting note and the finishing note:</p>
+<ul role="list">
+<li>doh up to ray - a second, because it spans two notes</li>
+<li>doh up to me - a third</li>
+<li>doh up to fa - a fourth</li>
+<li>doh up to soh - a fifth</li>
+<li>doh up to lah - a sixth</li>
+<li>doh up to tee - a seventh</li>
+<li>doh up to the next doh - an octave, the eighth</li>
+</ul>
+<p>The same names apply between any two notes, not only from doh. Ray up to soh is also a fourth, because it spans four notes: ray, me, fa, soh.</p>
+<h3 id="semitones-the-smallest-step">Semitones: the smallest step</h3>
+<p>The steps in the scale are not all the same size. Most neighbouring notes have a gap between them big enough to fit another note. Two pairs do not: me to fa, and tee to the top doh. Those two small steps are each a <strong>semitone</strong>, also called a half step. The larger steps are two semitones each, called a whole step or whole tone.</p>
+<p>On a guitar, moving one fret along a string raises the pitch by exactly one semitone. Twelve semitones make one octave, so fret 12 on any string plays the same note as the open string, an octave higher. Counting in semitones from the bottom doh, the scale's notes sit at these positions:</p>
+<ul role="list">
+<li>doh - 0</li>
+<li>ray - 2</li>
+<li>me - 4</li>
+<li>fa - 5</li>
+<li>soh - 7</li>
+<li>lah - 9</li>
+<li>tee - 11</li>
+<li>doh - 12</li>
+</ul>
+<p>The positions 1, 3, 6, 8 and 10 are the notes between the scale notes. They exist, and a guitar plays all of them, but this particular scale skips them. Twelve notes are available; the scale uses seven.</p>
+<h3 id="notes-that-agree-and-notes-that-clash">Notes that agree and notes that clash</h3>
+<p>Sing or play two notes at once and they either blend or grate. Doh and soh together sound smooth and settled. Tee and the doh just above it, a semitone apart, sound tense and harsh. The first kind of pairing is called <strong>consonant</strong>, the second <strong>dissonant</strong>. Why this happens is one of the main questions of Part 3.</p>
+<h2 id="part-1-sound-and-waves">Part 1: Sound and waves</h2>
+<h3 id="what-sound-actually-is">What sound actually is</h3>
+<p>Air is made of molecules, and normally they are spread out at a roughly even density. When something vibrates in air, it pushes on the molecules next to it. Those molecules crowd together, then spring apart, pushing on the molecules next to them, which crowd together and spring apart in turn.</p>
+<p>The result is a travelling pattern of slightly-higher-than-normal pressure followed by slightly-lower-than-normal pressure, moving outward from the vibrating object. That pattern is a sound wave. Your eardrum is a thin membrane that gets pushed in when the high-pressure part arrives and pulled out when the low-pressure part arrives. Everything you have ever heard is your eardrum being wobbled by air pressure.</p>
+<p>Two things follow from this that are worth holding onto:</p>
+<ul role="list">
+<li>The air itself does not travel from the guitar to your ear - the air molecules jiggle back and forth around where they already were. What travels is the <em>pattern</em>, the disturbance. Think of a stadium wave: the wave crosses the stadium, but no individual person changes seat.</li>
+<li>Sound needs a medium. In a vacuum there are no molecules to crowd together, so there is no sound. Sound travels through water and steel too, and faster in both than in air.</li>
+</ul>
+<h3 id="what-a-wave-is">What a wave is</h3>
+<p>A wave is a disturbance that travels through a medium, carrying energy without permanently carrying material along with it. Physicists sort waves into two families based on the direction of the jiggling:</p>
+<ul role="list">
+<li>Transverse wave - the medium moves at right angles to the direction the wave travels. A plucked guitar string is the classic example: the wave runs along the length of the string, while the string itself moves up and down. Ripples on water and light are also transverse.</li>
+<li>Longitudinal wave - the medium moves back and forth along the same direction the wave travels. Sound in air is longitudinal. A stretched spring that you push sharply at one end shows this well: a compressed region runs down the spring.</li>
+</ul>
+<p>A guitar is a machine for converting one into the other. The string vibrates transversely, the bridge transmits that vibration to the top of the guitar body, the top pushes on the air, and the air carries a longitudinal wave to your ear.</p>
+<h3 id="the-properties-of-a-wave-and-which-ones-you-hear">The properties of a wave, and which ones you hear</h3>
+<p>The simplest possible wave is a <strong>sine wave</strong>, a smooth back-and-forth oscillation with a single rate of repetition. Real sounds are more complicated, but every real sound can be built out of sine waves, which is why they are the natural starting point. A sine wave can be fully described by four numbers.</p>
+<h4 id="frequency-and-what-you-hear-as-pitch">Frequency, and what you hear as pitch</h4>
+<p>A wave is a repeating pattern. One complete repetition - out to one side, back through the middle, out to the other side, and back to where it started - is called a <strong>cycle</strong>. There are two ways to describe how fast the pattern repeats, and they are two views of the same fact:</p>
+<ul role="list">
+<li>Frequency - how many cycles happen in one second. It is a count. It is measured in <strong>hertz</strong>, abbreviated Hz, and &quot;200 Hz&quot; means &quot;the wave repeats itself 200 times every second.&quot;</li>
+<li>Period - how long one single cycle takes. It is a length of time, usually given in milliseconds for musical sounds. A millisecond is one thousandth of a second.</li>
+</ul>
+<p>If a wave repeats 200 times in a second, each repetition must take one two-hundredth of a second, which is 5 milliseconds. So &quot;a frequency of 200 Hz&quot; and &quot;a period of 5 milliseconds&quot; describe exactly the same wave. To convert between them:</p>
+<ul role="list">
+<li>Period in milliseconds equals 1,000 divided by the frequency in hertz.</li>
+<li>Frequency in hertz equals 1,000 divided by the period in milliseconds.</li>
+</ul>
+<p>Some matching pairs:</p>
+<ul role="list">
+<li>100 Hz - each cycle takes 10 milliseconds.</li>
+<li>110 Hz, the open A string on a guitar - each cycle takes about 9.09 milliseconds.</li>
+<li>200 Hz - each cycle takes 5 milliseconds.</li>
+<li>440 Hz, the A that orchestras tune to - each cycle takes about 2.27 milliseconds.</li>
+<li>1,000 Hz - each cycle takes 1 millisecond.</li>
+</ul>
+<p>The two numbers move in opposite directions: the higher the frequency, the shorter each cycle. It is worth keeping them firmly apart. A frequency in hertz is never a length of time, and a number like 600 Hz does not mean anything takes 600 of anything; it means 600 repetitions fit into each second.</p>
+<p>Frequency is what you perceive as <strong>pitch</strong> - how high or low a note sounds. Faster vibration means higher pitch. The A string on a guitar in standard tuning vibrates 110 times per second. The note orchestras tune to, A440, vibrates 440 times per second, which is two octaves above that guitar string.</p>
+<p>A young, healthy human ear responds roughly from 20 Hz up to 20,000 Hz. The top of that range drops with age; most adults lose the region above about 15,000 Hz. Guitar fundamental frequencies live in a narrow band near the bottom, from about 82 Hz for the low E string to about 1,000 Hz at the high frets, but the harmonics that give the instrument its character extend far above that.</p>
+<h4 id="amplitude-and-what-you-hear-as-loudness">Amplitude, and what you hear as loudness</h4>
+<p><strong>Amplitude</strong> is the size of the disturbance - how far the string swings from its rest position, or how much the air pressure deviates from normal. Amplitude is what you perceive as <strong>loudness</strong>.</p>
+<p>The relationship is not proportional, and that matters. Doubling the amplitude does not make a sound seem twice as loud. Human hearing responds to ratios rather than to differences, so we measure sound level in <strong>decibels</strong>, a logarithmic scale. Adding 10 decibels multiplies the sound power by ten, and is heard as roughly a doubling of loudness. This is the first appearance of a theme that will dominate the rest of this article: <em>our ears work in ratios, not in differences.</em></p>
+<h4 id="wavelength-and-speed">Wavelength and speed</h4>
+<p><strong>Wavelength</strong> is the physical distance between one peak of the wave and the next. It is tied to frequency by the speed of the wave in the medium:</p>
+<ul role="list">
+<li>speed equals frequency times wavelength</li>
+<li>equivalently, wavelength equals speed divided by frequency</li>
+</ul>
+<p>Sound travels through room-temperature air at about 343 metres per second, which is about 1,125 feet per second. So a 343 Hz note has a wavelength of one metre, and a 34.3 Hz note has a wavelength of ten metres. Low notes are physically enormous, which is part of why bass is hard to contain, why it leaks through walls, and why subwoofers are big.</p>
+<p>Note that wavelength is a property of the wave in the air, not a property of the note as such. The same note has a different wavelength underwater, because sound travels about four times faster in water. Frequency is the part that stays fixed, which is why musicians talk about frequency and not wavelength.</p>
+<h4 id="phase">Phase</h4>
+<p><strong>Phase</strong> describes where in its cycle a wave is at a given moment - whether it is at a peak, at a trough, or crossing zero. On its own, phase is inaudible: a sine wave sounds the same no matter where in the cycle it happened to start. Phase becomes audible only when two waves meet, which is the subject of the next section.</p>
+<h3 id="what-happens-when-waves-meet">What happens when waves meet</h3>
+<p>When two waves pass through the same place at the same time, the disturbances add together. At each instant, the total pressure change is simply the sum of the individual pressure changes. This is called the <strong>principle of superposition</strong>, and it is why you can hear a singer and a guitar at the same time without them blending into mush: the air carries the sum, and your ear and brain pull the parts back out again.</p>
+<p>When two waves add, phase determines the result:</p>
+<ul role="list">
+<li>Constructive interference - the waves line up peak with peak, and the result is larger than either one alone.</li>
+<li>Destructive interference - one wave's peak lines up with the other's trough, and they partly or completely cancel. Two identical sine waves exactly out of phase produce silence. This is the principle behind noise-cancelling headphones.</li>
+</ul>
+<h4 id="beats-hearing-a-frequency-difference-directly">Beats: hearing a frequency difference directly</h4>
+<p>Now suppose two waves have <em>almost</em> the same frequency, say 440 Hz and 442 Hz. They cannot stay in a fixed phase relationship, because one is running slightly ahead of the other. They drift into alignment, reinforcing each other, then drift out of alignment, cancelling, then back again.</p>
+<p>The result is a single tone whose loudness pulses up and down. Those pulses are called <strong>beats</strong>, and the rule is beautifully simple:</p>
+<ul role="list">
+<li>The number of beats per second equals the difference between the two frequencies.</li>
+</ul>
+<p>So 440 Hz against 442 Hz gives two pulses per second. Against 441 Hz, one pulse per second. Against 440 Hz exactly, no pulsing at all. That last fact is the foundation of tuning by ear: you do not need to identify the pitches, you only need to notice the wobble and make it stop. Beats turn a frequency comparison into a rhythm you can count, and the human ear is extremely good at it. Trained tuners can hear a discrepancy of a fraction of a hertz this way.</p>
+<h3 id="waveform-and-timbre">Waveform and timbre</h3>
+<p>Play the same note, at the same loudness, on a guitar and on a flute, and you can tell them apart instantly. Frequency is the same, amplitude is the same, and yet the sounds are obviously different. The difference is <strong>timbre</strong> (pronounced TAM-ber), sometimes called tone colour.</p>
+<p>Timbre comes from two things. The first is <strong>waveform</strong>: the actual shape of the pressure pattern over one cycle. A pure sine wave sounds hollow and flute-like. A sawtooth wave sounds bright and buzzy. A guitar string produces something much more intricate, and Part 3 explains exactly what that shape is made of.</p>
+<p>The second is the <strong>envelope</strong>: how the sound changes over its lifetime. A plucked guitar note starts abruptly and decays away; a bowed violin note can be shaped and sustained. If you record a piano note and play it backwards, it no longer sounds like a piano at all, even though every frequency in it is unchanged. Timbre is not only about which frequencies are present, but about when.</p>
+<h3 id="standing-waves-why-a-string-has-a-pitch-at-all">Standing waves: why a string has a pitch at all</h3>
+<p>Pluck a string that is anchored at both ends. A wave travels out from your finger, reaches the fixed end, and reflects back. It then runs to the other end and reflects again. The string is now full of waves running in both directions at once, adding by superposition.</p>
+<p>Almost all of these cancel themselves into nothing. But certain frequencies fit the string's length exactly, so that a reflected wave lines up with the wave behind it and reinforces it, cycle after cycle. Those frequencies survive. The result is a <strong>standing wave</strong>: a pattern that appears to stay put and simply oscillate in place, rather than travelling.</p>
+<p>Two pieces of vocabulary describe a standing wave's shape:</p>
+<ul role="list">
+<li>Node - a point that stays still. The two fixed ends of a string are always nodes.</li>
+<li>Antinode - a point of maximum movement, halfway between two nodes.</li>
+</ul>
+<p>Which frequencies fit? The requirement is that both ends must be nodes, which means the string's length must be a whole number of half-wavelengths. That gives an infinite series of allowed patterns, called <strong>modes</strong>:</p>
+<ol>
+<li>The whole string swinging as one arc, with a node at each end and one antinode in the middle. This is the lowest allowed frequency, called the <strong>fundamental</strong>.</li>
+<li>The string in two halves swinging in opposite directions, with an extra node at the midpoint. Half the wavelength means twice the frequency.</li>
+<li>The string in three sections, at three times the fundamental frequency.</li>
+<li>And so on, without limit: four times, five times, six times.</li>
+</ol>
+<p>This is the single most consequential fact in this entire article, so it is worth stating plainly. <strong>A string does not vibrate at one frequency. It vibrates at a fundamental frequency and at every whole-number multiple of it, all at the same time.</strong> The set of those frequencies is called the <strong>harmonic series</strong>, and Part 3 is largely about what follows from it.</p>
+<h4 id="what-sets-the-fundamental-frequency">What sets the fundamental frequency</h4>
+<p>For a stretched string, the fundamental frequency depends on exactly three things: the string's length, its tension, and its mass per unit length. To calculate it, work through these steps in order:</p>
+<ol>
+<li>Divide the tension by the mass per unit length.</li>
+<li>Take the square root of that result.</li>
+<li>Separately, double the length.</li>
+<li>Divide the result of step 2 by the result of step 3. That is the frequency.</li>
+</ol>
+<p>Note that the square root applies only to tension divided by mass per unit length. The doubled length sits outside the square root. If you want everything under a single square root, the doubled length must itself be squared first, so the frequency also equals the square root of the tension divided by four times the length squared times the mass per unit length.</p>
+<p>What each of the three factors does:</p>
+<ul role="list">
+<li>Length - shorter string, higher pitch. Halve the length and you exactly double the frequency. This is what a fret does.</li>
+<li>Tension - tighter string, higher pitch. This is what a tuning peg does. Because the relationship involves a square root, you must <em>quadruple</em> the tension to double the frequency, which is why tuning is a fine adjustment rather than a coarse one.</li>
+<li>Mass per unit length - heavier string, lower pitch. This is why the low strings on a guitar are thick and wound with wire. Without that trick, the bass strings would need to be either absurdly long or so slack they would flop.</li>
+</ul>
+<p>These three relationships, worked out in the 1600s by Marin Mersenne and studied much earlier in less formal terms, are the whole design logic of every stringed instrument ever built.</p>
+<h2 id="part-2-the-mathematical-toolkit">Part 2: The mathematical toolkit</h2>
+<p>The mathematics needed for music theory is not advanced, but it is a particular selection. This part collects the ideas you will need before Part 3 puts them to work. If you already know ratios and logarithms, skim it.</p>
+<h3 id="ratios">Ratios</h3>
+<p>A <strong>ratio</strong> is a comparison of two quantities by division. If one string vibrates at 200 Hz and another at 100 Hz, the ratio of their frequencies is 200 divided by 100, which is 2. We write that as &quot;2 to 1&quot;, or in shorthand 2:1.</p>
+<p>By convention, musical frequency ratios are written with the higher frequency first. That makes the ratio a number greater than 1, and it tells you what to multiply the lower note's frequency by to get the higher note. The fifth, doh up to soh, is written 3 to 2 because the upper note vibrates 3 times for every 2 vibrations of the lower note; multiply the lower frequency by 1.5 and you get the upper one. Writing it 2 to 3 would describe the same interval from the top down, as a multiplier of about 0.667. Neither is wrong, but mixing the two in one discussion causes confusion, so this article always puts the higher frequency first.</p>
+<p>One place the flipped form does appear naturally is string length. Because a shorter string vibrates faster, the string for the upper note of a fifth is 2/3 the length of the string for the lower note. Frequency ratios and length ratios for the same interval are always upside down relative to each other.</p>
+<p>Three properties of ratios matter here:</p>
+<ul role="list">
+<li>Ratios ignore absolute size. 200 to 100 and 600 to 300 are the same ratio, namely 2 to 1. This is why a melody sounds like the same melody whether sung by a child or a bass, and why a capo, a clamp that shortens every guitar string by the same number of frets, moves everything up without changing the tune.</li>
+<li>Ratios can be reduced. 660 to 440 reduces to 3 to 2, because both numbers divide by 220. Musicians care intensely about what a ratio reduces to, because the size of the whole numbers involved turns out to predict how consonant an interval sounds.</li>
+<li>Ratios combine by multiplying. If B is 3/2 times A, and C is 3/2 times B, then C is 9/4 times A. Stacking musical intervals means multiplying their ratios, never adding them.</li>
+</ul>
+<h3 id="adding-versus-multiplying-why-pitch-is-different-from-temperature">Adding versus multiplying: why pitch is different from temperature</h3>
+<p>Here is the conceptual hurdle that trips up almost everyone meeting this material for the first time.</p>
+<p>Our ears judge pitch by <em>ratio</em>, not by <em>difference</em>. Consider these two pairs:</p>
+<ul role="list">
+<li>100 Hz and 200 Hz - a difference of 100 Hz, a ratio of 2 to 1.</li>
+<li>1,000 Hz and 1,100 Hz - also a difference of 100 Hz, but a ratio of only 1.1 to 1.</li>
+</ul>
+<p>The first pair sounds like an enormous leap, an octave. The second pair sounds like a small step, less than two semitones. Equal frequency differences do not sound like equal musical distances. Equal frequency <em>ratios</em> do.</p>
+<p>Mathematically, this is the difference between two kinds of sequence:</p>
+<ul role="list">
+<li>Arithmetic sequence - each term is the previous term plus a fixed number. For example 100, 200, 300, 400. You get this by adding.</li>
+<li>Geometric sequence - each term is the previous term times a fixed number. For example 100, 200, 400, 800. You get this by multiplying.</li>
+</ul>
+<p>Musical scales are geometric sequences of frequency, which is why they feel like arithmetic sequences to the listener. Our perception effectively takes the logarithm of the physical quantity. The same thing happens with loudness, as we saw with decibels, and with light, and with our sense of quantity in general. It seems to be a general feature of how animal senses handle large ranges.</p>
+<h3 id="exponents-and-roots">Exponents and roots</h3>
+<p>Since intervals stack by multiplication, stacking the same interval repeatedly means raising a number to a power. Going up an octave multiplies frequency by 2. Going up seven octaves multiplies it by 2 to the power of 7, which is 128.</p>
+<p>Running that backwards requires roots. If you want to divide an octave into twelve equal steps, you need a number such that twelve copies of it, multiplied together, give exactly 2. That number is the twelfth root of 2, written as 2 to the power of one twelfth, and it equals approximately 1.059463. This unassuming number is the basis of every fret position on every guitar built in the last few centuries, and it will reappear in Part 3.</p>
+<p>A useful general form: raising 2 to the power of a fraction gives you a fractional part of an octave. Two to the power of 7/12 is roughly 1.4983, which is very nearly 1.5, and that near-miss is going to cause a surprising amount of trouble.</p>
+<h3 id="logarithms-and-cents">Logarithms and cents</h3>
+<p>A <strong>logarithm</strong> answers the question: what power do I need to raise this base to, in order to get that number? The logarithm of 8 to base 2 is 3, because 2 to the power of 3 is 8.</p>
+<p>Logarithms are the tool that converts multiplying into adding. That is exactly the translation we want, because physics multiplies frequencies while perception adds intervals.</p>
+<p>Musicians use a logarithmic unit called the <strong>cent</strong>. It is defined so that:</p>
+<ul role="list">
+<li>One octave is exactly 1,200 cents.</li>
+<li>One semitone, in modern equal tuning, is exactly 100 cents.</li>
+<li>To convert a frequency ratio into cents, first take the base-2 logarithm of the ratio, then multiply that result by 1,200.</li>
+</ul>
+<p>Cents are what make tuning discussions possible. Saying that one tuning system's doh-to-me interval is &quot;14 cents sharp&quot; compared to another is precise, and it is a size you can compare directly against other intervals, whereas comparing raw ratios like 81/64 against 5/4 gives you no feel for how big the discrepancy is. For calibration: most people notice a mistuning of about 5 to 10 cents on a sustained note, and trained musicians do better.</p>
+<h3 id="periodicity-and-common-multiples">Periodicity and common multiples</h3>
+<p>Two waves played together produce a combined waveform. If the two frequencies are in a ratio of small whole numbers, the combined pattern repeats quickly.</p>
+<p>Take a 200 Hz tone and a 300 Hz tone, a ratio of 3 to 2. Start both at the beginning of a cycle at the same instant, and track when each one returns to that starting point. It is easiest in milliseconds, using the conversion from Part 1: period in milliseconds equals 1,000 divided by the frequency in hertz.</p>
+<ul role="list">
+<li>200 Hz - one cycle takes 1,000 divided by 200, which is 5 milliseconds. It is back at its start at 5, 10, 15, 20 milliseconds, and so on.</li>
+<li>300 Hz - one cycle takes 1,000 divided by 300, which is about 3.33 milliseconds. It is back at its start at about 3.33, 6.67, 10, 13.33 milliseconds, and so on.</li>
+</ul>
+<p>The first time both are back at their starting point together is 10 milliseconds, which is one hundredth of a second. By then the 200 Hz wave has done 2 cycles and the 300 Hz wave has done 3. From that moment the combined wave repeats exactly, so its period is 10 milliseconds and it has a tidy, strongly repeating shape. Its repetition rate is 100 times per second.</p>
+<p>There is a shortcut. The combined wave repeats at a rate equal to the <strong>greatest common divisor</strong> of the two frequencies: the largest number that divides evenly into both. The greatest common divisor of 200 and 300 is 100, so the combined wave repeats 100 times per second, and one repetition takes 1 divided by 100 of a second.</p>
+<p>A tempting mistake is to take the <strong>least common multiple</strong> of the two frequencies instead. The least common multiple of 200 and 300 is 600, but that 600 is a frequency, 600 cycles per second, not a length of time. It does mean something, though: 600 Hz is the lowest harmonic the two notes share. It is the third harmonic of the 200 Hz note and the second harmonic of the 300 Hz note. That shared harmonic comes back in Part 3 as one of the explanations for why this interval sounds consonant.</p>
+<p>Now take 200 Hz against 283 Hz, a ratio of 283 to 200, which does not reduce. Their greatest common divisor is 1, so the combined pattern repeats only once per second, after 200 cycles of the lower tone and 283 cycles of the higher one. A full second is far too long for the ear to hear as a repeating shape. Physically the waves still add, but the result has no short-term repeating structure. Several theories of consonance, which we will get to, lean on exactly this distinction.</p>
+<h3 id="irrational-numbers-and-the-impossibility-built-into-music">Irrational numbers, and the impossibility built into music</h3>
+<p>An <strong>irrational number</strong> is one that cannot be written as a fraction of two whole numbers. The square root of 2 is the famous example, and the twelfth root of 2 is another.</p>
+<p>This matters because of a collision that sits at the heart of tuning:</p>
+<ul role="list">
+<li>The intervals that sound most consonant are simple whole-number ratios, like 2 to 1 and 3 to 2.</li>
+<li>A keyboard or a fretted instrument needs a fixed set of pitches that works no matter which note is chosen as doh.</li>
+<li>These two demands are mathematically incompatible. No stack of 3-to-2 ratios ever lands exactly on a stack of 2-to-1 ratios, because powers of 3 are never equal to powers of 2.</li>
+</ul>
+<p>That last point can be proved in one line. Any power of 3 is odd; any power of 2 is even. They can never be equal. Therefore no number of fifths stacked on top of each other ever lands exactly on an octave. Part 3 shows what this does to tuning. Everything about tuning after that point is a negotiation over where to hide the error.</p>
+<h3 id="modular-arithmetic-the-clock-face-of-pitch">Modular arithmetic: the clock face of pitch</h3>
+<p>Because we treat notes an octave apart as versions of the same note, pitch in Western music behaves like a clock. Twelve semitones bring you back to where you started, in the same way that twelve hours bring the hour hand back around.</p>
+<p><strong>Modular arithmetic</strong> is arithmetic on such a cycle: after reaching 12 you wrap back to 0. If you number the twelve notes 0 through 11, then:</p>
+<ul role="list">
+<li>Changing key, which musicians call transposing, means adding the same number to every note number, wrapping around at 12. The scale positions 0, 2, 4, 5, 7, 9, 11 from the opening section, shifted up by 3, become 3, 5, 7, 8, 10, 0, 2: the same scale, with doh three semitones higher.</li>
+<li>Any pattern of note numbers keeps its shape under this shift. That is the arithmetic behind the fact that a tune stays the same tune in any key.</li>
+<li>A fifth, doh up to soh, is 7 semitones. Stacking fifths means repeatedly adding 7, which produces 0, 7, 2, 9, 4, 11, 6, 1, 8, 3, 10, 5, and then back to 0. You visit all twelve notes before returning, because 7 and 12 share no common factor.</li>
+</ul>
+<p>That last fact is not a musical coincidence; it is a fact about the numbers 7 and 12. Musicians arrange the twelve keys in this order, a sequence called the circle of fifths, and the arithmetic guarantees it reaches every key.</p>
+<h2 id="part-3-from-physics-to-music">Part 3: From physics to music</h2>
+<h3 id="major-and-minor-a-first-look">Major and minor: a first look</h3>
+<p>The rest of this part explains <em>why</em> certain intervals sound the way they do. Before that, it helps to meet the intervals and scales themselves in a bit more detail.</p>
+<h4 id="same-name-different-sizes">Same name, different sizes</h4>
+<p>An interval's name counts scale notes, but the number of semitones inside it can vary. Doh up to me is a third containing 4 semitones. Ray up to fa is also a third, since it spans ray, me, fa, but it contains only 3 semitones, because the small me-to-fa step falls inside it. The larger version is called a <strong>major third</strong> and the smaller a <strong>minor third</strong>. Major and minor here simply mean larger and smaller.</p>
+<p>Every interval within an octave, by semitone count:</p>
+<ul role="list">
+<li>1 semitone - minor second, the same as one semitone</li>
+<li>2 semitones - major second, one whole step</li>
+<li>3 semitones - minor third</li>
+<li>4 semitones - major third</li>
+<li>5 semitones - perfect fourth</li>
+<li>6 semitones - tritone, exactly half an octave</li>
+<li>7 semitones - perfect fifth</li>
+<li>8 semitones - minor sixth</li>
+<li>9 semitones - major sixth</li>
+<li>10 semitones - minor seventh</li>
+<li>11 semitones - major seventh</li>
+<li>12 semitones - octave</li>
+</ul>
+<p>Fourths, fifths and octaves are called <strong>perfect</strong> rather than major or minor. The name is old, from medieval theorists who regarded them as the purest, most stable intervals. Within the major scale, every fourth but one is 5 semitones and every fifth but one is 7. The exceptions are fa up to tee, a fourth, and tee up to fa, a fifth; both are 6 semitones, the tritone.</p>
+<h4 id="the-major-and-minor-scales">The major and minor scales</h4>
+<p>The doh-to-doh scale from the opening section is the <strong>major scale</strong>. Its steps, in semitones, run 2, 2, 1, 2, 2, 2, 1.</p>
+<p>Now sing the same syllables but start and finish on lah: lah, tee, doh, ray, me, fa, soh, lah. Same seven notes, different home. Most listeners hear it as darker or sadder. This is the <strong>natural minor scale</strong>, and its steps run 2, 1, 2, 2, 1, 2, 2.</p>
+<p>Measured from each scale's own starting note, here is what changes and what does not:</p>
+<ul role="list">
+<li>The third - 4 semitones in major, 3 in minor. This is the defining difference, and it is where the scales get their names.</li>
+<li>The sixth and seventh - also one semitone lower in minor.</li>
+<li>The fourth and fifth - identical in both, 5 and 7 semitones. There is no such thing as a major or minor fifth. The fifth stays fixed while the third moves, which is part of why the fifth is called perfect.</li>
+</ul>
+<h4 id="chords-and-triads">Chords and triads</h4>
+<p>A <strong>chord</strong> is three or more notes sounded together. The most common kind is the <strong>triad</strong>: a starting note, the note a third above it, and the note a fifth above it. In other words, two thirds stacked on top of each other.</p>
+<ul role="list">
+<li>Major triad - doh, me, soh. A major third on the bottom, 4 semitones, then a minor third on top, 3 semitones.</li>
+<li>Minor triad - lah, doh, me. A minor third on the bottom, 3 semitones, then a major third on top, 4 semitones.</li>
+</ul>
+<p>Both triads span a perfect fifth, 7 semitones, from bottom to top. The only difference is which third sits underneath. That small reordering is the whole difference between a major chord and a minor chord.</p>
+<p>With those names in hand, the rest of this part can explain where they come from.</p>
+<h3 id="the-harmonic-series">The harmonic series</h3>
+<p>Recall from Part 1 that a vibrating string produces a fundamental frequency plus every whole-number multiple of it. Take a low E string on a guitar, vibrating at about 82 Hz. It simultaneously produces:</p>
+<ol>
+<li>82 Hz, the fundamental, also called the first harmonic</li>
+<li>164 Hz, the second harmonic, which is exactly one octave above</li>
+<li>246 Hz, the third harmonic, an octave and a fifth above</li>
+<li>328 Hz, two octaves above</li>
+<li>410 Hz, two octaves and a major third above</li>
+<li>492 Hz, two octaves and a fifth above</li>
+<li>574 Hz, close to two octaves and a minor seventh, but noticeably flat compared to any note in our system</li>
+<li>656 Hz, three octaves above</li>
+</ol>
+<p>The components above the fundamental are called <strong>overtones</strong> or <strong>upper harmonics</strong>. Be careful with the counting: the second harmonic is the first overtone, which is a standing trap in this vocabulary.</p>
+<p>Notice what happens as you go up the series. The intervals between consecutive harmonics get smaller: the first step is an octave, the next a fifth, the next a fourth, the next a major third, then a minor third. The series lays out, in order, the intervals that Western music treats as most consonant. Nobody designed this. It falls out of the fact that the allowed modes of a string are whole-number multiples.</p>
+<h3 id="why-harmonics-matter">Why harmonics matter</h3>
+<p>Harmonics do three jobs.</p>
+<h4 id="they-create-timbre">They create timbre</h4>
+<p>The <strong>Fourier theorem</strong> states that any repeating waveform, however complicated, can be built by adding sine waves whose frequencies are whole-number multiples of the repetition rate. Run that backwards and you get the key insight: the shape of a sound wave is determined by the recipe of harmonic amplitudes.</p>
+<p>A clarinet is quiet in its even-numbered harmonics and strong in its odd ones, which is why it sounds hollow. A guitar has a rich spread of harmonics with the lower ones strongest. A flute is close to a pure sine wave. Same fundamental, different recipe, completely different instrument.</p>
+<p>You control this directly when you play. Plucking a string near the bridge emphasises high harmonics and sounds bright and thin; plucking over the soundhole emphasises the fundamental and sounds round and warm. Physically, you are choosing which modes to excite: a mode with a node at your plucking point gets very little energy, and a mode with an antinode there gets a lot.</p>
+<h4 id="they-define-what-note-we-hear">They define what note we hear</h4>
+<p>Play a note with a fundamental of 200 Hz and harmonics at 400, 600, 800 and 1,000 Hz, then remove the 200 Hz component entirely. You still hear a note at 200 Hz. This is the <strong>missing fundamental</strong> effect: the brain infers the pitch from the spacing of the harmonics rather than reading it off directly. It is why a small phone speaker, which physically cannot produce a 60 Hz bass note, still lets you hear the bass line.</p>
+<h4 id="they-create-relationships-between-notes">They create relationships between notes</h4>
+<p>This is the one that builds the whole system, and it gets its own section.</p>
+<h3 id="consonance-and-dissonance">Consonance and dissonance</h3>
+<p><strong>Consonance</strong> means two or more notes sounding stable and agreeable together. <strong>Dissonance</strong> means sounding tense, rough, or unresolved. Neither is a value judgement; music needs both, and the tension of a dissonance resolving into a consonance is one of the main engines of Western music.</p>
+<p>There are three explanations for consonance. They are not rivals so much as three views of the same thing, and each captures something the others miss.</p>
+<h4 id="explanation-one-simple-ratios">Explanation one: simple ratios</h4>
+<p>This is the oldest, credited to Pythagoras around 500 BCE, who is said to have noticed that strings whose lengths were in simple whole-number ratios sounded good together. The rule of thumb is that the simpler the ratio, the more consonant the interval:</p>
+<ul role="list">
+<li>2 to 1 - the octave. So consonant it barely registers as two different notes.</li>
+<li>3 to 2 - the perfect fifth. Strong, open, stable.</li>
+<li>4 to 3 - the perfect fourth. Stable, slightly less settled.</li>
+<li>5 to 4 - the major third. Sweet, and the defining sound of a major chord.</li>
+<li>6 to 5 - the minor third. The defining sound of a minor chord.</li>
+<li>16 to 15 - the semitone. Sharply dissonant.</li>
+<li>45 to 32 - the tritone. Historically the most restless interval in the system.</li>
+</ul>
+<p>The pattern is unmistakable, but as an explanation it is incomplete. It describes rather than explains, and it fails to say why the ear should care about arithmetic.</p>
+<h4 id="explanation-two-shared-harmonics">Explanation two: shared harmonics</h4>
+<p>Here the harmonic series does the work. Two notes an octave apart, say 200 Hz and 400 Hz, produce these harmonics:</p>
+<ul role="list">
+<li>Lower note - 200, 400, 600, 800, 1,000, 1,200</li>
+<li>Upper note - 400, 800, 1,200, 1,600, 2,000, 2,400</li>
+</ul>
+<p>Every single harmonic of the upper note is already present in the lower note. Nothing new is introduced and nothing clashes. That is why an octave sounds like one note thickened rather than two notes combined.</p>
+<p>A perfect fifth, 200 Hz and 300 Hz, overlaps at 600, 1,200, 1,800 and so on. Substantial agreement, some independence. Now take a dissonant pairing such as 200 Hz and 283 Hz: hardly any harmonics coincide, and several land uncomfortably close to each other without matching.</p>
+<h4 id="explanation-three-roughness-and-the-critical-band">Explanation three: roughness and the critical band</h4>
+<p>This is the modern account, grounded in how the ear physically works. Inside the cochlea, different frequencies stimulate different positions along a membrane. Two frequencies that are far apart stimulate clearly separate regions and are heard as separate. Two frequencies that are very close stimulate overlapping regions, and the result is the beating we met in Part 1.</p>
+<p>What happens between those extremes is the interesting part. When two tones differ by more than a few hertz but still fall within the same <strong>critical band</strong> - roughly the resolving width of one region of the cochlea - the beating is too fast to count and is perceived instead as a harsh buzzing quality called <strong>roughness</strong>. Roughness peaks when the separation is around a quarter of a critical band, and fades as the tones move further apart.</p>
+<p>Now combine this with harmonics, and consonance falls out as a consequence rather than a rule. Two complex tones each bring along a whole stack of harmonics. If the fundamentals are in a simple ratio, most harmonic pairs either coincide exactly, producing no roughness, or sit comfortably far apart. If the fundamentals are in a complicated ratio, many harmonic pairs land close but not equal, and each of those pairs contributes roughness.</p>
+<p>Two predictions support this account. First, consonance should depend on timbre, and it does: pure sine waves have no harmonics, and intervals between them sound far less clearly consonant or dissonant. Second, instruments with non-harmonic overtones should have a different consonance landscape, and they do - the tuned metallophones of Indonesian gamelan have overtones that are not whole-number multiples, and gamelan tuning systems are correspondingly unlike Western ones.</p>
+<h3 id="the-octave-and-why-it-comes-first">The octave, and why it comes first</h3>
+<p>The 2-to-1 relationship is so strong that virtually every musical culture on Earth treats notes an octave apart as the same note with a different height. This is called <strong>octave equivalence</strong>, and it is why a man and a woman singing &quot;the same note&quot; are usually an octave apart and nobody thinks anything of it, and why our note names repeat every twelve semitones.</p>
+<p>Octave equivalence sets the whole problem of tuning. We do not need to invent an unlimited ladder of pitches. We need to divide one octave sensibly, then repeat that division up and down. The only question is how to divide it.</p>
+<h3 id="the-fifth-and-a-circle-that-refuses-to-close">The fifth, and a circle that refuses to close</h3>
+<p>After the octave, the simplest ratio is 3 to 2, the perfect fifth. The obvious idea, and the one the Pythagoreans pursued, is to generate all your notes by stacking fifths and then folding the results back into a single octave by halving as needed.</p>
+<p>Stack twelve fifths and something almost magical happens: you arrive back at a note that is almost exactly seven octaves above where you started. Almost.</p>
+<ul role="list">
+<li>Twelve fifths - 3/2 raised to the power of 12, meaning twelve copies of 3/2 multiplied together. That equals 531,441 divided by 4,096, about 129.746.</li>
+<li>Seven octaves - 2 to the power of 7, which is exactly 128.</li>
+<li>The mismatch - about 1.0136 to 1, which is roughly 23.5 cents, nearly a quarter of a semitone.</li>
+</ul>
+<p>That gap is the <strong>Pythagorean comma</strong>. It is not a measurement error or a limitation of old instruments. As shown in Part 2, powers of 3 are odd and powers of 2 are even, so the two can never meet. The comma is a mathematical certainty.</p>
+<p>Everything that follows in the history of tuning is an argument about what to do with that quarter of a semitone.</p>
+<h3 id="four-ways-to-divide-an-octave">Four ways to divide an octave</h3>
+<p>A <strong>temperament</strong> is a scheme for choosing the exact pitches of a scale, and specifically for deciding which intervals to keep pure and which to deliberately mistune.</p>
+<h4 id="pythagorean-tuning">Pythagorean tuning</h4>
+<p>Build everything from pure 3-to-2 fifths, and dump the entire comma into one interval. The result: eleven beautiful fifths and one unusable one, nicknamed the <strong>wolf fifth</strong> because it howls. Fifths and fourths are flawless; major thirds come out at 81/64, which is 22 cents sharp of the pure 5/4 and noticeably harsh. This was fine for medieval music built on fourths, fifths and octaves, and became a problem as soon as thirds became central.</p>
+<h4 id="just-intonation">Just intonation</h4>
+<p>Choose every note to make simple ratios with the tonic. A major scale comes out as 1/1, 9/8, 5/4, 4/3, 3/2, 5/3, 15/8, 2/1. Chords built on the home note are spectacularly pure - a major triad becomes a clean 4:5:6, with harmonics locking together audibly.</p>
+<p>The catch is that the tuning is only correct for one key. The whole steps are not all the same size: 9/8 and 10/9 both appear, differing by about 22 cents. Move to a different key and intervals that were pure become badly out of tune. Singers and fretless string players do use just intonation, adjusting constantly by ear. It cannot be built into frets.</p>
+<h4 id="meantone-and-well-temperaments">Meantone and well temperaments</h4>
+<p>Meantone temperament, dominant in Europe from roughly 1500 to 1700, narrows each fifth slightly in order to make major thirds pure or nearly so. It sounds gorgeous in common keys and progressively worse in remote ones, with a wolf fifth still lurking.</p>
+<p>Well temperaments, from around 1700, distribute the comma unevenly so that every key is usable but each key has a slightly different character. This is the world Bach's <em>The Well-Tempered Clavier</em> belongs to. Its title is a claim that you can now play in all twenty-four keys, not a claim that they all sound identical.</p>
+<h4 id="twelve-tone-equal-temperament">Twelve-tone equal temperament</h4>
+<p>The modern solution, standard for guitars and pianos, is to give up on pure ratios almost entirely and divide the octave into twelve mathematically identical steps. Each semitone is the twelfth root of 2, about 1.059463.</p>
+<p>How good is the compromise?</p>
+<ul role="list">
+<li>Octave - exactly pure, by construction.</li>
+<li>Perfect fifth - 700 cents, against a pure 701.955. Two cents narrow, which is essentially inaudible.</li>
+<li>Perfect fourth - 500 cents against 498.04. Also fine.</li>
+<li>Major third - 400 cents against a pure 386.31. Nearly 14 cents sharp, which is genuinely audible as a slight restlessness if you listen for it.</li>
+<li>Minor third - 300 cents against 315.64. About 16 cents narrow.</li>
+</ul>
+<p>The trade is explicit: every key is equally usable, no key is perfect, thirds take most of the damage. You can hear the cost if you compare a barbershop quartet, which tunes chords purely by ear, against the same chord on a piano. The piano chord is slightly busier. That slight busyness is the price of being able to modulate anywhere.</p>
+<h3 id="why-twelve-notes">Why twelve notes?</h3>
+<p>Twelve is not arbitrary, and it is not the only possible answer.</p>
+<p>Here is the reasoning. We want a division of the octave into some number of equal steps, such that some whole number of those steps closely approximates the pure fifth, 3 to 2. The base-2 logarithm of 1.5 is about 0.58496. So we want a fraction with a small denominator close to 0.58496:</p>
+<ul role="list">
+<li>3/5 is 0.6 - five-note equal division, off by about 17 cents. Crude but recognisable.</li>
+<li>4/7 is 0.5714 - seven notes, off by 16 cents the other way.</li>
+<li>7/12 is 0.58333 - twelve notes, off by less than 2 cents. Excellent.</li>
+<li>24/41 is 0.58537 - forty-one notes, off by half a cent. Better, and impractical.</li>
+<li>31/53 is 0.584906 - fifty-three notes, nearly perfect fifths and excellent thirds too.</li>
+</ul>
+<p>Twelve is the point where accuracy becomes very good while the number of notes stays manageable for hands, frets and keyboards. It also happens to deliver a usable major third as a bonus. Fifty-three-tone equal temperament is mathematically superior and nobody wants to fret it.</p>
+<p>Other divisions do get used. Nineteen-tone equal temperament has lovely thirds and has been built into real instruments. Twenty-four-tone, dividing each semitone in two, is used in Arabic music and in some contemporary composition. Musicians working outside twelve notes are usually called microtonal composers.</p>
+<h3 id="why-major-and-minor-sound-the-way-they-do">Why major and minor sound the way they do</h3>
+<p>The opening section of this part introduced the major and minor scales by their step patterns. With the harmonic series and the consonance explanations in hand, the patterns can now be explained rather than just described.</p>
+<p>Why the major scale's pattern? Look at what it contains. Relative to doh, it includes the perfect fifth at 7 semitones, the perfect fourth at 5, and the major third at 4 - the three strongest consonances available after the octave. Those are exactly the intervals sitting lowest in the harmonic series. The major scale is, roughly, the harmonic series folded into one octave and rounded to the nearest note.</p>
+<p>The minor scale keeps the fifth and the fourth but swaps the major third for a minor third. Play a major triad and it sits still. Play a minor triad and it leans.</p>
+<p>Why does one sound happy and the other sad? Honestly, this is less settled than the rest of this article. Some of it is acoustic: the major third at 5 to 4 is a simpler ratio than the minor third at 6 to 5, and major-triad harmonics align more tightly. Some of it is that the major triad's notes appear as harmonics 4, 5 and 6 of a single fundamental, so a major chord is close to a naturally occurring sound while a minor chord is not. And a large part of it is cultural learning, reinforced by four centuries of composers using minor for laments. The emotional labels are much less universal across cultures than the acoustic facts are.</p>
+<h3 id="other-scales">Other scales</h3>
+<p>Seven notes out of twelve is a convention, not a law. Some of the alternatives:</p>
+<ul role="list">
+<li>Major pentatonic - five notes, with step pattern 2, 2, 3, 2, 3. It is the major scale with the two half-step-forming notes removed, so nothing in it can clash. Found independently in Chinese, Celtic, West African and Native American traditions, which suggests something deep is going on.</li>
+<li>Minor pentatonic - five notes, 3, 2, 2, 3, 2. The backbone of blues, rock and most guitar soloing, and usually the first scale a guitarist learns.</li>
+<li>Blues scale - the minor pentatonic with an added flattened fifth, giving 3, 2, 1, 1, 3, 2. That extra note is the sourness in blues phrasing. In practice blues players bend between pitches, so the written scale is an approximation of something more fluid.</li>
+<li>The modes - the seven scales obtained by starting the major scale's pattern on each of its seven notes. In order they are Ionian (identical to major), Dorian, Phrygian, Lydian, Mixolydian, Aeolian (identical to natural minor) and Locrian. Same notes, different centre of gravity, strikingly different moods.</li>
+<li>Harmonic minor - natural minor with the seventh note raised a semitone, giving 2, 1, 2, 2, 1, 3, 1. That three-semitone gap near the top is unusual in Western scales and gives the scale its distinctive, slightly exotic pull.</li>
+<li>Melodic minor - raises both the sixth and seventh on the way up, smoothing the awkward gap. Classically it reverts to natural minor descending; jazz musicians generally use the ascending form throughout.</li>
+<li>Whole tone scale - six notes, every step a whole step. Perfectly symmetrical, with no half steps and therefore no natural home note, which is why it sounds unmoored. Debussy used it heavily.</li>
+<li>Octatonic or diminished scale - eight notes alternating whole and half steps. Also symmetrical, common in jazz and in twentieth-century composition.</li>
+<li>Chromatic scale - all twelve notes. Not really a scale so much as the complete supply.</li>
+</ul>
+<p>Beyond the twelve-note world:</p>
+<ul role="list">
+<li>Indian classical music uses ragas, which are richer than scales: a raga specifies ascending and descending note sets, characteristic phrases, ornaments and emphasis. The underlying pitch framework recognises shrutis, microtonal intervals finer than a semitone.</li>
+<li>Arabic and Turkish maqam systems use intervals of roughly three quarters of a tone, which simply do not exist on a standard guitar.</li>
+<li>Indonesian gamelan uses slendro and pelog, tuning systems that do not correspond to Western intervals and are tuned by ear per ensemble, so two gamelan orchestras are not interchangeable.</li>
+</ul>
+<p>The shared lesson is that Western twelve-tone equal temperament is a particular, well-engineered solution to a genuine mathematical problem, not the natural order of things.</p>
+<h2 id="part-4-all-of-this-on-a-guitar">Part 4: All of this, on a guitar</h2>
+<p>Everything above shows up physically on the instrument, which makes a guitar an unusually good laboratory.</p>
+<h3 id="where-the-frets-are">Where the frets are</h3>
+<p>Each fret raises the pitch by one semitone, which means multiplying the frequency by the twelfth root of 2. Since frequency is inversely proportional to length, each fret must multiply the vibrating length by 1 divided by that number, about 0.9439.</p>
+<p>To find the distance from the nut to fret number n, work through these steps in order:</p>
+<ol>
+<li>Divide n by 12.</li>
+<li>Raise 2 to the power of the result of step 1.</li>
+<li>Divide 1 by the result of step 2. This is the fraction of the string still vibrating when you hold down fret n.</li>
+<li>Subtract the result of step 3 from 1. This is the fraction of the string between the nut and the fret.</li>
+<li>Multiply the result of step 4 by the scale length.</li>
+</ol>
+<p>For example, at the 12th fret: 12 divided by 12 is 1; 2 to the power of 1 is 2; 1 divided by 2 is one half; 1 minus one half is one half; so the 12th fret sits at half the scale length.</p>
+<p>Some consequences:</p>
+<ul role="list">
+<li>The twelfth fret sits at exactly half the scale length, because halving the length doubles the frequency, which is one octave.</li>
+<li>Fret spacing shrinks geometrically as you go up, which is why the high frets are cramped. It never reaches zero in theory; it just runs out of fingerboard.</li>
+<li>Old luthiers used the &quot;rule of 18&quot;, placing each fret one eighteenth of the remaining length along. The exact figure is 17.817: subtract 0.9439 from 1, which gives 0.0561, then divide 1 by that result. The rule of 18 was a good approximation that goes slightly sharp up the neck.</li>
+</ul>
+<h3 id="touching-the-string-natural-harmonics">Touching the string: natural harmonics</h3>
+<p>Rest a finger lightly on the string directly above a fret without pressing down, pluck, and lift off. You are forcing a node at that point. Every mode that already has a node there survives; every mode that does not is killed. What you hear is the surviving harmonic.</p>
+<ul role="list">
+<li>Twelfth fret, the halfway point - leaves the second harmonic, one octave above the open string.</li>
+<li>Seventh fret, one third of the way along - leaves the third harmonic, an octave and a fifth above.</li>
+<li>Fifth fret, one quarter of the way - leaves the fourth harmonic, two octaves above.</li>
+<li>Fourth fret, roughly one fifth - leaves the fifth harmonic, two octaves and a major third above.</li>
+</ul>
+<p>Two things worth noticing. First, these are audible proof that the harmonic series is physically real and not a theoretical construct - you can isolate individual members of it with a fingertip. Second, the fifth-harmonic point does not sit exactly over the fourth fret, because that fret is placed by equal temperament while the harmonic is placed by pure physics. The gap you can feel there is the 14-cent discrepancy from Part 3, made tangible.</p>
+<h3 id="tuning-by-beats">Tuning by beats</h3>
+<p>The classic harmonic-tuning method: play the fifth-fret harmonic on one string and the seventh-fret harmonic on the next string up. In theory they are the same pitch, so you adjust until the beating stops.</p>
+<p>In practice this method drifts slightly sharp across the instrument, and the reason is now predictable. Those harmonics are pure 2-to-1 and 3-to-2 ratios, but the frets are laid out in equal temperament, where the fifth is two cents narrow. Tuning by pure fifths across five strings accumulates roughly ten cents of error, which is audible. This is the Pythagorean comma showing up in a garage.</p>
+<h3 id="intonation-and-why-real-strings-misbehave">Intonation, and why real strings misbehave</h3>
+<p>The mathematics above assumes an ideal string: perfectly flexible, with no thickness. Real strings are stiff, and stiffness makes the upper modes vibrate slightly faster than whole-number multiples. This is called <strong>inharmonicity</strong>, and it is worse for thick, short, stiff strings. It is why piano tuners use &quot;stretched&quot; tuning, deliberately tuning the top of the instrument sharp and the bottom flat to match the piano's own slightly stretched harmonics.</p>
+<p>Pressing a string down also stretches it slightly, raising its pitch a little beyond what the geometry predicts. Guitars compensate by moving the saddle back a few millimetres, further for thicker strings, which is why an electric guitar's bridge saddles sit in a staggered line rather than a straight one.</p>
+<h3 id="why-standard-tuning-has-that-one-odd-gap">Why standard tuning has that one odd gap</h3>
+<p>Standard tuning is E, A, D, G, B, E from lowest to highest. The gaps are five semitones, five, five, four, five. Five of the six intervals are perfect fourths; the one between the third and second strings is a major third.</p>
+<p>That irregularity is a deliberate compromise. All fourths would make chord shapes perfectly consistent across the neck, which is what bass guitars do, but it would put commonly needed notes out of reach of one hand. The major third shifts the upper strings so that standard open chords and the most common scale patterns fall under the fingers. The cost is that every shape changes when it crosses that pair of strings, which is the single most annoying fact in guitar fingering and the direct result of a decision about ergonomics rather than acoustics.</p>
+<h2 id="part-5-where-to-go-deeper">Part 5: Where to go deeper</h2>
+<p>Threads worth pulling, if any of the above caught your interest:</p>
+<ul role="list">
+<li>Fourier analysis - the mathematics of decomposing any signal into sine waves. It underpins audio compression, speech recognition and digital tuners, and it is the formal version of the harmonic recipe idea in Part 3.</li>
+<li>Psychoacoustics - the study of how hearing actually works, including critical bands, masking, and how MP3 compression exploits the fact that a loud sound hides a nearby quiet one.</li>
+<li>The history of temperament - the arguments over tuning from the sixteenth century onward. It reads as musical history but is really applied number theory.</li>
+<li>Microtonal music - composers and instrument builders working outside twelve notes per octave, including nineteen-tone and fifty-three-tone systems.</li>
+<li>Acoustics of instrument bodies - why a guitar's top, back and enclosed air have their own resonances, and how those shape the sound far more than the string alone.</li>
+<li>Non-Western music theory - ragas, maqamat, gamelan tuning, and rhythmic systems considerably more intricate than Western metre.</li>
+<li>Digital audio - sampling rates, the Nyquist limit, bit depth, and how a continuous pressure wave becomes a list of numbers and back again.</li>
+</ul>
+<h2 id="glossary-of-terms">Glossary of terms</h2>
+<h3 id="physics-and-wave-terms">Physics and wave terms</h3>
+<ul role="list">
+<li>Amplitude - the size of a wave's disturbance, measured from the rest position. Perceived as loudness.</li>
+<li>Antinode - a point of maximum movement in a standing wave.</li>
+<li>Beats - a slow pulsing in loudness heard when two tones of nearly equal frequency sound together. The number of pulses per second equals the difference between the two frequencies.</li>
+<li>Constructive interference - the reinforcement that occurs when two waves align peak with peak.</li>
+<li>Critical band - the range of frequencies that stimulate overlapping regions of the inner ear and therefore are not fully separated by hearing.</li>
+<li>Cycle - one complete repetition of a wave's pattern, ending where it started.</li>
+<li>Decibel - a logarithmic unit of sound level. Adding 10 decibels multiplies sound power by ten.</li>
+<li>Destructive interference - the cancellation that occurs when one wave's peak aligns with another's trough.</li>
+<li>Envelope - how a sound's loudness changes over its lifetime, from attack through decay.</li>
+<li>Frequency - how many times a wave repeats its cycle each second, measured in hertz. A count, not a length of time. Perceived as pitch.</li>
+<li>Fundamental - the lowest frequency at which a system vibrates; also called the first harmonic.</li>
+<li>Harmonic - a frequency that is a whole-number multiple of the fundamental.</li>
+<li>Harmonic series - the complete set of whole-number multiples of a fundamental frequency.</li>
+<li>Hertz - the unit of frequency, abbreviated Hz. 200 Hz means the wave repeats itself 200 times every second.</li>
+<li>Inharmonicity - the tendency of real, stiff strings to produce overtones slightly higher than exact whole-number multiples.</li>
+<li>Longitudinal wave - a wave in which the medium moves back and forth along the direction of travel. Sound in air is longitudinal.</li>
+<li>Millisecond - one thousandth of a second, the usual unit for the period of a musical sound.</li>
+<li>Node - a point that remains stationary in a standing wave.</li>
+<li>Overtone - any harmonic above the fundamental. The first overtone is the second harmonic.</li>
+<li>Period - how long one complete cycle takes. Period in milliseconds equals 1,000 divided by the frequency in hertz, so a 200 Hz wave has a period of 5 milliseconds.</li>
+<li>Phase - the position of a wave within its cycle at a given instant. Inaudible alone, decisive when waves combine.</li>
+<li>Resonance - the tendency of a system to vibrate strongly when driven at one of its natural frequencies.</li>
+<li>Sine wave - the simplest oscillation, containing a single frequency and no harmonics.</li>
+<li>Standing wave - a stable vibration pattern formed when waves reflect and reinforce themselves, appearing to stay in place.</li>
+<li>Superposition - the principle that overlapping waves add together at each instant.</li>
+<li>Transverse wave - a wave in which the medium moves at right angles to the direction of travel. A vibrating string is transverse.</li>
+<li>Wavelength - the distance between successive peaks of a wave.</li>
+</ul>
+<h3 id="mathematical-terms">Mathematical terms</h3>
+<ul role="list">
+<li>Arithmetic sequence - a sequence in which each term is the previous term plus a fixed amount.</li>
+<li>Cent - a logarithmic unit of pitch distance. One octave is 1,200 cents; one equal-tempered semitone is 100 cents.</li>
+<li>Exponent - the power to which a number is raised. Two to the power of 3 means two multiplied by itself three times.</li>
+<li>Geometric sequence - a sequence in which each term is the previous term multiplied by a fixed amount. Musical scales are geometric in frequency.</li>
+<li>Greatest common divisor - the largest number that divides evenly into two given numbers. Applied to two frequencies, it gives the rate at which their combined waveform repeats.</li>
+<li>Irrational number - a number that cannot be written as a fraction of two whole numbers. The twelfth root of 2 is one.</li>
+<li>Least common multiple - the smallest number that two given numbers both divide into. Applied to two frequencies, it gives the lowest harmonic the two notes share.</li>
+<li>Logarithm - the power to which a base must be raised to produce a given number. Logarithms convert multiplication into addition.</li>
+<li>Modular arithmetic - arithmetic on a repeating cycle, where counting past the end wraps around to the start. Pitch class behaves this way with a cycle of twelve.</li>
+<li>Ratio - a comparison of two quantities by division, written for example as 3 to 2 or 3:2.</li>
+<li>Root - the inverse of raising to a power. The twelfth root of 2 is the number such that twelve copies of it, multiplied together, give 2.</li>
+</ul>
+<h3 id="musical-terms">Musical terms</h3>
+<ul role="list">
+<li>Chord - three or more notes sounded together.</li>
+<li>Chromatic scale - all twelve pitches within an octave.</li>
+<li>Consonance - the quality of notes sounding stable and agreeable together.</li>
+<li>Dissonance - the quality of notes sounding tense, rough, or unresolved.</li>
+<li>Equal temperament - a tuning system dividing the octave into equal steps, standardly twelve. Every semitone is the twelfth root of 2.</li>
+<li>Interval - the distance between two pitches, described either as a ratio or in semitones.</li>
+<li>Interval quality - whether an interval is major (the larger size), minor (the smaller size), or perfect. Fourths, fifths and octaves are perfect; seconds, thirds, sixths and sevenths are major or minor.</li>
+<li>Just intonation - a tuning system using pure whole-number frequency ratios, accurate in one key at the expense of others.</li>
+<li>Key - the choice of which pitch serves as the home note, doh, of a scale.</li>
+<li>Major scale - a seven-note scale with the step pattern whole, whole, half, whole, whole, whole, half.</li>
+<li>Major third - an interval of four semitones; pure ratio 5 to 4.</li>
+<li>Minor scale (natural) - a seven-note scale with the step pattern whole, half, whole, whole, half, whole, whole.</li>
+<li>Minor third - an interval of three semitones; pure ratio 6 to 5.</li>
+<li>Mode - a scale derived by starting a parent scale's pattern on a different one of its notes.</li>
+<li>Octave - an interval with a frequency ratio of 2 to 1, spanning twelve semitones.</li>
+<li>Octave equivalence - the perception that notes an octave apart are versions of the same note.</li>
+<li>Pentatonic scale - a five-note scale, most commonly the major or minor pentatonic.</li>
+<li>Perfect fifth - an interval of seven semitones; pure ratio 3 to 2.</li>
+<li>Perfect fourth - an interval of five semitones; pure ratio 4 to 3.</li>
+<li>Pitch - the perceived highness or lowness of a sound, determined chiefly by frequency.</li>
+<li>Pythagorean comma - the small gap, about 23.5 cents, between twelve pure fifths and seven octaves.</li>
+<li>Scale - an ordered selection of pitches used as the material for a piece of music.</li>
+<li>Semitone - the smallest interval in standard Western music, one twelfth of an octave, equal to 100 cents.</li>
+<li>Solfège - naming the notes of a scale by sung syllables: doh, ray, me, fa, soh, lah, tee. Also spelled do, re, mi, fa, sol, la, ti.</li>
+<li>Temperament - any systematic scheme for adjusting tuning, deciding which intervals stay pure and which absorb error.</li>
+<li>Timbre - the quality that distinguishes two instruments playing the same note at the same loudness. Determined by harmonic content and envelope.</li>
+<li>Tonic - the note a piece of music treats as home.</li>
+<li>Triad - a three-note chord, typically a root with a third and a fifth above it.</li>
+<li>Tritone - an interval of six semitones, exactly half an octave in equal temperament.</li>
+<li>Whole tone - an interval of two semitones.</li>
+<li>Wolf fifth - a badly out-of-tune fifth produced when a tuning system dumps the accumulated comma into a single interval.</li>
+</ul>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>
