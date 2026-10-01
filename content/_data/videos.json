@@ -1,11 +1,11 @@
 {
-  "fetched": "2026-09-30",
+  "fetched": "2026-10-01",
   "channel": {
     "name": "eyesunstrung",
     "handle": "@eyesunstrung",
     "url": "https://www.youtube.com/@eyesunstrung",
     "id": "UC6eJXOpeqnDkpgZrPQNjagg",
-    "description": "Unstrung is an Electron-based application designed for blind guitar players. Its focus is making inaccessible learning and practice materials accessible. It uses semantic HTML to generate accessible and usable HTML documents based, initially at least, on guitar pro and musicXML files.  \n\nUnstrung also has many features to assist with practice including playing along with chord progressions. It is evolving rapidly (as of Fall, 2026).\n\nThe unstrungApp channel is where I'll publish any videos I make regarding the unstrung application. \n\nFind more details, including using unstrung as a web-based application at:\n\nhttps://eyesunstrung.vip\n\nUnstrung is open source and can be found at:\nhttps://github.com/joeldodson/unstrungApp"
+    "description": "Unstrung is an Electron-based application designed for blind guitar players. Its focus is making inaccessible learning and practice materials accessible. It uses semantic HTML to generate accessible and usable HTML documents based, initially at least, on guitar pro and musicXML files.  \n\nUnstrung also has many features to assist with practice including playing along with chord progressions. It is evolving rapidly (as of Fall, 2026)."
   },
   "videos": [
     {

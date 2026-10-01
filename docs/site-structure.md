@@ -135,7 +135,9 @@ sunglasses and title all fall inside the safe area, and every corner of the imag
 Built 2026-09-30 from the eyesunstrung YouTube channel, https://www.youtube.com/@eyesunstrung. The
 channel was called "Joel Dodson" until Joel renamed it that day; `@unstrungApp` still reaches it.
 
-- Under the `h1`, the channel's own description from YouTube, then a link to the channel.
+- Under the `h1`, the channel's own description from YouTube, up to the first `===`, which Joel
+  puts in the description on YouTube to mark where the page's part ends; the marker and everything
+  after it are left out. Then a link to the channel.
 - For each video, newest first: an `h2` with the video's title, the description Joel wrote on
   YouTube, and a `<details>` disclosure whose summary is "Watch" and the title. Inside it, the
   YouTube player, embedded from `youtube-nocookie.com` (YouTube's privacy-enhanced mode), with the

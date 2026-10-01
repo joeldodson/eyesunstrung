@@ -37,7 +37,10 @@ if (!channelId || nameJson === undefined || descriptionJson === undefined) {
   throw new Error("Could not find the channel id, name or description on the channel page; YouTube may have changed its layout.");
 }
 const channelName = JSON.parse(`"${nameJson}"`);
-const channelDescription = JSON.parse(`"${descriptionJson}"`).trim();
+// Joel marks the end of the part of the channel description meant for the
+// videos page with "===" on YouTube. Keep only what comes before the first
+// marker; with no marker, keep it all.
+const channelDescription = JSON.parse(`"${descriptionJson}"`).split("===")[0].trim();
 
 const feed = await get(`https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`);
 const unescape = (text) =>
