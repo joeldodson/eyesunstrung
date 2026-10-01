@@ -108,7 +108,7 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 |---|---|---|
 | `/` | `content/index.md` | Single column |
 | `/about/` | `content/about.md` | Single column |
-| `/articles/` | `content/articles/index.md` | Single column: an `h2` per article, linking to it, with Joel's Prompter's Notes |
+| `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`), like the videos page: an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
 | `/articles/<name>/` | `content/articles/<name>.md` | Contents and Articles panels |
 | `/unstrung/` | `content/unstrung/index.md` | Single column. Placeholder |
 | `/unstrung/docs/` | `content/unstrung/docs/index.md` | Single column. Placeholder |

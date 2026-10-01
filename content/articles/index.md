@@ -2,6 +2,7 @@
 title: "Articles in eyesunstrung"
 description: "The articles on eyesunstrung, each with Prompter's Notes from Joel."
 eleventyExcludeFromCollections: true
+contentsPanel: true
 ---
 
 This is a simple page with a heading for each article.
@@ -22,4 +23,6 @@ The article started with a basic prompt to explain the physics of sound and how 
 It was not a fire and forget/publish experience.
 I did read it and iterate quite a bit for clarity and completeness.
 None of what is in here is likely to make you a better guitar player, at least not right away. 
+
+
 But maybe you'll find it interesting.
