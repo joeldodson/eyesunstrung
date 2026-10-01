@@ -79,6 +79,10 @@
         </nav>
         {%- endif %}
       </div>
+      {#- The page column: main and the footer, so the slate line down its
+          left edge runs to the bottom of the page and the footer's line spans
+          only this column. Reading order is unchanged: panels, main, footer. #}
+      <div class="page-column">
     {%- endif %}
 
       <main id="main-content">
@@ -89,17 +93,18 @@
         {{ content | safe }}
       </main>
 
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
+      </footer>
+
     {%- if hasPanels %}
+      </div>
     </div>
     {%- endif %}
-
-    <footer class="site-footer">
-      <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
-      <ul role="list">
-        <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
-        <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
-      </ul>
-      <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
-    </footer>
   </body>
 </html>

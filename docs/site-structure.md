@@ -33,8 +33,10 @@ This is the standard layout for any page that pairs content with navigation pane
 `/unstrung/docs/` when it is built. All of it is in `base.njk` and `style.css`; a new section only
 needs its own list panel.
 
-- **Dividers:** a 2 px slate line, the menu bar's colour, runs down the page's left edge for its
-  whole height, and the same line separates one panel from the next. There are no boxes around the
+- **Dividers:** a 2 px slate line, the menu bar's colour, runs down the left edge of the page
+  column (main and the footer) from the menu bar to the bottom of the page, and the same line
+  separates one panel from the next. The footer sits in that column, under main, so its own line
+  spans only the column. There are no boxes around the
   panels. On narrow screens the panels stack above the page with the line under them.
 - **Scrolling:** on wide screens the side column is sticky: it stays in view while the page scrolls,
   is at most the window's height, and scrolls inside itself if needed. It has its own grid column,
@@ -93,7 +95,12 @@ browser stops drawing a path at the first bad number, so half the word went miss
 writes the path data itself and refuses to write an SVG containing `NaN`.
 
 The footer, on every page, has "Comments? Email feedback at eyesunstrung.vip" (the last part is the
-mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub.
+mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub. It starts with
+the same 2 px slate line as the other boundaries, at every window width, so low vision readers can
+see where the page ends: across the footer on single-column pages, and across the page column only
+on pages with side panels. The slate lines (menu bar, the column's left edge, between panels, above
+the footer) are the site's one boundary style; Joel asked for them on 2026-09-30 so low vision
+readers can tell the regions apart. Reading order is unchanged: panels, main, footer.
 
 ## Sections
 

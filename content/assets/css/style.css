@@ -268,11 +268,23 @@ nav a[aria-current="page"] {
   align-items: start;
 }
 
-.panel-layout main {
+/* The page column holds main and the footer; its slate line runs from the
+   menu bar to the bottom of the page. */
+.page-column {
   align-self: stretch;
-  margin-inline: 0;
-  padding-inline: 2.5rem 0;
+  padding-inline-start: 2.5rem;
   border-inline-start: 2px solid var(--slate);
+}
+
+.panel-layout main {
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.page-column .site-footer {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
 }
 
 .side-panels {
@@ -304,8 +316,8 @@ nav a[aria-current="page"] {
     grid-template-columns: minmax(0, 1fr);
   }
 
-  .panel-layout main {
-    padding-inline: 0;
+  .page-column {
+    padding-inline-start: 0;
     border-inline-start: none;
   }
 
@@ -457,9 +469,12 @@ main ul li {
   color: var(--text-muted);
 }
 
+/* The footer starts with the same 2px slate line as the other boundaries, so
+   low vision readers can see where the page ends and the footer begins. On
+   pages with side panels it spans only the page column. */
 .site-footer {
   padding-block: 1.5rem 2rem;
-  border-top: 1px solid var(--border);
+  border-top: 2px solid var(--slate);
   color: var(--text-muted);
 }
 
