@@ -60,6 +60,7 @@ Rules for the body:
 - Do not write a contents section, however long the article is. The site will generate one from the headings.
 - Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Part 1: Sound and waves" can be linked as [Part 1: Sound and waves](#part-1-sound-and-waves). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
 - To link to another article on the site, use /articles/ followed by its file name without .md and a trailing slash, for example [Physics, Math, and Music](/articles/physics-math-and-music/). Add #heading-id to link to a section of it.
+- To make a link open in a new tab, end its text with "(opens in new tab)", for example [the unstrung web app (opens in new tab)](/unstrung/app/). The site adds what the browser needs; the words are also the warning a screen reader user needs. Nothing else opens a new tab.
 - If there is a glossary, make it a ## heading at the end, with a bulleted list of "Term - definition" lines, one term per line, in alphabetical order.
 ```
 

@@ -112,6 +112,20 @@ export default function (eleventyConfig) {
     return content.replaceAll("<ul>", '<ul role="list">');
   });
 
+  // A link whose text says "(opens in new tab)" opens in a new tab. Markdown
+  // cannot say so itself, and the words belong in the link anyway: a screen
+  // reader user moved to a new tab without warning loses the way back. So the
+  // words are the instruction, and nothing else is written. "a new tab" and
+  // any capitals match too. A link that already says where it opens is left
+  // alone.
+  eleventyConfig.addTransform("new-tab-links", function (content) {
+    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    return content.replace(
+      /<a\s((?:(?!\btarget=)[^>])*)>((?:(?!<\/a>)[\s\S])*?\(opens in (?:a )?new tab\)(?:(?!<\/a>)[\s\S])*?)<\/a>/gi,
+      '<a $1 target="_blank" rel="noopener">$2</a>',
+    );
+  });
+
   eleventyConfig.addPassthroughCopy({ "content/assets": "assets" });
   eleventyConfig.addPassthroughCopy({
     [`${fontPackage}/files/atkinson-hyperlegible-next-latin-wght-normal.woff2`]:
