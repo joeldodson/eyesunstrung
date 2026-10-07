@@ -1,0 +1,14 @@
+---
+description: "unstrung, an accessible app for reading guitar tablature and practicing chords, on the web and the desktop."
+sidePanel: unstrung
+eleventyComputed:
+  title: "{{ unstrungDocs.introduction.title if unstrungDocs.introduction else 'unstrung' }}"
+---
+{#- The introduction from unstrungApp's user-docs, as of the release fetched by
+    scripts/fetch-unstrung.mjs. The same document is /unstrung/docs/introduction/. -#}
+{%- if unstrungDocs.introduction %}
+{{ unstrungDocs.introduction.html | safe }}
+{%- else %}
+<p>The introduction to unstrung comes with each release of unstrung, and the release this site was built from does not include it.</p>
+<p><a href="/unstrung/app/">Run unstrung in your browser</a>, or watch the <a href="/unstrung/videos/">unstrung videos</a>.</p>
+{%- endif %}

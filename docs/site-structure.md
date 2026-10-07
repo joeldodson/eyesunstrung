@@ -25,13 +25,17 @@ Some pages have a left column of navigation landmarks beside the page:
 - **Contents:** named by the page's `h1`, listing its `##` headings with their `###` headings
   nested inside. Built at build time from the headings. Left out when the page has none.
 - **Articles:** the list of articles, current one marked `aria-current="page"`. Article pages only.
+- **unstrung:** The unstrung app, Documentation and Videos. The `/unstrung/` page only, set by
+  `sidePanel: unstrung` in its front matter.
+- **Documentation:** About unstrung and each unstrung document, by its Help menu name, current one
+  marked. The `/unstrung/docs/` pages, set by `sidePanel: docs`.
 
-Articles get both. Any other page gets the contents panel alone by setting `contentsPanel: true`
-in its front matter. Pages without either are a single column.
+Articles get the contents and the Articles panel. A page with `sidePanel` gets the contents and
+the panel named. Any other page gets the contents panel alone by setting `contentsPanel: true` in
+its front matter. Pages without any of these are a single column.
 
-This is the standard layout for any page that pairs content with navigation panels, including
-`/unstrung/docs/` when it is built. All of it is in `base.njk` and `style.css`; a new section only
-needs its own list panel.
+This is the standard layout for any page that pairs content with navigation panels. All of it is
+in `base.njk` and `style.css`; a new section only needs its own list panel.
 
 - **Dividers:** a 2 px slate line, the menu bar's colour, runs down the left edge of the page
   column (main and the footer) from the menu bar to the bottom of the page, and the same line
@@ -110,10 +114,11 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 | `/about/` | `content/about.md` | Single column |
 | `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`), like the videos page: an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
 | `/articles/<name>/` | `content/articles/<name>.md` | Contents and Articles panels |
-| `/unstrung/` | `content/unstrung/index.md` | Single column. Placeholder |
-| `/unstrung/docs/` | `content/unstrung/docs/index.md` | Single column. Placeholder |
+| `/unstrung/` | `content/unstrung/index.njk`: unstrung's introduction, from the release | Contents and unstrung panels |
+| `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and Documentation panels |
+| `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and Documentation panels |
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
-| `/unstrung/app/` | Built from unstrungApp | The web app. Not built yet |
+| `/unstrung/app/` | The web app from the release, copied as it is | The app's own page |
 
 ## YouTube channel picture and banner
 
@@ -175,16 +180,27 @@ Descriptions are plain text on YouTube. The `paragraphs` filter in `eleventy.con
 them into HTML: blank lines separate paragraphs, single line breaks are kept, and web addresses
 become links. Spelling and wording are fixed on YouTube, then fetched again.
 
-## Planned
+## unstrung, from its releases
 
-- **`/unstrung/docs/`** will be structured like `/articles/`: an index page, and one page per
-  document with the Contents panel and a panel listing all the documents. The documents are the
-  help from unstrung's Help menu, which unstrungApp builds from its README
-  (`scripts/build-help.mjs`). How they get from that repository to this one is still to be
-  decided; the app build described in unstrungApp's `docs/eyesunstrung-site-and-web-app.md` is the
-  obvious place.
-- **`/unstrung/app/`** is where the web build of unstrung goes. It has no `index.md` here; the site
-  workflow will copy the app's own files in.
+Added 2026-10-06. The web app and the unstrung documentation come from unstrungApp's releases, not
+from this repository. Each release carries `Unstrung-web-<version>.tar.gz`, holding the app and a
+`user-docs/` folder with the documents and an `index.json` giving their order, titles and Help menu
+names. `scripts/fetch-unstrung.mjs` (`npm run fetch:unstrung`) downloads the latest one and unpacks
+it into `unstrung-release/`, which is not committed. The site workflow runs it before every build.
+
+- `eleventy.config.js` copies `unstrung-release/app/` to `/unstrung/app/` unchanged.
+- `content/_data/unstrungDocs.js` renders the documents with markdown-it. Each document's own `#`
+  heading is its title, so it is left out of the body. The documents link to eyesunstrung.vip with
+  full addresses, so the links work in the desktop app too; here they become site-relative, so the
+  link check covers them.
+- `/unstrung/` is the introduction. `/unstrung/docs/` is the About document, the same text as the
+  app's About unstrung dialog. Every other document has its own page at
+  `/unstrung/docs/<name>/`, `<name>` being its file name in unstrungApp's `user-docs/`.
+- The documents are written in unstrungApp, where they are also the app's Help menu. Fixes go
+  there, and reach the site with the next release.
+- Releases up to 0.6.1 have no `user-docs/`. With one of those, `/unstrung/` and `/unstrung/docs/`
+  say the release does not include the documentation, and there are no document pages.
+- `--from` takes a local tarball or folder instead, for trying an unreleased build.
 
 ## Build checks
 

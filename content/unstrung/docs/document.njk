@@ -1,0 +1,14 @@
+---
+pagination:
+  data: unstrungDocs.documents
+  size: 1
+  alias: doc
+permalink: "/unstrung/docs/{{ doc.id }}/"
+sidePanel: docs
+eleventyComputed:
+  title: "{{ doc.title }}"
+  description: "{{ doc.title }}, from the unstrung documentation."
+---
+{#- One page per document in unstrungApp's user-docs, from content/_data/unstrungDocs.js.
+    None when the fetched release has no documentation. -#}
+{{ doc.html | safe }}

@@ -1,10 +1,13 @@
 name: Build and deploy the site
 
 # Builds on every push and pull request, so a branch can be checked before it
-# is merged. Deploys to GitHub Pages only from main.
+# is merged. Deploys to GitHub Pages only from main. Can also be run by hand
+# (workflow_dispatch), which on main publishes a new unstrung release without
+# a push here.
 on:
   push:
   pull_request:
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -20,11 +23,15 @@ jobs:
           cache: npm
       - name: Install dependencies
         run: npm ci
+      - name: Fetch the latest unstrung release
+        run: npm run fetch:unstrung
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build
         run: npm run build
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
-        if: ${{ github.event_name == 'push' && github.ref == 'refs/heads/main' }}
+        if: ${{ (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main' }}
         with:
           publish_branch: gh-pages
           github_token: ${{ secrets.GITHUB_TOKEN }}

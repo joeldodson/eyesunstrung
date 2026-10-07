@@ -1,0 +1,16 @@
+---
+description: "How to use unstrung: what it is, notes for screen reader users, its features, the components it is built from, and where to find song files."
+sidePanel: docs
+eleventyComputed:
+  title: "{{ unstrungDocs.about.title if unstrungDocs.available else 'unstrung Documentation' }}"
+---
+{#- The About document from unstrungApp's user-docs, the same text as the app's
+    About unstrung dialog, as of the release fetched by
+    scripts/fetch-unstrung.mjs. The other documents each have a page of their
+    own, from document.njk beside this file. -#}
+{%- if unstrungDocs.available %}
+<p>This is the documentation for unstrung {{ unstrungDocs.version }}.</p>
+{{ unstrungDocs.about.html | safe }}
+{%- else %}
+<p>The unstrung documentation comes with each release of unstrung, and the release this site was built from does not include it.</p>
+{%- endif %}

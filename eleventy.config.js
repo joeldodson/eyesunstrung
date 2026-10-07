@@ -127,6 +127,15 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addPassthroughCopy({ "content/assets": "assets" });
+
+  // The web version of unstrung, unpacked from an unstrungApp release by
+  // scripts/fetch-unstrung.mjs (npm run fetch:unstrung). Copied as it is: it is
+  // a finished app, not pages for this site to process.
+  if (fs.existsSync("unstrung-release/app")) {
+    eleventyConfig.addPassthroughCopy({ "unstrung-release/app": "unstrung/app" });
+  }
+  // The documentation pages read unstrung-release/user-docs at build time.
+  eleventyConfig.addWatchTarget("unstrung-release/user-docs/");
   eleventyConfig.addPassthroughCopy({
     [`${fontPackage}/files/atkinson-hyperlegible-next-latin-wght-normal.woff2`]:
       "assets/fonts/atkinson-hyperlegible-next-latin.woff2",

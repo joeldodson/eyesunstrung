@@ -17,10 +17,16 @@ holds the instructions given to Claude for drafting them, and lists what the bui
 
 ```
 npm install
+npm run fetch:unstrung
 npm start
 ```
 
 The site is then at http://localhost:8080/ and rebuilds when a file changes.
+`npm run fetch:unstrung` unpacks the web version of unstrung and its documentation from the latest
+unstrungApp release into `unstrung-release/`, which the build needs for `/unstrung/app/`,
+`/unstrung/` and `/unstrung/docs/`. Run it again after a release. To try an unreleased build, pass
+it a tarball or folder from unstrungApp:
+`npm run fetch:unstrung -- --from ../unstrungApp/release/Unstrung-web-<version>.tar.gz`.
 `npm run build` writes the finished site to `_site/`.
 `npm run build:banner` redraws the banner and favicon; see `docs/site-structure.md`.
 `npm run build:branding` renders the YouTube channel picture and banner in `branding/` to PNG.
@@ -29,7 +35,9 @@ The site is then at http://localhost:8080/ and rebuilds when a file changes.
 ## Publishing
 
 Pushing to `main` builds the site and publishes it to GitHub Pages through
-`.github/workflows/site.yml`. Pushes to other branches build but do not publish.
+`.github/workflows/site.yml`. Pushes to other branches build but do not publish. The workflow
+fetches the latest unstrungApp release first. After an unstrung release, run the workflow by hand
+on `main` (Actions, Build and deploy the site, Run workflow) to publish it without a push here.
 
 ## Font
 
