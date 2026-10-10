@@ -9,6 +9,8 @@
 // unpacks it into unstrung-release/ (not committed):
 //
 //   unstrung-release/app/          the app, which eleventy.config.js copies to /unstrung/app/
+//   unstrung-release/app-page.html the app's index.html, which content/unstrung/app/index.njk
+//                                  writes to /unstrung/app/ with the site's menu bar added
 //   unstrung-release/user-docs/    the documentation, with index.json giving the order and titles,
 //                                  which content/_data/unstrungDocs.js builds /unstrung/ and
 //                                  /unstrung/docs/ from
@@ -78,7 +80,13 @@ const docs = path.join(app, "user-docs");
 const hasDocs = await fs.stat(docs).then(() => true, () => false);
 if (hasDocs) await fs.rename(docs, path.join(out, "user-docs"));
 
+// The app's page is set aside rather than copied as it is: content/unstrung/app/index.njk writes
+// it to /unstrung/app/ with the site's Main navigation bar added after its banner.
+const appPage = path.join(out, "app-page.html");
+await fs.rename(path.join(app, "index.html"), appPage);
+
 console.log("=== unstrung release ===");
 console.log(`from:      ${label}`);
 console.log(`app:       ${path.relative(root, app)}`);
+console.log(`app page:  ${path.relative(root, appPage)}`);
 console.log(`user-docs: ${hasDocs ? path.relative(root, path.join(out, "user-docs")) : "none in this release"}`);

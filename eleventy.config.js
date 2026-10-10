@@ -78,6 +78,13 @@ function articleProblems(html) {
   return problems;
 }
 
+// Whether a page is one of the site's own HTML pages, which the transforms
+// below work on. The unstrung web app's page is not: it is the app's markup,
+// with only the menu bar added.
+function isSitePage(page) {
+  return (page.outputPath || "").endsWith(".html") && page.url !== "/unstrung/app/";
+}
+
 export default function (eleventyConfig) {
   // Gives every heading without an id one made from its text, so a page can
   // link to its own sections and other pages can link to them: "## Part 1:
@@ -86,7 +93,7 @@ export default function (eleventyConfig) {
   // a side panel, replaces the page-contents comment in the layout with the
   // contents navigation, built from the same headings.
   eleventyConfig.addTransform("headings", function (content) {
-    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    if (!isSitePage(this.page)) return content;
     const slugify = eleventyConfig.getFilter("slugify");
     const used = new Set([...content.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
     const headings = [];
@@ -108,7 +115,7 @@ export default function (eleventyConfig) {
   // semantics from a list with no bullets unless it has role="list", and
   // Markdown cannot add attributes, so add it to every <ul> here.
   eleventyConfig.addTransform("list-role", function (content) {
-    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    if (!isSitePage(this.page)) return content;
     return content.replaceAll("<ul>", '<ul role="list">');
   });
 
@@ -119,7 +126,7 @@ export default function (eleventyConfig) {
   // any capitals match too. A link that already says where it opens is left
   // alone.
   eleventyConfig.addTransform("new-tab-links", function (content) {
-    if (!(this.page.outputPath || "").endsWith(".html")) return content;
+    if (!isSitePage(this.page)) return content;
     return content.replace(
       /<a\s((?:(?!\btarget=)[^>])*)>((?:(?!<\/a>)[\s\S])*?\(opens in (?:a )?new tab\)(?:(?!<\/a>)[\s\S])*?)<\/a>/gi,
       '<a $1 target="_blank" rel="noopener">$2</a>',
@@ -130,12 +137,15 @@ export default function (eleventyConfig) {
 
   // The web version of unstrung, unpacked from an unstrungApp release by
   // scripts/fetch-unstrung.mjs (npm run fetch:unstrung). Copied as it is: it is
-  // a finished app, not pages for this site to process.
+  // a finished app, not pages for this site to process. Its index.html is not
+  // in the folder; content/unstrung/app/index.njk writes it, adding the menu bar.
   if (fs.existsSync("unstrung-release/app")) {
     eleventyConfig.addPassthroughCopy({ "unstrung-release/app": "unstrung/app" });
   }
-  // The documentation pages read unstrung-release/user-docs at build time.
+  // The documentation pages read unstrung-release/user-docs at build time, and
+  // content/unstrung/app/index.njk reads the app's page.
   eleventyConfig.addWatchTarget("unstrung-release/user-docs/");
+  eleventyConfig.addWatchTarget("unstrung-release/app-page.html");
   eleventyConfig.addPassthroughCopy({
     [`${fontPackage}/files/atkinson-hyperlegible-next-latin-wght-normal.woff2`]:
       "assets/fonts/atkinson-hyperlegible-next-latin.woff2",

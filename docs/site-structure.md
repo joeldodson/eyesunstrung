@@ -8,9 +8,16 @@ The sections of eyesunstrung.vip, how each page is laid out, and what is planned
 Every page has, in order: a skip link, the banner, the Main
 navigation bar, the page, and the footer. All of it comes from `content/_includes/base.njk`.
 
-The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown and About. The
-dropdowns are `<details>` elements; `content/assets/js/menu.js` only adds closing on Escape and when
-focus or a click moves away.
+The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown (Overview, The app,
+Documentation, Videos) and About. About has `aria-label="About eyesunstrung"`, chosen 2026-10-08:
+in browse mode, arrowing past the end of the unstrung dropdown reaches it, and "About" alone
+sounded like About unstrung. The visible text stays "About", which is clear on screen and short.
+Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
+for site navigation. The dropdowns are `<details>` elements;
+`content/assets/js/menu.js` only adds closing on Escape and when focus or a click moves away. The
+bar is `content/_includes/main-menu.njk`, styled by `content/assets/css/menu.css` alone, so the
+web app's page can carry it without the rest of the site's styles (see "unstrung, from its
+releases").
 
 The bar is slate (`#475569`) with cream text and a cream line along its top, the same in light and
 dark mode, so it stands apart from the page in both. Each dropdown button has a chevron drawn with
@@ -118,7 +125,7 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 | `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and Documentation panels |
 | `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and Documentation panels |
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
-| `/unstrung/app/` | The web app from the release, copied as it is | The app's own page |
+| `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` adds the Main navigation bar | The app's own page, with the site's menu bar after its banner |
 
 ## YouTube channel picture and banner
 
@@ -188,7 +195,17 @@ from this repository. Each release carries `Unstrung-web-<version>.tar.gz`, hold
 names. `scripts/fetch-unstrung.mjs` (`npm run fetch:unstrung`) downloads the latest one and unpacks
 it into `unstrung-release/`, which is not committed. The site workflow runs it before every build.
 
-- `eleventy.config.js` copies `unstrung-release/app/` to `/unstrung/app/` unchanged.
+- `eleventy.config.js` copies `unstrung-release/app/` to `/unstrung/app/` unchanged, except for
+  the app's page, `index.html`, which the fetch script sets aside as
+  `unstrung-release/app-page.html`.
+- `content/unstrung/app/index.njk` writes that page to `/unstrung/app/` with the site's Main
+  navigation bar added after the app's banner, "The app" marked as the current page, and
+  `menu.css` and `menu.js` added to its head. `content/_data/unstrungApp.js` splits the page at
+  its `</header>`, and the build stops if there is not exactly one. The page loads nothing else of
+  the site's: `style.css` would restyle the app. Added 2026-10-08 so the app page has the same
+  menu as every other page; the app's own Menu button is in a navigation landmark named unstrung,
+  after the site's Main one. The site's transforms (heading ids, list roles, new-tab links) skip
+  this page.
 - `content/_data/unstrungDocs.js` renders the documents with markdown-it. Each document's own `#`
   heading is its title, so it is left out of the body. The documents link to eyesunstrung.vip with
   full addresses, so the links work in the desktop app too; here they become site-relative, so the

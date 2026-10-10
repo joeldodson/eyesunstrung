@@ -25,6 +25,7 @@
     {%- endif %}
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/menu.css">
     <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
     <script src="/assets/js/menu.js" defer></script>
   </head>
@@ -35,37 +36,7 @@
       <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
     </header>
 
-    <nav class="main-menu" aria-label="Main">
-      <ul role="list">
-        <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
-        <li>
-          <details class="submenu">
-            <summary>Articles</summary>
-            <ul role="list">
-              <li><a href="/articles/"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
-              {%- for article in collections.articles %}
-              <li><a href="{{ article.url }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
-              {%- endfor %}
-            </ul>
-          </details>
-        </li>
-        <li>
-          <details class="submenu">
-            <summary>unstrung</summary>
-            <ul role="list">
-              {%- for item in [
-                { url: "/unstrung/", label: "Overview" },
-                { url: "/unstrung/docs/", label: "Documentation" },
-                { url: "/unstrung/videos/", label: "Videos" }
-              ] %}
-              <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
-              {%- endfor %}
-            </ul>
-          </details>
-        </li>
-        <li><a href="/about/"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
-      </ul>
-    </nav>
+    {% include "main-menu.njk" %}
 
     {%- if hasPanels %}
     <div class="panel-layout">

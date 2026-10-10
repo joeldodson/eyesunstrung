@@ -1,0 +1,25 @@
+---
+layout: false
+eleventyExcludeFromCollections: true
+---
+{#- The unstrung web app's page, /unstrung/app/. The app comes from its
+    release unchanged; this adds the site's Main navigation bar after the app's
+    banner, with "The app" marked as the current page. The page is split in
+    content/_data/unstrungApp.js. The app's other files are copied by
+    eleventy.config.js. -#}
+{%- if unstrungApp.available -%}
+{{ unstrungApp.beforeMenu | safe }}
+{%- include "main-menu.njk" %}
+{{ unstrungApp.afterMenu | safe }}
+{%- else -%}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>unstrung</title>
+  </head>
+  <body>
+    <p>This build of the site has no unstrung release. Run npm run fetch:unstrung, then build again.</p>
+  </body>
+</html>
+{%- endif %}

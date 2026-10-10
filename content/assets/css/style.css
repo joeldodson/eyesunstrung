@@ -104,7 +104,7 @@ a:visited {
   color: var(--link-visited);
 }
 
-/* Page widths. The menu bar's items and the footer span up to --page-width; a
+/* Page widths. The footer spans up to --page-width, as the menu bar does; a
    page's text column is held to --measure for comfortable line length. */
 :root {
   --page-width: 80rem;
@@ -113,7 +113,6 @@ a:visited {
   --slate: #475569;
 }
 
-.main-menu > ul,
 .site-footer,
 .panel-layout {
   max-width: var(--page-width);
@@ -145,98 +144,6 @@ main {
   width: 100%;
   height: auto;
   max-height: 240px;
-}
-
-/* The Main navigation: a full-width slate bar between the banner and the page,
-   the same in light and dark mode. Contrast, measured: the bar against the
-   white page 7.6:1 and the dark page 2.4:1; the cream text on it 6.3:1; the
-   orange focus outline on it 4.3:1. The cream line along its top, the banner
-   title's colour, separates it from the banner's brown bottom edge, which is
-   close to the slate in lightness. */
-.main-menu {
-  --bar: var(--slate);
-  --bar-text: #f3e9d2;
-  --bar-focus: #ffb27a;
-  background-color: var(--bar);
-  border-top: 2px solid var(--bar-text);
-}
-
-.main-menu > ul > li > a,
-.main-menu > ul > li > a:visited,
-.main-menu summary {
-  color: var(--bar-text);
-}
-
-.main-menu > ul > li > a:focus-visible,
-.main-menu summary:focus-visible {
-  outline-color: var(--bar-focus);
-}
-
-.main-menu > ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 1.75rem;
-  margin-block: 0;
-  list-style: none;
-}
-
-.main-menu li {
-  position: relative;
-}
-
-/* Links and dropdown buttons in the bar: at least a 24px target (WCAG 2.5.8). */
-.main-menu > ul > li > a,
-.main-menu summary {
-  display: inline-block;
-  min-height: 24px;
-  padding-block: 0.6rem;
-}
-
-.main-menu summary {
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-  cursor: pointer;
-}
-
-/* A chevron after each dropdown button, pointing down when closed and up when
-   open. Drawn with borders and no text, so a screen reader has nothing to
-   read; the button's expanded state already says whether it is open. Needed
-   because display: inline-block removes the browser's own triangle. */
-.main-menu summary::after {
-  content: "";
-  display: inline-block;
-  width: 0.4em;
-  height: 0.4em;
-  margin-inline-start: 0.5em;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: translateY(-0.2em) rotate(45deg);
-}
-
-.main-menu details[open] > summary::after {
-  transform: translateY(0.1em) rotate(-135deg);
-}
-
-/* The dropdown list opens below its button, over the page. The script in
-   menu.js closes it when focus leaves, so it cannot hide a focused element. */
-.submenu > ul {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  z-index: 1;
-  width: max-content;
-  max-width: min(24rem, 90vw);
-  margin: 0;
-  padding: 0.5rem 1rem;
-  list-style: none;
-  background-color: var(--background);
-  border: 1px solid var(--border);
-}
-
-.submenu li a {
-  display: inline-block;
-  min-height: 24px;
-  padding-block: 0.3rem;
 }
 
 nav a[aria-current="page"] {
@@ -500,9 +407,6 @@ main ul li {
    targets, the size Apple and Google recommend, instead of the 24px WCAG AA
    minimum used with a mouse. Links inside sentences are left alone. */
 @media (pointer: coarse) {
-  .main-menu > ul > li > a,
-  .main-menu summary,
-  .submenu li a,
   .site-footer a {
     display: inline-flex;
     align-items: center;
