@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Resources | eyesunstrung</title>
+    <meta name="description" content="Resources, from the unstrung documentation.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/">All articles</a></li>
+              <li><a href="/articles/introduction/">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/">Overview</a></li>
+              <li><a href="/unstrung/app/">The app</a></li>
+              <li><a href="/unstrung/docs/">Documentation</a></li>
+              <li><a href="/unstrung/videos/">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel" aria-labelledby="page-title">
+          <p class="panel-title">Contents</p>
+          <ul role="list"><li><a href="#guitar-pro-gp-files" title="Guitar Pro, .gp* Files">Guitar Pro, .gp* Files</a></li><li><a href="#musicxml" title="MusicXML">MusicXML</a></li></ul>
+        </nav>
+        <nav class="panel" aria-label="Documentation">
+          <p class="panel-title">Documentation</p>
+          <ul role="list">
+            <li><a href="/unstrung/docs/" title="About unstrung">About unstrung</a></li>
+            <li><a href="/unstrung/docs/introduction/" title="Introduction">Introduction</a></li>
+            <li><a href="/unstrung/docs/screen-reader-users/" title="Screen Reader Users">Screen Reader Users</a></li>
+            <li><a href="/unstrung/docs/features/" title="Features">Features</a></li>
+            <li><a href="/unstrung/docs/third-parties/" title="Third Party Components">Third Party Components</a></li>
+            <li><a href="/unstrung/docs/resources/" title="Resources" aria-current="page">Resources</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title">Resources</h1>
+        <p>Here are some resources I've used, and recommend, if you're looking for song files.</p>
+<h2 id="guitar-pro-gp-files">Guitar Pro, .gp* Files</h2>
+<p>I've been thinking of unstrung for a few years.
+I finally found the motivation after hearing friends rave about AI coding.
+Then I got really motivated while going through some lessons on <a href="https://totallyguitars.com">Totally Guitars</a>.
+It's a site much better at creating guitar lessons than building accessible, usable websites.
+It's also a good place to find .gp* files for hundreds (thousands?) of songs.</p>
+<p>I have purchased several lesson packs and generally enjoy Neil's teaching.
+Unfortunately, the videos often assume you are following along with the tab sheet (generally a .gp* file).
+Now, with unstrung, I can read the tab sheet and follow along with the videos.</p>
+<p>Another good site for .gp* files is <a href="https://www.songsterr.com/">Songsterr</a>.
+Unfortunately, you need a paid subscription to download the .gp files.
+It's not a long term commitment though, and I have not come across a limit on how many files can be downloaded a month.
+Their files are crowdsourced and tend to be more complete than those on Totally Guitars.
+They tend to be more complicated too, though.
+Totally Guitars might be a better place when getting started.
+Songsterr might be better when you really want to get into the eighth and sixteenth notes.</p>
+<p>Songsterr is also not a very accessible or usable site.
+With patience though, I was able to create an account and figure out how to search, find the search results, and find the download.
+Search is exposed as an editable text field.
+Type in your search and press enter.
+Wait a few seconds (there is no audible indication anything is happening), then in browse mode move to the next link (k in NVDA).
+If it found anything, the results should be in the links after the search box.</p>
+<p>Once you've clicked on a search result, you go to the page for that song.
+It seems to put me directly on a &quot;play&quot; button to hear a MIDI version.
+On that page, search for &quot;download&quot;.
+It's in a set of tabs, I think near the end of the page.
+Press enter on the download tab to select it.
+Immediately after selecting the download tab, I press ctrl+downArrow and hear &quot;dialog download tab.&quot;
+Press enter on that and you get, I guess, a pop-up dialog with buttons for which format you want.
+Choose the Guitar Pro button and you should get a standard dialog for where to save the file.</p>
+<h2 id="musicxml">MusicXML</h2>
+<p>I could not find good resources for MusicXML files.
+I tried to poke around <a href="https://musescore.com">MuseScore</a>, which is supposedly a good resource.
+I could not make sense of that stinking pile of, probably React-based, HTML.
+If you know of good MusicXML sources, email feedback@eyesunstrung.vip.</p>
+
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>

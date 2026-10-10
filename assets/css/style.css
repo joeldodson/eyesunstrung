@@ -1,0 +1,421 @@
+/* eyesunstrung site stylesheet.
+ *
+ * Accessibility rules this file holds to (WCAG 2.2 AA):
+ *   - No px root font size; the reader's browser setting wins.
+ *   - Focus is always visible, as a thick outline.
+ *   - Text meets 4.5:1 contrast in both light and dark schemes.
+ *   - Layout reflows to 320px wide with no horizontal scrolling.
+ *   - Links are underlined, so they are not told apart by colour alone.
+ *   - Nothing overlaps the page content, so nothing can cover the focused
+ *     element. The one sticky element, the side-panel column, has its own
+ *     grid column and never sits over the page.
+ */
+
+/* Atkinson Hyperlegible Next, by the Braille Institute, designed for low vision
+ * readers. SIL Open Font License 1.1; the licence ships as assets/fonts/OFL.txt.
+ * Copied from the @fontsource-variable package at build time. One variable file
+ * covers weights 200 to 800. font-display: swap shows text in the fallback face
+ * at once rather than waiting for the font. */
+@font-face {
+  font-family: "Atkinson Hyperlegible Next";
+  src: url("/assets/fonts/atkinson-hyperlegible-next-latin.woff2") format("woff2");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Contrast against the page background, then against --surface:
+ *   light: text 15.8 / 14.5, muted 9.0 / 8.2, link 8.4 / 7.7,
+ *          visited 9.9 / 9.1, focus 6.1 / 5.6, border 4.6 / 4.2
+ *   dark:  text 15.5 / 13.4, muted 10.1 / 8.7, link 10.3 / 8.9,
+ *          visited 9.4 / 8.1, focus 10.4 / 9.0, border 6.0 / 5.2
+ * Borders are decorative; focus needs 3:1 and has well over it. */
+:root {
+  --text: #1f2328;
+  --text-muted: #424a53;
+  --background: #ffffff;
+  --surface: #f3f5f7;
+  --link: #0b4f8a;
+  --link-visited: #5b2a86;
+  --border: #6e7781;
+  --focus: #b3361b;
+  --measure: 68ch;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #e6edf3;
+    --text-muted: #b8c1ca;
+    --background: #121518;
+    --surface: #1e2328;
+    --link: #8cc8ff;
+    --link-visited: #d2a8ff;
+    --border: #8b949e;
+    --focus: #ffb27a;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Atkinson Hyperlegible Next", system-ui, sans-serif;
+  color: var(--text);
+  background-color: var(--background);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+/* Off screen until focused. Not display: none, which would take it out of the
+   tab order. */
+.skip-link {
+  position: absolute;
+  left: -100vw;
+  top: 0;
+  padding: 0.75rem 1rem;
+  background-color: var(--background);
+  color: var(--link);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
+a {
+  color: var(--link);
+  text-underline-offset: 0.15em;
+}
+
+a:visited {
+  color: var(--link-visited);
+}
+
+/* Page widths. The footer spans up to --page-width, as the menu bar does; a
+   page's text column is held to --measure for comfortable line length. */
+:root {
+  --page-width: 80rem;
+  --panel-width: 18rem;
+  /* The menu bar's slate, also used for the line beside the side panels. */
+  --slate: #475569;
+}
+
+.site-footer,
+.panel-layout {
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+main {
+  max-width: var(--measure);
+  margin-inline: auto;
+  padding: 1.5rem 1rem 3rem;
+}
+
+/* The banner: one image, drawn by scripts/build-banner.mjs, linking home. It
+   has its own dark background in both colour schemes. It spans the window and
+   is at most 240px tall, its drawn size. Narrower than 1200px it scales down
+   whole; wider, the browser keeps the drawing's proportions and centres it,
+   and the wall and table, drawn far past the drawing's edges, fill the sides. */
+.site-header {
+  padding: 0;
+}
+
+.banner {
+  display: block;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 240px;
+}
+
+nav a[aria-current="page"] {
+  font-weight: 700;
+  text-decoration-thickness: 3px;
+}
+
+/* Pages with side panels: articles, and any page with contentsPanel: true.
+   The standard layout for pages that pair a page with navigation panels.
+
+   Wide screens: the panels in a left column, the page beside it. A 2px slate
+   line, the menu bar's colour, runs down the page's left edge for its whole
+   height. The column stays in view while the page scrolls: it is sticky, at
+   most the window's height, and scrolls inside itself when its panels do not
+   fit. It sits in its own grid column, so it never overlaps the page and
+   cannot hide a focused element there.
+
+   Within the column, the same slate line separates one panel from the next.
+   A later panel (the article list) shows in full up to 14rem, about eight
+   articles, and scrolls beyond that; the contents panel gets all the rest of
+   the height, so it shows every heading whenever the window is tall enough,
+   and scrolls inside itself when it is not.
+
+   Narrow screens: the column stacks above the page in the order a screen
+   reader reads them, scrolls with the page, and has the slate line under it. */
+.panel-layout {
+  display: grid;
+  grid-template-columns: var(--panel-width) minmax(0, 1fr);
+  align-items: start;
+}
+
+/* The page column holds main and the footer; its slate line runs from the
+   menu bar to the bottom of the page. */
+.page-column {
+  align-self: stretch;
+  padding-inline-start: 2.5rem;
+  border-inline-start: 2px solid var(--slate);
+}
+
+.panel-layout main {
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.page-column .site-footer {
+  max-width: none;
+  margin-inline: 0;
+  padding-inline: 0;
+}
+
+.side-panels {
+  position: sticky;
+  top: 0;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding-block: 1.5rem;
+  padding-inline-end: 1.5rem;
+}
+
+.panel {
+  min-height: 0;
+  overflow-y: auto;
+  flex: 0 1 auto;
+}
+
+.panel + .panel {
+  flex: 0 0 auto;
+  max-height: 14rem;
+  margin-block-start: 1rem;
+  padding-block-start: 1rem;
+  border-block-start: 2px solid var(--slate);
+}
+
+@media (max-width: 50rem) {
+  .panel-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-column {
+    padding-inline-start: 0;
+    border-inline-start: none;
+  }
+
+  .side-panels {
+    position: static;
+    max-height: none;
+    padding-inline-end: 0;
+    border-block-end: 2px solid var(--slate);
+  }
+
+  .panel,
+  .panel + .panel {
+    overflow-y: visible;
+    max-height: none;
+  }
+}
+
+.panel-title {
+  margin: 0 0 0.5rem;
+  font-weight: 700;
+}
+
+.panel ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel ul ul {
+  padding-left: 1rem;
+}
+
+/* One line per entry: a long heading is cut off at the panel's edge with an
+   ellipsis. Only the display is shortened; the link's text, and so what a
+   screen reader reads, is the whole heading, and its title attribute shows the
+   whole heading on hover. The focus outline is drawn just inside the link,
+   because the scrolling panel clips anything outside its edges. */
+.panel li a {
+  display: block;
+  min-height: 24px;
+  padding-block: 0.2rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel li a:focus-visible {
+  outline-offset: -3px;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+}
+
+h1 {
+  font-size: 2rem;
+  margin-block: 0 1.5rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+  margin-block: 2.5rem 0.75rem;
+}
+
+h3 {
+  font-size: 1.25rem;
+  margin-block: 2rem 0.5rem;
+}
+
+/* No bullets on bulleted lists, at Joel's request, carried over from the
+   original Physics, Math, and Music page. List semantics are kept by
+   role="list", added to every <ul> in eleventy.config.js. Numbered lists keep
+   their numbers. */
+main ul {
+  list-style: none;
+  padding-left: 1.25rem;
+}
+
+main ul li {
+  margin-bottom: 0.5rem;
+}
+
+.article-date {
+  margin-block: -1rem 1.5rem;
+  color: var(--text-muted);
+}
+
+/* Videos page: each video's player sits in a disclosure widget, full width
+   of the text column at 16:9. The player is only loaded when opened. */
+.video {
+  margin-block: 1rem 2rem;
+}
+
+.video summary {
+  cursor: pointer;
+  color: var(--link);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+  min-height: 24px;
+}
+
+/* The speed control, shown by videos.js; :not([hidden]) so this display value
+   does not override the hidden attribute when the script has not run. */
+.video-speed:not([hidden]) {
+  display: block;
+  margin-top: 0.75rem;
+}
+
+.video-speed select {
+  margin-inline-start: 0.5rem;
+  font: inherit;
+}
+
+.video iframe {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  height: auto;
+  margin-top: 0.75rem;
+  border: 0;
+}
+
+/* The quotation opening the home page: as wide as its text, centred, with the
+   attribution aligned to its right edge. */
+.epigraph {
+  width: fit-content;
+  max-width: 100%;
+  margin: 0 auto 1.5rem;
+  padding: 1rem 1.25rem;
+  background-color: var(--surface);
+  border-left: 4px solid var(--border);
+}
+
+.epigraph blockquote {
+  margin: 0;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+
+.epigraph blockquote p {
+  margin: 0;
+}
+
+.epigraph figcaption {
+  margin-top: 0.5rem;
+  text-align: end;
+  color: var(--text-muted);
+}
+
+/* The footer starts with the same 2px slate line as the other boundaries, so
+   low vision readers can see where the page ends and the footer begins. On
+   pages with side panels it spans only the page column. */
+.site-footer {
+  padding-block: 1.5rem 2rem;
+  border-top: 2px solid var(--slate);
+  color: var(--text-muted);
+}
+
+.site-footer p {
+  margin-block: 0.25rem;
+}
+
+.site-footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 1.5rem;
+  margin: 0.25rem 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-footer a {
+  display: inline-block;
+  min-height: 24px;
+}
+
+/* On touchscreens, standalone links and the dropdown buttons get 44px tall
+   targets, the size Apple and Google recommend, instead of the 24px WCAG AA
+   minimum used with a mouse. Links inside sentences are left alone. */
+@media (pointer: coarse) {
+  .site-footer a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  /* Panel links stay block, so the ellipsis still works; padding makes the height. */
+  .panel li a {
+    min-height: 44px;
+    padding-block: 0.6rem;
+  }
+}

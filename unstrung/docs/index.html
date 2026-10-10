@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About unstrung | eyesunstrung</title>
+    <meta name="description" content="How to use unstrung: what it is, notes for screen reader users, its features, the components it is built from, and where to find song files.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/">All articles</a></li>
+              <li><a href="/articles/introduction/">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/">Overview</a></li>
+              <li><a href="/unstrung/app/">The app</a></li>
+              <li><a href="/unstrung/docs/" aria-current="page">Documentation</a></li>
+              <li><a href="/unstrung/videos/">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel" aria-labelledby="page-title">
+          <p class="panel-title">Contents</p>
+          <ul role="list"><li><a href="#supported-file-formats" title="Supported File Formats">Supported File Formats</a></li><li><a href="#source-code-and-license" title="Source Code and License">Source Code and License</a></li><li><a href="#llm-acknowledgement" title="LLM Acknowledgement">LLM Acknowledgement</a></li></ul>
+        </nav>
+        <nav class="panel" aria-label="Documentation">
+          <p class="panel-title">Documentation</p>
+          <ul role="list">
+            <li><a href="/unstrung/docs/" title="About unstrung" aria-current="page">About unstrung</a></li>
+            <li><a href="/unstrung/docs/introduction/" title="Introduction">Introduction</a></li>
+            <li><a href="/unstrung/docs/screen-reader-users/" title="Screen Reader Users">Screen Reader Users</a></li>
+            <li><a href="/unstrung/docs/features/" title="Features">Features</a></li>
+            <li><a href="/unstrung/docs/third-parties/" title="Third Party Components">Third Party Components</a></li>
+            <li><a href="/unstrung/docs/resources/" title="Resources">Resources</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title">About unstrung</h1>
+        
+<p>This is the documentation for unstrung 0.7.1.</p>
+<p>unstrung is an accessible, screen-reader-friendly viewer for song composition files, such as Guitar Pro tablature.
+It parses a file into its underlying data model (tracks, tuning, measures, time and key signatures, and more) and presents that information as plain, semantic HTML text and headings instead of a visual score, so it can be read and navigated entirely with a screen reader.</p>
+<h2 id="supported-file-formats">Supported File Formats</h2>
+<ul role="list">
+<li>Guitar Pro: .gp, .gpx, .gp5, .gp4, .gp3</li>
+<li>MusicXML: .musicxml, .xml</li>
+</ul>
+<h2 id="source-code-and-license">Source Code and License</h2>
+<p>unstrung is free and open source software, released under the MIT License.
+The source code is available on <a href="https://github.com/joeldodson/unstrungApp">GitHub</a>.</p>
+<h2 id="llm-acknowledgement">LLM Acknowledgement</h2>
+<p>unstrung's code is almost entirely written by <a href="https://claude.ai">Claude Code</a>, based on prompting and direction from Joel Dodson.</p>
+
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>

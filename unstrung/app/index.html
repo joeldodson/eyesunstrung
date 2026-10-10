@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; media-src 'self' blob:" />
+    <title>unstrung</title>
+    <link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/assets/css/menu.css" />
+    <script src="/assets/js/menu.js" defer></script>
+</head>
+<body>
+    <!-- The eyesunstrung.vip banner, copied from that site's repository. Its link opens the site
+         in the default browser rather than in this window. -->
+    <header class="site-header">
+        <a class="banner" href="https://eyesunstrung.vip/"><img src="images/banner.svg" alt="eyesunstrung" width="1200" height="240" /></a>
+    </header>
+<nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/">All articles</a></li>
+              <li><a href="/articles/introduction/">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/">Overview</a></li>
+              <li><a href="/unstrung/app/" aria-current="page">The app</a></li>
+              <li><a href="/unstrung/docs/">Documentation</a></li>
+              <li><a href="/unstrung/videos/">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+
+
+    <!-- Two columns below the banner: the menu and the list of open items on the left, the item
+         being shown on the right. Reading order follows: menu, open items, then the item. -->
+    <div class="app-layout">
+        <!-- No h1 for the application's name. Each open item is an h1 instead, so an item's own
+             content can start at h2 and keep every level below that. -->
+        <div class="side-panel">
+            <!-- The Menu button and its menu, with submenus. ARIA menu roles, driven by menu.js:
+                 NVDA switches to focus mode in a menu, so arrowing stays inside it and loops at
+                 either end. Each item's data-command names what renderer.js runs for it. A
+                 navigation landmark, so moving by landmark reaches the Menu button.
+                 data-needs-file-access, here and on buttons elsewhere, marks what is disabled in
+                 a browser without the File System Access API; see requireFileAccess. -->
+            <nav id="app-menu" class="app-menu" aria-label="unstrung">
+                <button type="button" id="app-menu-button" aria-haspopup="menu" aria-expanded="false"
+                    aria-controls="app-menu-list">Menu</button>
+                <ul id="app-menu-list" role="menu" aria-labelledby="app-menu-button" hidden>
+                    <li role="none"><div role="menuitem" tabindex="-1" id="menu-open-file" data-command="open-file"
+                        aria-keyshortcuts="Control+O">Open File…</div></li>
+                    <li role="none">
+                        <div role="menuitem" tabindex="-1" id="menu-recent-files-item" aria-haspopup="menu" data-needs-file-access
+                            aria-controls="menu-recent-files">Recent Files</div>
+                        <!-- Filled by renderer.js from the recent files list. -->
+                        <ul id="menu-recent-files" role="menu" aria-label="Recent Files" hidden></ul>
+                    </li>
+                    <li role="none">
+                        <div role="menuitem" tabindex="-1" id="menu-progressions-item" aria-haspopup="menu"
+                            aria-controls="menu-progressions">Chord Progressions</div>
+                        <ul id="menu-progressions" role="menu" aria-label="Chord Progressions" hidden>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-chord-practice"
+                                data-command="chord-practice">Generate Practice Progression…</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-new-progression"
+                                data-command="new-progression">Manually Create Chord Progression…</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-open-progression"
+                                data-command="open-progression" aria-keyshortcuts="Control+Shift+O">Open Saved Progression…</div></li>
+                        </ul>
+                    </li>
+                    <li role="none">
+                        <div role="menuitem" tabindex="-1" id="menu-chords-item" aria-haspopup="menu"
+                            aria-controls="menu-chords">Chords</div>
+                        <ul id="menu-chords" role="menu" aria-label="Chords" hidden>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-chord-library"
+                                data-command="chord-library">Chord Library</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-frets-to-chord"
+                                data-command="frets-to-chord">Frets to Chord…</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-guitar-samples"
+                                data-command="guitar-samples">Listen to Guitar Samples…</div></li>
+                        </ul>
+                    </li>
+                    <li role="separator"></li>
+                    <li role="none"><div role="menuitem" tabindex="-1" id="menu-settings"
+                        data-command="settings">Settings…</div></li>
+                    <li role="none">
+                        <div role="menuitem" tabindex="-1" id="menu-help-item" aria-haspopup="menu"
+                            aria-controls="menu-help">Help</div>
+                        <ul id="menu-help" role="menu" aria-label="Help" hidden>
+                            <!-- One entry per document in scripts/help-documents.mjs, in its order.
+                                 Each opens as an item in the list of open items. -->
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-help-introduction"
+                                data-command="help-document" data-help-document="introduction">Introduction</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-help-screen-reader-users"
+                                data-command="help-document" data-help-document="screen-reader-users">Screen Reader Users</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-help-features"
+                                data-command="help-document" data-help-document="features">Features</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-help-third-parties"
+                                data-command="help-document" data-help-document="third-parties">Third Party Components</div></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-help-resources"
+                                data-command="help-document" data-help-document="resources">Resources</div></li>
+                            <li role="separator"></li>
+                            <li role="none"><div role="menuitem" tabindex="-1" id="menu-about"
+                                data-command="about">About unstrung…</div></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Everything open, newest first. Each is an h1 holding a button that shows it in the
+                 main area, followed by a close button drawn as a cross. Hidden while nothing is
+                 open. -->
+            <nav id="open-items" aria-label="Open items" hidden>
+                <ul id="open-items-list" role="list"></ul>
+            </nav>
+        </div>
+
+        <main id="content" tabindex="-1">
+            <p id="empty-state" tabindex="-1">
+                Nothing is open. Press Ctrl+O, or choose Open File from the Menu, to open a song
+                file. Everything you open is listed under the menu, newest first, and the one you
+                choose is shown in the main area of the window, after that list.
+            </p>
+
+            <div id="item-panels"></div>
+        </main>
+    </div>
+
+    <!-- A status bar along the bottom of the window. It announces itself as a live region, and
+         NVDA's read status bar command reads it on request. -->
+    <p id="status" class="status-bar" role="status" aria-live="polite"></p>
+
+    <dialog id="about-dialog" aria-labelledby="about-dialog-heading-name" tabindex="-1">
+        <h1 id="about-dialog-heading"><span id="about-dialog-heading-name">About unstrung</span> Dialog Box</h1>
+
+        <p>Version <span id="about-version"></span></p>
+
+        <!-- Filled from user-docs/about.md, generated at build time. The same text is the
+             /unstrung/docs/ page on eyesunstrung.vip. -->
+        <div id="about-body"></div>
+
+        <p>&copy; <span id="about-year"></span> Joel Dodson</p>
+
+        <button type="button" id="about-ok-button">OK</button>
+    </dialog>
+
+    <dialog id="guitar-samples-dialog" aria-labelledby="guitar-samples-dialog-heading-name" tabindex="-1">
+        <h1 id="guitar-samples-dialog-heading"><span id="guitar-samples-dialog-heading-name">Guitar Samples</span> Dialog Box</h1>
+
+        <p>
+            Plays real recorded notes ascending in pitch, using the samples bundled with unstrung.
+            From E2 upward the notes are a green Gretsch guitar. From B0 to D#2 they are a bass
+            guitar, because the guitar samples stop at E2, a guitar's own lowest note.
+        </p>
+
+        <p>
+            Each note was recorded at multiple <strong>velocity layers</strong> — how hard the string was
+            picked (soft, medium, or loud), which genuinely sound different from each other, not just
+            quieter or louder — and several <strong>round robins</strong>: repeat takes of the same note and
+            velocity, so a repeated note doesn't sound identical every time it's played.
+        </p>
+
+        <p>
+            The guitar samples are from the
+            <a href="https://github.com/sfzinstruments/karoryfer.black-and-green-guitars">Black And Green Guitars</a>
+            sample pack by Karoryfer Lecolds. The notes from B0 to D#2 are from
+            <a href="https://github.com/sfzinstruments/karoryfer.black-and-blue-basses">Black And Blue Basses</a>,
+            by the same creator.
+        </p>
+
+        <p>
+            There is a slight change in timbre between D#2 and E2, where the recordings switch from
+            the bass to the guitar. Each pitch is covered by one instrument only. Carrying both
+            instruments across the overlapping range would mean duplicate notes in a package that is
+            already large, and would require unstrung to decide which instrument a track is before it
+            could play the track at all.
+        </p>
+
+        <p>
+            <label for="guitar-samples-velocity-select">Velocity layer</label>
+            <select id="guitar-samples-velocity-select">
+                <option value="p">Soft (p)</option>
+                <option value="mf">Medium (mf)</option>
+                <option value="f" selected>Loud (f)</option>
+            </select>
+        </p>
+
+        <p>
+            <label for="guitar-samples-roundrobin-select">Number of round robins to play per note</label>
+            <select id="guitar-samples-roundrobin-select"></select>
+        </p>
+
+        <p>
+            <label for="guitar-samples-duration-input">Time between notes (seconds)</label>
+            <input type="number" inputmode="decimal" id="guitar-samples-duration-input" min="0.1" max="30" step="0.1" value="1.0" />
+        </p>
+
+        <p>
+            This sets how often a new note starts. Each note keeps ringing for about three times
+            that long and fades out underneath the note that follows it, the way a plucked string
+            carries on sounding rather than stopping the moment the next note is played.
+        </p>
+
+        <p>
+            <input type="checkbox" id="guitar-samples-announce-checkbox" />
+            <label for="guitar-samples-announce-checkbox">Announce note names while playing</label>
+        </p>
+
+        <p id="guitar-samples-status" role="status" aria-live="polite"></p>
+
+        <div class="button-row">
+            <button type="button" id="guitar-samples-play-button" aria-pressed="false">Play Normal Notes</button>
+            <button type="button" id="guitar-samples-ok-button">OK</button>
+        </div>
+    </dialog>
+
+    <dialog id="chord-practice-dialog" aria-labelledby="chord-practice-dialog-heading-name" tabindex="-1">
+        <h1 id="chord-practice-dialog-heading"><span id="chord-practice-dialog-heading-name">Chord Practice</span> Dialog Box</h1>
+
+        <p>
+            <label for="chord-practice-level-select">Experience level</label>
+            <select id="chord-practice-level-select"></select>
+        </p>
+
+        <p>
+            <label for="chord-practice-key-select">Key</label>
+            <select id="chord-practice-key-select"></select>
+        </p>
+
+        <p>
+            <label for="chord-practice-borrowing-select">Chords from outside the key</label>
+            <select id="chord-practice-borrowing-select"></select>
+        </p>
+
+        <p>
+            <label for="chord-practice-beats-input">Beats per measure</label>
+            <input type="number" inputmode="numeric" id="chord-practice-beats-input" min="1" max="16" step="1" value="4" />
+        </p>
+
+        <p>
+            <label for="chord-practice-beat-unit-input">Note value that gets one beat</label>
+            <input type="number" inputmode="numeric" id="chord-practice-beat-unit-input" min="1" max="16" step="1" value="4" />
+        </p>
+
+        <p>
+            <label for="chord-practice-tempo-input">Tempo (beats per minute)</label>
+            <input type="number" inputmode="numeric" id="chord-practice-tempo-input" min="30" max="240" step="1" value="80" />
+        </p>
+
+        <p>
+            <label for="chord-practice-count-input">Number of measures</label>
+            <input type="number" inputmode="numeric" id="chord-practice-count-input" min="2" max="256" step="1" value="8" />
+        </p>
+
+        <p>
+            <label for="chord-practice-repeat-input">Times to play the progression, up to 50; 0 repeats until stopped</label>
+            <input type="number" inputmode="numeric" id="chord-practice-repeat-input" min="0" max="50" step="1" value="0" />
+        </p>
+
+        <p>
+            <input type="checkbox" id="chord-practice-count-in-each-pass-checkbox" />
+            <label for="chord-practice-count-in-each-pass-checkbox">
+                Count in before every repeat, not just the first time through. Needs the metronome on.
+            </label>
+        </p>
+
+        <p>
+            <input type="checkbox" id="chord-practice-metronome-checkbox" checked />
+            <label for="chord-practice-metronome-checkbox">Metronome</label>
+        </p>
+
+        <p>
+            <input type="checkbox" id="chord-practice-speak-checkbox" />
+            <label for="chord-practice-speak-checkbox">
+                Speak the name of the next chord on the last beat of each bar
+            </label>
+        </p>
+
+        <p id="chord-practice-speech-note"></p>
+
+        <p id="chord-practice-status" aria-live="polite"></p>
+
+        <div class="button-row">
+            <button type="button" id="chord-practice-generate-button">Generate Progression</button>
+            <button type="button" id="chord-practice-cancel-button">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog id="progression-open-dialog" aria-labelledby="progression-open-heading-name" tabindex="-1">
+        <h1 id="progression-open-heading"><span id="progression-open-heading-name">Open Saved Progression</span> Dialog Box</h1>
+
+        <p id="progression-open-folder"></p>
+
+        <p id="progression-open-empty" hidden>
+            There are no saved progressions in this folder yet. Save one from a chord
+            practice progression, with the Save Progression button under the Progression heading.
+        </p>
+
+        <!-- Folders and files, arrowed through like a file tree. Filled on every open, so a file
+             added in Explorer while the app is running is there the next time. -->
+        <ul id="progression-open-tree" role="tree" aria-label="Saved progressions"></ul>
+
+        <div id="progression-open-skipped" hidden>
+            <p id="progression-open-skipped-summary"></p>
+            <ul id="progression-open-skipped-list"></ul>
+        </div>
+
+        <p id="progression-open-status" aria-live="polite"></p>
+
+        <div class="button-row">
+            <button type="button" id="progression-open-button">Open</button>
+            <button type="button" id="progression-open-folder-button">Open Folder</button>
+            <button type="button" id="progression-open-cancel-button">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog id="progression-editor-dialog" aria-labelledby="progression-editor-heading-name" tabindex="-1">
+        <h1 id="progression-editor-heading"><span id="progression-editor-heading-name">Editing Chord Progression</span> Dialog Box</h1>
+
+        <!-- A progression's text, as Copy to Clipboard writes it, pasted from wherever it was
+             passed on. Update Progression fills the dialog from it; src/shared/progressionText.mjs
+             reads it, mends what it can and says what it mended. -->
+        <details id="progression-editor-text-details">
+            <summary>Edit Progression Text</summary>
+            <p>
+                <label for="progression-editor-text-input">Progression text</label>
+                <textarea id="progression-editor-text-input" rows="8" spellcheck="false"
+                    autocomplete="off" autocapitalize="off"></textarea>
+            </p>
+            <div class="button-row">
+                <button type="button" id="progression-editor-text-button">Update Progression</button>
+            </div>
+            <div id="progression-editor-text-report" hidden>
+                <p id="progression-editor-text-summary"></p>
+                <ul id="progression-editor-text-fixes"></ul>
+            </div>
+        </details>
+
+        <p>
+            <label for="progression-editor-key-select">Key</label>
+            <select id="progression-editor-key-select"></select>
+        </p>
+
+        <p>
+            <label for="progression-editor-beats-input">Beats per measure</label>
+            <input type="number" inputmode="numeric" id="progression-editor-beats-input" min="1" max="16" step="1" value="4" />
+        </p>
+
+        <p>
+            <label for="progression-editor-beat-unit-input">Note value that gets one beat</label>
+            <input type="number" inputmode="numeric" id="progression-editor-beat-unit-input" min="1" max="16" step="1" value="4" />
+        </p>
+
+        <h2 id="progression-editor-measures-heading">Measures</h2>
+
+        <!-- Collapsed rather than attached to the list as a description, which was read out on
+             every visit to the list. -->
+        <details>
+            <summary>Keyboard Commands for the Measures List</summary>
+            <ul>
+                <li>Enter - choose a new chord for the measure</li>
+                <li>Delete - remove the measure</li>
+                <li>Control+I - insert an empty measure after it</li>
+                <li>Control+D - duplicate it</li>
+                <li>Alt+Up and Alt+Down - move it</li>
+            </ul>
+        </details>
+
+        <!-- One option per measure, named by its chord. The chord field below edits whichever
+             measure is current here, so the number of stops does not grow with the length. -->
+        <ul id="progression-editor-measures" role="listbox"
+            aria-labelledby="progression-editor-measures-heading"></ul>
+
+        <!-- The field and its notes side by side on screen. As flex items each is still its own
+             line to a screen reader. -->
+        <div class="field-row">
+            <p>
+                <label for="progression-editor-chord-input" id="progression-editor-chord-label">Chord</label>
+                <input type="text" id="progression-editor-chord-input" role="combobox" aria-expanded="false"
+                    aria-controls="progression-editor-suggestions" aria-autocomplete="list"
+                    autocomplete="off" />
+            </p>
+            <details>
+                <summary>How the Chord Field Works</summary>
+                <p>
+                    The field starts empty. With it empty, the Down arrow lists the chords the key
+                    is built from, each with its scale degree. Typing searches every chord in the
+                    chord library instead. A chord outside the key is marked as such but can still
+                    be chosen. Enter takes the chord and goes back to the measure in the list.
+                    Leaving the field empty keeps the chord the measure has. Changing the key does
+                    not change the chords already chosen.
+                </p>
+            </details>
+        </div>
+        <ul id="progression-editor-suggestions" role="listbox" aria-label="Chords" hidden></ul>
+
+        <div class="button-row">
+            <button type="button" id="progression-editor-insert-button">Insert Measure After</button>
+            <button type="button" id="progression-editor-duplicate-button">Duplicate Measure</button>
+            <button type="button" id="progression-editor-remove-button">Remove Measure</button>
+            <button type="button" id="progression-editor-up-button">Move Measure Up</button>
+            <button type="button" id="progression-editor-down-button">Move Measure Down</button>
+        </div>
+
+        <!-- Announces what a button or key just did, then empties itself, so it is heard when it
+             happens and not met again when reading through the dialog. -->
+        <p id="progression-editor-status" aria-live="polite"></p>
+
+        <div class="button-row">
+            <button type="button" id="progression-editor-apply-button">Apply Changes</button>
+            <button type="button" id="progression-editor-cancel-button">Cancel</button>
+        </div>
+    </dialog>
+
+    <dialog id="unsaved-dialog" aria-labelledby="unsaved-dialog-heading-name"
+        aria-describedby="unsaved-dialog-message" tabindex="-1">
+        <h1 id="unsaved-dialog-heading"><span id="unsaved-dialog-heading-name">Unsaved Changes</span> Dialog Box</h1>
+        <p id="unsaved-dialog-message"></p>
+        <div class="button-row">
+            <button type="button" id="unsaved-dialog-save-button">Save</button>
+            <button type="button" id="unsaved-dialog-discard-button">Don't Save</button>
+            <button type="button" id="unsaved-dialog-cancel-button">Cancel</button>
+        </div>
+    </dialog>
+
+    <!-- The chord library opens as an item in the list of open items rather than a dialog: it
+         is a place you browse and build up a comparison set in, not a decision you commit or
+         cancel. Cloned into an item's panel on demand, and only ever one instance, so these ids stay unique. -->
+    <template id="chord-library-template">
+        <div class="chord-library">
+            <h2>Chord Library</h2>
+
+            <p>
+                <label for="chords-search-input">Search chords by name</label>
+                <input type="text" id="chords-search-input" role="combobox" aria-expanded="false"
+                    aria-controls="chords-search-listbox" aria-autocomplete="list"
+                    autocomplete="off" />
+            </p>
+            <ul id="chords-search-listbox" role="listbox" aria-label="Matching chord names" hidden></ul>
+
+            <details id="chords-filters">
+                <summary>Filtering Options</summary>
+
+                <p>
+                    <label for="chords-level-select">Difficulty</label>
+                    <select id="chords-level-select">
+                        <option value="canonical" selected>Standard shapes only</option>
+                        <option value="common">Add common alternative voicings</option>
+                        <option value="advanced">Add advanced voicings</option>
+                    </select>
+                </p>
+
+                <p>
+                    <label for="chords-root-select">Root note</label>
+                    <select id="chords-root-select"></select>
+                </p>
+
+                <p>
+                    <label for="chords-type-select">Chord type</label>
+                    <select id="chords-type-select"></select>
+                </p>
+
+                <p>
+                    <label for="chords-genre-select">Genre</label>
+                    <select id="chords-genre-select"></select>
+                </p>
+            </details>
+
+            <h3 id="chords-results-heading">Search Results</h3>
+            <ul id="chords-results-list"></ul>
+
+            <!-- A heading here is the way past a long results list: searching "C" gives dozens of
+                 rows, and jumping to the next heading reaches the play button in one move. -->
+            <h3 id="chords-playback-heading">Playback</h3>
+            <ul id="chords-playback-list" class="chord-progression"></ul>
+
+            <p>
+                <input type="checkbox" id="chords-speak-names-checkbox" />
+                <label for="chords-speak-names-checkbox">Speak chord name before playing</label>
+            </p>
+
+            <div class="button-row">
+                <button type="button" id="chords-play-button">Play Selected Chords</button>
+                <button type="button" id="chords-clear-button">Clear Selected</button>
+            </div>
+
+            <p id="chords-status" role="status" aria-live="polite"></p>
+        </div>
+    </template>
+
+    <dialog id="frets-dialog" aria-labelledby="frets-dialog-heading-name" tabindex="-1">
+        <h1 id="frets-dialog-heading"><span id="frets-dialog-heading-name">Frets to Chord</span> Dialog Box</h1>
+
+        <p>
+            Set what each string is doing and unstrung works backwards to the chord name. The
+            result appears under the Identified Chord heading below and updates as you change
+            each string.
+        </p>
+
+        <p>
+            <label for="frets-tuning-select">Tuning</label>
+            <select id="frets-tuning-select"></select>
+        </p>
+
+        <p>
+            <label for="frets-string-6" id="frets-string-6-label">String 6</label>
+            <select id="frets-string-6"></select>
+        </p>
+        <p>
+            <label for="frets-string-5" id="frets-string-5-label">String 5</label>
+            <select id="frets-string-5"></select>
+        </p>
+        <p>
+            <label for="frets-string-4" id="frets-string-4-label">String 4</label>
+            <select id="frets-string-4"></select>
+        </p>
+        <p>
+            <label for="frets-string-3" id="frets-string-3-label">String 3</label>
+            <select id="frets-string-3"></select>
+        </p>
+        <p>
+            <label for="frets-string-2" id="frets-string-2-label">String 2</label>
+            <select id="frets-string-2"></select>
+        </p>
+        <p>
+            <label for="frets-string-1" id="frets-string-1-label">String 1</label>
+            <select id="frets-string-1"></select>
+        </p>
+
+        <h2 id="frets-result-heading">Identified Chord</h2>
+        <ul id="frets-result-list"></ul>
+
+        <div class="button-row">
+            <button type="button" id="frets-view-button">View in Chord Library</button>
+            <button type="button" id="frets-ok-button">OK</button>
+        </div>
+    </dialog>
+
+    <dialog id="settings-dialog" aria-labelledby="settings-dialog-heading-name" tabindex="-1">
+        <h1 id="settings-dialog-heading"><span id="settings-dialog-heading-name">Settings</span> Dialog Box</h1>
+
+        <div id="settings-tablist" role="tablist" aria-label="Settings categories">
+            <button type="button" id="settings-tab-general" role="tab" aria-selected="true"
+                aria-controls="settings-panel-general" tabindex="0">General</button>
+            <button type="button" id="settings-tab-files" role="tab" aria-selected="false"
+                aria-controls="settings-panel-files" tabindex="-1">Files</button>
+            <button type="button" id="settings-tab-screenreader" role="tab" aria-selected="false"
+                aria-controls="settings-panel-screenreader" tabindex="-1">Screen Reader</button>
+        </div>
+
+        <section id="settings-panel-general" role="tabpanel" aria-labelledby="settings-tab-general" tabindex="0">
+            <h2>Chord Voices</h2>
+
+            <p>
+                <label for="settings-chord-voice-select">Voice for spoken chord names</label>
+                <select id="settings-chord-voice-select">
+                    <option value="zira" selected>Zira</option>
+                    <option value="david">David</option>
+                </select>
+            </p>
+
+            <p>
+                <label for="settings-chord-volume-input">Spoken chord volume (percent)</label>
+                <input type="number" inputmode="numeric" id="settings-chord-volume-input" min="0" max="100" step="5"
+                    value="50" aria-describedby="settings-chord-volume-hint" />
+                <span id="settings-chord-volume-hint">Relative to the guitar.</span>
+            </p>
+
+            <!-- The longer explanation is behind a disclosure on purpose. Opening this dialog
+                 reads what is in it, so loose prose in a panel is heard every single time before
+                 anything can be done. Collapsed content stays out of the accessibility tree, and
+                 the one line above is carried by aria-describedby, which is announced on reaching
+                 the field rather than on arriving in the dialog. -->
+            <details>
+                <summary>About Spoken Chord Volume</summary>
+                <p>
+                    This is how loud a spoken chord name is against the guitar, not how loud
+                    unstrung is overall. Below a hundred the name sits under the playing rather
+                    than over it, which is usually what you want while playing along.
+                </p>
+            </details>
+
+            <h2>Saved Progressions</h2>
+
+            <p>
+                <label for="settings-progressions-directory-input">Folder for saved chord progressions</label>
+                <input type="text" id="settings-progressions-directory-input"
+                    aria-describedby="settings-progressions-directory-hint" />
+                <span id="settings-progressions-directory-hint"></span>
+            </p>
+            <div class="button-row">
+                <button type="button" id="settings-progressions-browse-button" data-needs-file-access>Browse…</button>
+                <button type="button" id="settings-progressions-default-button" data-needs-file-access>Use Default Folder</button>
+            </div>
+
+            <details>
+                <summary>About the Progressions Folder</summary>
+                <p>
+                    Saved progressions are ordinary files in this folder, so they can be copied,
+                    backed up or shared like any other file. Sub-folders made in the Save dialog,
+                    or in your file manager, appear as folders in Open Saved Progression. Changing
+                    the folder does not move anything already saved.
+                </p>
+            </details>
+
+            <p id="settings-general-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="settings-panel-files" role="tabpanel" aria-labelledby="settings-tab-files" tabindex="0" hidden>
+            <p>
+                <label for="settings-default-directory-input">Default folder for Open File dialog</label>
+                <input type="text" id="settings-default-directory-input" />
+                <button type="button" id="settings-browse-button">Browse…</button>
+            </p>
+
+            <div class="button-row">
+                <button type="button" id="settings-clear-recent-button" data-needs-file-access>Clear All Recent Files</button>
+                <button type="button" id="settings-remove-stale-button" data-needs-file-access>Remove Stale Files from Recents</button>
+            </div>
+
+            <p id="settings-files-status" role="status" aria-live="polite"></p>
+        </section>
+
+        <section id="settings-panel-screenreader" role="tabpanel"
+            aria-labelledby="settings-tab-screenreader" tabindex="0" hidden>
+            <p>
+                These settings will likely be useful if you read unstrung with a screen reader.
+                Each one reduces how much your screen reader has to read out, so none of them
+                changes what the song is, only how much is said about it.
+            </p>
+
+            <p>
+                <input type="checkbox" id="settings-terse-beats-checkbox" />
+                <label for="settings-terse-beats-checkbox">Shorter beat descriptions</label>
+            </p>
+            <p>
+                When a beat strums a chord unstrung can name, describe it with just the chord
+                name and the stroke direction, leaving out the range of strings and any muted
+                strings. If you already know the shapes, the name tells you those anyway. Beats
+                that have no chord name are still listed string by string, since there is nothing
+                shorter to say about them. Off by default.
+            </p>
+
+            <p>
+                <input type="checkbox" id="settings-auto-collapse-checkbox" />
+                <label for="settings-auto-collapse-checkbox">Collapse expanded sections when switching to another open item</label>
+            </p>
+            <p>
+                Close any expanded section, such as a track's measures, when you show a different
+                open item. Coming back to an item that still has measures expanded can leave a
+                screen reader unresponsive for several seconds while it takes in every beat again.
+                With this on, you reopen only what you want. On by default.
+            </p>
+        </section>
+
+        <button type="button" id="settings-ok-button">OK</button>
+    </dialog>
+
+    <dialog id="directory-error-dialog" aria-labelledby="directory-error-heading-name" tabindex="-1">
+        <h1 id="directory-error-heading"><span id="directory-error-heading-name">Invalid Directory</span> Dialog Box</h1>
+        <p id="directory-error-message"></p>
+        <button type="button" id="directory-error-ok-button">OK</button>
+    </dialog>
+
+    <script src="bundle.js"></script>
+</body>
+</html>
+
