@@ -14,7 +14,7 @@ in browse mode, arrowing past the end of the unstrung dropdown reaches it, and "
 sounded like About unstrung. The visible text stays "About", which is clear on screen and short.
 Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
 for site navigation. The dropdowns are `<details>` elements;
-`content/assets/js/menu.js` only adds closing on Escape and when focus or a click moves away. The
+`content/assets/js/menu.js` adds closing on Escape and when focus or a click moves away, and, while a dropdown is open, Down and Up arrow moving through its links, wrapping at either end (2026-10-11). It keeps the arrows it uses from reaching the unstrung app, which listens for them on its page for playback. A screen reader in browse mode keeps the arrows for itself, so this is for keyboard users without one. The
 bar is `content/_includes/main-menu.njk`, styled by `content/assets/css/menu.css` alone, so the
 web app's page can carry it without the rest of the site's styles (see "unstrung, from its
 releases").
