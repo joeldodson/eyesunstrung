@@ -1,17 +1,24 @@
 {#- The Main navigation bar. Included by base.njk on every page, and by
     content/unstrung/app/index.njk on the web app's page, which has none of the
     site's other styles: everything the bar needs is in assets/css/menu.css and
-    assets/js/menu.js. -#}
+    assets/js/menu.js.
+
+    Every link has tabindex="0". Safari on a Mac leaves links out of the tab
+    order unless its "Press Tab to highlight each item" setting is on, which
+    left only the two dropdown buttons reachable by Tab, and no item inside a
+    dropdown. An explicit tabindex puts a link in the order whatever that
+    setting says. Other browsers already stop on links, so nothing changes
+    there. base.njk does the same for the skip link and the banner. -#}
     <nav class="main-menu" aria-label="Main">
       <ul role="list">
-        <li><a href="/"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
+        <li><a href="/" tabindex="0"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
         <li>
           <details class="submenu">
             <summary>Articles</summary>
             <ul role="list">
-              <li><a href="/articles/"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
+              <li><a href="/articles/" tabindex="0"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
               {%- for article in collections.articles %}
-              <li><a href="{{ article.url }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
+              <li><a href="{{ article.url }}" tabindex="0"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
               {%- endfor %}
             </ul>
           </details>
@@ -26,7 +33,7 @@
                 { url: "/unstrung/docs/", label: "Documentation" },
                 { url: "/unstrung/videos/", label: "Videos" }
               ] %}
-              <li><a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+              <li><a href="{{ item.url }}" tabindex="0"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
               {%- endfor %}
             </ul>
           </details>
@@ -34,6 +41,6 @@
         {#- Read as "About eyesunstrung", so arrowing past the end of the
             unstrung dropdown does not sound like About unstrung. The visible
             text starts the name, as WCAG 2.5.3 asks. #}
-        <li><a href="/about/" aria-label="About eyesunstrung"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
+        <li><a href="/about/" tabindex="0" aria-label="About eyesunstrung"{% if page.url == "/about/" %} aria-current="page"{% endif %}>About</a></li>
       </ul>
     </nav>

@@ -19,6 +19,18 @@ bar is `content/_includes/main-menu.njk`, styled by `content/assets/css/menu.css
 web app's page can carry it without the rest of the site's styles (see "unstrung, from its
 releases").
 
+Every link in the bar, and the skip link and the banner, has `tabindex="0"` (2026-10-11). Safari
+on a Mac leaves links out of the tab order unless its "Press Tab to highlight each item on a
+webpage" setting is on, so Tab reached only the Articles and unstrung buttons: not Home, About, any
+dropdown item, or the skip link. An explicit tabindex puts a link in the order whatever that setting
+says. Other browsers already stopped on them. Links in the page and the footer keep Safari's usual
+behaviour. Checked with Playwright's WebKit, which skips links the way Safari does.
+
+`menu.js` closes a dropdown when focus moves to something outside it, and not when focus moves to
+nothing (2026-10-10). In WebKit, clicking a dropdown button focuses it, but pressing on a link
+does not focus the link: focus goes to nothing, and closing the dropdown then left the click with no
+link to land on. Reproduced in Playwright's WebKit with the old script, and fixed there.
+
 The bar is slate (`#475569`) with cream text and a cream line along its top, the same in light and
 dark mode, so it stands apart from the page in both. Each dropdown button has a chevron drawn with
 CSS borders, with no text for a screen reader to read. On touchscreens (`pointer: coarse`), menu,
