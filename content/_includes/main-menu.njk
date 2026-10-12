@@ -1,14 +1,14 @@
 {#- The Main navigation bar. Included by base.njk on every page, and by
     content/unstrung/app/index.njk on the web app's page, which has none of the
-    site's other styles: everything the bar needs is in assets/css/menu.css and
-    assets/js/menu.js.
+    site's other styles: everything the bar needs is in assets/css/header.css
+    and assets/js/menu.js.
 
     Every link has tabindex="0". Safari on a Mac leaves links out of the tab
     order unless its "Press Tab to highlight each item" setting is on, which
     left only the two dropdown buttons reachable by Tab, and no item inside a
     dropdown. An explicit tabindex puts a link in the order whatever that
     setting says. Other browsers already stop on links, so nothing changes
-    there. base.njk does the same for the skip link and the banner. -#}
+    there. base.njk and banner.njk do the same for the skip link and the banner. -#}
     <nav class="main-menu" aria-label="Main">
       <ul role="list">
         <li><a href="/" tabindex="0"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>

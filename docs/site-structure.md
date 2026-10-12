@@ -15,8 +15,9 @@ sounded like About unstrung. The visible text stays "About", which is clear on s
 Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
 for site navigation. The dropdowns are `<details>` elements;
 `content/assets/js/menu.js` adds closing on Escape and when focus or a click moves away, and, while a dropdown is open, Down and Up arrow moving through its links, wrapping at either end (2026-10-11). It keeps the arrows it uses from reaching the unstrung app, which listens for them on its page for playback. A screen reader in browse mode keeps the arrows for itself, so this is for keyboard users without one. The
-bar is `content/_includes/main-menu.njk`, styled by `content/assets/css/menu.css` alone, so the
-web app's page can carry it without the rest of the site's styles (see "unstrung, from its
+bar is `content/_includes/main-menu.njk` and the banner `content/_includes/banner.njk`, both
+styled by `content/assets/css/header.css` alone (called `menu.css` until 2026-10-11), so the web
+app's page can carry them without the rest of the site's styles (see "unstrung, from its
 releases").
 
 Every link in the bar, and the skip link and the banner, has `tabindex="0"` (2026-10-11). Safari
@@ -92,15 +93,20 @@ so the lower bout and the tuner buttons both touch the table. The guitar is cent
 between the banner's left edge and the start of the title. The favicon,
 `content/assets/images/favicon.svg`, is the sunglasses on a square in the guitar's amber finish.
 
-The banner spans the full window width and is at most 240 px tall, its drawn size. Narrower than
-1200 px it scales down whole. Wider, the browser keeps the drawing's proportions and centres it, and
+The banner spans the full window width. Its height is the smallest of 240 px (its drawn size), a
+fifth of the window's width and a fifth of its height: the same rule as the unstrung desktop app,
+used on the site since 2026-10-11 so a short window, such as a phone held sideways, keeps most of
+its height for the page. Before, only the 240 px limit applied. Measured 2026-10-11 in Edge and
+WebKit from 390 by 844 to 3840 by 2160: the image is the window's full width at the height the rule
+gives, on a site page and on /unstrung/app/ alike. Narrower than 1200 px it scales down whole. In
+a box wider than its drawing, the browser keeps the drawing's proportions and centres it, and
 the wall, table and wood grain, which the SVG draws 4000 px past each edge of the 1200 by 240
 drawing, fill the sides, so a maximised window shows a continuous scene with the guitar, sunglasses
 and title centred. Checked 2026-09-30 at 375 to 3840 px wide by reading pixel colours from a capture:
 the far edges are the banner's wall and table colours in both colour schemes, and points on the
 guitar and title have identical colours at 1200, 1920 and 3840 px, so the drawing is neither
-stretched nor off centre. The unstrung app should show it the same way: `width: 100%`,
-`height: auto`, `max-height: 240px` on the `<img>`.
+stretched nor off centre. The unstrung desktop app shows the same image with the same rule:
+`width: 100%` and `height: min(240px, 20vw, 20vh)` on the `<img>`.
 
 Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
 so the site build does not need to run it. The script's comments describe the geometry. The unstrung
@@ -137,7 +143,7 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 | `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and Documentation panels |
 | `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and Documentation panels |
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
-| `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` adds the Main navigation bar | The app's own page, with the site's menu bar after its banner |
+| `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` puts the site's banner and Main navigation bar in place of the app's banner | The app's own page, under the site's banner and menu bar |
 
 ## YouTube channel picture and banner
 
@@ -210,11 +216,14 @@ it into `unstrung-release/`, which is not committed. The site workflow runs it b
 - `eleventy.config.js` copies `unstrung-release/app/` to `/unstrung/app/` unchanged, except for
   the app's page, `index.html`, which the fetch script sets aside as
   `unstrung-release/app-page.html`.
-- `content/unstrung/app/index.njk` writes that page to `/unstrung/app/` with the site's Main
-  navigation bar added after the app's banner, "The app" marked as the current page, and
-  `menu.css` and `menu.js` added to its head. `content/_data/unstrungApp.js` splits the page at
-  its `</header>`, and the build stops if there is not exactly one. The page loads nothing else of
-  the site's: `style.css` would restyle the app. Added 2026-10-08 so the app page has the same
+- `content/unstrung/app/index.njk` writes that page to `/unstrung/app/` with the app's own banner,
+  its `<header>`, replaced by the site's banner and Main navigation bar, "The app" marked as the
+  current page, and `header.css` and `menu.js` added to its head. `content/_data/unstrungApp.js`
+  finds the app's `<header>`, and the build stops if there is not exactly one. The page loads
+  nothing else of the site's: `style.css` would restyle the app. Joel's rule, 2026-10-11: on
+  eyesunstrung.vip, the banner and menu bar are the site's; only the app and its documentation
+  come from unstrungApp. The desktop app keeps its own copy of the banner, whose link has to be a
+  full address there. Added 2026-10-08 so the app page has the same
   menu as every other page; the app's own Menu button is in a navigation landmark named unstrung,
   after the site's Main one. The site's transforms (heading ids, list roles, new-tab links) skip
   this page.

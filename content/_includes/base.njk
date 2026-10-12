@@ -25,16 +25,14 @@
     {%- endif %}
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/style.css">
-    <link rel="stylesheet" href="/assets/css/menu.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
     <script src="/assets/js/menu.js" defer></script>
   </head>
   <body>
     <a class="skip-link" href="#main-content" tabindex="0">Skip to main content</a>
 
-    <header class="site-header">
-      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
-    </header>
+    {% include "banner.njk" %}
 
     {% include "main-menu.njk" %}
 

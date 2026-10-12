@@ -1,8 +1,30 @@
-/* The Main navigation bar, on its own so the unstrung web app's page can use
- * it too. That page has the app's own stylesheet and none of style.css, so
- * every site variable used here has a fallback: the light scheme's value from
- * style.css. On the site's own pages the variables are set and win.
+/* The banner and the Main navigation bar, on their own so the unstrung web
+ * app's page can use them too. That page has the app's own stylesheet and none
+ * of style.css, so every site variable used here has a fallback: the light
+ * scheme's value from style.css. On the site's own pages the variables are set
+ * and win.
  */
+
+/* The banner: one image, drawn by scripts/build-banner.mjs, linking home. It
+   has its own dark background in both colour schemes. It spans the window,
+   and is as tall as the smallest of 240px (its drawn size), a fifth of the
+   window's width, and a fifth of its height: the same rule as the unstrung
+   desktop app, so a short window keeps most of its height for the page. The
+   browser keeps the drawing's proportions and centres it; the wall and table,
+   drawn far past the drawing's edges, fill the sides of a wider box. */
+.site-header {
+  padding: 0;
+}
+
+.banner {
+  display: block;
+}
+
+.banner img {
+  display: block;
+  width: 100%;
+  height: min(240px, 20vw, 20vh);
+}
 
 /* The Main navigation: a full-width slate bar between the banner and the page,
    the same in light and dark mode. Contrast, measured: the bar against the

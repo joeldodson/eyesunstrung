@@ -1,0 +1,8 @@
+{#- The banner, linking home. Included by base.njk on every page, and by
+    content/unstrung/app/index.njk on the web app's page in place of the app's
+    own copy, so the site's banner is the same everywhere. Styled by
+    assets/css/header.css. tabindex="0" puts the link in Safari's tab order; see
+    main-menu.njk. -#}
+    <header class="site-header">
+      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
