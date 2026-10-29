@@ -42,8 +42,10 @@ and iOS falls back to a page screenshot for a home-screen icon.
 
 Some pages have a left column of navigation landmarks beside the page:
 
-- **Contents:** named by the page's `h1`, listing its `##` headings with their `###` headings
-  nested inside. Built at build time from the headings. Left out when the page has none.
+- **Contents:** named "Current page contents" by `aria-label`, with no visible title. Its first
+  link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
+  headings nested inside, each with its section number. Built at build time from the headings.
+  Left out when the page has no `##`, `###` or `####`.
 - **Articles:** the list of articles, current one marked `aria-current="page"`. Article pages only.
 - **unstrung:** The unstrung app, Documentation and Videos. The `/unstrung/` page only, set by
   `sidePanel: unstrung` in its front matter.
@@ -78,6 +80,32 @@ in `base.njk` and `style.css`; a new section only needs its own list panel.
   Measured 2026-09-30: an article with 12 contents entries shows them all in a 700 px window.
   Physics, Math, and Music has 42 entries, 15 of them truncated on a wide screen, needing 1445 px,
   so its contents panel scrolls in ordinary windows.
+
+### Numbered headings
+
+Decided with Joel on 2026-10-29. On every page with the left column, each heading below the `h1`
+has its section number in front of its text: `h2` headings are 1, 2, 3; the `h3` headings under
+the first `h2` are 1.1, 1.2; the `h4` headings under 1.1 are 1.1.1, and so on down to `h6`. The
+number is followed by a colon and a space, "1.2: Waves". The same text is the heading's link in the
+contents panel.
+
+- **Why:** moving by heading, a screen reader user hears each heading on its own and cannot tell
+  whether it is a new section or a subsection of the last one. The number says where it sits.
+- **Why a colon:** some separation is needed, or the number runs into the heading's first word.
+  A period or comma gives a short pause at most punctuation levels; a colon does the same, is
+  announced or not along with them, and looks right. A dash is more likely to be spoken as "dash"
+  than as a pause.
+- **Built, not written:** the "headings" transform in `eleventy.config.js` adds the numbers, so
+  pages, articles and unstrung's `user-docs` never number their own headings, and the numbers stay
+  right when sections move. A heading's id is made from its text without the number, so links to
+  a section do not change.
+- **Pages without the column** (the home page, About, 404) are not numbered.
+- **Same as the app:** unstrung numbers its Help documents the same way
+  (`src/shared/markdown.mjs` in unstrungApp), so a section of the documentation has the same number
+  in the app and on its page here.
+- **The page title link:** the `h1` comes first in the contents panel, unnumbered, so the panel
+  starts at the top of the page. It is a sibling of the `h2` entries, not their parent, which
+  would add a list level to every entry.
 
 ## Banner, favicon and footer
 

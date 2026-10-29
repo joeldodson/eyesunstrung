@@ -24,10 +24,15 @@ added, its section here is added by hand:
 Prompter's Notes: ...
 ```
 
-Each article page also gets a contents panel: a navigation landmark named by the article's title,
-listing its `##` headings with their `###` headings nested inside. It is built from the headings
-when the site is built, so articles never contain one. An article with no `##` or `###` headings
-gets no contents panel.
+Each article page also gets a contents panel: a navigation landmark named "Current page contents",
+whose first link is the article's title, followed by its `##` headings with their `###` and `####`
+headings nested inside. It is built from the headings when the site is built, so articles never
+contain one. An article with no `##`, `###` or `####` headings gets no contents panel.
+
+The build also numbers every heading below the title, in the article and in the panel: `##`
+headings are 1, 2, 3, the `###` headings under the first are 1.1, 1.2, and so on, written in front
+of the heading's text with a colon, "1.2: ". Articles never number their own headings.
+`docs/site-structure.md` has the details.
 
 Articles are often drafted by Claude in a Claude chat project. The instructions below are what
 that project is given, so that every article arrives in a form that can be saved straight into
@@ -58,6 +63,7 @@ Rules for the body:
 - Do not start a paragraph line with a number followed by a full stop unless it is a numbered list.
 - Write for someone using a screen reader. Headings are the main way to navigate, so give each section a heading that says what it covers. Link text should make sense on its own; never "click here" or "this link". Don't rely on visual layout, colour or position ("the table below", "on the right").
 - Do not write a contents section, however long the article is. The site will generate one from the headings.
+- Do not number headings, and do not start a heading with "Part 1" or similar. The site numbers every heading itself (1, 1.1, 1.1.1), so a number written in the heading would be said twice.
 - Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Part 1: Sound and waves" can be linked as [Part 1: Sound and waves](#part-1-sound-and-waves). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
 - To link to another article on the site, use /articles/ followed by its file name without .md and a trailing slash, for example [Physics, Math, and Music](/articles/physics-math-and-music/). Add #heading-id to link to a section of it.
 - To make a link open in a new tab, end its text with "(opens in new tab)", for example [the unstrung web app (opens in new tab)](/unstrung/app/). The site adds what the browser needs; the words are also the warning a screen reader user needs. Nothing else opens a new tab.

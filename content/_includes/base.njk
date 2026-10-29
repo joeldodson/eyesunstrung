@@ -2,14 +2,14 @@
 
     Order on every page: skip link, banner, the Main navigation bar, then the
     page. Article pages add two navigation landmarks before the article, in a
-    left column: the article's contents, named by its h1, and the list of
-    articles. A page with contentsPanel: true in its front matter gets the
+    left column: the article's contents, named "Current page contents", and
+    the list of articles. A page with contentsPanel: true in its front matter gets the
     left column with only the contents. A page with sidePanel set gets the
     contents and the list named there: "unstrung" for the /unstrung/ page,
     "docs" for the unstrung documentation pages, whose list comes from
     content/_data/unstrungDocs.js. The contents list is filled in by the
     "headings" transform in eleventy.config.js, which replaces the
-    page-contents comment below. -#}
+    page-contents comment below and numbers the page's headings. -#}
 {#- content/articles/index.md, the /articles/ page, has the articles tag from
     its folder but excludes itself from collections: it is not an article. -#}
 {%- set isArticle = tags and "articles" in tags and not eleventyExcludeFromCollections -%}

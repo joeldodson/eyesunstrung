@@ -16,37 +16,54 @@ function decodeEntities(text) {
   return text.replace(/&(amp|lt|gt|quot|#39);/g, (whole, name) => named[name]);
 }
 
-// The contents navigation for a page: its h2 headings as a list, with each
-// h2's h3 headings in a list inside it. Named by the page's h1, which the
-// layout gives the id page-title. Empty when the page has no h2 or h3.
-function contentsNav(headings) {
-  const entries = headings.filter((h) => h.level === 2 || h.level === 3);
+// The section number of a heading, from the count of headings so far at each
+// level from h2 down: the second h3 under the first h2 is "1.2". Truncating
+// counters drops the deeper counts, so they start again under a new heading.
+// A level with no heading yet above this one counts as 0. unstrungApp numbers
+// its Help documents the same way (src/shared/markdown.mjs), so a section has
+// the same number in the app and here.
+function sectionNumber(counters, level) {
+  const depth = level - 2;
+  counters.length = depth + 1;
+  counters[depth] = (counters[depth] ?? 0) + 1;
+  return Array.from(counters, (n) => n ?? 0).join(".");
+}
+
+// The contents navigation for a page, named "Current page contents" for
+// screen readers, with no visible title. Its first link is the page's h1,
+// which the layout gives the id page-title, without a number. Then come the
+// h2 headings, with their h3 headings in a list inside each and the h4
+// headings inside those, each with its section number. Empty when the page
+// has no h2, h3 or h4.
+function contentsNav(headings, title) {
+  const entries = headings.filter((h) => h.level >= 2 && h.level <= 4);
   if (!entries.length) return "";
 
-  let items = "";
-  let openItem = false; // a top-level <li> is waiting for its </li>
-  let openList = false; // a nested <ul> of h3 entries is waiting for its </ul>
+  // title gives mouse users the full heading when the panel truncates it.
+  const link = (id, text) => `<a href="#${id}" title="${text.replace(/"/g, "&quot;")}">${text}</a>`;
+  let items = `<li>${link("page-title", title)}</li>`;
+  // The entries whose <li> is still open, outermost first. A heading closes
+  // every open entry at its own level or deeper, then sits inside the one
+  // left, or at the top when none is: an h3 before any h2 has nothing to sit
+  // under.
+  const open = [];
+  const close = () => {
+    const entry = open.pop();
+    items += (entry.hasList ? "</ul>" : "") + "</li>";
+  };
   for (const h of entries) {
-    // title gives mouse users the full heading when the panel truncates it.
-    const link = `<a href="#${h.id}" title="${h.label}">${h.label}</a>`;
-    if (h.level === 3 && openItem) {
-      if (!openList) items += '<ul role="list">';
-      openList = true;
-      items += `<li>${link}</li>`;
-    } else {
-      // An h2, or an h3 that comes before any h2 and so has nothing to sit under.
-      if (openList) items += "</ul>";
-      if (openItem) items += "</li>";
-      openList = false;
-      openItem = true;
-      items += `<li>${link}`;
+    while (open.length && open.at(-1).level >= h.level) close();
+    const parent = open.at(-1);
+    if (parent && !parent.hasList) {
+      items += '<ul role="list">';
+      parent.hasList = true;
     }
+    items += `<li>${link(h.id, `${h.number}: ${h.label}`)}`;
+    open.push({ level: h.level, hasList: false });
   }
-  if (openList) items += "</ul>";
-  if (openItem) items += "</li>";
+  while (open.length) close();
 
-  return `<nav class="panel" aria-labelledby="page-title">
-          <p class="panel-title">Contents</p>
+  return `<nav class="panel" aria-label="Current page contents">
           <ul role="list">${items}</ul>
         </nav>`;
 }
@@ -89,13 +106,21 @@ export default function (eleventyConfig) {
   // Gives every heading without an id one made from its text, so a page can
   // link to its own sections and other pages can link to them: "## Part 1:
   // Sound and waves" becomes id="part-1-sound-and-waves". Uses Eleventy's
-  // slugify filter, the same one its IdAttributePlugin uses. Then, on pages with
-  // a side panel, replaces the page-contents comment in the layout with the
-  // contents navigation, built from the same headings.
+  // slugify filter, the same one its IdAttributePlugin uses.
+  //
+  // On pages with a side panel, which the page-contents comment in the layout
+  // marks, every heading below the h1 also gets its section number in front of
+  // its text: "1: ", "1.1: ", "1.1.1: ". The colon makes a short pause after
+  // the number in speech. The id is made from the text without the number, so
+  // links to a section keep working when sections are added or moved. Then the
+  // comment is replaced with the contents navigation, built from the same
+  // headings. docs/site-structure.md has the reasons.
   eleventyConfig.addTransform("headings", function (content) {
     if (!isSitePage(this.page)) return content;
     const slugify = eleventyConfig.getFilter("slugify");
     const used = new Set([...content.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
+    const hasContents = content.includes("<!--page-contents-->");
+    const counters = [];
     const headings = [];
 
     const withIds = content.replace(/<h([1-6])>(.*?)<\/h\1>/gs, (whole, level, inner) => {
@@ -104,11 +129,14 @@ export default function (eleventyConfig) {
       let id = base;
       for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
       used.add(id);
-      headings.push({ level: Number(level), id, label });
-      return `<h${level} id="${id}">${inner}</h${level}>`;
+      const number = hasContents && level >= 2 ? sectionNumber(counters, Number(level)) : "";
+      headings.push({ level: Number(level), id, label, number });
+      return `<h${level} id="${id}">${number ? `${number}: ` : ""}${inner}</h${level}>`;
     });
 
-    return withIds.replace("<!--page-contents-->", contentsNav(headings));
+    if (!hasContents) return withIds;
+    const title = (withIds.match(/<h1 id="page-title">(.*?)<\/h1>/s)?.[1] ?? "").replace(/<[^>]+>/g, "").trim();
+    return withIds.replace("<!--page-contents-->", contentsNav(headings, title));
   });
 
   // Bulleted lists are shown without bullets (see style.css). Safari drops list
