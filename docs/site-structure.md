@@ -42,8 +42,7 @@ and iOS falls back to a page screenshot for a home-screen icon.
 
 Some pages have a left column of navigation landmarks beside the page:
 
-- **Contents:** named "Current page contents" by `aria-label`, with no visible title. Its first
-  link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
+- **Current Page Contents:** its first link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
   headings nested inside, each with its section number. Built at build time from the headings.
   Left out when the page has no `##`, `###` or `####`.
 - **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
@@ -57,12 +56,12 @@ Articles get the contents and the eyesunstrung Articles panel. A page with `side
 the panel named. Any other page gets the contents panel alone by setting `contentsPanel: true` in
 its front matter. Pages without any of these are a single column.
 
-The list panels have a visible title, given above, and no `aria-label`. Decided with Joel on
+Every panel has a visible title, given above, and no `aria-label`. Decided with Joel on
 2026-10-29, as on training.glidance.io: NVDA announces an unnamed navigation landmark as
 "navigation landmark" followed by its first line, which is the title, so the title is heard once,
 even when moving by landmark. With a label as well, the same words were heard twice. The contents
-panel is the other way round: a name for screen readers and no visible title, because its first
-line is the page title link.
+panel first had an `aria-label` and no visible title, and NVDA read the label and then the first
+link; Joel preferred the list panels' sound, and a visible title helps sighted readers too.
 
 This is the standard layout for any page that pairs content with navigation panels. All of it is
 in `base.njk` and `style.css`; a new section only needs its own list panel.

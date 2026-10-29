@@ -29,8 +29,10 @@ function sectionNumber(counters, level) {
   return Array.from(counters, (n) => n ?? 0).join(".");
 }
 
-// The contents navigation for a page, named "Current page contents" for
-// screen readers, with no visible title. Its first link is the page's h1,
+// The contents navigation for a page, titled "Current Page Contents" on
+// screen and, like the list panels in the layout, with no aria-label, so the
+// title is what NVDA reads after "navigation landmark". Its first link is the
+// page's h1,
 // which the layout gives the id page-title, without a number. Then come the
 // h2 headings, with their h3 headings in a list inside each and the h4
 // headings inside those, each with its section number. Empty when the page
@@ -63,7 +65,8 @@ function contentsNav(headings, title) {
   }
   while (open.length) close();
 
-  return `<nav class="panel" aria-label="Current page contents">
+  return `<nav class="panel">
+          <p class="panel-title">Current Page Contents</p>
           <ul role="list">${items}</ul>
         </nav>`;
 }
