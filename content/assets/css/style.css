@@ -222,9 +222,16 @@ nav a[aria-current="page"] {
   }
 }
 
+/* One line, like the entries below: a title too long for the panel is cut off
+   with an ellipsis rather than wrapping. A screen reader still reads it all.
+   The titles in use fit: measured 2026-10-29, the longest, "unstrung
+   Documentation", is 196 px in the panel's 264 px. */
 .panel-title {
   margin: 0 0 0.5rem;
   font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .panel ul {

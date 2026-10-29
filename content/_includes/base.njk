@@ -9,7 +9,11 @@
     "docs" for the unstrung documentation pages, whose list comes from
     content/_data/unstrungDocs.js. The contents list is filled in by the
     "headings" transform in eleventy.config.js, which replaces the
-    page-contents comment below and numbers the page's headings. -#}
+    page-contents comment below and numbers the page's headings.
+
+    The list panels have no aria-label. NVDA announces an unnamed one as
+    "navigation landmark" followed by its first line, the visible title, so
+    the title is heard once rather than twice. -#}
 {#- content/articles/index.md, the /articles/ page, has the articles tag from
     its folder but excludes itself from collections: it is not an article. -#}
 {%- set isArticle = tags and "articles" in tags and not eleventyExcludeFromCollections -%}
@@ -41,17 +45,20 @@
       <div class="side-panels">
         <!--page-contents-->
         {%- if isArticle %}
-        <nav class="panel" aria-label="Articles">
-          <p class="panel-title">Articles</p>
+        <nav class="panel">
+          <p class="panel-title">eyesunstrung Articles</p>
           <ul role="list">
+            {#- The /articles/ page, with the Prompter's Notes. The panel is
+                only on article pages, so this is never the current page. #}
+            <li><a href="/articles/" title="All Articles">All Articles</a></li>
             {%- for article in collections.articles %}
             <li><a href="{{ article.url }}" title="{{ article.data.title }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
             {%- endfor %}
           </ul>
         </nav>
         {%- elif sidePanel == "unstrung" %}
-        <nav class="panel" aria-label="unstrung">
-          <p class="panel-title">unstrung</p>
+        <nav class="panel">
+          <p class="panel-title">unstrung Pages</p>
           <ul role="list">
             {%- for item in [
               { url: "/unstrung/app/", label: "The unstrung app" },
@@ -63,8 +70,8 @@
           </ul>
         </nav>
         {%- elif sidePanel == "docs" %}
-        <nav class="panel" aria-label="Documentation">
-          <p class="panel-title">Documentation</p>
+        <nav class="panel">
+          <p class="panel-title">unstrung Documentation</p>
           <ul role="list">
             {%- set aboutLabel = unstrungDocs.about.menuLabel if unstrungDocs.available else "About unstrung" %}
             <li><a href="/unstrung/docs/" title="{{ aboutLabel }}"{% if page.url == "/unstrung/docs/" %} aria-current="page"{% endif %}>{{ aboutLabel }}</a></li>

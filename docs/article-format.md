@@ -4,7 +4,7 @@ How articles for eyesunstrung.vip are written, and what the build checks. Writte
 
 Articles are Markdown files in `content/articles/`. The file name becomes the address:
 `content/articles/physics-math-and-music.md` is published at `/articles/physics-math-and-music/`.
-Every file there is listed, oldest first by `date`, in the Articles panel beside each article and
+Every file there is listed, oldest first by `date`, in the eyesunstrung Articles panel beside each article and
 in the Articles dropdown of the Main navigation bar.
 
 ## The /articles/ page and Prompter's Notes

@@ -46,15 +46,23 @@ Some pages have a left column of navigation landmarks beside the page:
   link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
   headings nested inside, each with its section number. Built at build time from the headings.
   Left out when the page has no `##`, `###` or `####`.
-- **Articles:** the list of articles, current one marked `aria-current="page"`. Article pages only.
-- **unstrung:** The unstrung app, Documentation and Videos. The `/unstrung/` page only, set by
+- **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
+  marked `aria-current="page"`. Article pages only.
+- **unstrung Pages:** The unstrung app, Documentation and Videos. The `/unstrung/` page only, set by
   `sidePanel: unstrung` in its front matter.
-- **Documentation:** About unstrung and each unstrung document, by its Help menu name, current one
-  marked. The `/unstrung/docs/` pages, set by `sidePanel: docs`.
+- **unstrung Documentation:** About unstrung and each unstrung document, by its Help menu name,
+  current one marked. The `/unstrung/docs/` pages, set by `sidePanel: docs`.
 
-Articles get the contents and the Articles panel. A page with `sidePanel` gets the contents and
+Articles get the contents and the eyesunstrung Articles panel. A page with `sidePanel` gets the contents and
 the panel named. Any other page gets the contents panel alone by setting `contentsPanel: true` in
 its front matter. Pages without any of these are a single column.
+
+The list panels have a visible title, given above, and no `aria-label`. Decided with Joel on
+2026-10-29, as on training.glidance.io: NVDA announces an unnamed navigation landmark as
+"navigation landmark" followed by its first line, which is the title, so the title is heard once,
+even when moving by landmark. With a label as well, the same words were heard twice. The contents
+panel is the other way round: a name for screen readers and no visible title, because its first
+line is the page title link.
 
 This is the standard layout for any page that pairs content with navigation panels. All of it is
 in `base.njk` and `style.css`; a new section only needs its own list panel.
@@ -166,10 +174,10 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 | `/` | `content/index.md` | Single column |
 | `/about/` | `content/about.md` | Single column |
 | `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`), like the videos page: an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
-| `/articles/<name>/` | `content/articles/<name>.md` | Contents and Articles panels |
-| `/unstrung/` | `content/unstrung/index.njk`: unstrung's introduction, from the release | Contents and unstrung panels |
-| `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and Documentation panels |
-| `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and Documentation panels |
+| `/articles/<name>/` | `content/articles/<name>.md` | Contents and eyesunstrung Articles panels |
+| `/unstrung/` | `content/unstrung/index.njk`: unstrung's introduction, from the release | Contents and unstrung Pages panels |
+| `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and unstrung Documentation panels |
+| `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and unstrung Documentation panels |
 | `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
 | `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` puts the site's banner and Main navigation bar in place of the app's banner | The app's own page, under the site's banner and menu bar |
 
