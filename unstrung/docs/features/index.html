@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>unstrung Features | eyesunstrung</title>
+    <meta name="description" content="unstrung Features, from the unstrung documentation.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" tabindex="0">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/" tabindex="0">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/" tabindex="0">All articles</a></li>
+              <li><a href="/articles/introduction/" tabindex="0">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/" tabindex="0">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/" tabindex="0">Overview</a></li>
+              <li><a href="/unstrung/app/" tabindex="0">The app</a></li>
+              <li><a href="/unstrung/docs/" tabindex="0">Documentation</a></li>
+              <li><a href="/unstrung/videos/" tabindex="0">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" tabindex="0" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel">
+          <p class="panel-title">Page Contents</p>
+          <ul role="list"><li><a href="#page-title" title="unstrung Features">unstrung Features</a></li><li><a href="#platform-is-a-feature" title="1: Platform is a Feature">1: Platform is a Feature</a></li><li><a href="#the-window" title="2: The Window">2: The Window</a><ul role="list"><li><a href="#keyboard-shortcuts" title="2.1: Keyboard Shortcuts">2.1: Keyboard Shortcuts</a></li><li><a href="#dialogs" title="2.2: Dialogs">2.2: Dialogs</a></li></ul></li><li><a href="#the-menu" title="3: The Menu">3: The Menu</a></li><li><a href="#reading-a-song-file" title="4: Reading a Song File">4: Reading a Song File</a><ul role="list"><li><a href="#opening-a-file" title="4.1: Opening a File">4.1: Opening a File</a></li><li><a href="#song-summary" title="4.2: Song Summary">4.2: Song Summary</a></li><li><a href="#tracks" title="4.3: Tracks">4.3: Tracks</a></li><li><a href="#chords-in-measure-headings" title="4.4: Chords in Measure Headings">4.4: Chords in Measure Headings</a></li></ul></li><li><a href="#media-controls-integration" title="5: Media Controls Integration">5: Media Controls Integration</a></li><li><a href="#playing-a-track" title="6: Playing a Track">6: Playing a Track</a><ul role="list"><li><a href="#playback-settings" title="6.1: Playback Settings">6.1: Playback Settings</a></li><li><a href="#playback-controls" title="6.2: Playback Controls">6.2: Playback Controls</a></li><li><a href="#practicing-measure-by-measure" title="6.3: Practicing Measure by Measure">6.3: Practicing Measure by Measure</a></li><li><a href="#keys" title="6.4: Keys">6.4: Keys</a></li></ul></li><li><a href="#chord-practice" title="7: Chord Practice">7: Chord Practice</a><ul role="list"><li><a href="#generating-a-progression" title="7.1: Generating a Progression">7.1: Generating a Progression</a></li><li><a href="#the-progression" title="7.2: The Progression">7.2: The Progression</a></li><li><a href="#saving-and-opening-progressions" title="7.3: Saving and Opening Progressions">7.3: Saving and Opening Progressions</a></li><li><a href="#strumming-patterns" title="7.4: Strumming Patterns">7.4: Strumming Patterns</a></li><li><a href="#your-own-strumming-patterns" title="7.5: Your Own Strumming Patterns">7.5: Your Own Strumming Patterns</a></li><li><a href="#editing-a-progression-or-making-your-own" title="7.6: Editing a Progression, or Making Your Own">7.6: Editing a Progression, or Making Your Own</a></li></ul></li><li><a href="#metronome" title="8: Metronome">8: Metronome</a><ul role="list"><li><a href="#metronome-keys" title="8.1: Metronome Keys">8.1: Metronome Keys</a></li></ul></li><li><a href="#chord-library" title="9: Chord Library">9: Chord Library</a></li><li><a href="#frets-to-chord" title="10: Frets to Chord">10: Frets to Chord</a></li><li><a href="#listening-to-the-guitar-samples" title="11: Listening to the Guitar Samples">11: Listening to the Guitar Samples</a></li><li><a href="#settings" title="12: Settings">12: Settings</a><ul role="list"><li><a href="#general" title="12.1: General">12.1: General</a></li><li><a href="#files" title="12.2: Files">12.2: Files</a></li><li><a href="#screen-reader" title="12.3: Screen Reader">12.3: Screen Reader</a></li></ul></li><li><a href="#help" title="13: Help">13: Help</a></li><li><a href="#the-desktop-app-and-the-web-version" title="14: The Desktop App and the Web Version">14: The Desktop App and the Web Version</a></li></ul>
+        </nav>
+        <nav class="panel">
+          <p class="panel-title">unstrung Documentation</p>
+          <ul role="list">
+            <li><a href="/unstrung/docs/" title="About unstrung">About unstrung</a></li>
+            <li><a href="/unstrung/docs/introduction/" title="Introduction">Introduction</a></li>
+            <li><a href="/unstrung/docs/screen-reader-users/" title="Screen Reader Users">Screen Reader Users</a></li>
+            <li><a href="/unstrung/docs/features/" title="Features" aria-current="page">Features</a></li>
+            <li><a href="/unstrung/docs/third-parties/" title="Third Party Components">Third Party Components</a></li>
+            <li><a href="/unstrung/docs/resources/" title="Resources">Resources</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title">unstrung Features</h1>
+        <p>Prompter's Note: This file was initially written by Claude.
+I've lightly edited some areas and some sections are all human written.
+There is still a lot that smells like AI writing though.
+But it is accurate and has good details, I decided to leave it as is.</p>
+<p>The user interface (UI) for unstrung is very accessible and, I think, intuitive.
+You might want to simply try it and arrow around in the features when you use them.
+If you have not yet, spend a few minutes skimming the
+<a href="/unstrung/docs/introduction/">Introduction to unstrung</a>.
+It might help to understand the features and why they exist as they do.</p>
+<h2 id="platform-is-a-feature">Platform is a Feature</h2>
+<p>As noted elsewhere, unstrung started as an Electron-based desktop app.
+It was designed to be downloaded and installed.
+I chose Electron for its web-based core and tight control over components and their versions.
+Building an Electron app you know exactly what you are using, it's all packaged and installed with your own code.
+It's a lot of work though to get into app stores and support multiple platforms, even only Windows and macOS.</p>
+<p>As noted in the <a href="/articles/introduction/">Introduction to eyesunstrung</a>, Claude assured me almost all of unstrung would run in a browser.
+So I did a complete redesign with the goal of a single look and feel for unstrung across any platform.
+My initial thought though was to still require a Chromium-based browser to still have some level of consistency.
+Then I wanted to try it on a browser on my phone.
+I'll keep my rantings about Apple and WebKit to myself and simply note all browsers on iOS are effectively Safari (WebKit) underneath.
+(I really wish Google could make TalkBack on Android less laggy, I'd switch.)
+The unfortunate reality is most blind people, at least in the U.S., use iOS.
+So I broadened my target to browsers on iOS which indirectly opens support for Firefox on Windows, macOS, and Linux.</p>
+<p>I initially thought I'd limit functionality on non-Chromium-based browsers lacking support for some APIs.
+Claude suggested workarounds though which sounded not too bad.
+And I figured if people are using those platforms and browsers, that's the experience they'd expect anyway.</p>
+<p>To get to my point, I've mostly abandoned the comforting idea of knowing what versions of which components unstrung is running on.
+I try to test features on Electron, Chrome on Windows, and Chrome on iOS.
+I hope that reduces most critical bugs.
+You will run into issues, be ready to try and find workarounds.
+You can read below about challenges I've already run into with media controls on iOS, including how I was able to get something to work again.
+Be flexible and patient when you run into something not working as you'd expect.
+Try to find a workaround.
+And look in the footer of any page on eyesunstrung.vip for how to provide feedback.</p>
+<h2 id="the-window">The Window</h2>
+<p>unstrung is designed to be identical in both the web and desktop versions.
+This window description thus applies to both.
+Well, one caveat now, the desktop version does not include the eyesunstrung.vip horizontal main menu bar.</p>
+<p>First, at a high level, after the banner and menu button, the window is split into two columns.
+The left column is the open items and should be at most 20% of the width of the window.
+The remaining 80% I'll refer to as the main area.
+Open items are a vertically stacked list of buttons with h1 headings to what is available in the main area.
+Only one open item is active at a time and its contents fills the main area.
+Next to each h1 is a close button.
+Navigating by h1 headings should take you to all open items and the active one should say so.
+There should be no other h1 headings in the app.
+Caveat, the help documents start with h1 headings and they can be opened within the unstrung app.</p>
+<p>From the top, the window has:</p>
+<ul role="list">
+<li>The eyesunstrung banner with a link to the main site.</li>
+<li>The web app has the eyesunstrung.vip main menu bar.</li>
+<li><strong>The Menu button,</strong> through which all features are accessed.
+It is in a navigation landmark named unstrung, so in browse mode d and shift+d move to it.</li>
+<li><strong>Open items.</strong> Every song, chord progression, chord library and help document you open is listed here, newest first.
+Each is a level 1 heading holding a button, followed by a Close button.
+Pressing an item's button shows it in the main area of the window and moves you to the start of it.
+In browse mode, 1 and shift+1 move from one open item to the next.</li>
+<li><strong>The main area,</strong> showing the open item you chose.
+Its own headings start at level 2.
+A help document is the exception: it starts with its title as a level 1 heading, as on its page on eyesunstrung.vip, so 1 also stops there.</li>
+<li><strong>The status bar,</strong> at the bottom of the window, where unstrung says what it has just done.
+Your screen reader reads it as it changes, and nvdaKey+end reads it again.</li>
+</ul>
+<h3 id="keyboard-shortcuts">Keyboard Shortcuts</h3>
+<p>As noted below regarding browsers, if your browser does not support the File System Access API, these commands work a little differently.</p>
+<ul role="list">
+<li>ctrl+o: open a song file.</li>
+<li>ctrl+shift+o: open a saved chord progression.</li>
+<li>ctrl+s: save the chord progression being shown.</li>
+<li>ctrl+shift+s: save it under a new name.</li>
+</ul>
+<p>Playback has its own keys, described with each kind of playback.
+While a track is being played, ? lists its keys in a dialog.</p>
+<h3 id="dialogs">Dialogs</h3>
+<p>Every dialog starts with a level 1 heading ending in &quot;Dialog Box&quot;, such as &quot;Settings Dialog Box&quot;.
+The window title names the dialog while it is open.
+escape closes a dialog.</p>
+<h2 id="the-menu">The Menu</h2>
+<p>As noted below, some menu items are not available if your browser does not support the File System Access API.</p>
+<p>Press enter, spaceBar or downArrow on the Menu button to open the menu.
+It works like a desktop application's menu:</p>
+<ul role="list">
+<li>upArrow and downArrow move through it, wrapping around at either end.</li>
+<li>rightArrow opens a submenu, and leftArrow closes it.</li>
+<li>A letter moves to the next item starting with that letter.</li>
+<li>enter runs the command.</li>
+<li>escape backs out one level, and from the top closes the menu.</li>
+<li>tab closes the menu and moves on.</li>
+</ul>
+<p>The menu holds:</p>
+<ul role="list">
+<li><strong>Open File…</strong></li>
+<li><strong>Recent Files,</strong> the last ten song files you opened.</li>
+<li><strong>Chord Progressions:</strong> Generate Practice Progression…, Manually Create Chord Progression… and Open Saved Progression….</li>
+<li><strong>Chords:</strong> Chord Library, Frets to Chord… and Listen to Guitar Samples….</li>
+<li><strong>Strumming Patterns</strong></li>
+<li><strong>Metronome</strong></li>
+<li><strong>Settings…</strong></li>
+<li><strong>Help:</strong> the help documents, and About unstrung….</li>
+</ul>
+<h2 id="reading-a-song-file">Reading a Song File</h2>
+<h3 id="opening-a-file">Opening a File</h3>
+<p>Choose Open File from the menu, or press ctrl+o.
+unstrung reads Guitar Pro files (.gp, .gpx, .gp5, .gp4 and .gp3) and MusicXML files (.musicxml and .xml).
+Files you have opened are listed in Recent Files, in the menu.</p>
+<p>The file opens as a new item in the list of open items, and you are moved to the start of it.</p>
+<h3 id="song-summary">Song Summary</h3>
+<p>The first heading is Song Summary.
+It lists what the file says about the song: title, artist and album where the file has them, tempo, feel if the song is swung or shuffled, number of bars, time signature, key signature and number of tracks.
+Where the tempo, time signature or key signature changes later in the song, the summary says so.</p>
+<h3 id="tracks">Tracks</h3>
+<p>unstrung lists only the guitar and bass tracks of a song, since those are the only instruments it has recordings of.
+Voice, keyboards, drums and other parts are left out, and the summary says how many.
+The words of a vocal part are still read, and shown with every listed track's measures.</p>
+<p>After the Song Summary, each track has a level 2 heading with its number and name, and a list of its instrument, tuning, capo and chord symbols.
+The tuning is spelled out note by note, with its name when the file gives one.</p>
+<p>The last item of the list is <strong>Chord Symbols,</strong> a collapsed section with the number of chords.
+Inside it, each chord the file prints over the track is listed once, collapsed, in the order it first appears, with how many times it is printed.
+Where the file gives a chord diagram, its fingering is shown; otherwise the fingering comes from the chord library.
+A track the file prints no chords over says so.</p>
+<p>After the list is a collapsed section, <strong>Measures and Playback,</strong> with the number of measures.
+It holds the settings and controls for playing the track, described below under Playing a Track, and then the measures.
+The Measures heading is level 3, with the number of measures.
+Each measure is a level 4 heading with its number, the section it starts if any, its repeat marks and its chord names.
+Under the heading are two buttons, Play and Add, described under Practicing Measure by Measure.
+Then come the lyrics sung over the measure, then a description of each beat: the strings and frets played, how the strings are struck, and techniques such as slides, bends, vibrato, harmonics and let ring.</p>
+<h3 id="chords-in-measure-headings">Chords in Measure Headings</h3>
+<p>A measure heading gives the chords the file prints over it, as sheet music does.</p>
+<ul role="list">
+<li>&quot;chord C&quot; where the file prints a C at the start of the measure.</li>
+<li>&quot;continues C&quot; where the measure prints no chord and the last one printed was C.</li>
+<li>&quot;continues C, chord G at beat 3&quot; where a G is printed partway through, and &quot;during beat 4&quot; for one printed between beats.</li>
+</ul>
+<p>A chord continues only to the end of its section.
+A new section names no chord until the file prints one in it.</p>
+<p>A printed chord gives the harmony, and the notes of the measure need not spell it: a melody can stray from it.
+unstrung does not work chords out from the notes, so a heading names no chord where the file prints none.
+The chords come from the file only.
+If a file prints the wrong chords, or stops printing them partway through a song, unstrung cannot correct it.
+Look for a better transcription of the song.</p>
+<p>A beat is named as a chord when it sounds three different notes or more, such as &quot;G/B, strings 1 through 5&quot;.
+A beat with fewer is listed string by string, so open strings 3 and 4 are not called G5.
+A stroke direction is given only where the file states one.</p>
+<p>The Measures and Playback section is collapsed because a song can run to hundreds of lines.
+Expand it when you want the detail or want to play the track.</p>
+<h2 id="media-controls-integration">Media Controls Integration</h2>
+<p>Before we get into playing audio tracks from a song or playing along with a chord progression, let's discuss controlling playback.
+Media controls are a universal, platform independent idea.
+Most keyboards have play/pause, next track, and previous track buttons.
+Headphones and earbuds might have similar controls.
+For example, some support single click for play/pause, double click for &quot;next track&quot;, and triple click for &quot;previous track.&quot;
+Those might be mapped differently depending on the application; maybe fast forward and rewind some seconds instead of entire tracks.</p>
+<p>You'll read below about unstrung's keyboard commands to control audio playback.
+Those are specific to unstrung and work only when the screen reader is in focus mode, when keys are passed through to the application.
+In addition to the proprietary keyboard commands unstrung has defined, media controls are also supported.</p>
+<p>Audio track and chord progression playback is focused on measures.
+You select which measures to play, and whether to play them once or repeat them.
+Hit the play button and the audio will begin playing.
+You can pause/resume playback with the media control mechanism, or using the spaceBar keyboard command.
+You can restart the progression using previous track from media control, or upArrow on the keyboard.
+Media control's &quot;next track&quot; (in quotes because we're kind of redefining that button), or downArrow on the keyboard, moves audio to the beginning of the current measure.
+Remember the keyboard commands require your screen reader to be passing keyboard input through (focus mode in NVDA) while media controls work independent of the screen reader.</p>
+<p>If you haven't, read the section above about Platform is a Feature.
+The web-based version of unstrung, especially on mobile, has implemented media control ... creatively (some might call it a hack).
+There are times it will not work, or be inconsistent.
+Suppose your phone goes to sleep.
+A chord progression, for example, should continue to play.
+And you should be able to start and stop it while the phone is still sleeping.
+I've had times though when the progression has been stopped for a while, I could not get it to start again.
+Even unlocking my phone and hitting play in the browser tab would not restart the progression.
+I switched to another app and listened to some audio, then back to unstrung and the progression would now play.
+Since version 0.7.7, unstrung tries to notice when the sound has stopped working and start it afresh.
+So first, press play in the browser tab.
+It should play, or say &quot;The sound could not start. Press play to try again.&quot;
+If it says that, press play again.
+If that does not work, try what I did: play some audio in another app, then come back to unstrung and press play.
+Worst case you might need to close the tab with unstrung and open a new one.</p>
+<h2 id="playing-a-track">Playing a Track</h2>
+<p>Expand the &quot;Measures and Playback&quot; section after a track's details.
+It starts with the Playback Settings and Playback Controls headings, both level 3, and then the Measures heading.
+From any measure, shift+3 goes back up to the Measures heading, then Playback Controls, then Playback Settings.
+To collapse the section, go to Playback Settings and then up one line.</p>
+<h3 id="playback-settings">Playback Settings</h3>
+<ul role="list">
+<li><strong>Tempo in beats per minute,</strong> from 15 to 300.
+It starts at the tempo the file gives, or 60 if the file gives none.
+A tempo you set stays until the song is closed.</li>
+<li><strong>Metronome,</strong> clicks while the music plays.
+Each note is timed so that its attack sounds with the click, and the pick noise recorded before it comes just ahead.</li>
+<li><strong>Count in,</strong> one measure of clicks before playing starts.
+It is on to begin with, and works whether or not the metronome is on.</li>
+<li><strong>Repeat until stopped.</strong>
+Unchecked, the measures play once.
+Turning it off while they repeat lets the time through under way finish, then stops.</li>
+<li><strong>Count in before every repeat,</strong> shown only while Repeat is checked.</li>
+<li><strong>Measures to Play,</strong> a collapsed section saying which measures will play.
+Inside it is a Section dropdown, starting with Entire Song, then one entry for each section the file marks, such as Intro or Verse 2.
+A file that marks no sections has no dropdown.
+Then come the first and last measure.
+When the measures chosen are not the whole song or a section, the dropdown has an entry for them, such as &quot;Measures 3 to 7&quot;.</li>
+</ul>
+<h3 id="playback-controls">Playback Controls</h3>
+<p>The heading is followed by a reminder that ? lists the keys.</p>
+<ul role="list">
+<li><strong>Play,</strong> which becomes Pause while playing.
+The first time you play a track, unstrung loads its guitar samples first, says so, and then plays.</li>
+<li><strong>Where Am I,</strong> which says which measure is playing.</li>
+<li><strong>Slower, Faster and Default Tempo,</strong> which change the tempo by 5 beats per minute, or put it back.</li>
+<li><strong>Restart Selection, Previous Measure, Next Measure and Start of Measure.</strong>
+Restart Selection goes back to the start of the selection.</li>
+</ul>
+<p>Below the buttons, unstrung says what it has done when you ask, and a collapsed section, About the Audio Track, gives how many notes the track has, how long it is, and its tempo.</p>
+<p>Collapsing the Measures and Playback section stops playback.
+Expanding it again does not restart it; press Play to carry on from where it stopped.
+Showing another open item collapses the section, and so stops playback, unless you turn that setting off.</p>
+<h3 id="practicing-measure-by-measure">Practicing Measure by Measure</h3>
+<p>This is for learning a song a measure at a time: read a measure, listen to it until you have it, then add it to the measures you are learning, and so on.</p>
+<p>Each measure has two buttons under its heading:</p>
+<ul role="list">
+<li><strong>Play measure 5</strong> plays that measure on its own, once, or until stopped if Repeat is checked.
+It leaves the selection as it is, and remembers where the track had got to.
+While the measure plays, the button is named Stop measure 5, and pressing it stops the measure.
+Press Play measure 5 again to hear the measure from its start.</li>
+<li><strong>Add measure 5 to selection</strong> changes the selection and says what the track now is, for example &quot;Audio track is now measures 1 through 5.&quot;
+If measure 5 is outside the selection, the selection stretches to include it.
+The selection is always one run of measures, so adding measure 5 to measures 1 to 2 gives 1 to 5.
+If measure 5 is already in the selection, the selection becomes measure 5 alone.
+That is how to start over from one measure, including from the whole song, as it is to begin with.
+Adding the old first and last measures back undoes it.
+Add does not play the track; press Play when you are ready.
+Anything playing stops.</li>
+</ul>
+<p>In focus mode, enter presses the measure button you are on, as it does in browse mode.
+spaceBar does not: it is the track's play and pause key.</p>
+<p>Two things can play here: the track, which is the selected measures, and a measure on its own.
+Play, the playback keys and media keys belong to the track.
+A measure's own button belongs to the measure.
+The one exception is spaceBar while a measure plays on its own: it stops the measure and says &quot;Stopped measure 5.&quot;</p>
+<p>After listening to a measure on its own, Play goes back to the track, from where it was.
+So do spaceBar, media keys, Restart Selection, Previous Measure, Next Measure, Start of Measure and their keys.
+Each says where the track is as it goes back, for example &quot;Back to the track at measure 12.&quot;
+Nothing else about playing and stopping is said.
+Where Am I says &quot;Measure 5 on its own&quot; while a measure plays on its own.</p>
+<p>For example, with Repeat checked, press Play measure 1 and listen until you have it, then Add measure 1 to selection.
+Read measure 2, press Play measure 2, and when you have that, Add measure 2 to selection.
+Press Play to hear measures 1 and 2 together.</p>
+<p>Play measure starts from the beginning of its measure, and Play after Add starts from the beginning of the selection, each counting in if Count in is checked.
+The tempo stays as you set it.</p>
+<h3 id="keys">Keys</h3>
+<p>While your screen reader is in focus mode, these keys control playback.
+? lists them in the Playback Keys dialog.
+The dialog has a link to this document, which closes the dialog and opens this document.</p>
+<ul role="list">
+<li>spaceBar: play and pause.</li>
+<li>leftArrow: back one measure.</li>
+<li>rightArrow: forward one measure.</li>
+<li>downArrow: back to the start of the current measure.</li>
+<li>upArrow: back to the start of the selection, counting in again.</li>
+<li>l: repeat on or off.</li>
+<li>b: say which measure is playing, and which repeat.</li>
+<li>m: metronome on or off.</li>
+<li>s: slower by 5 beats per minute.</li>
+<li>f: faster by 5 beats per minute.</li>
+<li>d: back to the default tempo, which is the song's own until you type another into the Tempo field.</li>
+<li>?: the list of keys.</li>
+</ul>
+<h2 id="chord-practice">Chord Practice</h2>
+<p>Chord practice generates a chord progression and plays it for you to play along with.
+Each measure has one chord, strummed with the progression's strumming pattern, with a metronome and, if you want it, the name of the next chord spoken.</p>
+<h3 id="generating-a-progression">Generating a Progression</h3>
+<p>Choose Generate Practice Progression from the Chord Progressions submenu.
+The Chord Practice dialog asks for:</p>
+<ul role="list">
+<li><strong>Experience level.</strong> Beginner uses open chords only.
+Intermediate adds barre chords and seventh chords.
+Advanced adds extended chords and chords borrowed from other keys.
+Some advanced chords have no fingering in the chord library; under Chords Used they say so.</li>
+<li><strong>Key.</strong> Only keys with enough chords playable at the chosen level are listed.</li>
+<li><strong>Chords from outside the key:</strong> none, occasional or frequent.
+These are mostly chords that lead into the next one, such as D7 before G in the key of C, and chords borrowed from the minor key.</li>
+<li><strong>Beats per measure</strong> and <strong>note value that gets one beat,</strong> the two numbers of the time signature.
+The tempo counts beats, so the lower number does not change the speed: 6/8 at 90 is ninety eighth notes a minute.</li>
+<li><strong>Strumming pattern,</strong> from the patterns for the time signature, described under Strumming Patterns.
+It starts on Down Only, and the list changes when the time signature does.</li>
+<li><strong>Tempo,</strong> from 30 to 240 beats per minute, 60 to begin with.</li>
+<li><strong>Number of measures,</strong> from 2 to 256.</li>
+<li><strong>No chord held over into the next measure,</strong> checked to begin with.
+The chord then changes on every measure, which is what practicing changes needs.
+Chords with the same root count as the same chord, so G7 never follows G.
+Unchecked, a chord is sometimes held for two measures, as in most real progressions.</li>
+<li><strong>Times to play the progression,</strong> up to 50, or 0 to repeat until you stop, and whether to count in before every repeat.</li>
+<li><strong>Metronome.</strong>
+Each strum is timed so that its attack sounds with the click, and the pick noise recorded before it comes just ahead.</li>
+<li><strong>Speak the name of the next chord on the last beat of each measure,</strong> checked to begin with.
+The voice and its volume are set in Settings.</li>
+</ul>
+<p>Press Generate Progression.
+The progression opens as a new item in the list of open items.</p>
+<h3 id="the-progression">The Progression</h3>
+<p>A progression's item has:</p>
+<ul role="list">
+<li><strong>Metadata:</strong> the key, level, time signature, strumming pattern, length, the cadence it ends with, how many chords come from outside the key, and whether it has been saved.
+The strumming pattern is given by its name and its strokes, such as Old Faithful: D - D U - U D U.
+A pattern unstrung does not have a name for is given by its strokes alone.</li>
+<li><strong>Chords Used:</strong> each different chord once, collapsed, with its fingering and notes.
+A chord from outside the key says which key it comes from and why.</li>
+<li><strong>Progression:</strong> the chords in order, one per measure.
+While there are unsaved changes, this heading, the item's name and the level 2 heading at the top all say &quot;unsaved changes&quot;.</li>
+<li>The Edit Progression, Save Progression and Save Progression As buttons.</li>
+<li><strong>Playback Settings</strong> and <strong>Playback Controls,</strong> level 3 headings laid out as a track's are; see Playing a Track.</li>
+</ul>
+<p>Playback Settings has:</p>
+<ul role="list">
+<li><strong>Tempo in beats per minute,</strong> from 30 to 240.</li>
+<li><strong>Strumming pattern.</strong>
+Changing it carries on from where the progression is, so you can try patterns while it plays.
+Like the tempo, it is not counted as an unsaved change, but saving keeps the pattern you are on.</li>
+<li><strong>Speak the name of the next chord.</strong>
+Changing it starts the progression again from the first measure.</li>
+<li><strong>Metronome,</strong> clicks while the progression plays.</li>
+<li><strong>Count in,</strong> one measure of clicks before playing starts.
+It is on to begin with, and works whether or not the metronome is on.</li>
+<li><strong>Times to play the progression,</strong> up to 50, with 0 for until stopped.
+Playing it a set number of times is a way to practice for a set time.</li>
+<li><strong>Count in before every repeat,</strong> shown only when the progression plays more than once.</li>
+</ul>
+<p>Playback Controls has the same buttons as a track: Play and Where Am I; Slower, Faster and Default Tempo; Restart Progression, Previous Measure, Next Measure and Start of Measure.
+Where Am I says the measure, its chord, and which time through it is.
+Default Tempo goes back to the tempo the progression opened with, until you type another into the Tempo field.</p>
+<p>The keys are the same as a track's, except l, since a progression has a number of times to play rather than Repeat.
+? lists them in the Playback Keys dialog.</p>
+<p>The media keys on your keyboard and headphone buttons control a progression as they do an audio track; see Media Controls Integration, before Playing a Track.</p>
+<h3 id="saving-and-opening-progressions">Saving and Opening Progressions</h3>
+<p>Save Progression, or ctrl+s, saves the progression.
+The first time, unstrung suggests a name such as Am-60-intermediate-occasional: the key, the number of measures, the level and the setting for chords from outside the key.
+Save Progression As, or ctrl+shift+s, saves a copy under a new name.
+The key, time signature, chords, strumming pattern and tempo are saved, the pattern and tempo as they are set under Playback.
+The metronome and the number of repeats are not.
+Opening a progression sets the tempo to the one it was saved with.</p>
+<p>Progressions are saved as ordinary files in a folder you choose in Settings, so they can be copied, backed up and shared like any other file.
+On the desktop version, the folder is Unstrung\Progressions in your Documents folder unless you choose another.
+The files end in .atex.
+They are alphaTex, a plain-text way of writing music that other programs built on alphaTab can open too.</p>
+<p>To open one, choose Open Saved Progression from the Chord Progressions submenu, or press ctrl+shift+o.
+The folder is shown as a tree.
+upArrow and downArrow move, rightArrow and leftArrow open and close a folder, a letter moves to the next name starting with that letter, and enter opens the progression.
+Any file that cannot be opened is listed after the tree with the reason.
+That includes music chord practice cannot show yet, such as a measure with two chords in it, or single notes rather than chords.</p>
+<p>If you close a progression with unsaved changes, or quit the desktop app with one open, unstrung asks whether to save first.
+A progression that has just been generated and never saved is not asked about.</p>
+<h3 id="strumming-patterns">Strumming Patterns</h3>
+<p>A strumming pattern is written the way guitar teachers write it, one stroke for each place the hand passes the strings.
+D is a downstroke and U an upstroke.
+A dash is a place the hand passes without strumming, while the chord rings on.
+x is a muted strum, a chuck, which stops the chord ringing; unstrung does not sound the chuck itself yet.
+An accented stroke has a greater-than sign before it, as in &gt;D.
+A pattern with no accents of its own is played with beat 1 a little stronger, as a player leans on the downbeat without thinking about it; a written accent is much stronger.
+With eight places in a measure of 4/4, the downstrokes fall on the beats and the upstrokes on the ands between them.</p>
+<p>These come with unstrung, and each list starts with Down Only and All Down-Up.
+Any other time signature has those two.</p>
+<p>4/4:</p>
+<ul role="list">
+<li>Down Only: D D D D, a downstroke on each beat.</li>
+<li>All Down-Up: D U D U D U D U, down on each beat and up on each and.</li>
+<li>Old Faithful: D - D U - U D U, the most common strum of all, also called the Island Strum.</li>
+<li>Boom-Chicka: D - D U D - D U, country and folk.</li>
+<li>Eighth-Note Downs: D D D D D D D D, driving rock and punk.</li>
+<li>Three-Three-Two: &gt;D D D &gt;D D D &gt;D D, eighth-note downs accented on beat 1, the and of 2, and beat 4.</li>
+<li>Backbeat Chuck: D - x U - U x U, Old Faithful with chucks on beats 2 and 4.</li>
+<li>Reggae Offbeat: - U - U - U - U, upstrokes on the ands only.</li>
+</ul>
+<p>3/4:</p>
+<ul role="list">
+<li>Down Only: D D D.</li>
+<li>All Down-Up: D U D U D U.</li>
+<li>Waltz Strum: D - D U D U, down, down-up, down-up.</li>
+<li>Oom-Pah-Pah: &gt;D D D, the first beat strong.</li>
+<li>Down Down Down-Up: D - D - D U.</li>
+</ul>
+<p>6/8, six eighth-note beats felt in two:</p>
+<ul role="list">
+<li>Down Only: D D D D D D.</li>
+<li>All Down-Up: D U D U D U.</li>
+<li>On the Pulse: D - - D - -, downs on 1 and 4.</li>
+<li>Accented Downs: &gt;D D D &gt;D D D.</li>
+<li>Rolling Six: D U D D U D.</li>
+<li>Ballad Six: D - U D - U.</li>
+</ul>
+<p>2/4:</p>
+<ul role="list">
+<li>Down Only: D D.</li>
+<li>All Down-Up: D U D U.</li>
+<li>Down, Down-Up: D - D U, polkas and marches.</li>
+</ul>
+<p>12/8, four beats of three eighths:</p>
+<ul role="list">
+<li>Down Only: twelve downs.</li>
+<li>All Down-Up: down and up in turn on the eighths.</li>
+<li>On the Pulse: D - - D - - D - - D - -.</li>
+<li>Slow Blues: every eighth down, strong on each beat.</li>
+</ul>
+<h3 id="your-own-strumming-patterns">Your Own Strumming Patterns</h3>
+<p>Choose Strumming Patterns from the menu.
+It opens as an item in the list of open items, with you on the Time signature list.
+The Pattern list after it has that time signature's patterns, the ones that come with unstrung first and yours after them, each of yours ending in &quot;yours&quot;.
+After them, a line says what the chosen pattern is and reads its strokes out in words, such as &quot;1 down, and miss, 2 down, and up&quot;.</p>
+<p>The buttons after it:</p>
+<ul role="list">
+<li><strong>Play:</strong> plays the pattern on G, C, D and F, two measures each, with the metronome on the beats, round and round until you press it again; while playing it reads Pause.
+Choosing another pattern while it plays switches to that one.</li>
+<li><strong>New Pattern:</strong> opens the New Strumming Pattern dialog.</li>
+<li><strong>Copy to My Patterns:</strong> opens the same dialog with the chosen pattern's strokes, to make one of your own from it.</li>
+<li><strong>Edit:</strong> changes one of yours.
+The patterns that come with unstrung cannot be changed, so a name always means the same strokes; copy one instead.</li>
+<li><strong>Delete:</strong> removes one of yours.</li>
+</ul>
+<p>The dialog asks for a name, the time signature and the strokes.
+The strokes are typed as described under Strumming Patterns, and the line after the field reads them back in words as you type, or says what is wrong.
+Play plays them the same way, until you press Pause or close the dialog, and Save Pattern keeps the pattern.
+A name has to be new in its time signature, and so do the strokes: strokes that are already a pattern are refused, with that pattern's name.</p>
+<p>Your patterns are listed in the Chord Practice dialog, the progression editor and a progression's Playback section, after the ones that come with unstrung.
+They are kept with your settings.</p>
+<p>Under Export and Import:</p>
+<ul role="list">
+<li><strong>Export My Patterns</strong> saves all of yours to one text file, to back up or pass on.
+Each line is one pattern, written as its time signature, a comma, its name, a colon and its strokes, such as 4/4, Busy Folk: D - D U D U D U.</li>
+<li><strong>Import Patterns</strong> adds the patterns in such a file to yours.
+One you already have is skipped.
+One with a name you already use but other strokes is added with &quot;(imported)&quot; after its name.
+Any line that could not be added is listed with the reason.</li>
+</ul>
+<h3 id="editing-a-progression-or-making-your-own">Editing a Progression, or Making Your Own</h3>
+<p>Edit Progression opens the Editing Chord Progression dialog.
+Manually Create Chord Progression, in the Chord Progressions submenu, opens the same dialog as Creating Chord Progression, with one empty measure.</p>
+<p>The dialog sets the key, time signature and strumming pattern, and lists the measures, one chord each.
+The strumming pattern starts on the progression's own.
+A progression opened from a file whose pattern unstrung has no name for keeps it, listed as this progression's own.
+In the list of measures:</p>
+<ul role="list">
+<li>enter: choose a new chord for the measure.</li>
+<li>delete: remove the measure.</li>
+<li>ctrl+i: insert an empty measure after it.</li>
+<li>ctrl+d: duplicate it.</li>
+<li>alt+upArrow and alt+downArrow: move it.</li>
+</ul>
+<p>There are buttons for each of these as well.</p>
+<p>The chord field starts empty.
+While it is empty, downArrow lists the chords the key is built from, each with its scale degree.
+Typing searches every chord in the chord library instead.
+A chord from outside the key is marked as such but can still be chosen.
+enter takes the chord and goes back to the measure in the list.</p>
+<p>Apply Changes, or Create Progression for a new one, puts the progression in its item.
+With changes made, escape does not close the dialog; press Cancel to discard them.</p>
+<h2 id="metronome">Metronome</h2>
+<p>Choose Metronome from the menu.
+It opens as an item in the list of open items, with you on the Time signature list.
+Its clicks follow a strumming pattern: one click wherever the pattern strikes the strings, and none where it passes without strumming.
+The click follows the stroke, wherever it falls.
+A downstroke is a low, round click.
+An upstroke is a much higher, shorter tick, and quieter.
+A muted strum is a short burst of noise, like a chuck.
+So eight downs in a measure are eight of the same click, and down-up eighths alternate the two.
+The first stroke of the measure is higher, so you can hear where the measure starts.
+That is beat 1 in most patterns, and the and of 1 in a pattern with nothing on beat 1, such as Reggae Offbeat.
+It is also louder, and a down there is hit harder, with a sharp attack.
+A pattern with accents of its own, such as Three-Three-Two, makes its accents louder, and its downs hit harder, at their own pitch.
+Its first stroke is still the higher one, so beat 1 stands out from the other accents.</p>
+<p>Under Settings:</p>
+<ul role="list">
+<li><strong>Time signature</strong> and <strong>Strumming pattern,</strong> the same patterns as in the Strumming Patterns item, the ones that come with unstrung and yours.
+After them, a line says where the clicks fall, such as &quot;Clicks on 1 strong down, 2 down, 2 and up, 3 and up, 4 down, 4 and up&quot;.</li>
+<li><strong>Tempo,</strong> from 30 to 240 beats per minute, 60 to begin with.
+The tempo you type here is the default tempo.</li>
+<li><strong>Volume,</strong> from 1 to 5, 3 to begin with.</li>
+</ul>
+<p>Under Controls:</p>
+<ul role="list">
+<li><strong>Start:</strong> starts the metronome, and reads Stop while it plays.
+It is a toggle button, pressed while the metronome plays.</li>
+<li><strong>Slower</strong> and <strong>Faster:</strong> change the tempo by 5 beats per minute.</li>
+<li><strong>Default Tempo:</strong> goes back to the tempo last typed into the Tempo field.
+Slower and Faster do not change it.</li>
+<li><strong>Quieter</strong> and <strong>Louder:</strong> change the volume by one.</li>
+</ul>
+<p>Changing the tempo, the volume or the pattern while it plays carries on without starting the measure again.
+Each button says what it did, such as &quot;85 BPM&quot; or &quot;Volume 4&quot;, and says so when the tempo or volume is already as far as it goes.
+The metronome keeps playing while you look at another open item.
+Closing the item stops it, and opening it again keeps your settings until unstrung is closed.</p>
+<h3 id="metronome-keys">Metronome Keys</h3>
+<p>While focus is in the metronome and your screen reader is in focus mode, these keys do what the buttons do.
+The same list is in the item, under the Keyboard Control heading.</p>
+<ul role="list">
+<li>spaceBar: start and stop.
+On a button it starts and stops rather than pressing the button; enter still presses it.</li>
+<li>f: faster.</li>
+<li>s: slower.</li>
+<li>d: back to the default tempo.</li>
+<li>upArrow: louder.</li>
+<li>downArrow: quieter.</li>
+</ul>
+<p>In the Tempo and Volume fields, digits and the arrows change the field, while the letters still work.
+In the Time signature and Strumming pattern lists, f, s and d still change the tempo, so you can change it while trying one pattern after another.
+The arrows and the other keys move through the list.</p>
+<h2 id="chord-library">Chord Library</h2>
+<p>Choose Chord Library from the Chords submenu.
+It opens as an item in the list of open items, with you in its search field.</p>
+<p>Type part of a chord name and a list of matching names appears.
+upArrow and downArrow move through the list, enter takes the highlighted name, and escape closes the list and leaves what you typed.
+tab also closes it and moves on.</p>
+<p>The Filtering Options section narrows the results by difficulty (standard shapes only, common alternatives, or advanced voicings), root note, chord type and genre.</p>
+<p>Under the Search Results heading, each matching chord has a checkbox, and so does each of its fingerings.
+The shortest matching name and its most common fingering start checked.
+Each chord also has a collapsed section with what is known about it.</p>
+<p>Under the Playback heading are the chords you have checked.
+Play Selected Chords strums them, speaking each name first if &quot;Speak chord name before playing&quot; is checked.
+Clear Selected unchecks them all.</p>
+<h2 id="frets-to-chord">Frets to Chord</h2>
+<p>Frets to Chord works the other way round: you say what each string is doing, and unstrung names the chord.
+Choose it from the Chords submenu.</p>
+<p>Set the tuning, then each string from 6 to 1: open, not played, or a fret from 1 to 15.
+The chord name follows the Identified Chord heading, and updates as you change each string.
+View in Chord Library opens that chord in the chord library.</p>
+<p>In a tuning other than standard, unstrung still names the chord from its notes, but says that the fingerings in the chord library do not apply.</p>
+<h2 id="listening-to-the-guitar-samples">Listening to the Guitar Samples</h2>
+<p>Every note unstrung plays is a real recording.
+Listen to Guitar Samples, in the Chords submenu, plays them in order from lowest to highest.
+From E2 up the notes are a green Gretsch guitar; from B0 to D#2 they are a bass guitar.</p>
+<p>You can choose:</p>
+<ul role="list">
+<li><strong>Velocity layer:</strong> soft, medium or loud.
+Each was recorded separately and sounds different, not only quieter or louder.</li>
+<li><strong>Number of round robins to play per note.</strong>
+Round robins are separate recordings of the same note, which is why a repeated note does not sound identical every time.</li>
+<li><strong>Time between notes.</strong></li>
+<li><strong>Announce note names while playing.</strong></li>
+</ul>
+<h2 id="settings">Settings</h2>
+<p>Choose Settings from the menu.
+The dialog has three tabs.</p>
+<h3 id="general">General</h3>
+<ul role="list">
+<li><strong>Voice for spoken chord names:</strong> Zira or David.</li>
+<li><strong>Spoken chord volume,</strong> as a percentage, relative to the guitar.</li>
+<li><strong>Folder for saved chord progressions.</strong></li>
+</ul>
+<h3 id="files">Files</h3>
+<ul role="list">
+<li><strong>Default folder for Open File dialog,</strong> desktop only.</li>
+<li><strong>Clear All Recent Files.</strong></li>
+<li><strong>Remove Stale Files from Recents,</strong> which takes out files that no longer exist.</li>
+</ul>
+<h3 id="screen-reader">Screen Reader</h3>
+<ul role="list">
+<li><strong>Shorter beat descriptions.</strong>
+A beat that strums a chord unstrung can name is described by the chord name and the stroke direction only.
+Off unless you turn it on.</li>
+<li><strong>Collapse expanded sections when switching to another open item.</strong>
+Coming back to an item with its measures still expanded can leave a screen reader unresponsive for several seconds while it takes in every beat again.
+On unless you turn it off.</li>
+</ul>
+<h2 id="help">Help</h2>
+<p>The Help submenu opens each help document as an item in the list of open items: Introduction, Screen Reader Users, Features (this document), Third Party Components and Resources.
+The last entry, About unstrung, opens a dialog with the version and the file formats supported.</p>
+<h2 id="the-desktop-app-and-the-web-version">The Desktop App and the Web Version</h2>
+<p>The two work the same way, with these differences in the web version:</p>
+<ul role="list">
+<li>Recent Files and the folder of saved progressions need Chrome or Edge on a computer.
+Firefox, Safari and every browser on an iPhone or iPad do not support the File System Access API they use.
+In those browsers, Recent Files and the folder settings are there but unavailable, and:
+<ul role="list">
+<li>Open File and Open Saved Progression open one file at a time through the browser's upload picker, which on an iPhone or iPad is the Files app.
+To open a song or progression sent as an email attachment there, save it to Files first.</li>
+<li>Save Progression and Save Progression As download the progression as a file, named as unstrung suggests, wherever the browser keeps downloads.
+unstrung does not ask about unsaved changes, since a download is a copy.</li>
+</ul>
+</li>
+<li>The guitar samples and spoken chord names are downloaded the first time each one is needed, and kept by the browser after that.
+The first time a song or progression plays, it may take a moment to start.</li>
+<li>Files and folders are chosen through the browser, which shows only a folder's name, never its full path.
+Settings has a Choose Folder button for saved progressions in place of a typed path, and there is no default folder for Open File and no Open Folder button.</li>
+<li>On a later visit, the browser asks permission again before unstrung can use a file or folder chosen earlier, unless you chose to allow it on every visit.
+The question appears beside the address bar, and unstrung's status bar says when it is waiting for one.</li>
+<li>Settings and recent files are kept by the browser, separately for each browser profile.</li>
+<li>Reloading or leaving the page closes everything open in unstrung.
+The browser asks first while anything is open.</li>
+</ul>
+
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>

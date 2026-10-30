@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>About | eyesunstrung</title>
+    <meta name="description" content="How eyesunstrung.vip and unstrung are built.">
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content" tabindex="0">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/" tabindex="0">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/" tabindex="0">All articles</a></li>
+              <li><a href="/articles/introduction/" tabindex="0">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/" tabindex="0">Physics, Math, and Music</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/" tabindex="0">Overview</a></li>
+              <li><a href="/unstrung/app/" tabindex="0">The app</a></li>
+              <li><a href="/unstrung/docs/" tabindex="0">Documentation</a></li>
+              <li><a href="/unstrung/videos/" tabindex="0">Videos</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" tabindex="0" aria-label="About eyesunstrung" aria-current="page">About</a></li>
+      </ul>
+    </nav>
+
+
+      <main id="main-content">
+        <h1 id="page-title">About</h1>
+        <p>I think I've said everything worth saying, and more, on the home page and in the articles and unstrung pages.
+Below is a brief note regarding the name, &quot;eyesunstrung,&quot; and the domain, &quot;.vip.&quot;
+And there are some notes for the techies.</p>
+<h2 id="why-the-name">Why the Name?</h2>
+<p>At a high level, think of guitar strings as transmitting a signal from your fingers (or pick) to the body of the guitar to generate sound.
+If there are no strings, there is no sound.
+Likewise, optic nerves transfer signals from your eyes to your brain, resulting in sight.
+Without functioning optic nerves, nothing gets from your eyes to your brain, thus blindness.
+If your optic nerves don't work, your eyes are unstrung.</p>
+<h2 id="why-the-vip-domain">Why the VIP Domain?</h2>
+<p>Yes, we are all certainly very important people these days.
+But this VIP is for the Visually Impaired People.
+There is (hopefully, was, by now) some silly controversy around that term.
+So be it.</p>
+<h2 id="into-the-technical-details">Into the Technical Details</h2>
+<p>eyesunstrung.vip is hosted on GitHub Pages using a custom URL.
+The URL is from Namecheap, a mostly accessible, if not very usable, registrar.
+I could link GitHub's and Namecheap's setup guides, but these days I'd ask Claude how to set it up.
+Claude will either give you step-by-step instructions, offer to do it for you, or point you to the latest guides.</p>
+<p>eyesunstrung.vip is developed using Eleventy, a static site generation tool.
+The first iteration of eyesunstrung.vip (July 2024) was developed manually, by me, using Sphinx and the PyData Sphinx Theme.
+That version exists only in GitHub history.
+I opted to switch to Eleventy once I fully accepted LLM coding.
+I figured if Claude is writing everything, my like/dislike of JavaScript doesn't matter.
+So there we go.</p>
+<p>Same goes for the unstrung app: it's entirely HTML, CSS, and JavaScript, all written by Claude.
+I actually like HTML and CSS though.
+And JavaScript does enable some useful functionality.
+Unfortunately it also enables so much inaccessible and unusable garbage online.
+If you want to write accessible web-based apps, tell Claude to use JavaScript only when absolutely necessary.
+And tell Claude absolutely no frameworks, especially not React
+(Electron is a platform, not a framework).
+Always favor standard HTML elements; they're far more likely to be accessible out of the box.</p>
+<h2 id="enough-already-with-claude">Enough Already with Claude</h2>
+<p>Yes, I am using Claude to develop this site and the unstrung app.
+I often use &quot;Claude&quot; to mean AI coding tools in general.
+Some people have strong opinions about disclosing the use of AI.
+Now you know, if you care.</p>
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+  </body>
+</html>
