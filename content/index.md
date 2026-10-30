@@ -16,36 +16,25 @@ song, [Ripple](https://www.dead.net/song/ripple).
 
 ## Welcome to eyesunstrung
 
-**TL;DR: it's a website dedicated to screen-reader-accessible material to learn about music and playing guitar.**
+**TL;DR: it's a website dedicated to screen-reader-accessible material to learn about music and playing guitar,
+and hosts an accessible web-based application to use song files and tools for skills development.**
 
 For details, read the [Introduction to eyesunstrung article](/articles/introduction/).
-
-## Why the Name?
-
-At a high level, think of guitar strings as transmitting a signal from your fingers (or pick) to the body of the guitar to generate sound.
-If there are no strings, there is no sound.
-Likewise, optic nerves transfer signals from your eyes to your brain, resulting in sight.
-Without optic nerves, nothing gets from your eyes to your brain, thus blindness.
-My optic nerves don't work; my eyes are unstrung.
-
-## Why the VIP Domain?
-
-Yes, we are all certainly very important people.
-This VIP is for the Visually Impaired People.
-There is (hopefully, was, by now) some silly controversy around that term.
-So be it.
+The [About page](/about/) has some personal and technical details if you're curious about the eyesunstrung name, the .vip domain choice, or how the site is developed and hosted.
 
 ## The unstrung Application
 
-As the introduction explains, the main point of eyesunstrung.vip is to host the web-based version of the unstrung application.
+As explained in the introduction, the main point of eyesunstrung.vip is to host the web-based version of the unstrung application.
 Hopefully all your questions will be answered in [the unstrung pages](/unstrung/).
-If not, see below.
+All documentation is structured with screen reader users in mind.
+Common semantic HTML navigation techniques are supported (e.g., landmarks, headings, lists, anchors).
 
 ## Articles
 
-As the introduction mentions, there are also [articles](/articles/) about music and guitar.
-Hopefully you find something useful there as well.
-If not, see below.
+Also mentioned in the introduction, eyesunstrung hosts [articles](/articles/) about music and guitar.
+What's there is what I think is interesting and hopefully useful to others.
+The root articles page has a small blurb about each article.
+Each blurb has a heading which is also a link to the article, it should be very screen reader friendly.
 
 ## Requests, Comments, and Feedback
 
@@ -55,3 +44,11 @@ please [email feedback at eyesunstrung.vip](mailto:feedback@eyesunstrung.vip).
 Anything specific to the site or the app can also go in the
 [eyesunstrung GitHub issues](https://github.com/joeldodson/eyesunstrung/issues/) or the
 [unstrungApp GitHub issues](https://github.com/joeldodson/unstrungApp/issues/).
+
+## Cheers!
+
+Thank you for visiting eyesunstrung.vip and hopefully trying the unstrung app.
+I'd love to hear your thoughts and suggestions, good, bad, and clever.
+
+Cheers,
+Joel

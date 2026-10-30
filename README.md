@@ -1,8 +1,8 @@
 # eyesunstrung
 
 The source of [eyesunstrung.vip](https://eyesunstrung.vip), a site about learning music and guitar
-as a blind person, and eventually the home of the web version of
-[Unstrung](https://github.com/joeldodson/unstrungApp).
+as a blind person, and the home of the web version of
+[unstrung](https://github.com/joeldodson/unstrungApp).
 
 Built with [Eleventy](https://www.11ty.dev/). Pages are Markdown files in `content/`, rendered
 through the one layout in `content/_includes/base.njk`.
@@ -42,4 +42,4 @@ on `main` (Actions, Build and deploy the site, Run workflow) to publish it witho
 ## Font
 
 Atkinson Hyperlegible Next, by the Braille Institute, under the SIL Open Font License 1.1. It is
-installed from npm and copied into the site, with its licence, at build time.
+installed from npm and copied into the site, with its license, at build time.

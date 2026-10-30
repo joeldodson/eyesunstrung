@@ -9,7 +9,7 @@ But I have not entirely given in to our LLM overlords.
 I do read and edit the output.
 Article generation is an iterative process of prompting and editing until I like it, or am tired of the process.
 
-## What is eyesunstrung?
+## What Is eyesunstrung?
 
 Like many people, I've been trying to learn to play the guitar for many years.
 Lots of starts and, well, not so much stops as fade-aways.
@@ -20,10 +20,6 @@ Then there's sheet music, which is inherently visual (there is braille sheet mus
 For guitar, there's tablature, also visual.
 Even on YouTube videos, I so often hear, "place your fingers like this..."
 Some YouTubers do try to explain the fingering, but inevitably, there's a visual assumption.
-
-I'm sure there's some accessible material out there considering how many blind musicians there are.
-It's either not easy to find, or I'm not very good at searching.
-Probably both.
 
 So, in 2024, I started eyesunstrung with the idea of building some type of application to help blind people with little to no musical background learn to play the guitar.
 I tried hacking around with Python, exploring sound libraries and accessible UI toolkits.
@@ -45,12 +41,18 @@ The question then was where to host a web version of unstrung.
 ## Finally Realizing the Goal of eyesunstrung.vip
 
 So here I am, rebuilding eyesunstrung with Claude and Eleventy.
-There will still be articles addressing questions I find interesting regarding music and playing guitar.
-Those can be found in the [articles section](/articles/).
-Hopefully people will find some value there.
-They will almost certainly though be the output of an iterative Claude (or some LLM) session; anyone can do that.
 
 The main purpose of eyesunstrung.vip is to host the web-based version of the unstrung app.
 Documentation for the unstrung application will be in [the unstrung documentation](/unstrung/docs/).
-Those docs will also be heavily written by Claude, though not something someone else could easily generate on their own.
+Those docs will be heavily written by Claude.
 They are focused mainly on using unstrung but will occasionally detour into thoughts addressing ideas like accessibility purism versus practical tradeoffs.
+
+## Articles
+
+eyesunstrung will still have articles addressing questions I find interesting regarding music and playing guitar.
+And some articles will be specifically directed toward a blind audience that cannot watch a YouTube video for how to hold the guitar, or see proper posture.
+Those can be found in the [articles section](/articles/).
+Hopefully people will find some value there.
+They will almost certainly be the output of an iterative Claude (or some LLM) session; anyone can do that.
+These articles though will be from the perspective of a blind person.
+Hopefully descriptions will be better.
