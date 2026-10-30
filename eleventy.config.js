@@ -19,9 +19,7 @@ function decodeEntities(text) {
 // The section number of a heading, from the count of headings so far at each
 // level from h2 down: the second h3 under the first h2 is "1.2". Truncating
 // counters drops the deeper counts, so they start again under a new heading.
-// A level with no heading yet above this one counts as 0. unstrungApp numbers
-// its Help documents the same way (src/shared/markdown.mjs), so a section has
-// the same number in the app and here.
+// A level with no heading yet above this one counts as 0.
 function sectionNumber(counters, level) {
   const depth = level - 2;
   counters.length = depth + 1;
@@ -29,17 +27,20 @@ function sectionNumber(counters, level) {
   return Array.from(counters, (n) => n ?? 0).join(".");
 }
 
-// The contents navigation for a page, titled "Page Contents" on
-// screen and, like the list panels in the layout, with no aria-label, so the
-// title is what NVDA reads after "navigation landmark". Its first link is the
-// page's h1,
+// The contents navigation for a page, titled "Page Contents" on screen and,
+// like the list panels in the layout, with no aria-label, so the title is what
+// NVDA reads after "navigation landmark". Its first link is the page's h1,
 // which the layout gives the id page-title, without a number. Then come the
 // h2 headings, with their h3 headings in a list inside each and the h4
-// headings inside those, each with its section number. Empty when the page
-// has no h2, h3 or h4.
+// headings inside those. Each of these links starts with the heading's section
+// number, "1.2: ", so a screen reader user moving through the list hears where
+// the entry sits. The headings on the page are not numbered.
+// docs/site-structure.md has the reasons. Empty when the page has no h2, h3
+// or h4.
 function contentsNav(headings, title) {
   const entries = headings.filter((h) => h.level >= 2 && h.level <= 4);
   if (!entries.length) return "";
+  const counters = [];
 
   // title gives mouse users the full heading when the panel truncates it.
   const link = (id, text) => `<a href="#${id}" title="${text.replace(/"/g, "&quot;")}">${text}</a>`;
@@ -60,7 +61,7 @@ function contentsNav(headings, title) {
       items += '<ul role="list">';
       parent.hasList = true;
     }
-    items += `<li>${link(h.id, `${h.number}: ${h.label}`)}`;
+    items += `<li>${link(h.id, `${sectionNumber(counters, h.level)}: ${h.label}`)}`;
     open.push({ level: h.level, hasList: false });
   }
   while (open.length) close();
@@ -109,21 +110,13 @@ export default function (eleventyConfig) {
   // Gives every heading without an id one made from its text, so a page can
   // link to its own sections and other pages can link to them: "## Part 1:
   // Sound and waves" becomes id="part-1-sound-and-waves". Uses Eleventy's
-  // slugify filter, the same one its IdAttributePlugin uses.
-  //
-  // On pages with a side panel, which the page-contents comment in the layout
-  // marks, every heading below the h1 also gets its section number in front of
-  // its text: "1: ", "1.1: ", "1.1.1: ". The colon makes a short pause after
-  // the number in speech. The id is made from the text without the number, so
-  // links to a section keep working when sections are added or moved. Then the
-  // comment is replaced with the contents navigation, built from the same
-  // headings. docs/site-structure.md has the reasons.
+  // slugify filter, the same one its IdAttributePlugin uses. Then, on pages with
+  // a side panel, replaces the page-contents comment in the layout with the
+  // contents navigation, built from the same headings.
   eleventyConfig.addTransform("headings", function (content) {
     if (!isSitePage(this.page)) return content;
     const slugify = eleventyConfig.getFilter("slugify");
     const used = new Set([...content.matchAll(/\sid="([^"]+)"/g)].map((m) => m[1]));
-    const hasContents = content.includes("<!--page-contents-->");
-    const counters = [];
     const headings = [];
 
     const withIds = content.replace(/<h([1-6])>(.*?)<\/h\1>/gs, (whole, level, inner) => {
@@ -132,12 +125,11 @@ export default function (eleventyConfig) {
       let id = base;
       for (let n = 2; used.has(id); n++) id = `${base}-${n}`;
       used.add(id);
-      const number = hasContents && level >= 2 ? sectionNumber(counters, Number(level)) : "";
-      headings.push({ level: Number(level), id, label, number });
-      return `<h${level} id="${id}">${number ? `${number}: ` : ""}${inner}</h${level}>`;
+      headings.push({ level: Number(level), id, label });
+      return `<h${level} id="${id}">${inner}</h${level}>`;
     });
 
-    if (!hasContents) return withIds;
+    if (!withIds.includes("<!--page-contents-->")) return withIds;
     const title = (withIds.match(/<h1 id="page-title">(.*?)<\/h1>/s)?.[1] ?? "").replace(/<[^>]+>/g, "").trim();
     return withIds.replace("<!--page-contents-->", contentsNav(headings, title));
   });
