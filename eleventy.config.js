@@ -29,7 +29,7 @@ function sectionNumber(counters, level) {
   return Array.from(counters, (n) => n ?? 0).join(".");
 }
 
-// The contents navigation for a page, titled "Current Page Contents" on
+// The contents navigation for a page, titled "Page Contents" on
 // screen and, like the list panels in the layout, with no aria-label, so the
 // title is what NVDA reads after "navigation landmark". Its first link is the
 // page's h1,
@@ -66,7 +66,7 @@ function contentsNav(headings, title) {
   while (open.length) close();
 
   return `<nav class="panel">
-          <p class="panel-title">Current Page Contents</p>
+          <p class="panel-title">Page Contents</p>
           <ul role="list">${items}</ul>
         </nav>`;
 }

@@ -42,7 +42,7 @@ and iOS falls back to a page screenshot for a home-screen icon.
 
 Some pages have a left column of navigation landmarks beside the page:
 
-- **Current Page Contents:** its first link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
+- **Page Contents:** its first link is the page's `h1`, unnumbered, followed by the `##` headings with their `###` and `####`
   headings nested inside, each with its section number. Built at build time from the headings.
   Left out when the page has no `##`, `###` or `####`.
 - **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
@@ -61,7 +61,9 @@ Every panel has a visible title, given above, and no `aria-label`. Decided with 
 "navigation landmark" followed by its first line, which is the title, so the title is heard once,
 even when moving by landmark. With a label as well, the same words were heard twice. The contents
 panel first had an `aria-label` and no visible title, and NVDA read the label and then the first
-link; Joel preferred the list panels' sound, and a visible title helps sighted readers too.
+link; Joel preferred the list panels' sound, and a visible title helps sighted readers too. Its
+title was "Current Page Contents" at first, which read as if the contents were the current page,
+so it became "Page Contents".
 
 This is the standard layout for any page that pairs content with navigation panels. All of it is
 in `base.njk` and `style.css`; a new section only needs its own list panel.

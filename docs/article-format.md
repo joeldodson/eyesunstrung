@@ -24,7 +24,7 @@ added, its section here is added by hand:
 Prompter's Notes: ...
 ```
 
-Each article page also gets a contents panel: a navigation landmark titled "Current Page Contents",
+Each article page also gets a contents panel: a navigation landmark titled "Page Contents",
 whose first link is the article's title, followed by its `##` headings with their `###` and `####`
 headings nested inside. It is built from the headings when the site is built, so articles never
 contain one. An article with no `##`, `###` or `####` headings gets no contents panel.
