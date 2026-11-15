@@ -8,7 +8,11 @@
     left only the two dropdown buttons reachable by Tab, and no item inside a
     dropdown. An explicit tabindex puts a link in the order whatever that
     setting says. Other browsers already stop on links, so nothing changes
-    there. base.njk and banner.njk do the same for the skip link and the banner. -#}
+    there. base.njk and banner.njk do the same for the skip link and the banner.
+
+    Every dropdown link has a title attribute repeating its text. header.css
+    keeps each item to one line and cuts a long one off with an ellipsis; the
+    title shows the whole text on hover, as on the side panels' links. -#}
     <nav class="main-menu" aria-label="Main">
       <ul role="list">
         <li><a href="/" tabindex="0"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
@@ -16,9 +20,9 @@
           <details class="submenu">
             <summary>Articles</summary>
             <ul role="list">
-              <li><a href="/articles/" tabindex="0"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
+              <li><a href="/articles/" tabindex="0" title="All articles"{% if page.url == "/articles/" %} aria-current="page"{% endif %}>All articles</a></li>
               {%- for article in collections.articles %}
-              <li><a href="{{ article.url }}" tabindex="0"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
+              <li><a href="{{ article.url }}" tabindex="0" title="{{ article.data.title }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
               {%- endfor %}
             </ul>
           </details>
@@ -33,7 +37,7 @@
                 { url: "/unstrung/docs/", label: "Documentation" },
                 { url: "/unstrung/videos/", label: "Videos" }
               ] %}
-              <li><a href="{{ item.url }}" tabindex="0"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
+              <li><a href="{{ item.url }}" tabindex="0" title="{{ item.label }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
               {%- endfor %}
             </ul>
           </details>

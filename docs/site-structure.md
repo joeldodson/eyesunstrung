@@ -32,10 +32,36 @@ nothing (2026-10-10). In WebKit, clicking a dropdown button focuses it, but pres
 does not focus the link: focus goes to nothing, and closing the dropdown then left the click with no
 link to land on. Reproduced in Playwright's WebKit with the old script, and fixed there.
 
+Dropdown items are one line each, like the side panels' entries (2026-11-14, at Joel's request): a
+title too long for the list is cut off with an ellipsis. This is CSS only (`white-space: nowrap`,
+`overflow: hidden`, `text-overflow: ellipsis`), with no ARIA. The link's text in the page is still
+the whole title, so a screen reader reads all of it, and each link has a `title` attribute with the
+same text for hover. Checked in Edge with a 76-character title: the item stays one line, the page's
+text and the accessibility tree both hold the whole title. Joel wants no wrapping in the dropdowns
+or the panels.
+
+In windows up to 40rem wide, an open dropdown is placed from the menu bar, 1rem from its left edge
+and at most 1rem short of its right, not from its own button (2026-11-14). Placed from its button,
+a list ran 17 to 35 px past a 320 px window and the page scrolled sideways, against WCAG 1.4.10.
+The list opens under the whole bar, which is two rows of items at 320 px, so it can sit a row below
+its button. Measured at 320, 390 and 639 px on a site page and the app's page: no list passes the
+window's edge. Tapping and clicking items still follows them, in Edge and Playwright's WebKit.
+
 The bar is slate (`#475569`) with cream text and a cream line along its top, the same in light and
 dark mode, so it stands apart from the page in both. Each dropdown button has a chevron drawn with
 CSS borders, with no text for a screen reader to read. On touchscreens (`pointer: coarse`), menu,
 panel and footer links are at least 44 px tall; with a mouse they keep the 24 px WCAG AA minimum.
+
+A page's text is 36rem wide (`--measure` in `style.css`), 576 px at the usual font size, on
+single-column pages and beside the panels alike: about 70 to 80 characters to a line. Until
+2026-11-14 it was 68ch, which came to 717 and 749 px and 90 to 110 characters, since a `ch` is the
+width of the digit 0 and wider than the average letter.
+
+`style.css` sets `color-scheme: light dark` (2026-11-14), so in dark mode the browser draws its own
+parts dark: the Playback speed select on the videos page, and the panels' scrollbars. Before, the
+select was black on white on the dark page.
+
+`docs/site-review-2026-11.md` is a review of the whole site, with findings and open questions.
 
 The site has no PNG icons, by Joel's choice (2026-09-30): the SVG favicon covers current browsers,
 and iOS falls back to a page screenshot for a home-screen icon.
@@ -77,8 +103,10 @@ in `base.njk` and `style.css`; a new section only needs its own list panel.
   is at most the window's height, and scrolls inside itself if needed. It has its own grid column,
   so it never covers the page or a focused element in it. On narrow screens it scrolls with the
   page, since a fixed panel there would cover the article.
-- **Space:** the list panel shows in full up to 14rem (about eight entries) and scrolls beyond
-  that. The contents panel gets the rest, so it shows every heading when the window allows.
+- **Space:** the list panel shows in full up to 21rem, its title and eight entries, and scrolls
+  beyond that. It was 14rem until 2026-11-14, which held only five entries: with seven documents,
+  the last two were out of view until the panel was scrolled. Measured 2026-11-14: eight entries
+  show with no scrolling, and a ninth makes the panel scroll. The contents panel gets the rest, so it shows every heading when the window allows.
   Joel is fine with a long contents list scrolling; nothing more is done to avoid it.
 - **One line per entry:** panel links do not wrap. A long title or heading is cut off at the
   panel's edge with an ellipsis. The link text is still the whole heading, so a screen reader reads

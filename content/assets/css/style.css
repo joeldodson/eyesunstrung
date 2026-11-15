@@ -39,7 +39,13 @@
   --link-visited: #5b2a86;
   --border: #6e7781;
   --focus: #b3361b;
-  --measure: 68ch;
+  /* The width of a page's text: about 70 to 75 characters to a line. In rem,
+     not ch: a ch is the width of "0", wider than the average letter in this
+     font, and 68ch measured 90 to 110 characters to a line (2026-11-14). */
+  --measure: 36rem;
+  /* Tells the browser both schemes are supported, so in dark mode it draws
+     its own parts dark too: form controls, and the panels' scrollbars. */
+  color-scheme: light dark;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -120,8 +126,10 @@ a:visited {
   padding-inline: 1rem;
 }
 
+/* --measure is the width of the text, so main is wider by its own padding.
+   Beside the side panels main has no padding and is --measure wide. */
 main {
-  max-width: var(--measure);
+  max-width: calc(var(--measure) + 2rem);
   margin-inline: auto;
   padding: 1.5rem 1rem 3rem;
 }
@@ -142,8 +150,10 @@ nav a[aria-current="page"] {
    cannot hide a focused element there.
 
    Within the column, the same slate line separates one panel from the next.
-   A later panel (the article list) shows in full up to 14rem, about eight
-   articles, and scrolls beyond that; the contents panel gets all the rest of
+   A later panel (the article or documentation list) shows in full up to
+   21rem, its title and eight entries, and scrolls beyond that. It was 14rem
+   until 2026-11-14, which held five entries and hid the last two of the
+   seven documents; the contents panel gets all the rest of
    the height, so it shows every heading whenever the window is tall enough,
    and scrolls inside itself when it is not.
 
@@ -164,6 +174,7 @@ nav a[aria-current="page"] {
 }
 
 .panel-layout main {
+  max-width: var(--measure);
   margin-inline: 0;
   padding-inline: 0;
 }
@@ -192,7 +203,7 @@ nav a[aria-current="page"] {
 
 .panel + .panel {
   flex: 0 0 auto;
-  max-height: 14rem;
+  max-height: 21rem;
   margin-block-start: 1rem;
   padding-block-start: 1rem;
   border-block-start: 2px solid var(--slate);

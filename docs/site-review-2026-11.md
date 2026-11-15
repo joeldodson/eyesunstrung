@@ -4,6 +4,20 @@ A review of eyesunstrung.vip at commit 6f8eea3, done 2026-11-14. Nothing was cha
 edited, nothing committed, and the repository's `_site` folder was not touched. This file is the
 only addition.
 
+## Status
+
+Kept up to date as findings are dealt with.
+
+- **Finding 1, dropdowns at 320 px:** fixed 2026-11-14. In windows up to 40rem wide the list is
+  placed from the menu bar.
+- **Finding 2, cut-off contents entries:** not to be built. Joel wants no wrapping. On the same
+  day the dropdown items were also made one line each, cut off the same way.
+- **Finding 4, documentation list height:** fixed 2026-11-14. The limit is 21rem, eight entries.
+- **Finding 5, dark mode:** `color-scheme` added 2026-11-14. The faint slate lines in dark mode
+  are not changed.
+- **Finding 6, line length:** fixed 2026-11-14. `--measure` is 36rem.
+- Everything else is open, and so are questions 2 to 11.
+
 ## How it was done
 
 - Read every tracked file except the body of `scripts/build-banner.mjs`, of which only the header

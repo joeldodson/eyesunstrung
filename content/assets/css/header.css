@@ -124,12 +124,36 @@
   border: 1px solid var(--border, #6e7781);
 }
 
+/* One line per item, as in the side panels: a title too long for the list is
+   cut off with an ellipsis rather than wrapping. Only the drawing is shortened;
+   the link's text, and so what a screen reader reads, is the whole title, and
+   its title attribute shows the whole title on hover. */
 .submenu li a {
-  display: inline-block;
+  display: block;
   min-height: 24px;
   padding-block: 0.3rem;
   color: var(--link, #0b4f8a);
   text-underline-offset: 0.15em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Narrow windows: the list is placed from the menu bar, not from its own
+   button, 1rem in from the bar's left edge and at most 1rem short of its
+   right edge, so it cannot run past the window and make the page scroll
+   sideways (WCAG 1.4.10). It opens under the whole bar, which may be two rows
+   of items here. Measured 2026-11-14 at 320px: placed from its button, the
+   Articles list ended at 339px and the unstrung list at 337px. */
+@media (max-width: 40rem) {
+  .main-menu > ul > li {
+    position: static;
+  }
+
+  .submenu > ul {
+    left: 1rem;
+    max-width: calc(100% - 2rem);
+  }
 }
 
 .submenu li a:visited {
@@ -145,10 +169,15 @@
    instead of the 24px WCAG AA minimum used with a mouse. */
 @media (pointer: coarse) {
   .main-menu > ul > li > a,
-  .main-menu summary,
-  .submenu li a {
+  .main-menu summary {
     display: inline-flex;
     align-items: center;
     min-height: 44px;
+  }
+
+  /* Dropdown items stay block, so the ellipsis still works; padding makes the height. */
+  .submenu li a {
+    min-height: 44px;
+    padding-block: 0.6rem;
   }
 }
