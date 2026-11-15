@@ -72,7 +72,8 @@ function contentsNav(headings, title) {
         </nav>`;
 }
 
-// Structural problems in one built article page, as sentences.
+// Structural problems in one built page, as sentences. Written for articles
+// and now run on every page of the site; see the check near the end.
 function articleProblems(html) {
   const problems = [];
   const h1Count = (html.match(/<h1[\s>]/g) || []).length;
@@ -175,23 +176,51 @@ export default function (eleventyConfig) {
     [`${fontPackage}/LICENSE`]: "assets/fonts/OFL.txt",
   });
 
-  // Checks every built article page and stops the build on a problem. Runs
+  // Checks the headings of every built page of the site: one h1, no skipped
+  // level, and every link to a section of the page matching a heading. Runs
   // after the build, not as a linter, because heading ids are only added at
   // the very end. docs/article-format.md describes the format checked here.
+  //
+  // A problem on one of this site's own pages stops the build. A problem on a
+  // page built from the unstrung release (the introduction and the
+  // documentation) only prints a warning: it cannot be fixed here, only in
+  // unstrungApp's user-docs and a new release, and stopping would block every
+  // other change to the site until then. The web app's page is not checked;
+  // it is the app's own markup.
   eleventyConfig.on("eleventy.after", ({ results }) => {
+    const fromRelease = new Set([
+      "./content/unstrung/index.njk",
+      "./content/unstrung/docs/index.njk",
+      "./content/unstrung/docs/document.njk",
+    ]);
     const reports = results
-      .filter((r) => r.inputPath.startsWith("./content/articles/") && r.outputPath)
-      .map((r) => [r.inputPath, articleProblems(fs.readFileSync(r.outputPath, "utf8"))])
-      .filter(([, problems]) => problems.length)
-      .map(([inputPath, problems]) => `${inputPath}:\n- ${problems.join("\n- ")}`);
-    if (reports.length) {
-      throw new Error(`${reports.join("\n")}\nSee docs/article-format.md.`);
+      .filter((r) => r.outputPath && r.outputPath.endsWith(".html") && r.url !== "/unstrung/app/")
+      .map((r) => ({ r, problems: articleProblems(fs.readFileSync(r.outputPath, "utf8")) }))
+      .filter(({ problems }) => problems.length);
+    const text = (list) => list.map(({ r, problems }) => `${r.url} (${r.inputPath}):\n- ${problems.join("\n- ")}`).join("\n");
+
+    const warnings = reports.filter(({ r }) => fromRelease.has(r.inputPath));
+    if (warnings.length) {
+      console.warn(
+        `[eyesunstrung] WARNING: heading problems in pages built from the unstrung release.\n${text(warnings)}\n` +
+          "The site is built anyway. Fix them in unstrungApp's user-docs; they reach the site with the next release.",
+      );
+    }
+    const errors = reports.filter(({ r }) => !fromRelease.has(r.inputPath));
+    if (errors.length) {
+      throw new Error(`Heading problems:\n${text(errors)}\nSee docs/article-format.md.`);
     }
   });
 
   // Checks every link within the site, on every page: the page or file it
-  // points to must exist, and so must the heading id after a #. Stops the
-  // build on a broken link. Links to other sites are not checked.
+  // points to must exist, and so must the heading id after a #. The same for
+  // every src that names a file of the site. Stops the build on a broken
+  // link. Links to other sites are not checked.
+  //
+  // Links within the site are written from its root, starting with "/". A
+  // relative one, such as "introduction/", cannot be checked this way, so on
+  // the site's own pages it stops the build too. The web app's page is the
+  // app's own markup and keeps its relative addresses.
   eleventyConfig.on("eleventy.after", ({ dir, results }) => {
     const pages = results.filter((r) => r.outputPath && r.outputPath.endsWith(".html"));
     const html = new Map(pages.map((r) => [path.resolve(r.outputPath), fs.readFileSync(r.outputPath, "utf8")]));
@@ -199,7 +228,16 @@ export default function (eleventyConfig) {
 
     for (const page of pages) {
       const source = html.get(path.resolve(page.outputPath));
-      for (const [, href] of source.matchAll(/href="(\/(?!\/)[^"]*)"/g)) {
+      if (page.url !== "/unstrung/app/") {
+        for (const [, attribute, value] of source.matchAll(/\s(href|src)="([^"]*)"/g)) {
+          // Fine: from the root, a section of this page, another site
+          // (a scheme, or // for one), or nothing.
+          if (!/^(\/|#|[a-z][a-z0-9+.-]*:|$)/i.test(value)) {
+            broken.push(`${page.inputPath}: ${attribute}="${value}" is a relative address; write it from the site's root, starting with /`);
+          }
+        }
+      }
+      for (const [, href] of source.matchAll(/\s(?:href|src)="(\/(?!\/)[^"]*)"/g)) {
         const [target, hash] = href.split("#");
         let file = path.resolve(dir.output, "." + decodeURI(target.split("?")[0]));
         if (target.endsWith("/")) file = path.join(file, "index.html");
@@ -235,6 +273,9 @@ export default function (eleventyConfig) {
   });
 
   eleventyConfig.addGlobalData("layout", "base.njk");
+  // The site's address, for the few places that need a full one: canonical
+  // links, the tags apps read to preview a shared link, and the sitemap.
+  eleventyConfig.addGlobalData("siteUrl", "https://eyesunstrung.vip");
   eleventyConfig.addGlobalData("year", () => new Date().getFullYear());
 }
 

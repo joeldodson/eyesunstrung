@@ -3,7 +3,8 @@
 // Each player sits in a <details> element and is embedded with enablejsapi=1,
 // which lets the page send it commands with postMessage (YouTube's IFrame
 // Player API, without loading YouTube's own script). This adds:
-//   - closing a disclosure pauses its video; opening it again resumes;
+//   - closing a disclosure pauses its video; opening it again leaves it
+//     paused where it was;
 //   - a "Playback speed" select above each player, applied through the API.
 //     The chosen speed applies to every video on the page and is remembered in
 //     this browser, since YouTube's own speed setting sits in its player's

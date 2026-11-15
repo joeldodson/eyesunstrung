@@ -14,8 +14,9 @@ article, linking to it, followed by Joel's Prompter's Notes on that article. The
 item, "All articles", links to it.
 
 It lives in the articles folder but is not an article. Its front matter has
-`eleventyExcludeFromCollections: true`, which keeps it out of the article lists, gives it the plain
-page layout without panels or a date, and means only `title` is required. When a new article is
+`eleventyExcludeFromCollections: true`, which keeps it out of the article lists, leaves off the
+article date and the eyesunstrung Articles panel, and means only `title` is required. Its
+`contentsPanel: true` gives it the Page Contents panel. When a new article is
 added, its section here is added by hand:
 
 ```
@@ -64,11 +65,16 @@ Rules for the body:
 - Write for someone using a screen reader. Headings are the main way to navigate, so give each section a heading that says what it covers. Link text should make sense on its own; never "click here" or "this link". Don't rely on visual layout, colour or position ("the table below", "on the right").
 - Do not write a contents section, however long the article is. The site will generate one from the headings.
 - Do not number headings, and do not start a heading with "Part 1" or similar. The site's contents panel numbers every heading itself (1, 1.1, 1.1.1), so a number written in the heading would be said twice there.
-- Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Part 1: Sound and waves" can be linked as [Part 1: Sound and waves](#part-1-sound-and-waves). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
+- Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Sound & waves: the basics" can be linked as [Sound & waves: the basics](#sound-and-waves-the-basics). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
 - To link to another article on the site, use /articles/ followed by its file name without .md and a trailing slash, for example [Physics, Math, and Music](/articles/physics-math-and-music/). Add #heading-id to link to a section of it.
 - To make a link open in a new tab, end its text with "(opens in new tab)", for example [the unstrung web app (opens in new tab)](/unstrung/app/). The site adds what the browser needs; the words are also the warning a screen reader user needs. Nothing else opens a new tab.
 - If there is a glossary, make it a ## heading at the end, with a bulleted list of "Term - definition" lines, one term per line, in alphabetical order.
 ```
+
+The heading id example in the instructions was "Part 1: Sound and waves" until 2026-11-14, which
+the rule against "Part 1" headings contradicts. Physics, Math, and Music was written before that
+rule and keeps its "Part 1:" headings, by Joel's decision the same day: its contents panel reads
+"2: Part 1: Sound and Waves", and that is accepted for this article.
 
 Joel's changes to the first draft of these instructions, 2026-09-26: no Prompter's Note
 placeholder (he adds that section himself when he wants one), and no contents section even for
@@ -110,7 +116,9 @@ Front matter, checked in `content/articles/articles.11tydata.js`:
 - `title`, `description` and `date` are all present. Without a `date`, Eleventy falls back to the
   file's creation time, which changes when the repository is cloned, and the list order with it.
 
-The built page, checked in `eleventy.config.js` after the build, once heading ids exist:
+The built page, checked in `eleventy.config.js` after the build, once heading ids exist. Since
+2026-11-14 the same three checks run on every page of the site, not only articles;
+`docs/site-structure.md`, under Build checks, says how the unstrung documents differ:
 
 - Exactly one `h1`.
 - No skipped heading levels, for example a `####` straight after a `##`.

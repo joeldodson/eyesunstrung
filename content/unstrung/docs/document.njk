@@ -3,12 +3,20 @@ pagination:
   data: unstrungDocs.documents
   size: 1
   alias: doc
+  # So every document's page is in collections.all, which the sitemap lists.
+  # Without it only the first page is.
+  addAllPagesToCollections: true
 permalink: "/unstrung/docs/{{ doc.id }}/"
 sidePanel: docs
 eleventyComputed:
   title: "{{ doc.title }}"
   description: "{{ doc.title }}, from the unstrung documentation."
+  canonical: "{{ '/unstrung/' if doc.id == 'introduction' else '' }}"
 ---
 {#- One page per document in unstrungApp's user-docs, from content/_data/unstrungDocs.js.
-    None when the fetched release has no documentation. -#}
+    None when the fetched release has no documentation.
+
+    The introduction is also the /unstrung/ page, with the same text and title.
+    canonical names /unstrung/ as its main address, which the layout writes as
+    a link in the head for search engines. No other document has one. -#}
 {{ doc.html | safe }}

@@ -80,10 +80,32 @@ width of the digit 0 and wider than the average letter.
 parts dark: the Playback speed select on the videos page, and the panels' scrollbars. Before, the
 select was black on white on the dark page.
 
+Four changes to appearance were made on 2026-11-14 from the site review, by measurement alone;
+Joel chose not to wait for a sighted person to look first. All are in `style.css`.
+
+- **Lines in dark mode:** the lines beside the page column, between panels and above the footer
+  take `--line`. On the light page that is the menu bar's slate, 7.6 to 1. On the dark page it is
+  `--border`, 6.0 to 1, because slate there is 2.4 to 1 and the lines exist so low vision readers
+  can tell the regions apart. The menu bar itself is slate in both schemes.
+- **Panel links are not underlined.** In a list where every line is a link, in the link colour,
+  under a title, the underline is not what marks them as links, and a long contents list of them
+  was heavy. The underline returns under the pointer, and the current page keeps it, thick, with
+  its bold. Links in the page's text and the footer are underlined as before. The focus outline is
+  unchanged.
+- **Contents levels:** the top-level entries of Page Contents, the page title and the `h2`
+  sections, are weight 600; entries nested under them are 400. A current page in a list panel is
+  700. The heavier entries are slightly wider, so one more entry on unstrung Features is cut off,
+  5 of 34.
+- **Footer on single-column pages:** the footer is as wide as `main`, so its text starts and ends
+  where the page's text does, 352 to 928 px in a 1280 px window. It spanned the page width before,
+  which put it 265 px to the left of the text. Its line is the footer's box, 16 px wider than the
+  text each side, as `main`'s box is. Beside side panels the footer still fills the page column.
+
 `docs/site-review-2026-11.md` is a review of the whole site, with findings and open questions.
 
 The site has no PNG icons, by Joel's choice (2026-09-30): the SVG favicon covers current browsers,
-and iOS falls back to a page screenshot for a home-screen icon.
+and iOS falls back to a page screenshot for a home-screen icon. The one PNG published is the
+picture for link previews, which no page displays; see "Search engines and shared links".
 
 Some pages have a left column of navigation landmarks beside the page:
 
@@ -92,8 +114,12 @@ Some pages have a left column of navigation landmarks beside the page:
   Left out when the page has no `##`, `###` or `####`.
 - **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
   marked `aria-current="page"`. Article pages only.
-- **unstrung Pages:** The unstrung app, Documentation and Videos. The `/unstrung/` page only, set by
-  `sidePanel: unstrung` in its front matter.
+- **unstrung Pages:** The app, Documentation and Videos. The `/unstrung/` page only, set by
+  `sidePanel: unstrung` in its front matter. The links and their names come from
+  `content/_data/unstrungPages.json`, which the unstrung dropdown also reads, so a page has one
+  name in both places; the panel leaves out the page it is on. Until 2026-11-14 the two lists
+  were written separately, and the panel said "The unstrung app" where the dropdown said "The
+  app". Joel chose "The app" for both.
 - **unstrung Documentation:** About unstrung and each unstrung document, by its Help menu name,
   current one marked. The `/unstrung/docs/` pages, set by `sidePanel: docs`.
 
@@ -204,7 +230,7 @@ stretched nor off centre. The unstrung desktop app shows the same image with the
 
 Both are drawn by `scripts/build-banner.mjs` (`npm run build:banner`); the SVG files are committed,
 so the site build does not need to run it. The script's comments describe the geometry. The unstrung
-app is to use the same banner and favicon; copying them into unstrungApp is still to do.
+desktop app has its own copy of the banner, in unstrungApp, with a link to the site's full address.
 
 Checked 2026-09-29 by measuring the drawing in a browser, not by looking at it: every part is in the
 frame; the pickguard, pickup, bridge, tailpiece, f-holes and the fretboard's end sit inside the body
@@ -325,6 +351,11 @@ it into `unstrung-release/`, which is not committed. The site workflow runs it b
   heading is its title, so it is left out of the body. The documents link to eyesunstrung.vip with
   full addresses, so the links work in the desktop app too; here they become site-relative, so the
   link check covers them.
+- The introduction is published twice, at `/unstrung/` and `/unstrung/docs/introduction/`, with
+  the same text and title. Since 2026-11-14 the second has a canonical link in its head naming
+  `/unstrung/` as the main address, so search engines show that one. Joel chose this over a
+  separate title or a single address. A page sets `canonical` in its front matter, and `base.njk`
+  writes the link; no other page has one.
 - `/unstrung/` is the introduction. `/unstrung/docs/` is the About document, the same text as the
   app's About unstrung dialog. Every other document has its own page at
   `/unstrung/docs/<name>/`, `<name>` being its file name in unstrungApp's `user-docs/`.
@@ -334,13 +365,62 @@ it into `unstrung-release/`, which is not committed. The site workflow runs it b
   say the release does not include the documentation, and there are no document pages.
 - `--from` takes a local tarball or folder instead, for trying an unreleased build.
 
+## Search engines and shared links
+
+Added 2026-11-14, from the site review. None of it is seen or heard by a reader of the site.
+
+- **Sitemap:** `content/sitemap.njk` writes `/sitemap.xml`, every page's full address. It lists
+  every page in `collections.all` except the 404 page and any page with `canonical` set, and adds
+  `/articles/` and `/unstrung/app/` by name, since both keep themselves out of collections for
+  other reasons. `document.njk` sets `addAllPagesToCollections`, or only the first document would
+  be in `collections.all`. `content/robots.njk` writes `/robots.txt`, which allows everything and
+  points to the sitemap.
+- **Title cards:** `content/_includes/social-card.njk` writes the tags an app reads to preview a
+  shared link (Open Graph): the page's title, its description, its address and a picture.
+  `base.njk` includes it on every page but the 404 page, and `content/unstrung/app/index.njk` on
+  the web app's page, whose front matter has a title and description for this alone.
+- **The card's picture** is `content/assets/images/social-card.png`, 1200 by 630. It is the one
+  PNG published with the site, and no page displays it: Joel's rule is that the site shows only
+  SVG images. It exists because the apps that build link previews do not accept SVG, as YouTube
+  does not. `npm run build:branding` makes it from the YouTube banner's drawing, cut to the site
+  banner with wall above and table below; run it after `npm run build:banner` if the drawing
+  changes, and commit the file.
+- **Canonical:** a page that repeats another sets `canonical` in its front matter; see "unstrung,
+  from its releases".
+- `siteUrl`, the site's full address, is global data set in `eleventy.config.js`.
+- No feed for the articles yet. Joel's decision: wait until there are more than two.
+
+Checked 2026-11-14 in the built site: the sitemap parses as XML and lists 13 addresses, each an
+existing page, with the 404 page and `/unstrung/docs/introduction/` left out; every page but the
+404 page has the nine card tags with its own title and address; the picture is 1200 by 630 and
+opaque, its corners are the wall and table colours, and the title's cream pixels sit from 716 to
+1115 px across and 243 to 293 px down, well inside it. Not checked: how any app draws the card.
+That needs the live site and a sighted person.
+
 ## Build checks
 
 The build stops, naming the file, on:
 
 - an article missing `title`, `description` or `date` (`content/articles/articles.11tydata.js`);
-- an article page with more than one `h1`, a skipped heading level, or a link to a heading on the
-  page that does not exist;
-- any link within the site, on any page, to a page, file or heading id that does not exist.
+- any of this site's own pages with more than one `h1`, a skipped heading level, or a link to a
+  heading on the page that does not exist. Until 2026-11-14 only articles were checked;
+- any link within the site, on any page, to a page, file or heading id that does not exist, and
+  any `src` naming a file of the site that does not exist;
+- a relative link or `src`, such as `introduction/`, on one of this site's own pages
+  (2026-11-14). Addresses within the site are written from its root, starting with `/`, which is
+  what the check above can follow. The web app's page keeps its own relative addresses.
 
 The last two run after the build in `eleventy.config.js`.
+
+The same heading check runs on the pages built from the unstrung release: `/unstrung/`,
+`/unstrung/docs/` and each document. There a problem prints a warning, starting
+`[eyesunstrung] WARNING`, and the site is built anyway. Joel's decision, 2026-11-14: a document
+cannot be fixed in this repository, only in unstrungApp's `user-docs` and a new release, and
+stopping would block every other change to the site until then. The place to stop a bad document
+is unstrungApp's own build, before a release; nothing there checks heading levels yet. The web
+app's page is not checked.
+
+Tested 2026-11-14: the site as it stands builds with no warning; a level 4 heading after a level 2
+added to a local copy of a document gives the warning and a finished build; the same in a
+temporary page of this site, with a link to a heading that does not exist, stops the build and
+names both problems.

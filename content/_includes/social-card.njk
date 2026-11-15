@@ -1,0 +1,21 @@
+{#- What an app shows when a link to the page is shared: title, description
+    and a picture (Open Graph tags, which the large apps read). Included in
+    the head by base.njk, and by content/unstrung/app/index.njk for the web
+    app's page. Uses the page's title and description, and canonical when the
+    page is a copy of another.
+
+    The picture is a PNG because those apps do not accept SVG. No page
+    displays it; the site shows only SVG images. scripts/render-branding.mjs
+    makes it from the banner's drawing. -#}
+    <meta property="og:site_name" content="eyesunstrung">
+    <meta property="og:type" content="{{ 'article' if isArticle else 'website' }}">
+    <meta property="og:title" content="{{ title }}">
+    {%- if description %}
+    <meta property="og:description" content="{{ description }}">
+    {%- endif %}
+    <meta property="og:url" content="{{ siteUrl }}{{ canonical or page.url }}">
+    <meta property="og:image" content="{{ siteUrl }}/assets/images/social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="An unstrung archtop guitar lying on a table, a pair of sunglasses under its neck, and the name eyesunstrung.">
+    <meta name="twitter:card" content="summary_large_image">

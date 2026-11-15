@@ -25,7 +25,35 @@ Kept up to date as findings are dealt with.
   takes focus; `docs/site-structure.md` has the detail.
 - **Finding 8, list panel below the window at the top of a long page:** left as it is. Joel keeps
   Page Contents first.
-- Everything else is open, and so are questions 6 to 11.
+- **Finding 14, the introduction at two addresses:** 2026-11-14, the documentation copy has a
+  canonical link to `/unstrung/`. Both pages stay.
+- **Finding 18, nothing for search engines or link previews:** 2026-11-14, a sitemap, a
+  `robots.txt` and title card tags were added, the web app's page included. No feed yet.
+- **Finding 16, the Physics article's "Part 1:" headings:** left as they are, by Joel's decision.
+  The example in the article instructions no longer uses a "Part 1" heading.
+- **Finding 12, the unstrung links written twice:** fixed 2026-11-14. One data file,
+  `content/_data/unstrungPages.json`, feeds the dropdown and the panel, and both say "The app".
+  The three list panels in `base.njk` still repeat their markup; no macro was written.
+- **Finding 9, heading checks cover articles only:** fixed 2026-11-14. Every page of the site is
+  checked. A problem on one of this site's pages stops the build; one in a page built from the
+  unstrung release prints a warning. Still to do, in unstrungApp: check the documents' heading
+  levels in its own build, before a release.
+- **Question 11, a sighted look first:** answered 2026-11-14, no, carry on. Built the same day
+  from measurements alone, in `style.css`:
+  - dividers in dark mode use `--border`, 6.0 to 1 against the page, where slate was 2.4 to 1;
+  - panel links are not underlined, except under the pointer and on the current page;
+  - top-level Page Contents entries are weight 600, nested ones 400. One more Features entry is
+    cut off as a result, 5 of 34;
+  - on single-column pages the footer is as wide as `main`, so its text starts and ends with the
+    page's text. Its line runs 16 px past the text each side, as `main`'s box does.
+- **Finding 10, relative links:** fixed 2026-11-14. A relative `href` or `src` on one of the
+  site's own pages stops the build, and `src` addresses are checked like links. Tested with a
+  temporary page.
+- **Finding 15, stale comments:** fixed 2026-11-14, except the README's first paragraph and the
+  15-video limit in the fetch script.
+- Open: finding 11 (Joel leans to leaving the Nunjucks setting), finding 13, finding 17 (the
+  workflow; it cannot be tested without pushing, so it was left), and the heading check wanted in
+  unstrungApp.
 
 ## How it was done
 
@@ -519,14 +547,21 @@ page's parts. A sighted person should check it.
    **Answered 2026-11-14: keep the panel on both.** The pages will grow.
 6. Is the introduction meant to live at both `/unstrung/` and `/unstrung/docs/introduction/`?
    If so, should one be marked as the main address?
+   **Answered 2026-11-14: both stay, and the documentation copy is marked,** with `/unstrung/` as
+   the main address. Built the same day.
 7. Do you want the site found by search engines and shown well when a link is shared? That decides
    whether a sitemap, canonical links and Open Graph tags are worth adding. A feed for the
    articles is a separate question.
+   **Answered 2026-11-14: yes to a sitemap and title cards, no feed for now.** The card's picture
+   is a PNG that no page displays; the site still shows only SVG images. Built the same day.
 8. The Physics article's headings start "Part 1:", against the rule written after it. Rename the
    headings, which changes their ids and any links to them, or leave this article as it is?
+   **Answered 2026-11-14: leave them.**
 9. In the unstrung dropdown the app is "The app" and in the side panel "The unstrung app". Is the
    difference intended?
+   **Answered 2026-11-14: no. Both say "The app" now.**
 10. May the heading checks run on every page, the unstrung documents included? A skipped level in
     a document would then stop the site build until it is fixed in unstrungApp and released.
+    **Answered 2026-11-14: check every page, but only warn for the unstrung documents.**
 11. Should a sighted person look over the two-column pages before any of the appearance points are
     acted on? The look and feel section is built from numbers.

@@ -27,6 +27,16 @@
     {%- if description %}
     <meta name="description" content="{{ description }}">
     {%- endif %}
+    {#- A page that repeats another sets canonical in its front matter to the
+        other's address, starting with a slash. Search engines then show that
+        one. Readers never meet it. #}
+    {%- if canonical %}
+    <link rel="canonical" href="{{ siteUrl }}{{ canonical }}">
+    {%- endif %}
+    {#- The tags apps read to preview a shared link. Not on the 404 page. #}
+    {%- if page.url != "/404.html" %}
+    {% include "social-card.njk" %}
+    {%- endif %}
     <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="/assets/css/style.css">
     <link rel="stylesheet" href="/assets/css/header.css">
@@ -62,12 +72,13 @@
         <nav class="panel">
           <p class="panel-title">unstrung Pages</p>
           <ul role="list">
-            {%- for item in [
-              { url: "/unstrung/app/", label: "The unstrung app" },
-              { url: "/unstrung/docs/", label: "Documentation" },
-              { url: "/unstrung/videos/", label: "Videos" }
-            ] %}
+            {#- The same list as the unstrung dropdown in main-menu.njk, from
+                content/_data/unstrungPages.json, without the page this panel
+                is on. #}
+            {%- for item in unstrungPages %}
+            {%- if item.url != page.url %}
             <li><a href="{{ item.url }}" title="{{ item.label }}">{{ item.label }}</a></li>
+            {%- endif %}
             {%- endfor %}
           </ul>
         </nav>

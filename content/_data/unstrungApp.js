@@ -5,7 +5,8 @@
 // copy; only the app and its documentation come from unstrungApp.
 //
 // The stylesheet and script for the banner and the bar are added to the page's head. They are the
-// only parts of the site the page loads; style.css would restyle the app.
+// only parts of the site the page loads; style.css would restyle the app. The template also adds
+// the tags apps read to preview a shared link, from _includes/social-card.njk.
 //
 // available is false when no release has been fetched. The build stops if the page has no single
 // </head> and no single <header> to replace, since the app's page would then have changed shape.
@@ -45,9 +46,11 @@ export default function () {
     '    <script src="/assets/js/menu.js" defer></script>',
     "",
   ].join("\n");
+  // head stops short of </head>, so the template can add the link preview tags there.
   return {
     available: true,
-    beforeHeader: `${head}${assets}</head>${body.slice(0, index)}`,
+    head: `${head}${assets}`,
+    beforeHeader: `</head>${body.slice(0, index)}`,
     afterHeader: `\n    ${body.slice(index + header.length)}`,
   };
 }

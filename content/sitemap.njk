@@ -1,0 +1,23 @@
+---
+permalink: /sitemap.xml
+layout: false
+eleventyExcludeFromCollections: true
+---
+{#- The sitemap: every page's full address, for search engines. robots.txt
+    points to it.
+
+    Listed: every page in collections.all, except the 404 page and any page
+    with canonical set, which is a copy of another page. Two pages keep
+    themselves out of collections for other reasons, so they are added by
+    name: /articles/, which is not an article, and the web app's page. -#}
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{%- for item in collections.all | sort(false, false, "url") %}
+{%- if item.url and item.url != "/404.html" and not item.data.canonical %}
+  <url><loc>{{ siteUrl }}{{ item.url }}</loc></url>
+{%- endif %}
+{%- endfor %}
+{%- for url in ["/articles/", "/unstrung/app/"] %}
+  <url><loc>{{ siteUrl }}{{ url }}</loc></url>
+{%- endfor %}
+</urlset>

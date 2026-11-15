@@ -46,6 +46,11 @@
   /* Tells the browser both schemes are supported, so in dark mode it draws
      its own parts dark too: form controls, and the panels' scrollbars. */
   color-scheme: light dark;
+  /* The lines between regions: beside the page column, between panels, and
+     above the footer. The menu bar's slate on the light page, 7.6:1. On the
+     dark page slate is only 2.4:1, too faint for lines meant to show low
+     vision readers where the regions are, so there they take --border, 6.0:1. */
+  --line: var(--slate);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,6 +63,7 @@
     --link-visited: #d2a8ff;
     --border: #8b949e;
     --focus: #ffb27a;
+    --line: var(--border);
   }
 }
 
@@ -97,8 +103,9 @@ a:visited {
   color: var(--link-visited);
 }
 
-/* Page widths. The footer spans up to --page-width, as the menu bar does; a
-   page's text column is held to --measure for comfortable line length. */
+/* Page widths. The menu bar's items and the panel layout span up to
+   --page-width; a page's text column is held to --measure for comfortable
+   line length. */
 :root {
   --page-width: 80rem;
   --panel-width: 18rem;
@@ -106,9 +113,18 @@ a:visited {
   --slate: #475569;
 }
 
-.site-footer,
 .panel-layout {
   max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: 1rem;
+}
+
+/* On single-column pages the footer is as wide as main, so its text and its
+   line start at the text's left edge and end at its right. It spanned
+   --page-width until 2026-11-14, which put it 265px to the left of the text
+   it follows. Beside side panels it fills the page column; see below. */
+.site-footer {
+  max-width: calc(var(--measure) + 2rem);
   margin-inline: auto;
   padding-inline: 1rem;
 }
@@ -159,7 +175,7 @@ nav a[aria-current="page"] {
 .page-column {
   align-self: stretch;
   padding-inline-start: 2.5rem;
-  border-inline-start: 2px solid var(--slate);
+  border-inline-start: 2px solid var(--line);
 }
 
 .panel-layout main {
@@ -195,7 +211,7 @@ nav a[aria-current="page"] {
   max-height: 21rem;
   margin-block-start: 1rem;
   padding-block-start: 1rem;
-  border-block-start: 2px solid var(--slate);
+  border-block-start: 2px solid var(--line);
 }
 
 @media (max-width: 50rem) {
@@ -212,7 +228,7 @@ nav a[aria-current="page"] {
     position: static;
     max-height: none;
     padding-inline-end: 0;
-    border-block-end: 2px solid var(--slate);
+    border-block-end: 2px solid var(--line);
   }
 
   .panel,
@@ -270,6 +286,26 @@ nav a[aria-current="page"] {
 
 .panel li a:focus-visible {
   outline-offset: -3px;
+}
+
+/* Panel links are not underlined: in a list where every line is a link, in
+   the link colour, under a title, the underline is not what marks them as
+   links, and sixty of them in a narrow column is heavy. The pointer brings
+   the underline back, and the current page keeps it, thick, with its bold. */
+.panel li a {
+  text-decoration: none;
+}
+
+.panel li a:hover,
+.panel li a[aria-current="page"] {
+  text-decoration: underline;
+}
+
+/* In Page Contents the top-level entries, the page title and its h2
+   sections, are heavier than the entries nested under them, so the sections
+   stand out from their parts. Less than the 700 of a current page. */
+.contents-panel > ul > li > a {
+  font-weight: 600;
 }
 
 h1,
@@ -378,7 +414,7 @@ main ul li {
    pages with side panels it spans only the page column. */
 .site-footer {
   padding-block: 1.5rem 2rem;
-  border-top: 2px solid var(--slate);
+  border-top: 2px solid var(--line);
   color: var(--text-muted);
 }
 

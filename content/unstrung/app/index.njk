@@ -1,6 +1,9 @@
 ---
 layout: false
 eleventyExcludeFromCollections: true
+# For the link preview tags only; the page's own title comes from the app.
+title: "unstrung"
+description: "Run unstrung in your browser: an accessible app for reading guitar tablature and practicing chords."
 ---
 {#- The unstrung web app's page, /unstrung/app/. The app comes from its
     release; this puts the site's banner and Main navigation bar in place of
@@ -8,7 +11,9 @@ eleventyExcludeFromCollections: true
     is split in content/_data/unstrungApp.js. The app's other files are copied
     by eleventy.config.js. -#}
 {%- if unstrungApp.available -%}
-{{ unstrungApp.beforeHeader | safe }}
+{{ unstrungApp.head | safe }}
+{%- include "social-card.njk" %}
+    {{ unstrungApp.beforeHeader | safe }}
 {#- The skip link every other page has, here going to the app's Menu button,
     the first thing after the site's menu bar. tabindex="0" is for Safari; see
     main-menu.njk. #}
