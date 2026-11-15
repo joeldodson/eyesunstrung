@@ -12,11 +12,20 @@ Kept up to date as findings are dealt with.
   placed from the menu bar.
 - **Finding 2, cut-off contents entries:** not to be built. Joel wants no wrapping. On the same
   day the dropdown items were also made one line each, cut off the same way.
+- **Finding 3, contents before the page on a phone:** fixed 2026-11-14. Joel chose the height
+  limit: stacked, Page Contents takes at most two fifths of the window's height and scrolls
+  inside itself. The counts of 65 in findings 2 and 3 are the article's two panels together; its
+  contents panel alone has 62 links.
 - **Finding 4, documentation list height:** fixed 2026-11-14. The limit is 21rem, eight entries.
 - **Finding 5, dark mode:** `color-scheme` added 2026-11-14. The faint slate lines in dark mode
   are not changed.
 - **Finding 6, line length:** fixed 2026-11-14. `--measure` is 36rem.
-- Everything else is open, and so are questions 2 to 11.
+- **Finding 7, no skip link on the app's page:** fixed 2026-11-14, from this site's template. It
+  goes to the app's Menu button. On every other page the skip link now goes to the `h1`, which
+  takes focus; `docs/site-structure.md` has the detail.
+- **Finding 8, list panel below the window at the top of a long page:** left as it is. Joel keeps
+  Page Contents first.
+- Everything else is open, and so are questions 6 to 11.
 
 ## How it was done
 
@@ -495,14 +504,19 @@ page's parts. A sighted person should check it.
    his screen reader. The recommendation in finding 2 is not to be built.
 2. On a phone, the Physics article's contents run four or five screens before the article. Should
    the stacked contents be limited in height, collapsed in a `<details>`, or left?
+   **Answered 2026-11-14: limit its height.** Built the same day.
 3. Should the web app's page get the skip link that every other page has? If so, should it come
    from this site's template, or from unstrungApp so the desktop app has it too?
+   **Answered 2026-11-14: yes, from the site's template, landing on the app's Menu button.** Joel
+   also asked that every other skip link land on the page's `h1`. Both built the same day.
 4. Should the list panel (articles, documentation) come before Page Contents? It would keep the
    list in view at the top of a long page. It would also change which navigation landmark a screen
    reader reaches first.
+   **Answered 2026-11-14: no, contents stay first.** Finding 8 is left as it is.
 5. Should `/articles/` and the videos page keep a contents panel? Each has three or four entries,
    and sighted readers get a second column for little. Screen reader users get a landmark listing
    the headings they can already move through.
+   **Answered 2026-11-14: keep the panel on both.** The pages will grow.
 6. Is the introduction meant to live at both `/unstrung/` and `/unstrung/docs/introduction/`?
    If so, should one be marked as the main address?
 7. Do you want the site found by search engines and shown well when a link is shared? That decides

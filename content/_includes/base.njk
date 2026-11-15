@@ -34,7 +34,9 @@
     <script src="/assets/js/menu.js" defer></script>
   </head>
   <body>
-    <a class="skip-link" href="#main-content" tabindex="0">Skip to main content</a>
+    {#- Goes to the h1, the first thing in main, so it passes the side panels
+        on pages that have them. Styled by assets/css/header.css. #}
+    <a class="skip-link" href="#page-title" tabindex="0">Skip to main content</a>
 
     {% include "banner.njk" %}
 
@@ -90,7 +92,11 @@
     {%- endif %}
 
       <main id="main-content">
-        <h1 id="page-title">{{ title }}</h1>
+        {#- tabindex="-1" lets the skip link, and the contents panel's first
+            link, put focus on the heading. It adds no tab stop. Without it
+            Safari scrolls to the heading but leaves focus where it was, so the
+            next Tab starts again from the top of the page. #}
+        <h1 id="page-title" tabindex="-1">{{ title }}</h1>
         {%- if isArticle %}
         <p class="article-date">Published <time datetime="{{ page.date | isoDate }}">{{ page.date | readableDate }}</time></p>
         {%- endif %}

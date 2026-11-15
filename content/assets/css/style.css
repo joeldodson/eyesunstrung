@@ -86,20 +86,7 @@ body {
   outline-offset: 2px;
 }
 
-/* Off screen until focused. Not display: none, which would take it out of the
-   tab order. */
-.skip-link {
-  position: absolute;
-  left: -100vw;
-  top: 0;
-  padding: 0.75rem 1rem;
-  background-color: var(--background);
-  color: var(--link);
-}
-
-.skip-link:focus {
-  left: 0;
-}
+/* The skip link is styled in header.css, so the unstrung app's page has it too. */
 
 a {
   color: var(--link);
@@ -158,7 +145,9 @@ nav a[aria-current="page"] {
    and scrolls inside itself when it is not.
 
    Narrow screens: the column stacks above the page in the order a screen
-   reader reads them, scrolls with the page, and has the slate line under it. */
+   reader reads them, scrolls with the page, and has the slate line under it.
+   The contents panel is limited in height there; see the end of the media
+   query below. */
 .panel-layout {
   display: grid;
   grid-template-columns: var(--panel-width) minmax(0, 1fr);
@@ -230,6 +219,16 @@ nav a[aria-current="page"] {
   .panel + .panel {
     overflow-y: visible;
     max-height: none;
+  }
+
+  /* Stacked, the contents take at most two fifths of the window's height
+     (never less than 12rem) and scroll inside themselves beyond that, so a
+     long list does not put screens of links before the page: the Physics
+     article's two panels were 2336px tall at 320px wide. The links and their
+     order are unchanged, so a screen reader reads the same list. */
+  .contents-panel {
+    overflow-y: auto;
+    max-height: max(40vh, 12rem);
   }
 }
 

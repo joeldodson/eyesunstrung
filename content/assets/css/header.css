@@ -5,6 +5,25 @@
  * and win.
  */
 
+/* The skip link, first on every page: off screen until focused. Not
+   display: none, which would take it out of the tab order. On the site's own
+   pages it goes to the h1; on the app's page, to the app's Menu button. */
+.skip-link {
+  position: absolute;
+  left: -100vw;
+  top: 0;
+  z-index: 30;
+  padding: 0.75rem 1rem;
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  background-color: var(--background, #ffffff);
+  color: var(--link, #0b4f8a);
+}
+
+.skip-link:focus {
+  left: 0;
+}
+
 /* The banner: one image, drawn by scripts/build-banner.mjs, linking home. It
    has its own dark background in both colour schemes. It spans the window,
    and is as tall as the smallest of 240px (its drawn size), a fifth of the

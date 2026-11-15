@@ -35,6 +35,10 @@ export default function () {
   if (headers.length !== 1) {
     throw new Error(`unstrung-release/app-page.html has ${headers.length} <header> elements, not one`);
   }
+  // The page's skip link, written by content/unstrung/app/index.njk, goes to the app's Menu button.
+  if (!body.includes('id="app-menu-button"')) {
+    throw new Error('unstrung-release/app-page.html has no id="app-menu-button" for the skip link to go to');
+  }
   const { index, 0: header } = headers[0];
   const assets = [
     '    <link rel="stylesheet" href="/assets/css/header.css" />',

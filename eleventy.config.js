@@ -66,7 +66,7 @@ function contentsNav(headings, title) {
   }
   while (open.length) close();
 
-  return `<nav class="panel">
+  return `<nav class="panel contents-panel">
           <p class="panel-title">Page Contents</p>
           <ul role="list">${items}</ul>
         </nav>`;
@@ -130,7 +130,7 @@ export default function (eleventyConfig) {
     });
 
     if (!withIds.includes("<!--page-contents-->")) return withIds;
-    const title = (withIds.match(/<h1 id="page-title">(.*?)<\/h1>/s)?.[1] ?? "").replace(/<[^>]+>/g, "").trim();
+    const title = (withIds.match(/<h1 id="page-title"[^>]*>(.*?)<\/h1>/s)?.[1] ?? "").replace(/<[^>]+>/g, "").trim();
     return withIds.replace("<!--page-contents-->", contentsNav(headings, title));
   });
 

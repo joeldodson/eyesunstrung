@@ -9,7 +9,11 @@ eleventyExcludeFromCollections: true
     by eleventy.config.js. -#}
 {%- if unstrungApp.available -%}
 {{ unstrungApp.beforeHeader | safe }}
-{%- include "banner.njk" %}
+{#- The skip link every other page has, here going to the app's Menu button,
+    the first thing after the site's menu bar. tabindex="0" is for Safari; see
+    main-menu.njk. #}
+    <a class="skip-link" href="#app-menu-button" tabindex="0">Skip to main content</a>
+{% include "banner.njk" %}
 {% include "main-menu.njk" %}
 {{- unstrungApp.afterHeader | safe }}
 {%- else -%}

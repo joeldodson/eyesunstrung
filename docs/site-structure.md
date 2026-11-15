@@ -32,6 +32,25 @@ nothing (2026-10-10). In WebKit, clicking a dropdown button focuses it, but pres
 does not focus the link: focus goes to nothing, and closing the dropdown then left the click with no
 link to land on. Reproduced in Playwright's WebKit with the old script, and fixed there.
 
+The skip link, "Skip to main content", is first on every page, and since 2026-11-14 that includes
+the web app's page. Joel's rule, the same day: on the site's own pages it goes to the page's `h1`;
+on `/unstrung/app/` it goes to the app's Menu button, the first thing after the site's menu bar.
+
+- On the site's pages the link is to `#page-title`, the `h1`, which is the first thing in `main`
+  and comes after any side panels. It went to `main` itself before, which read the same but was
+  not the heading. The `h1` has `tabindex="-1"`: it adds no tab stop, and lets the link put focus
+  on the heading. Without it, WebKit scrolled to the target but left focus where it was, so the
+  next Tab started again from the top of the page. That was true of the old target too.
+- On the app's page the link is written by `content/unstrung/app/index.njk`, to
+  `#app-menu-button`. `content/_data/unstrungApp.js` stops the build if the app's page has no
+  element with that id. The desktop app has no skip link; it has no site menu to skip.
+- The link's style moved from `style.css` to `header.css`, which the app's page loads.
+- Checked 2026-11-14 in Edge and Playwright's WebKit on eleven pages: the link is the first tab
+  stop, shows on screen with its outline when focused, and Enter puts focus on the `h1`, or on the
+  Menu button on the app's page. In Edge the next Tab goes to the first link in `main`, never to a
+  side panel. The `h1` shows the focus outline after the skip link and not after a mouse click.
+  The eleven tab stops on About are the same as before.
+
 Dropdown items are one line each, like the side panels' entries (2026-11-14, at Joel's request): a
 title too long for the list is cut off with an ellipsis. This is CSS only (`white-space: nowrap`,
 `overflow: hidden`, `text-overflow: ellipsis`), with no ARIA. The link's text in the page is still
@@ -103,6 +122,16 @@ in `base.njk` and `style.css`; a new section only needs its own list panel.
   is at most the window's height, and scrolls inside itself if needed. It has its own grid column,
   so it never covers the page or a focused element in it. On narrow screens it scrolls with the
   page, since a fixed panel there would cover the article.
+- **Stacked contents:** on narrow screens the Page Contents panel takes at most two fifths of the
+  window's height, and never less than 12rem, and scrolls inside itself beyond that. Decided with
+  Joel on 2026-11-14, from the site review: stacked at full height, the Physics article's panels
+  put four or five phone screens of links before the article. It is CSS only, on the
+  `contents-panel` class that `contentsNav` gives the panel; the links and their order are the
+  same, so nothing changes for a screen reader. A `<details>` closed on narrow screens was the
+  other option, and was not chosen: a screen reader user would have had to open it. Measured on a
+  390 by 844 touchscreen: the article's `h1` starts at 746 px, where the panels alone were about
+  3000 px tall before. A link far down the list, given focus, is scrolled into view inside the
+  panel with its outline showing. The list panel is not limited.
 - **Space:** the list panel shows in full up to 21rem, its title and eight entries, and scrolls
   beyond that. It was 14rem until 2026-11-14, which held only five entries: with seven documents,
   the last two were out of view until the panel was scrolled. Measured 2026-11-14: eight entries
