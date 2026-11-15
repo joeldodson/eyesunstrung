@@ -120,6 +120,8 @@
           <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
           <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
         </ul>
+        {#- The day this build was made; see "updated" in eleventy.config.js. #}
+        <p>Site last updated <time datetime="{{ updated.iso }}">{{ updated.readable }}</time></p>
         <p>&copy; 2024&ndash;{{ year }} Joel Dodson</p>
       </footer>
 

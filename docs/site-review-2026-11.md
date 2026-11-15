@@ -168,7 +168,8 @@ Area: appearance, usability. Established: measured.
   (224 px) holds the title and five entries.
 - The local build's list has six entries. The last, Resources, starts at 605 px and the panel ends
   at 608 px: it is hidden, at every window height, until the panel is scrolled.
-- The live site's list has seven entries, so two are hidden there.
+- The live site's list has the same six entries. This line first said seven, with two hidden;
+  that count had included a link from the page's text. Corrected 2026-11-15.
 - The test browser reported no width for the panel's scrollbar. I cannot say whether a sighted
   reader gets any sign that the list continues.
 - The same panel on article pages holds three entries today and will reach the limit at six.

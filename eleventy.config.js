@@ -277,6 +277,20 @@ export default function (eleventyConfig) {
   // links, the tags apps read to preview a shared link, and the sitemap.
   eleventyConfig.addGlobalData("siteUrl", "https://eyesunstrung.vip");
   eleventyConfig.addGlobalData("year", () => new Date().getFullYear());
+  // The day the site was built, for "Site last updated" in the footer. Every
+  // publication is a build: a push to main, or the workflow run by hand after
+  // an unstrung release, which changes the app and its documentation with no
+  // commit here. So the build's date is the right one, not the last commit's.
+  // The workflow's clock is UTC; the date is given in Joel's time zone, so an
+  // evening publication is not dated the next day.
+  eleventyConfig.addGlobalData("updated", () => {
+    const now = new Date();
+    const timeZone = "America/Los_Angeles";
+    return {
+      iso: now.toLocaleDateString("en-CA", { timeZone }),
+      readable: now.toLocaleDateString("en-US", { dateStyle: "long", timeZone }),
+    };
+  });
 }
 
 export const config = {

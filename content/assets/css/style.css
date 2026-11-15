@@ -155,8 +155,8 @@ nav a[aria-current="page"] {
    Within the column, the same slate line separates one panel from the next.
    A later panel (the article or documentation list) shows in full up to
    21rem, its title and eight entries, and scrolls beyond that. It was 14rem
-   until 2026-11-14, which held five entries and hid the last two of the
-   seven documents; the contents panel gets all the rest of
+   until 2026-11-14, which held five entries and hid the last of the
+   six documents; the contents panel gets all the rest of
    the height, so it shows every heading whenever the window is tall enough,
    and scrolls inside itself when it is not.
 

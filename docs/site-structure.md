@@ -159,8 +159,8 @@ in `base.njk` and `style.css`; a new section only needs its own list panel.
   3000 px tall before. A link far down the list, given focus, is scrolled into view inside the
   panel with its outline showing. The list panel is not limited.
 - **Space:** the list panel shows in full up to 21rem, its title and eight entries, and scrolls
-  beyond that. It was 14rem until 2026-11-14, which held only five entries: with seven documents,
-  the last two were out of view until the panel was scrolled. Measured 2026-11-14: eight entries
+  beyond that. It was 14rem until 2026-11-14, which held only five entries: with six documents,
+  the last, Resources, was out of view until the panel was scrolled. Measured 2026-11-14: eight entries
   show with no scrolling, and a ninth makes the panel scroll. The contents panel gets the rest, so it shows every heading when the window allows.
   Joel is fine with a long contents list scrolling; nothing more is done to avoid it.
 - **One line per entry:** panel links do not wrap. A long title or heading is cut off at the
@@ -244,7 +244,13 @@ browser stops drawing a path at the first bad number, so half the word went miss
 writes the path data itself and refuses to write an SVG containing `NaN`.
 
 The footer, on every page, has "Comments? Email feedback at eyesunstrung.vip" (the last part is the
-mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub. It starts with
+mailto link) and links to the eyesunstrung and unstrungApp repositories on GitHub. Then "Site last
+updated" and a date, added 2026-11-15 at Joel's request, and the copyright line. The date is the
+day the site was built, since every publication is a build: a push to main, or the workflow run
+by hand after an unstrung release, which changes the app and its documentation with no commit
+here. It is given in Pacific time (`America/Los_Angeles`, in `eleventy.config.js`), Joel's zone,
+because the workflow's clock is UTC and an evening publication would otherwise carry the next
+day's date. The web app's page has no footer, so no date. It starts with
 the same 2 px slate line as the other boundaries, at every window width, so low vision readers can
 see where the page ends: across the footer on single-column pages, and across the page column only
 on pages with side panels. The slate lines (menu bar, the column's left edge, between panels, above
