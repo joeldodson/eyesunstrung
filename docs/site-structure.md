@@ -9,7 +9,7 @@ Every page has, in order: a skip link, the banner, the Main
 navigation bar, the page, and the footer. All of it comes from `content/_includes/base.njk`.
 
 The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown (Overview, The app,
-Documentation, Videos) and About. About has `aria-label="About eyesunstrung"`, chosen 2026-10-08:
+Documentation) and About. About has `aria-label="About eyesunstrung"`, chosen 2026-10-08:
 in browse mode, arrowing past the end of the unstrung dropdown reaches it, and "About" alone
 sounded like About unstrung. The visible text stays "About", which is clear on screen and short.
 Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
@@ -77,8 +77,8 @@ single-column pages and beside the panels alike: about 70 to 80 characters to a 
 width of the digit 0 and wider than the average letter.
 
 `style.css` sets `color-scheme: light dark` (2026-11-14), so in dark mode the browser draws its own
-parts dark: the Playback speed select on the videos page, and the panels' scrollbars. Before, the
-select was black on white on the dark page.
+parts dark: form controls, and the panels' scrollbars. Before, the Playback speed select on the
+videos page, since removed, was black on white on the dark page.
 
 Four changes to appearance were made on 2026-11-14 from the site review, by measurement alone;
 Joel chose not to wait for a sighted person to look first. All are in `style.css`.
@@ -114,7 +114,7 @@ Some pages have a left column of navigation landmarks beside the page:
   Left out when the page has no `##`, `###` or `####`.
 - **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
   marked `aria-current="page"`. Article pages only.
-- **unstrung Pages:** The app, Documentation and Videos. The `/unstrung/` page only, set by
+- **unstrung Pages:** The app and Documentation. The `/unstrung/` page only, set by
   `sidePanel: unstrung` in its front matter. The links and their names come from
   `content/_data/unstrungPages.json`, which the unstrung dropdown also reads, so a page has one
   name in both places; the panel leaves out the page it is on. Until 2026-11-14 the two lists
@@ -263,12 +263,11 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 |---|---|---|
 | `/` | `content/index.md` | Single column |
 | `/about/` | `content/about.md` | Single column |
-| `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`), like the videos page: an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
+| `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`): an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
 | `/articles/<name>/` | `content/articles/<name>.md` | Contents and eyesunstrung Articles panels |
 | `/unstrung/` | `content/unstrung/index.njk`: unstrung's introduction, from the release | Contents and unstrung Pages panels |
 | `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and unstrung Documentation panels |
 | `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and unstrung Documentation panels |
-| `/unstrung/videos/` | `content/unstrung/videos/index.njk`, from `content/_data/videos.json` | Contents panel only (`contentsPanel: true`) |
 | `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` puts the site's banner and Main navigation bar in place of the app's banner | The app's own page, under the site's banner and menu bar |
 
 ## YouTube channel picture and banner
@@ -293,43 +292,16 @@ banner, title included, is scaled 1.288 times to fit that safe area, centred, an
 up and the table's front edge down, darkening, to fill the rest. Measured 2026-09-30: the guitar,
 sunglasses and title all fall inside the safe area, and every corner of the image is wall or table.
 
-## The videos page
+The videos were withdrawn on 2026-11-16. The picture and banner stay, because the picture shown
+beside a shared link to the site is cut from the banner's drawing; see "Search engines and shared
+links".
 
-Built 2026-09-30 from the eyesunstrung YouTube channel, https://www.youtube.com/@eyesunstrung. The
-channel was called "Joel Dodson" until Joel renamed it that day; `@unstrungApp` still reaches it.
+## The videos page, removed 2026-11-16
 
-- Under the `h1`, the channel's own description from YouTube, up to the first `===`, which Joel
-  puts in the description on YouTube to mark where the page's part ends; the marker and everything
-  after it are left out. Then a link to the channel.
-- For each video, newest first: an `h2` with the video's title, the description Joel wrote on
-  YouTube, and a `<details>` disclosure whose summary is "Watch" and the title. Inside it, the
-  YouTube player, embedded from `youtube-nocookie.com` (YouTube's privacy-enhanced mode), with the
-  video title as the frame's `title`. Nothing is loaded from YouTube until a disclosure is opened.
-- Players are embedded with `enablejsapi=1`, so `content/assets/js/videos.js` can send them
-  commands through YouTube's IFrame Player API (by `postMessage`, without YouTube's own script):
-  - closing a disclosure pauses its video, and reopening leaves it paused where it was;
-  - a "Playback speed" select above each player, 0.5 to 2 times, applies to every video on the
-    page and is remembered in the browser. YouTube's own speed setting is in its player's settings
-    menu and keyboard shortcuts, inside the frame, which Joel could not reach with NVDA; that part
-    is YouTube's code and cannot be changed from here. The select is hidden until the script runs.
-- `rel=0` limits the videos YouTube suggests at the end to this channel. YouTube stopped allowing
-  suggestions to be turned off entirely in 2018.
-
-Checked 2026-09-30 in Edge: the speed select shows and sets the player's rate; the rate is
-remembered across a reload and applied to another video when it opens; a playing video pauses when
-its disclosure closes and stays at the same time.
-- The contents panel lists the `h2`s; there is no second panel.
-
-The text comes from `content/_data/videos.json`, which `scripts/fetch-videos.mjs`
-(`npm run fetch:videos`) writes from the channel page and the channel's public RSS feed, with no
-API key. The site build never contacts YouTube, so it cannot fail because of YouTube. After
-publishing a video, or changing a title or description on YouTube, run the script, check the file,
-and commit it. The feed lists only the 15 most recent videos; past that, the script needs to keep
-older entries from the existing file.
-
-Descriptions are plain text on YouTube. The `paragraphs` filter in `eleventy.config.js` turns
-them into HTML: blank lines separate paragraphs, single line breaks are kept, and web addresses
-become links. Spelling and wording are fixed on YouTube, then fetched again.
+From 2026-09-30 to 2026-11-16, `/unstrung/videos/` showed the videos on the eyesunstrung YouTube
+channel, with their descriptions fetched from YouTube by `npm run fetch:videos`. It was removed with
+everything that built it when Joel withdrew the videos. `docs/videos-page.md` records how it worked
+and which commits to restore it from.
 
 ## unstrung, from its releases
 

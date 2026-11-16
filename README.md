@@ -31,7 +31,6 @@ it a tarball or folder from unstrungApp:
 `npm run build:banner` redraws the banner and favicon; see `docs/site-structure.md`.
 `npm run build:branding` renders the YouTube channel picture and banner in `branding/` to PNG,
 and the picture shown beside a shared link to the site.
-`npm run fetch:videos` refreshes the videos page's data from YouTube; commit the result.
 
 ## Publishing
 

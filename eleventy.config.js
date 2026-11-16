@@ -260,18 +260,6 @@ export default function (eleventyConfig) {
     date.toLocaleDateString("en-US", { dateStyle: "long", timeZone: "UTC" }),
   );
 
-  // Plain text from elsewhere (YouTube descriptions) as HTML: escaped, blank
-  // lines between paragraphs, single line breaks kept, web addresses as links.
-  eleventyConfig.addFilter("paragraphs", (text) => {
-    const escape = (s) => s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
-    const linkify = (s) => s.replace(/https?:\/\/[^\s<]+[^\s<.,;:!?)]/g, (url) => `<a href="${url}">${url}</a>`);
-    return (text || "")
-      .trim()
-      .split(/\n\s*\n/)
-      .map((para) => `<p>${linkify(escape(para.trim())).replace(/ *\n/g, "<br>\n")}</p>`)
-      .join("\n");
-  });
-
   eleventyConfig.addGlobalData("layout", "base.njk");
   // The site's address, for the few places that need a full one: canonical
   // links, the tags apps read to preview a shared link, and the sitemap.

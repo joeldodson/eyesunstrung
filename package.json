@@ -10,7 +10,6 @@
     "start": "eleventy --serve",
     "build": "eleventy",
     "build:banner": "node scripts/build-banner.mjs",
-    "fetch:videos": "node scripts/fetch-videos.mjs",
     "fetch:unstrung": "node scripts/fetch-unstrung.mjs",
     "build:branding": "node scripts/render-branding.mjs"
   },

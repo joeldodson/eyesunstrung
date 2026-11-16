@@ -51,6 +51,9 @@ Kept up to date as findings are dealt with.
   temporary page.
 - **Finding 15, stale comments:** fixed 2026-11-14, except the README's first paragraph and the
   15-video limit in the fetch script.
+- **The videos page:** removed 2026-11-16, when Joel withdrew the videos, with its fetch script and
+  `videos.js`. The 15-video limit and question 5's part about the videos page no longer apply. The
+  findings below still describe the page as it was; `docs/videos-page.md` records how it worked.
 - Open: finding 11 (Joel leans to leaving the Nunjucks setting), finding 13, finding 17 (the
   workflow; it cannot be tested without pushing, so it was left), and the heading check wanted in
   unstrungApp.

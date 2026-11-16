@@ -347,41 +347,6 @@ main ul li {
   color: var(--text-muted);
 }
 
-/* Videos page: each video's player sits in a disclosure widget, full width
-   of the text column at 16:9. The player is only loaded when opened. */
-.video {
-  margin-block: 1rem 2rem;
-}
-
-.video summary {
-  cursor: pointer;
-  color: var(--link);
-  text-decoration: underline;
-  text-underline-offset: 0.15em;
-  min-height: 24px;
-}
-
-/* The speed control, shown by videos.js; :not([hidden]) so this display value
-   does not override the hidden attribute when the script has not run. */
-.video-speed:not([hidden]) {
-  display: block;
-  margin-top: 0.75rem;
-}
-
-.video-speed select {
-  margin-inline-start: 0.5rem;
-  font: inherit;
-}
-
-.video iframe {
-  display: block;
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  height: auto;
-  margin-top: 0.75rem;
-  border: 0;
-}
-
 /* The quotation opening the home page: as wide as its text, centred, with the
    attribution aligned to its right edge. */
 .epigraph {

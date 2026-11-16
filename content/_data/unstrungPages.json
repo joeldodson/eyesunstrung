@@ -1,6 +1,5 @@
 [
   { "url": "/unstrung/", "label": "Overview" },
   { "url": "/unstrung/app/", "label": "The app" },
-  { "url": "/unstrung/docs/", "label": "Documentation" },
-  { "url": "/unstrung/videos/", "label": "Videos" }
+  { "url": "/unstrung/docs/", "label": "Documentation" }
 ]
