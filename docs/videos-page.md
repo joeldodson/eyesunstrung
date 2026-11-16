@@ -9,7 +9,7 @@ revived.
 
 - **Last commit with the page:** `45e857d` ("Show when the site was last updated, in the
   footer"). Every removed file can be restored from it.
-- **The removal:** `REMOVAL_COMMIT`, "Remove the videos page and what built it".
+- **The removal:** `6768ee9`, "Remove the videos page and what built it".
 - **In unstrungApp:** `394ee7f`, "Remove the references to the unstrung videos", removed the
   Videos section from `user-docs/introduction.md`, which is also the `/unstrung/` page.
 
@@ -24,7 +24,7 @@ Then put back by hand what the removal took out of shared files, all described b
 the videos rules in `content/assets/css/style.css`, the `paragraphs` filter in
 `eleventy.config.js`, the link in the fallback paragraph of `content/unstrung/index.njk`, the
 README's line about `npm run fetch:videos`, and the parts of `docs/site-structure.md`.
-`git show REMOVAL_COMMIT` lists every line. Reverting the removal commit (`git revert`) does all
+`git show 6768ee9` lists every line. Reverting the removal commit (`git revert`) does all
 of it at once, if nothing since has touched the same lines. Run `npm run fetch:videos` afterwards,
 since `videos.json` holds the videos as of 2026-10-01.
 
