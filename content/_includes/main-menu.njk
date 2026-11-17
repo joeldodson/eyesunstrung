@@ -31,9 +31,9 @@
           <details class="submenu">
             <summary>unstrung</summary>
             <ul role="list">
-              {#- From content/_data/unstrungPages.json, which the unstrung
-                  Pages side panel in base.njk also reads, so a page has
-                  one name in both places. #}
+              {#- From content/_data/unstrungPages.json. Until 2026-11-16 the
+                  unstrung Pages side panel on /unstrung/ read it too, so a
+                  page had one name in both places. #}
               {%- for item in unstrungPages %}
               <li><a href="{{ item.url }}" tabindex="0" title="{{ item.label }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.label }}</a></li>
               {%- endfor %}

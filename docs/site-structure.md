@@ -114,18 +114,49 @@ Some pages have a left column of navigation landmarks beside the page:
   Left out when the page has no `##`, `###` or `####`.
 - **eyesunstrung Articles:** an "All Articles" link to `/articles/`, then the list of articles, current one
   marked `aria-current="page"`. Article pages only.
-- **unstrung Pages:** The app and Documentation. The `/unstrung/` page only, set by
-  `sidePanel: unstrung` in its front matter. The links and their names come from
-  `content/_data/unstrungPages.json`, which the unstrung dropdown also reads, so a page has one
-  name in both places; the panel leaves out the page it is on. Until 2026-11-14 the two lists
-  were written separately, and the panel said "The unstrung app" where the dropdown said "The
-  app". Joel chose "The app" for both.
 - **unstrung Documentation:** About unstrung and each unstrung document, by its Help menu name,
   current one marked. The `/unstrung/docs/` pages, set by `sidePanel: docs`.
 
 Articles get the contents and the eyesunstrung Articles panel. A page with `sidePanel` gets the contents and
 the panel named. Any other page gets the contents panel alone by setting `contentsPanel: true` in
 its front matter. Pages without any of these are a single column.
+
+### /unstrung/, a single column since 2026-11-16
+
+Until 2026-11-16 `/unstrung/` had Page Contents and an unstrung Pages panel, set by
+`sidePanel: unstrung`, listing The app, Documentation and Videos from
+`content/_data/unstrungPages.json`, the file the unstrung dropdown reads. With the videos page
+gone the panel held two links, and Joel chose a single column with the links in the page instead:
+
+- The panels come before `main` in reading order, so a screen reader user arriving by the skip
+  link or by pressing 1 passes them without hearing them. A link meant to stand out belongs
+  after the `h1`.
+- The introduction's own link to the app is the second sentence of its first section, and the
+  introduction is also the app's Help document, so it was not moved there.
+- Text is limited to `--measure` either way, so dropping the panels centres the column, as on
+  the home page, without lengthening lines.
+- Page Contents was given up. A screen reader user moves by heading anyway; a sighted reader
+  loses the overview of the introduction's sections.
+
+`content/unstrung/index.njk` puts a list of three links straight after the `h1`, ahead of the
+introduction and independent of the release:
+
+1. "Run unstrung in your browser (opens in new tab)", to `/unstrung/app/`.
+2. "Download the unstrung Windows installer (opens in new tab)", to the latest unstrungApp release
+   on GitHub, `https://github.com/joeldodson/unstrungApp/releases/latest`.
+3. "Read the unstrung documentation", to `/unstrung/docs/`, in the same tab.
+
+The list is a `ul` with class `page-links`: flush with the text, 1.2rem and weight 600, so it
+reads as the page's starting points. The `sidePanel: unstrung` branch was removed from `base.njk`;
+`unstrungPages.json` now feeds the dropdown alone.
+
+`/unstrung/docs/`, the documentation index, has the first two links straight after its `h1` as
+well, ahead of the line naming the version. Someone who finds the documentation from a search or a
+shared link may know nothing else about unstrung. The documentation link is left out there, as it
+would lead to the page itself. The individual documents have none of these links: Joel judged
+that overkill, and the unstrung dropdown in the menu bar has The app on every page. Both pages
+take the list from `content/_includes/unstrung-links.njk`; `/unstrung/` sets `withDocsLink` to add
+the third link.
 
 Every panel has a visible title, given above, and no `aria-label`. Decided with Joel on
 2026-10-29, as on training.glidance.io: NVDA announces an unnamed navigation landmark as
@@ -265,7 +296,7 @@ readers can tell the regions apart. Reading order is unchanged: panels, main, fo
 | `/about/` | `content/about.md` | Single column |
 | `/articles/` | `content/articles/index.md` | Contents panel only (`contentsPanel: true`): an `h2` per article, oldest first as Joel writes them, linking to it, with his Prompter's Notes |
 | `/articles/<name>/` | `content/articles/<name>.md` | Contents and eyesunstrung Articles panels |
-| `/unstrung/` | `content/unstrung/index.njk`: unstrung's introduction, from the release | Contents and unstrung Pages panels |
+| `/unstrung/` | `content/unstrung/index.njk`: three links, then unstrung's introduction, from the release | Single column |
 | `/unstrung/docs/` | `content/unstrung/docs/index.njk`: the About document, from the release | Contents and unstrung Documentation panels |
 | `/unstrung/docs/<name>/` | `content/unstrung/docs/document.njk`, one page per document in the release | Contents and unstrung Documentation panels |
 | `/unstrung/app/` | The web app from the release; `content/unstrung/app/index.njk` puts the site's banner and Main navigation bar in place of the app's banner | The app's own page, under the site's banner and menu bar |

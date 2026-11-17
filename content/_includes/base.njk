@@ -4,9 +4,9 @@
     page. Article pages add two navigation landmarks before the article, in a
     left column: the article's contents, titled "Page Contents", and
     the list of articles. A page with contentsPanel: true in its front matter gets the
-    left column with only the contents. A page with sidePanel set gets the
-    contents and the list named there: "unstrung" for the /unstrung/ page,
-    "docs" for the unstrung documentation pages, whose list comes from
+    left column with only the contents. The unstrung documentation pages set
+    sidePanel: docs and get the contents and the list of documents, which
+    comes from
     content/_data/unstrungDocs.js. The contents list is filled in by the
     "headings" transform in eleventy.config.js, which replaces the
     page-contents comment below.
@@ -65,20 +65,6 @@
             <li><a href="/articles/" title="All Articles">All Articles</a></li>
             {%- for article in collections.articles %}
             <li><a href="{{ article.url }}" title="{{ article.data.title }}"{% if page.url == article.url %} aria-current="page"{% endif %}>{{ article.data.title }}</a></li>
-            {%- endfor %}
-          </ul>
-        </nav>
-        {%- elif sidePanel == "unstrung" %}
-        <nav class="panel">
-          <p class="panel-title">unstrung Pages</p>
-          <ul role="list">
-            {#- The same list as the unstrung dropdown in main-menu.njk, from
-                content/_data/unstrungPages.json, without the page this panel
-                is on. #}
-            {%- for item in unstrungPages %}
-            {%- if item.url != page.url %}
-            <li><a href="{{ item.url }}" title="{{ item.label }}">{{ item.label }}</a></li>
-            {%- endif %}
             {%- endfor %}
           </ul>
         </nav>

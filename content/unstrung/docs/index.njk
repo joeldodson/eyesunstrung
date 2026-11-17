@@ -7,7 +7,9 @@ eleventyComputed:
 {#- The About document from unstrungApp's user-docs, the same text as the app's
     About unstrung dialog, as of the release fetched by
     scripts/fetch-unstrung.mjs. The other documents each have a page of their
-    own, from document.njk beside this file. -#}
+    own, from document.njk beside this file. The run and download links from
+    unstrung-links.njk come first, straight after the h1. -#}
+{% include "unstrung-links.njk" %}
 {%- if unstrungDocs.available %}
 <p>This is the documentation for unstrung {{ unstrungDocs.version }}.</p>
 {{ unstrungDocs.about.html | safe }}
