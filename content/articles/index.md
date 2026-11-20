@@ -31,3 +31,9 @@ Prompter's Note: Another Claude collaboration.
 This is a description of an acoustic guitar.
 It assumes no prior knowledge, so it is very basic.
 It might be useful for terminology though, even if you have some experience.
+
+## [Notes and Scales on the Guitar](/articles/notes-and-scales-on-the-guitar/)
+
+Prompter's Note: YACC (Yet Another Claude Collaboration, shout-out to old compiler people).
+This article is a very basic introduction to the natural notes and accidentals in the chromatic scale.
+It also introduces the major and minor scales and explores the fretboard.
