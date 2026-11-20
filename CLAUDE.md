@@ -40,20 +40,6 @@ them. Moved here 2026-11-19.
   minutes, so tell Joel to reload on his phone. This is the one standing exception to the push
   rule, and it covers the workflow run only.
 
-# Replying to Joel
-
-Joel's global instructions cover headings, screenshots and plain writing. Also:
-
-- **Questions one at a time.** When there are several decisions, put each to Joel separately as
-  a pointed question with options, recommending one where there is one. A list of questions at
-  the end of a long reply is hard to hold in mind when listening. A question asked in a reply's
-  text goes last, under its own level 3 heading.
-- **Name places instead of pointing.** No "shown here", "over there", "on the right" or "below",
-  in replies or in anything written for the site. Name the landmark, heading, panel or section.
-- **Long sessions.** In a very long session the desktop app has lost the newest messages from
-  NVDA's browse mode. At a natural break, such as after a commit, offer to continue in a fresh
-  session; the files in `docs/` carry the context.
-
 # Design notes
 
 `docs/` records how the site is built and why. `docs/site-structure.md` covers the layout,
