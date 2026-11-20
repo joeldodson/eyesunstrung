@@ -9,8 +9,9 @@ through the one layout in `content/_includes/base.njk`.
 
 ## Articles
 
-Articles are Markdown files in `content/articles/`. `docs/article-format.md` describes the format,
-holds the instructions given to Claude for drafting them, and lists what the build checks.
+Articles are Markdown files in `content/articles/`. `docs/article-format.md` describes the format
+and lists what the build checks. `docs/article-instructions.md` holds the instructions Claude
+follows when writing them.
 `docs/site-structure.md` describes the site's sections, page layouts and plans.
 
 ## Running it locally

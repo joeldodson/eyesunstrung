@@ -35,41 +35,20 @@ Each heading's link in the panel starts with its section number: `##` headings a
 article are not numbered, and articles never number their own headings. `docs/site-structure.md`
 has the details.
 
-Articles are often drafted by Claude in a Claude chat project. The instructions below are what
-that project is given, so that every article arrives in a form that can be saved straight into
-`content/articles/` with no conversion.
-
 ## Instructions for Claude
 
-Paste this into the Claude project's instructions.
+Since 2026-11-19 articles are written with Claude Code in this repository, one session per
+article, and the instructions Claude follows are in `docs/article-instructions.md`. `CLAUDE.md` at
+the repository root tells every session to read them first. Drafts are saved in
+`articlesWorkspace/` at the repository root, which is gitignored, and copied into
+`content/articles/` once Joel has finished them. The copies stay in `articlesWorkspace/` as
+examples of Joel's style.
 
-```
-Write every article as a single Markdown file for the eyesunstrung website, which is built with Eleventy. Give me the complete file, ready to save, and suggest a file name: lowercase words joined by hyphens, ending in .md (for example physics-math-and-music.md). The file name becomes the address: /articles/physics-math-and-music/.
-
-Start the file with a front matter block, exactly in this form, with nothing before it:
-
----
-title: "The article title"
-description: "One or two sentences summarising the article, used in the article list and by search engines."
-date: YYYY-MM-DD
----
-
-Always put the title and description in double quotes. Use the date I give you; if I don't give one, use today's date.
-
-Rules for the body:
-
-- Do not write a level 1 heading. The site writes the title as the only h1. Start sections at ## and go down one level at a time (##, then ###, then ####), never skipping a level.
-- Use plain Markdown only: paragraphs, headings, bulleted lists with "-", numbered lists with "1.", **bold**, *italic*, links, and tables where a table is the clearest form. No raw HTML, no emoji shortcodes such as :smile:, no footnotes, no images.
-- Never use the character pairs {{ or {% or {# anywhere, including inside code. The site's template engine reads them as commands and the build fails.
-- Do not start a paragraph line with a number followed by a full stop unless it is a numbered list.
-- Write for someone using a screen reader. Headings are the main way to navigate, so give each section a heading that says what it covers. Link text should make sense on its own; never "click here" or "this link". Don't rely on visual layout, colour or position ("the table below", "on the right").
-- Do not write a contents section, however long the article is. The site will generate one from the headings.
-- Do not number headings, and do not start a heading with "Part 1" or similar. The site's contents panel numbers every heading itself (1, 1.1, 1.1.1), so a number written in the heading would be said twice there.
-- Every heading gets an id made from its text: lowercased, accents removed (è becomes e), apostrophes dropped, & replaced by "and", and every other run of spaces or punctuation replaced by one hyphen. So "## Sound & waves: the basics" can be linked as [Sound & waves: the basics](#sound-and-waves-the-basics). Keep ## headings free of symbols such as # or +, so their ids are predictable. Two headings with the same text get the same id, so don't repeat a heading.
-- To link to another article on the site, use /articles/ followed by its file name without .md and a trailing slash, for example [Physics, Math, and Music](/articles/physics-math-and-music/). Add #heading-id to link to a section of it.
-- To make a link open in a new tab, end its text with "(opens in new tab)", for example [the unstrung web app (opens in new tab)](/unstrung/app/). The site adds what the browser needs; the words are also the warning a screen reader user needs. Nothing else opens a new tab.
-- If there is a glossary, make it a ## heading at the end, with a bulleted list of "Term - definition" lines, one term per line, in alphabetical order.
-```
+Until then they were drafted in a Claude chat project. Until 2026-11-19 this section held the
+instructions pasted into that project; the version of 2026-11-14 is in this file's history. The
+chat project's own copy had drifted from it: it still used "Part 1: Sound and waves" as the heading
+id example and lacked the new-tab rule. `docs/article-instructions.md` combines the two, with the
+chat project's voice, style and process notes.
 
 The heading id example in the instructions was "Part 1: Sound and waves" until 2026-11-14, which
 the rule against "Part 1" headings contradicts. Physics, Math, and Music was written before that
@@ -77,11 +56,8 @@ rule and keeps its "Part 1:" headings, by Joel's decision the same day: its cont
 "2: Part 1: Sound and Waves", and that is accepted for this article.
 
 Joel's changes to the first draft of these instructions, 2026-09-26: no Prompter's Note
-placeholder (he adds that section himself when he wants one), and no contents section even for
-long articles, because the article layout generates a contents panel from the headings.
-
-Drafts are saved in `articlesWorkspace/` at the repository root, which is gitignored, and copied
-into `content/articles/` once they have been read.
+placeholder, and no contents section even for long articles, because the article layout generates
+a contents panel from the headings.
 
 ### Why these rules
 
@@ -100,8 +76,8 @@ into `content/articles/` once they have been read.
   panel links to, should avoid symbols.
 - **Bullets.** The site hides list bullets and keeps list semantics with `role="list"`, so articles
   use ordinary `-` lists.
-- **Prompter's Note.** Joel adds this section himself when he wants one. Written as
-  `## Prompter's Note`, its id is `prompters-note`.
+- **Prompter's Note.** Joel writes these on the `/articles/` page, not in the articles; see
+  "The /articles/ page and Prompter's Notes".
 - **Dates and order.** The articles list is sorted by `date`. Articles with the same date are
   sorted by file name, which is why `introduction.md` comes before `physics-math-and-music.md`
   when both are dated 2026-09-26.
