@@ -24,3 +24,10 @@ It was not a fire and forget/publish experience.
 I did read it and iterate quite a bit for clarity and completeness.
 None of what is in here is likely to make you a better guitar player, at least not right away.
 But maybe you'll find it interesting.
+
+## [Meet the Acoustic Guitar](/articles/meet-the-acoustic-guitar/)
+
+Prompter's Note: Another Claude collaboration.
+This is a description of an acoustic guitar.
+It assumes no prior knowledge, so it is very basic.
+It might be useful for terminology though, even if you have some experience.
