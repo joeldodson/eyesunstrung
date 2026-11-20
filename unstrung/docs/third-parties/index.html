@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Third Party Components | eyesunstrung</title>
+    <meta name="description" content="Third Party Components, from the unstrung documentation.">
+    <meta property="og:site_name" content="eyesunstrung">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Third Party Components">
+    <meta property="og:description" content="Third Party Components, from the unstrung documentation.">
+    <meta property="og:url" content="https://eyesunstrung.vip/unstrung/docs/third-parties/">
+    <meta property="og:image" content="https://eyesunstrung.vip/assets/images/social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="An unstrung archtop guitar lying on a table, a pair of sunglasses under its neck, and the name eyesunstrung.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page-title" tabindex="0">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung" width="1200" height="240"></a>
+    </header>
+
+
+    <nav class="main-menu" aria-label="Main">
+      <ul role="list">
+        <li><a href="/" tabindex="0">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/" tabindex="0" title="All articles">All articles</a></li>
+              <li><a href="/articles/introduction/" tabindex="0" title="Introduction to eyesunstrung">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/" tabindex="0" title="Physics, Math, and Music">Physics, Math, and Music</a></li>
+              <li><a href="/articles/meet-the-acoustic-guitar/" tabindex="0" title="Meet the Acoustic Guitar">Meet the Acoustic Guitar</a></li>
+              <li><a href="/articles/notes-and-scales-on-the-guitar/" tabindex="0" title="Notes and Scales on the Guitar">Notes and Scales on the Guitar</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/" tabindex="0" title="Overview">Overview</a></li>
+              <li><a href="/unstrung/app/" tabindex="0" title="The app">The app</a></li>
+              <li><a href="/unstrung/docs/" tabindex="0" title="Documentation">Documentation</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" tabindex="0" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel contents-panel">
+          <p class="panel-title">Page Contents</p>
+          <ul role="list"><li><a href="#page-title" title="Third Party Components">Third Party Components</a></li><li><a href="#electron" title="1: Electron">1: Electron</a></li><li><a href="#alphatab" title="2: alphaTab">2: alphaTab</a></li><li><a href="#chords-db" title="3: chords-db">3: chords-db</a><ul role="list"><li><a href="#license-of-chords-db" title="3.1: License of chords-db">3.1: License of chords-db</a></li></ul></li><li><a href="#audio-samples" title="4: Audio Samples">4: Audio Samples</a></li><li><a href="#font" title="5: Font">5: Font</a></li></ul>
+        </nav>
+        <nav class="panel">
+          <p class="panel-title">unstrung Documentation</p>
+          <ul role="list">
+            <li><a href="/unstrung/docs/" title="About unstrung">About unstrung</a></li>
+            <li><a href="/unstrung/docs/introduction/" title="Introduction">Introduction</a></li>
+            <li><a href="/unstrung/docs/what-is-unstrung/" title="What Is unstrung?">What Is unstrung?</a></li>
+            <li><a href="/unstrung/docs/screen-reader-users/" title="Screen Reader Users">Screen Reader Users</a></li>
+            <li><a href="/unstrung/docs/features/" title="Features">Features</a></li>
+            <li><a href="/unstrung/docs/resources/" title="Resources">Resources</a></li>
+            <li><a href="/unstrung/docs/third-parties/" title="Third Party Components" aria-current="page">Third Party Components</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title" tabindex="-1">Third Party Components</h1>
+        <p>This is a list of the most important third party components in unstrung.
+Most of them depend on other third parties in turn, so not everything is listed here.
+Tools like Visual Studio Code and Claude (which I actually pay for) are not listed either.
+I consider those tools for building, not components.
+By components, I mean the pieces that make up the unstrung application and ship with it.</p>
+<h2 id="electron">Electron</h2>
+<p>The desktop app is built on <a href="https://www.electronjs.org/">Electron</a>.
+Electron packages the Chromium browser together with Node.js, so a web page can be installed and run as a desktop application.
+That is why the desktop app and the web version can share almost all of their code.
+Electron is released under the MIT License.
+The web version does not use it.</p>
+<h2 id="alphatab">alphaTab</h2>
+<p><a href="https://alphatab.net">alphaTab</a> reads the song files.
+It turns a Guitar Pro, MusicXML or alphaTex file into tracks, measures, beats and notes, and unstrung builds its text and headings from those.
+alphaTab can also draw a score and play it, but unstrung uses only the part that reads files.
+alphaTab is released under the Mozilla Public License 2.0.</p>
+<h2 id="chords-db">chords-db</h2>
+<p>The fingerings in the chord library come from <a href="https://github.com/tabsy-gr/chords-db">tabsy-gr/chords-db</a>, which corrects and extends <a href="https://github.com/tombatossals/chords-db">chords-db</a>, a community collection of guitar chord shapes.
+unstrung still checks every shape against the notes its chord should have and leaves out any that are wrong.
+It leaves out fingerings that use the thumb, and adds chords the collection lacks, such as power chords.
+A few shapes keep the fingering the original chords-db gave them, where the fork's is less usual.
+Both are released under the MIT License.</p>
+<p>Every chord unstrung uses is in one file, which anyone may download and use: <a href="/unstrung/app/chord-library.json" target="_blank" rel="noopener">the unstrung chord library, chord-library.json (opens in new tab)</a>.
+For each chord it gives every fingering, with the fret and finger on each string, the barres, and the notes it sounds.
+It is the library of the latest release of unstrung.
+It is written in JSON, for programs to read rather than people.</p>
+<h3 id="license-of-chords-db">License of chords-db</h3>
+<p>The chord library includes work from both projects, so their copyright notices and their license are repeated here, as that license requires.
+The file itself carries them too.</p>
+<ul role="list">
+<li>chords-db: Copyright (c) 2016 David Rubert</li>
+<li>tabsy-gr/chords-db: Copyright (c) 2016 David Rubert and the tombatossals/chords-db contributors</li>
+<li>tabsy-gr/chords-db: Copyright (c) 2026 Tabsy contributors</li>
+</ul>
+<p>Both projects are released under this license, the MIT License:</p>
+<p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+<p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+<p>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+<h2 id="audio-samples">Audio Samples</h2>
+<p>I didn't like the sound of simple MIDI, a very basic synthesizer sound.
+I looked into generating more realistic sounds by passing MIDI through various tools.
+That would have added more complicated dependencies, which could affect cross-platform support.
+So instead, I found real recordings of guitar notes online.</p>
+<p>The samples come from two free libraries by Karoryfer Lecolds.
+Both are released under CC0, so there's nothing to license and nothing to pay.</p>
+<p>The guitar is from <a href="https://github.com/sfzinstruments/karoryfer.black-and-green-guitars">Black And Green Guitars</a>, recorded by Brian Wood.
+unstrung uses only the normal picking samples of the green Gretsch Anniversary, 430 recordings covering E2 up to D6.
+Each note was recorded at three volumes, soft, medium and loud, with up to four separate recordings of the same note at the same volume.
+Playing the same note twice in a row uses a different recording each time, which is why repeated notes sound like someone playing rather than a sound being replayed.</p>
+<p>Below E2, the lowest note on a guitar, unstrung uses <a href="https://github.com/sfzinstruments/karoryfer.black-and-blue-basses">Black And Blue Basses</a>, by the same creator and also released under CC0.
+The seventeen notes from B0 up to D#2 come from its &quot;dark black&quot; bass, 204 recordings with the same three volumes and four takes each.
+Together the two cover every semitone from B0 to D6, which reaches the low B of a five-string bass and every drop tuning down to drop A.
+There is a slight change in sound between D#2 and E2, where the recordings switch instrument.</p>
+<p>Nothing is being modeled or approximated, so it sounds like a guitar without any further work.
+It also needs no plugins and no synthesizer.</p>
+<p>The desktop app ships with every sample, which is why its installer is large.
+The web version downloads each sample the first time it is needed, from eyesunstrung.vip, and the browser keeps it after that.</p>
+<p>Nothing above D6 or below B0 exists in these samples.
+When a track goes outside that range, unstrung tells you which measures it could not play instead of quietly leaving them out.</p>
+<h2 id="font">Font</h2>
+<p>unstrung uses <a href="https://www.brailleinstitute.org/freefont/">Atkinson Hyperlegible Next</a>, a typeface the Braille Institute designed for low vision readers.
+It is the same font as the <a href="/">eyesunstrung website</a>.
+It is released under the SIL Open Font License 1.1, and its license ships with the app.</p>
+
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>Site last updated <time datetime="2026-11-20">November 20, 2026</time></p>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>
