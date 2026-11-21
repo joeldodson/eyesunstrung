@@ -18,5 +18,11 @@ eleventyComputed:
 
     The introduction is also the /unstrung/ page, with the same text and title.
     canonical names /unstrung/ as its main address, which the layout writes as
-    a link in the head for search engines. No other document has one. -#}
+    a link in the head for search engines. No other document has one.
+
+    The run and download links from unstrung-links.njk come first, straight
+    after the h1, as on /unstrung/docs/. They are added here and not written in
+    the documents, because the app shows the same documents in its Help menu,
+    where the links do not belong. -#}
+{% include "unstrung-links.njk" %}
 {{ doc.html | safe }}

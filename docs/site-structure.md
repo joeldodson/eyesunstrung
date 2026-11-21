@@ -153,10 +153,18 @@ reads as the page's starting points. The `sidePanel: unstrung` branch was remove
 `/unstrung/docs/`, the documentation index, has the first two links straight after its `h1` as
 well, ahead of the line naming the version. Someone who finds the documentation from a search or a
 shared link may know nothing else about unstrung. The documentation link is left out there, as it
-would lead to the page itself. The individual documents have none of these links: Joel judged
-that overkill, and the unstrung dropdown in the menu bar has The app on every page. Both pages
-take the list from `content/_includes/unstrung-links.njk`; `/unstrung/` sets `withDocsLink` to add
-the third link.
+would lead to the page itself.
+
+The individual documents, `/unstrung/docs/<name>/`, had none of these links at first: Joel judged
+that overkill, as the unstrung dropdown in the menu bar has The app on every page. On 2026-11-21
+he added the first two to every document page, straight after the `h1`, after someone said they
+had a hard time finding the link to the app. Two links are not much to pass, and NVDA can jump
+past a list of links. They are added by `content/unstrung/docs/document.njk`, not written in the
+documents, because unstrungApp shows the same `user-docs` files in its Help menu, where the links
+do not belong.
+
+All these pages take the list from `content/_includes/unstrung-links.njk`; `/unstrung/` sets
+`withDocsLink` to add the third link.
 
 Every panel has a visible title, given above, and no `aria-label`. Decided with Joel on
 2026-10-29, as on training.glidance.io: NVDA announces an unnamed navigation landmark as

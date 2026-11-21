@@ -24,6 +24,10 @@ The [About page](/about/) has some personal and technical details if you're curi
 
 ## The unstrung Application
 
+- [Run unstrung in your browser (opens in new tab)](/unstrung/app/)
+- [Download the unstrung Windows installer (opens in new tab)](https://github.com/joeldodson/unstrungApp/releases/latest)
+- [Read the unstrung documentation](/unstrung/docs/)
+
 As explained in the introduction, the main point of eyesunstrung.vip is to host the web-based version of the unstrung application.
 Hopefully all your questions will be answered in [the unstrung pages](/unstrung/).
 All documentation is structured with screen reader users in mind.
