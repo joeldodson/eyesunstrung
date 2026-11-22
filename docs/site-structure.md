@@ -12,7 +12,11 @@ The Main navigation bar holds Home, an Articles dropdown, an unstrung dropdown (
 Documentation) and About. About has `aria-label="About eyesunstrung"`, chosen 2026-10-08:
 in browse mode, arrowing past the end of the unstrung dropdown reaches it, and "About" alone
 sounded like About unstrung. The visible text stays "About", which is clear on screen and short.
-Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
+The bar's top-level list has `aria-label="Main menu bar"` (2026-11-21, at Joel's request), so
+entering the bar by Tab, arrows or single-letter navigation names it rather than reading only
+"list". The list keeps the list role. The `<nav>` has no label, like the side panels' `<nav>`
+elements: it was named "Main" until the same day, and NVDA sometimes read the two names together
+as "main main menu bar". Arrows are not kept inside a dropdown: that would need ARIA menus, which the W3C advises against
 for site navigation. The dropdowns are `<details>` elements;
 `content/assets/js/menu.js` adds closing on Escape and when focus or a click moves away, and, while a dropdown is open, Down and Up arrow moving through its links, wrapping at either end (2026-10-11). It keeps the arrows it uses from reaching the unstrung app, which listens for them on its page for playback. A screen reader in browse mode keeps the arrows for itself, so this is for keyboard users without one. The
 bar is `content/_includes/main-menu.njk` and the banner `content/_includes/banner.njk`, both
@@ -240,8 +244,14 @@ The headings on the page itself are not numbered.
 
 ## Banner, favicon and footer
 
-The banner is one SVG image, `content/assets/images/banner.svg`, linking to the home page with the
-alt text "eyesunstrung". It shows an unstrung archtop guitar, modelled on a 17-inch single-cutaway
+The banner is one SVG image, `content/assets/images/banner.svg`, linking to the home page. Its alt
+text, which is the link's name and what a screen reader reads when the banner gets focus, is Joel's
+wording from 2026-11-21: "eyesunstrung banner: unstrung guitar sitting on its side on a table,
+sunglasses below the neck." Until then it was "eyesunstrung". It is kept under 100 characters (this
+is 95): NVDA's browse mode splits text longer than its line length, 100 characters by default, and
+a first, 137-character version was read in two parts, the second announced as a graphic again. A
+page cannot change that setting. The SVG's own title and description are not read through an
+`<img>`. It shows an unstrung archtop guitar, modelled on a 17-inch single-cutaway
 archtop like Joel's Eastman AR905CE but with no maker's logo or inlay design, lying on its edge on a
 table with the neck sloping down to the right so it rests on both the body and the headstock, a pair
 of generic thick-framed sunglasses on the table under the neck, and

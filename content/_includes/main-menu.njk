@@ -12,9 +12,15 @@
 
     Every dropdown link has a title attribute repeating its text. header.css
     keeps each item to one line and cuts a long one off with an ellipsis; the
-    title shows the whole text on hover, as on the side panels' links. -#}
-    <nav class="main-menu" aria-label="Main">
-      <ul role="list">
+    title shows the whole text on hover, as on the side panels' links.
+
+    The bar's own list is named "Main menu bar" (2026-11-21), so a screen
+    reader names it when it is entered by Tab, arrows or single-letter
+    navigation, not only "list". It stays a list: ARIA menu roles are for
+    application menus, not site navigation. The <nav> has no label: it was
+    named "Main", and NVDA read the two together as "main main menu bar". -#}
+    <nav class="main-menu">
+      <ul role="list" aria-label="Main menu bar">
         <li><a href="/" tabindex="0"{% if page.url == "/" %} aria-current="page"{% endif %}>Home</a></li>
         <li>
           <details class="submenu">
