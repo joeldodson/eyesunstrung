@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Screen Reader Users | eyesunstrung</title>
+    <meta name="description" content="Screen Reader Users, from the unstrung documentation.">
+    <meta property="og:site_name" content="eyesunstrung">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Screen Reader Users">
+    <meta property="og:description" content="Screen Reader Users, from the unstrung documentation.">
+    <meta property="og:url" content="https://eyesunstrung.vip/unstrung/docs/screen-reader-users/">
+    <meta property="og:image" content="https://eyesunstrung.vip/assets/images/social-card.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="An unstrung archtop guitar lying on a table, a pair of sunglasses under its neck, and the name eyesunstrung.">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <link rel="icon" href="/assets/images/favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <link rel="stylesheet" href="/assets/css/header.css">
+    <link rel="preload" href="/assets/fonts/atkinson-hyperlegible-next-latin.woff2" as="font" type="font/woff2" crossorigin>
+    <script src="/assets/js/menu.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#page-title" tabindex="0">Skip to main content</a>
+
+    <header class="site-header">
+      <a class="banner" href="/" tabindex="0"><img src="/assets/images/banner.svg" alt="eyesunstrung banner: unstrung guitar sitting on its side on a table, sunglasses below the neck." width="1200" height="240"></a>
+    </header>
+
+
+    <nav class="main-menu">
+      <ul role="list" aria-label="Main menu bar">
+        <li><a href="/" tabindex="0">Home</a></li>
+        <li>
+          <details class="submenu">
+            <summary>Articles</summary>
+            <ul role="list">
+              <li><a href="/articles/" tabindex="0" title="All articles">All articles</a></li>
+              <li><a href="/articles/introduction/" tabindex="0" title="Introduction to eyesunstrung">Introduction to eyesunstrung</a></li>
+              <li><a href="/articles/physics-math-and-music/" tabindex="0" title="Physics, Math, and Music">Physics, Math, and Music</a></li>
+              <li><a href="/articles/meet-the-acoustic-guitar/" tabindex="0" title="Meet the Acoustic Guitar">Meet the Acoustic Guitar</a></li>
+              <li><a href="/articles/notes-and-scales-on-the-guitar/" tabindex="0" title="Notes and Scales on the Guitar">Notes and Scales on the Guitar</a></li>
+            </ul>
+          </details>
+        </li>
+        <li>
+          <details class="submenu">
+            <summary>unstrung</summary>
+            <ul role="list">
+              <li><a href="/unstrung/" tabindex="0" title="Overview">Overview</a></li>
+              <li><a href="/unstrung/app/" tabindex="0" title="The app">The app</a></li>
+              <li><a href="/unstrung/docs/" tabindex="0" title="Documentation">Documentation</a></li>
+            </ul>
+          </details>
+        </li>
+        <li><a href="/about/" tabindex="0" aria-label="About eyesunstrung">About</a></li>
+      </ul>
+    </nav>
+
+    <div class="panel-layout">
+      <div class="side-panels">
+        <nav class="panel contents-panel">
+          <p class="panel-title">Page Contents</p>
+          <ul role="list"><li><a href="#page-title" title="Screen Reader Users">Screen Reader Users</a></li><li><a href="#semantic-html-and-local-hints" title="1: Semantic HTML and Local Hints">1: Semantic HTML and Local Hints</a></li><li><a href="#verbosity-clarity-and-intentional-tradeoffs" title="2: Verbosity, Clarity, and Intentional Tradeoffs">2: Verbosity, Clarity, and Intentional Tradeoffs</a></li><li><a href="#settings-for-screen-reader-users" title="3: Settings for Screen Reader Users">3: Settings for Screen Reader Users</a></li><li><a href="#the-playback-keys-need-focus-mode" title="4: The Playback Keys Need Focus Mode">4: The Playback Keys Need Focus Mode</a></li><li><a href="#why-the-measures-are-collapsed" title="5: Why the Measures Are Collapsed">5: Why the Measures Are Collapsed</a></li><li><a href="#where-messages-go" title="6: Where Messages Go">6: Where Messages Go</a></li></ul>
+        </nav>
+        <nav class="panel">
+          <p class="panel-title">unstrung Documentation</p>
+          <ul role="list">
+            <li><a href="/unstrung/docs/" title="About unstrung">About unstrung</a></li>
+            <li><a href="/unstrung/docs/introduction/" title="Introduction">Introduction</a></li>
+            <li><a href="/unstrung/docs/what-is-unstrung/" title="What Is unstrung?">What Is unstrung?</a></li>
+            <li><a href="/unstrung/docs/screen-reader-users/" title="Screen Reader Users" aria-current="page">Screen Reader Users</a></li>
+            <li><a href="/unstrung/docs/features/" title="Features">Features</a></li>
+            <li><a href="/unstrung/docs/resources/" title="Resources">Resources</a></li>
+            <li><a href="/unstrung/docs/third-parties/" title="Third Party Components">Third Party Components</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="page-column">
+
+      <main id="main-content">
+        <h1 id="page-title" tabindex="-1">Screen Reader Users</h1>
+        <ul class="page-links" role="list">
+  <li><a href="/unstrung/app/" target="_blank" rel="noopener">Run unstrung in your browser (opens in new tab)</a></li>
+  <li><a href="https://github.com/joeldodson/unstrungApp/releases/latest" target="_blank" rel="noopener">Download the unstrung Windows installer (opens in new tab)</a></li>
+</ul>
+
+<p>unstrung was written entirely by Claude, directed by a blind developer using NVDA on Windows 11.
+I chose web technologies largely for the accessibility we already get from them.
+There are still some unavoidable limitations though.
+In those cases, I've chosen a possibly less usable experience rather than a workaround almost certain to confuse.
+One gotcha is having to manually toggle focus mode.
+I've called that out in a few places.</p>
+<p>The features document describes every part of unstrung and its keys.
+This page is specifically directed at screen reader users to highlight some areas.</p>
+<h2 id="semantic-html-and-local-hints">Semantic HTML and Local Hints</h2>
+<p>By using Electron initially, I was able to focus on semantic HTML for accessibility.
+All your web-based navigation skills will be useful in unstrung.
+The UI makes use of landmarks, headings, expandable elements, and lots of lists.
+You can get a decent understanding of the layout navigating by headings and form elements.
+Listen closely though for &quot;collapsed&quot; as there is lots of functionality contained in those expandable widgets.</p>
+<p>As you are learning the user interface, arrow, or ctrl+arrow around to hear everything.
+Navigating by tabs or specific elements will skip over text intended to provide helpful hints.
+Many of the helpful hints have been moved into expandable elements partly so they are not skipped when tabbing.
+You'll need to expand the element of course to read the information.</p>
+<h2 id="verbosity-clarity-and-intentional-tradeoffs">Verbosity, Clarity, and Intentional Tradeoffs</h2>
+<p>On NVDA, when landing on a landmark, the landmark's label is read.
+If the first HTML element inside that landmark has a label, it is also announced.
+When the landmark label and its child element have similar labels, it sounds very chatty and redundant.
+I decided then to not have labels in most &quot;nav&quot; HTML elements.
+I ensure the first HTML element inside every nav element (e.g., &quot;button&quot;, &quot;ul&quot;) does have a label.</p>
+<p>When I navigate by landmarks in Narrator, d, Narrator does not announce the label of the first HTML element inside the landmark.
+It also does not invoke that element when I hit enter or spaceBar.
+In NVDA, even if I have landed on the landmark with d, enter or spaceBar still invokes the first element inside it, such as the unstrung menu button.</p>
+<p>I have decided to optimize the eyesunstrung site and unstrung application UX assuming NVDA behavior.
+This makes the Narrator behavior worse.
+It sounds as though there are missing labels, because there are.
+Navigating by form elements, lists, headings, and other elements works fine and I'd argue is a better experience in Narrator as well.</p>
+<p>I can understand disagreement with this approach.
+If unstrung becomes very popular and this approach also affects JAWS (I have not tried unstrung on JAWS), maybe I will change the decision.
+Please feel free to disagree and offer alternatives if you know of any.
+The footer of every page on eyesunstrung.vip has contact information.</p>
+<h2 id="settings-for-screen-reader-users">Settings for Screen Reader Users</h2>
+<p>The Settings dialog, reached from the menu, has a tab called Screen Reader.
+Its settings have defaults chosen with newer users in mind.
+Each has a paragraph beneath it saying what it does and why you might want to change it.
+Read the whole tab rather than only the checkbox labels.</p>
+<h2 id="the-playback-keys-need-focus-mode">The Playback Keys Need Focus Mode</h2>
+<p>Once you have created an audio track, you can control playback with single keys.
+For those keys to reach unstrung, your screen reader has to be in the mode where keyboard input goes straight to the application.
+In NVDA that is focus mode, and nvdaKey+spaceBar turns it on and off.</p>
+<p>A screen reader normally switches in and out of focus mode by itself, depending on whether you have landed on something that takes typed input.
+Nothing in the audio track playback takes typed input, so it will not switch for you.
+You have to turn focus mode on yourself, and it will not turn itself off.</p>
+<p>While testing, I kept catching myself out this way.
+I would turn on focus mode to try the playback keys, then move to another open item.
+I would get there but be unable to navigate it, until I remembered I was still in focus mode and switched back to browse mode.
+If something suddenly seems unresponsive, that is almost certainly why.</p>
+<p>Type ? in a track's Measures and Playback section, or in a chord progression, and the Playback Keys dialog lists the keys.
+Each key has a button under Playback Controls as well, so nothing is keyboard only.
+The keys save you leaving your place, though: they tell you where you are, turn the metronome on and off, and change the tempo from wherever you are reading.</p>
+<h2 id="why-the-measures-are-collapsed">Why the Measures Are Collapsed</h2>
+<p>Inside a song, headings are the fastest way around: the Song Summary, then a heading for each track.
+A track's measures sit behind a collapsed section called Measures and Playback.
+That is deliberate.
+A song can run to hundreds of lines of beat descriptions, and leaving them all exposed made showing the song slow enough to be painful.
+Expand Measures and Playback when you want to work with a specific track.
+The Screen Reader settings tab has an option to collapse them again for you when you switch to another open item, and it is on unless you turn it off.</p>
+<h2 id="where-messages-go">Where Messages Go</h2>
+<p>The status bar is the last thing in the window.
+Your screen reader reads it when it changes, without you going looking for it.
+If a message went by while you were busy, go to the end of the page to read it again, or press nvdaKey+end.</p>
+
+
+      </main>
+
+      <footer class="site-footer">
+        <p>Comments? Email <a href="mailto:feedback@eyesunstrung.vip">feedback at eyesunstrung.vip</a></p>
+        <ul role="list">
+          <li><a href="https://github.com/joeldodson/eyesunstrung">eyesunstrung on GitHub</a></li>
+          <li><a href="https://github.com/joeldodson/unstrungApp">unstrungApp on GitHub</a></li>
+        </ul>
+        <p>Site last updated <time datetime="2026-11-24">November 24, 2026</time></p>
+        <p>&copy; 2024&ndash;2026 Joel Dodson</p>
+      </footer>
+      </div>
+    </div>
+  </body>
+</html>
